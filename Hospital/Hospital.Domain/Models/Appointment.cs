@@ -1,0 +1,30 @@
+﻿using Hospital.Domain.Enum;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Hospital.Domain.Models
+{
+    public class Appointment
+    {
+        [Key] public int AppointmentId { get; set; }
+        [Required] public int PatientId { get; set; }
+        public Patient Patient { get; set; } = null!;
+        [Required] public int DoctorId { get; set; }
+        public Doctor Doctor { get; set; } = null!;
+        [Required] public int BranchId { get; set; }
+        public Branch Branch { get; set; } = null!;
+        [Required] public DateOnly Date { get; set; }
+        [Required] public TimeOnly Time { get; set; }
+        [Required] public AppointmentStatus Status { get; set; } = AppointmentStatus.Pending;
+        public int? CreatedBy { get; set; }
+        public User? Creator { get; set; }
+        public string? Notes { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
+        public ICollection<MedicalRecord> MedicalRecords { get; set; } = new List<MedicalRecord>();
+    }
+}
