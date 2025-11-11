@@ -24,6 +24,7 @@ namespace Hospital.Controllers
             throw new Exception("This is a test exception!");
         }
         [HttpPost("register")]
+        [Authorize(Roles = "Doctor,Patient")]
         public async Task<IActionResult> RegisterAsync([FromBody] RegisterModel model)
         {
             // Validate email format
@@ -51,6 +52,8 @@ namespace Hospital.Controllers
         }
 
         [HttpPost("login")]
+        [Authorize(Roles = "Doctor,Patient,Admin")]
+
         public async Task<IActionResult> LoginAsync([FromBody] LoginModel model)
         {
             if (!ModelState.IsValid)
