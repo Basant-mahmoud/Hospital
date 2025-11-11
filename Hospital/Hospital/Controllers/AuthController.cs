@@ -18,6 +18,11 @@ namespace Hospital.Controllers
             _authService = authService;
         }
 
+        [HttpGet("throw")]
+        public IActionResult ThrowError()
+        {
+            throw new Exception("This is a test exception!");
+        }
         [HttpPost("register")]
         public async Task<IActionResult> RegisterAsync([FromBody] RegisterModel model)
         {

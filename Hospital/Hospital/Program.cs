@@ -7,6 +7,7 @@ using Hospital.Application.Interfaces.Services;
 using Hospital.Domain.Models;
 using Hospital.Infrastructure.Repository;
 using Hospital.Infrastructure.Services;
+using Hospital.Middleware;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -88,6 +89,9 @@ namespace Hospital
             });
 
             var app = builder.Build();
+
+            //Global Exception Handler Middleware
+            app.UseMiddleware<GlobalExceptionHandler>();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
