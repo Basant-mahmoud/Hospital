@@ -20,7 +20,7 @@ namespace Hospital.Domain.Models
         [Required] public DateOnly Date { get; set; }
         [Required] public TimeOnly Time { get; set; }
         [Required] public AppointmentStatus Status { get; set; } = AppointmentStatus.Pending;
-        public int? CreatedBy { get; set; }
+        public string? CreatedBy { get; set; }
         public User? Creator { get; set; }
         public string? Notes { get; set; }
         public DateTime CreatedAt { get; set; }

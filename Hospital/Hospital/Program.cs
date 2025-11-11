@@ -1,6 +1,19 @@
 
 using Clinic.Infrastructure.Persistence;
+using FluentAssertions.Common;
+using Hospital.Application.Helper;
+using Hospital.Application.Interfaces.Repos;
+using Hospital.Application.Interfaces.Services;
+using Hospital.Domain.Models;
+using Hospital.Infrastructure.Repository;
+using Hospital.Infrastructure.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using System.Text.Json;
 
 namespace Hospital
 {
@@ -18,6 +31,62 @@ namespace Hospital
             builder.Services.AddSwaggerGen();
             builder.Services.AddDbContext<AppDbContext>(opt =>
             opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+            //add cors
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowWebApp",
+                    policyBuilder => policyBuilder
+                        .WithOrigins("http://localhost:4200")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowCredentials());
+            });
+
+            // Add services to the container.
+            builder.Services.Configure<JWT>(builder.Configuration.GetSection("JWT"));
+
+            // Add Identity
+            builder.Services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<AppDbContext>();
+
+            // REPO
+            builder.Services.AddScoped<IAuthRepository, AuthRepository>();
+            builder.Services.AddScoped<IAuthService, AuthService>();
+
+            // Configure JWT authentication
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(options =>
+            {
+                options.RequireHttpsMetadata = false;
+                options.SaveToken = true;
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidIssuer = builder.Configuration["JWT:Issuer"],
+                    ValidAudience = builder.Configuration["JWT:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"]))
+                };
+            });
+            builder.Services.AddAuthorization(options =>
+            {
+                options.AddPolicy("AdminPolicy", policy => policy.RequireRole("Admin"));
+                options.AddPolicy("DoctorPolicy", policy => policy.RequireRole("Doctor"));
+                options.AddPolicy("PatientPolicy", policy => policy.RequireRole("Patient"));
+            });
+            builder.Services.AddControllers().AddJsonOptions(opts =>
+            {
+                opts.JsonSerializerOptions.IgnoreNullValues = true;
+                opts.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

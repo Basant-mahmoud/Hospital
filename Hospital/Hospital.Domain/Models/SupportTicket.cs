@@ -11,7 +11,7 @@ namespace Hospital.Domain.Models
     public class SupportTicket
     {
         [Key] public int TicketId { get; set; }
-        [Required] public int UserId { get; set; }
+        [Required] public string UserId { get; set; }
         public User User { get; set; } = null!;
         [Required, StringLength(200)] public string Subject { get; set; } = null!;
         [Required] public string Message { get; set; } = null!;

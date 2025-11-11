@@ -10,7 +10,7 @@ namespace Hospital.Domain.Models
     public class Patient
     {
         [Key] public int PatientId { get; set; }
-        [Required] public int UserId { get; set; }
+        [Required] public string UserId { get; set; }
         public User User { get; set; } = null!;
         [StringLength(5)] public string? BloodType { get; set; }
         [StringLength(150)] public string? EmergencyContact { get; set; }

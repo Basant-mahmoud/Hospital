@@ -1,14 +1,14 @@
 ﻿
 using Hospital.Domain.Enum;
 using Hospital.Domain.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Clinic.Infrastructure.Persistence
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext :IdentityDbContext<User>
     {
         public AppDbContext(DbContextOptions options) : base(options) { }
-        public DbSet<User> Users => Set<User>();
         public DbSet<Branch> Branches => Set<Branch>();
         public DbSet<Specialization> Specializations => Set<Specialization>();
         public DbSet<Doctor> Doctors => Set<Doctor>();
@@ -23,6 +23,7 @@ namespace Clinic.Infrastructure.Persistence
         public DbSet<Banner> Banners => Set<Banner>();
         protected override void OnModelCreating(ModelBuilder model)
         {
+            base.OnModelCreating(model);
             var dateOnlyConverter = new ValueConverter<DateOnly, DateTime>(
                 d => d.ToDateTime(TimeOnly.MinValue),
                 dt => DateOnly.FromDateTime(DateTime.SpecifyKind(dt, DateTimeKind.Utc)));

@@ -11,8 +11,10 @@ namespace Hospital.Domain.Models
     public class Doctor
     {
         [Key] public int DoctorId { get; set; }
-        [Required] public int UserId { get; set; }
+
+        [Required] public string UserId { get; set; }
         public User User { get; set; } = null!;
+
         [Required] public int SpecializationId { get; set; }
         public Specialization Specialization { get; set; } = null!;
         [Required] public int BranchId { get; set; }
