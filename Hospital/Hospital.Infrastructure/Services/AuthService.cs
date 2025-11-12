@@ -107,17 +107,16 @@ namespace Hospital.Infrastructure.Services
             var jwtSecurityToken = await CreateJwtToken(user);
             var rolesList = await _userManager.GetRolesAsync(user);
 
-            // إنشاء refresh token
+            // create refresh token
             var refreshToken = GenerateRefreshToken();
             user.RefreshToken = refreshToken;
-            user.RefreshTokenExpiryTime = DateTime.Now.AddDays(7); // يعيش أسبوع
+            user.RefreshTokenExpiryTime = DateTime.Now.AddDays(7); //for week
             await _userManager.UpdateAsync(user);
 
             authModel.IsAuthenticated = true;
             authModel.Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
             authModel.Email = user.Email;
             authModel.Username = user.UserName;
-           // authModel.Name = user.FullName;
             authModel.ExpiresOn = jwtSecurityToken.ValidTo;
             authModel.Roles = rolesList.ToList();
             authModel.RefreshToken = refreshToken;

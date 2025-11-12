@@ -29,38 +29,42 @@ namespace Hospital.Infrastructure.Migrations
                 AccessFailedCount = 0,         
                 PhoneNumberConfirmed = false,
                 TwoFactorEnabled = false,
-                LockoutEnabled = false
+                LockoutEnabled = false,
+                SecurityStamp = Guid.NewGuid().ToString()
+
             };
 
             var passwordHash = hasher.HashPassword(adminUser, "Admin@123");
 
             migrationBuilder.InsertData(
-                table: "Users",
-                columns: new[]
-                {
-                    "Id", "FullName", "UserName", "NormalizedUserName", "Email", "NormalizedEmail",
-                    "PasswordHash", "Role", "CreatedAt", "UpdatedAt", "EmailConfirmed",
-                    "AccessFailedCount", "PhoneNumberConfirmed", "TwoFactorEnabled", "LockoutEnabled"
-                },
-                values: new object[]
-                {
-                    adminUser.Id,
-                    adminUser.FullName,
-                    adminUser.UserName,
-                    adminUser.NormalizedUserName,
-                    adminUser.Email,
-                    adminUser.NormalizedEmail,
-                    passwordHash,
-                    adminUser.Role,
-                    adminUser.CreatedAt,
-                    adminUser.UpdatedAt,
-                    adminUser.EmailConfirmed,
-                    adminUser.AccessFailedCount,
-                    adminUser.PhoneNumberConfirmed,
-                    adminUser.TwoFactorEnabled,
-                    adminUser.LockoutEnabled
-                }
-            );
+     table: "Users",
+     columns: new[]
+     {
+        "Id", "FullName", "UserName", "NormalizedUserName", "Email", "NormalizedEmail",
+        "PasswordHash", "Role", "CreatedAt", "UpdatedAt", "EmailConfirmed",
+        "AccessFailedCount", "PhoneNumberConfirmed", "TwoFactorEnabled", "LockoutEnabled", "SecurityStamp"
+     },
+     values: new object[]
+     {
+        adminUser.Id,
+        adminUser.FullName,
+        adminUser.UserName,
+        adminUser.NormalizedUserName,
+        adminUser.Email,
+        adminUser.NormalizedEmail,
+        passwordHash,
+        adminUser.Role,
+        adminUser.CreatedAt,
+        adminUser.UpdatedAt,
+        adminUser.EmailConfirmed,
+        adminUser.AccessFailedCount,
+        adminUser.PhoneNumberConfirmed,
+        adminUser.TwoFactorEnabled,
+        adminUser.LockoutEnabled,
+        adminUser.SecurityStamp
+     }
+ );
+
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
