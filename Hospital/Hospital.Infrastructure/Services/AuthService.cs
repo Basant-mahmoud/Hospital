@@ -50,7 +50,14 @@ namespace Hospital.Infrastructure.Services
                 UserName = model.Username,
                 Email = model.Email,
                 FullName = model.Name,
-                Role = model.Role
+                Role = model.Role,
+               PhoneNumber = model.PhoneNumber,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now,
+
+                RefreshToken = GenerateRefreshToken(),
+                RefreshTokenExpiryTime = DateTime.Now.AddDays(7)
+
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);
@@ -79,7 +86,9 @@ namespace Hospital.Infrastructure.Services
                 Roles = new List<string> { model.Role },
                 Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken),
                 Username = user.UserName,
-                passward = model.Password
+                passward = model.Password,
+                RefreshToken = user.RefreshToken,
+                RefreshTokenExpiration = user.RefreshTokenExpiryTime
             };
         }
 
@@ -98,16 +107,25 @@ namespace Hospital.Infrastructure.Services
             var jwtSecurityToken = await CreateJwtToken(user);
             var rolesList = await _userManager.GetRolesAsync(user);
 
+            // إنشاء refresh token
+            var refreshToken = GenerateRefreshToken();
+            user.RefreshToken = refreshToken;
+            user.RefreshTokenExpiryTime = DateTime.Now.AddDays(7); // يعيش أسبوع
+            await _userManager.UpdateAsync(user);
+
             authModel.IsAuthenticated = true;
             authModel.Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
             authModel.Email = user.Email;
             authModel.Username = user.UserName;
-            authModel.name = user.FullName;
+           // authModel.Name = user.FullName;
             authModel.ExpiresOn = jwtSecurityToken.ValidTo;
             authModel.Roles = rolesList.ToList();
+            authModel.RefreshToken = refreshToken;
+            authModel.RefreshTokenExpiration = user.RefreshTokenExpiryTime;
 
             return authModel;
         }
+
 
         public async Task<string> AddRoleAsync(AddRoleModel model)
         {
@@ -150,7 +168,7 @@ namespace Hospital.Infrastructure.Services
                 issuer: _jwt.Issuer,
                 audience: _jwt.Audience,
                 claims: claims,
-                expires: DateTime.Now.AddDays(_jwt.DurationInDays),
+                expires: DateTime.Now.AddMinutes(_jwt.DurationInMinutes),
                 signingCredentials: signingCredentials);
 
             return jwtSecurityToken;
@@ -207,7 +225,49 @@ namespace Hospital.Infrastructure.Services
             var result = await _userManager.ResetPasswordAsync(user, decodedToken, newPassword);
             return result.Succeeded;;
         }
+        private string GenerateRefreshToken()
+        {
+            var randomBytes = new byte[64];
+            using var rng = new System.Security.Cryptography.RNGCryptoServiceProvider();
+            rng.GetBytes(randomBytes);
+            return Convert.ToBase64String(randomBytes);
+        }
 
-        
+       
+        public async Task<AuthModel> RefreshTokenAsync(string token)
+        {
+            var authModel = new AuthModel();
+
+            var user = _userManager.Users.SingleOrDefault(u => u.RefreshToken == token);
+
+            if (user == null || user.RefreshTokenExpiryTime <= DateTime.Now)
+            {
+                authModel.Message = "Invalid or expired refresh token.";
+                return authModel;
+            }
+
+            var jwtToken = await CreateJwtToken(user);
+            var newRefreshToken = GenerateRefreshToken();
+
+            user.RefreshToken = newRefreshToken;
+            user.RefreshTokenExpiryTime = DateTime.Now.AddDays(7);
+            await _userManager.UpdateAsync(user);
+
+            authModel.IsAuthenticated = true;
+            authModel.Token = new JwtSecurityTokenHandler().WriteToken(jwtToken);
+            authModel.Email = user.Email;
+            authModel.Username = user.UserName;
+            authModel.name = user.FullName;
+            authModel.Roles = (await _userManager.GetRolesAsync(user)).ToList();
+            authModel.ExpiresOn = jwtToken.ValidTo;
+            authModel.RefreshToken = newRefreshToken;
+            authModel.RefreshTokenExpiration = user.RefreshTokenExpiryTime;
+
+            return authModel;
+        }
+
+
+
+
     }
 }

@@ -99,6 +99,18 @@ namespace Hospital.Controllers
             return Ok("Password has been reset successfully.");
         }
 
+
+        [HttpPost("refresh-token")]
+        public async Task<IActionResult> RefreshToken([FromBody] RefreshToken tokendto)
+        {
+            var result = await _authService.RefreshTokenAsync(tokendto.Token);
+            if (!result.IsAuthenticated)
+                return BadRequest(result.Message);
+
+            return Ok(result);
+        }
+
+
     }
 
 }

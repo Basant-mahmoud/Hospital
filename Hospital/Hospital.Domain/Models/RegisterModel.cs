@@ -23,5 +23,10 @@ namespace Hospital.Domain.Models
 
         [Required, StringLength(50)]
         public string Role { get; set; }
+
+        public string? PhoneNumber { get; set; }
+
+
+
     }
 }
