@@ -1,4 +1,5 @@
-﻿using Hospital.Application.Helper;
+﻿using Hospital.Application.DTO;
+using Hospital.Application.Helper;
 using Hospital.Application.Interfaces.Services;
 using Hospital.Domain.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -24,7 +25,7 @@ namespace Hospital.Controllers
             throw new Exception("This is a test exception!");
         }
         [HttpPost("register")]
-        [Authorize(Roles = "Patient,Admin")]
+       // [Authorize(Roles = "Patient,Admin")]
         public async Task<IActionResult> RegisterAsync([FromBody] RegisterModel model)
         {
             // Validate email format
@@ -52,7 +53,7 @@ namespace Hospital.Controllers
         }
 
         [HttpPost("login")]
-        [Authorize(Roles = "Doctor,Patient,Admin")]
+       // [Authorize(Roles = "Doctor,Patient,Admin")]
 
         public async Task<IActionResult> LoginAsync([FromBody] LoginModel model)
         {
@@ -80,6 +81,30 @@ namespace Hospital.Controllers
                 return BadRequest(result);
 
             return Ok(model);
+        }
+
+        //[HttpGet("confirm-email")]
+        //public async Task<IActionResult> ConfirmEmail([FromQuery] string userId, [FromQuery] string token)
+        //{
+        //    var result = await _authService.ConfirmEmailAsync(userId, token);
+        //    if (!result) return BadRequest("Email confirmation failed.");
+        //    return Ok("Email confirmed successfully.");
+        //}
+
+        [HttpPost("forgot-password")]
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordDto dto)
+        {
+            var result = await _authService.ForgotPasswordAsync(dto.Email);
+            if (!result) return BadRequest("Could not process request.");
+            return Ok("If your email is registered and confirmed, you will receive a reset link.");
+        }
+
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDto dto)
+        {
+            var result = await _authService.ResetPasswordAsync(dto.Email, dto.Token, dto.NewPassword);
+            if (!result) return BadRequest("Reset password failed.");
+            return Ok("Password has been reset successfully.");
         }
 
     }

@@ -1,6 +1,7 @@
-
+﻿
 using Clinic.Infrastructure.Persistence;
 using FluentAssertions.Common;
+using Hospital.Application.DTO;
 using Hospital.Application.Helper;
 using Hospital.Application.Interfaces.Repos;
 using Hospital.Application.Interfaces.Services;
@@ -31,24 +32,36 @@ namespace Hospital
             builder.Services.AddSwaggerGen();
             builder.Services.AddDbContext<AppDbContext>(opt =>
             opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
+            //injection email service
+            builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpSettings"));
+            builder.Services.AddScoped<IEmailService, EmailService>();
             //add cors
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy("AllowWebApp",
                     policyBuilder => policyBuilder
-                        .WithOrigins("http://localhost:4200")
+                        .WithOrigins("http://127.0.0.1:5500")
                         .AllowAnyHeader()
                         .AllowAnyMethod()
                         .AllowCredentials());
             });
 
+
             // Add services to the container.
             builder.Services.Configure<JWT>(builder.Configuration.GetSection("JWT"));
 
             // Add Identity
-            builder.Services.AddIdentity<User, IdentityRole>()
-                .AddEntityFrameworkStores<AppDbContext>();
+            builder.Services.AddIdentity<User, IdentityRole>(options =>
+            {
+                options.Password.RequireDigit = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequiredLength = 6;
+                options.Password.RequireNonAlphanumeric = false;
+            })
+ .AddEntityFrameworkStores<AppDbContext>()
+ .AddDefaultTokenProviders(); // <-- مهم جدًا لإعادة تعيين الباسورد
+
 
             // REPO
             builder.Services.AddScoped<IAuthRepository, AuthRepository>();
@@ -100,7 +113,7 @@ namespace Hospital
             }
 
             app.UseHttpsRedirection();
-
+            app.UseCors("AllowWebApp");
             app.UseAuthorization();
 
 

@@ -21,13 +21,15 @@ namespace Hospital.Infrastructure.Services
         private readonly IAuthRepository _authRepository;
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        public AuthService(IOptions<JWT> jwt, IAuthRepository authRepository, UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
+        private readonly IEmailService _emailService;
+
+        public AuthService(IOptions<JWT> jwt, IAuthRepository authRepository, UserManager<User> userManager, RoleManager<IdentityRole> roleManager, IEmailService emailService)
         {
             _jwt = jwt.Value;
             _authRepository = authRepository;
             _userManager = userManager;
             _roleManager = roleManager;
-
+            _emailService = emailService;
         }
 
         public async Task<AuthModel> RegisterAsync(RegisterModel model)
@@ -153,5 +155,59 @@ namespace Hospital.Infrastructure.Services
 
             return jwtSecurityToken;
         }
+
+
+
+        public async Task<bool> ForgotPasswordAsync(string email)
+        {
+            // link to your frontend 
+            var frontendUrl = "http://127.0.0.1:5500/forgetpass.html"; // for example: "https://hospital.com"
+
+            // seach abour email in database or not 
+            var user = await _userManager.FindByEmailAsync(email);
+
+            if (user != null)
+            {
+                // make token for reset password
+                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                var encodedToken = Uri.EscapeDataString(token);
+
+                // send url + email + token to frontend
+                var resetLink = $"{frontendUrl}/reset-password?email={Uri.EscapeDataString(email)}&token={encodedToken}";
+
+                // email content
+                var html = $@"
+                 <p>Hi {user.FullName},</p>
+                <p>You requested to reset your password. Click <a href=""{resetLink}"">here</a> to reset it.</p>
+                <p>If you didn't request this, ignore this email.</p>";
+
+                try
+                {
+                    // send email
+                    await _emailService.SendEmailAsync(email, "Reset your password", html);
+                }
+                catch (Exception ex)
+                {
+                    // any error in sending email
+                    return false; 
+                }
+            }
+
+            return true;
+        }
+
+
+        // this  function to reset password
+        public async Task<bool> ResetPasswordAsync(string email, string token, string newPassword)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null) return false;
+
+            var decodedToken = Uri.UnescapeDataString(token);
+            var result = await _userManager.ResetPasswordAsync(user, decodedToken, newPassword);
+            return result.Succeeded;;
+        }
+
+        
     }
 }
