@@ -15,9 +15,10 @@ namespace Hospital.Domain.Models
         [Url, StringLength(300)] public string? ImageURL { get; set; }
         [Url, StringLength(300)] public string? LinkURL { get; set; }
         public BannerType? Type { get; set; }
-        public int? BranchId { get; set; }
-        public Branch? Branch { get; set; }
+        //public int? BranchId { get; set; }
+        //public Branch? Branch { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
+       
     }
 }

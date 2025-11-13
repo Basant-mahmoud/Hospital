@@ -25,6 +25,10 @@ namespace Hospital.Domain.Models
         public ICollection<Service> Services { get; set; } = new List<Service>();
         public ICollection<News> News { get; set; } = new List<News>();
         public ICollection<Event> Events { get; set; } = new List<Event>();
-        public ICollection<Banner> Banners { get; set; } = new List<Banner>();
+
+        //public ICollection<Banner> Banners { get; set; } = new List<Banner>();
+        public ICollection<Specialization> Specializations { get; set; } = new List<Specialization>();
+
+
     }
 }

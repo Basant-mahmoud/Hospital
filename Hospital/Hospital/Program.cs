@@ -34,10 +34,19 @@ namespace Hospital
             builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpSettings"));
             builder.Services.AddScoped<IEmailService, EmailService>();
             builder.Services.AddScoped<IEventService, EventService>();
+            builder.Services.AddScoped<IBannerService, BannerService>();
+            builder.Services.AddScoped<IServiceService, ServiceService>();
+
             //injection  repository
             builder.Services.AddScoped<IEventRepository, EventRepository>();
+            builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
+            builder.Services.AddScoped<IBannerRepository,BannerRepository>();
             //automapper
             builder.Services.AddAutoMapper(typeof(EventProfile));
+
+
+            builder.Services.AddAutoMapper(typeof(BannerProfile));
+            builder.Services.AddAutoMapper(typeof(ServiceProfile));
 
 
             //add cors

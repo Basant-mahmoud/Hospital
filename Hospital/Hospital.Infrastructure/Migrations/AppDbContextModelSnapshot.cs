@@ -22,6 +22,36 @@ namespace Hospital.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("BranchService", b =>
+                {
+                    b.Property<int>("BranchId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ServiceId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BranchId", "ServiceId");
+
+                    b.HasIndex("ServiceId");
+
+                    b.ToTable("BranchServices", (string)null);
+                });
+
+            modelBuilder.Entity("BranchSpecialization", b =>
+                {
+                    b.Property<int>("BranchId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SpecializationId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BranchId", "SpecializationId");
+
+                    b.HasIndex("SpecializationId");
+
+                    b.ToTable("BranchSpecializations", (string)null);
+                });
+
             modelBuilder.Entity("Hospital.Domain.Models.Appointment", b =>
                 {
                     b.Property<int>("AppointmentId")
@@ -87,9 +117,6 @@ namespace Hospital.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BannerId"));
 
-                    b.Property<int?>("BranchId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
@@ -118,8 +145,6 @@ namespace Hospital.Infrastructure.Migrations
                         .HasDefaultValueSql("GETUTCDATE()");
 
                     b.HasKey("BannerId");
-
-                    b.HasIndex("BranchId");
 
                     b.ToTable("Banners", (string)null);
                 });
@@ -442,9 +467,6 @@ namespace Hospital.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ServiceId"));
 
-                    b.Property<int?>("BranchId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
@@ -462,19 +484,12 @@ namespace Hospital.Infrastructure.Migrations
                         .HasMaxLength(120)
                         .HasColumnType("nvarchar(120)");
 
-                    b.Property<int?>("SpecializationId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETUTCDATE()");
 
                     b.HasKey("ServiceId");
-
-                    b.HasIndex("BranchId");
-
-                    b.HasIndex("SpecializationId");
 
                     b.ToTable("Services", (string)null);
                 });
@@ -797,6 +812,36 @@ namespace Hospital.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("BranchService", b =>
+                {
+                    b.HasOne("Hospital.Domain.Models.Branch", null)
+                        .WithMany()
+                        .HasForeignKey("BranchId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Hospital.Domain.Models.Service", null)
+                        .WithMany()
+                        .HasForeignKey("ServiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("BranchSpecialization", b =>
+                {
+                    b.HasOne("Hospital.Domain.Models.Branch", null)
+                        .WithMany()
+                        .HasForeignKey("BranchId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Hospital.Domain.Models.Specialization", null)
+                        .WithMany()
+                        .HasForeignKey("SpecializationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Hospital.Domain.Models.Appointment", b =>
                 {
                     b.HasOne("Hospital.Domain.Models.Branch", "Branch")
@@ -831,16 +876,6 @@ namespace Hospital.Infrastructure.Migrations
                     b.Navigation("Patient");
                 });
 
-            modelBuilder.Entity("Hospital.Domain.Models.Banner", b =>
-                {
-                    b.HasOne("Hospital.Domain.Models.Branch", "Branch")
-                        .WithMany("Banners")
-                        .HasForeignKey("BranchId")
-                        .OnDelete(DeleteBehavior.SetNull);
-
-                    b.Navigation("Branch");
-                });
-
             modelBuilder.Entity("Hospital.Domain.Models.Doctor", b =>
                 {
                     b.HasOne("Hospital.Domain.Models.Branch", "Branch")
@@ -872,8 +907,7 @@ namespace Hospital.Infrastructure.Migrations
                 {
                     b.HasOne("Hospital.Domain.Models.Branch", "Branch")
                         .WithMany("Events")
-                        .HasForeignKey("BranchId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .HasForeignKey("BranchId");
 
                     b.Navigation("Branch");
                 });
@@ -909,8 +943,7 @@ namespace Hospital.Infrastructure.Migrations
                 {
                     b.HasOne("Hospital.Domain.Models.Branch", "Branch")
                         .WithMany("News")
-                        .HasForeignKey("BranchId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .HasForeignKey("BranchId");
 
                     b.Navigation("Branch");
                 });
@@ -935,23 +968,6 @@ namespace Hospital.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Doctor");
-                });
-
-            modelBuilder.Entity("Hospital.Domain.Models.Service", b =>
-                {
-                    b.HasOne("Hospital.Domain.Models.Branch", "Branch")
-                        .WithMany("Services")
-                        .HasForeignKey("BranchId")
-                        .OnDelete(DeleteBehavior.SetNull);
-
-                    b.HasOne("Hospital.Domain.Models.Specialization", "Specialization")
-                        .WithMany("Services")
-                        .HasForeignKey("SpecializationId")
-                        .OnDelete(DeleteBehavior.SetNull);
-
-                    b.Navigation("Branch");
-
-                    b.Navigation("Specialization");
                 });
 
             modelBuilder.Entity("Hospital.Domain.Models.SupportTicket", b =>
@@ -1035,15 +1051,11 @@ namespace Hospital.Infrastructure.Migrations
                 {
                     b.Navigation("Appointments");
 
-                    b.Navigation("Banners");
-
                     b.Navigation("Doctors");
 
                     b.Navigation("Events");
 
                     b.Navigation("News");
-
-                    b.Navigation("Services");
 
                     b.Navigation("Users");
                 });
@@ -1067,8 +1079,6 @@ namespace Hospital.Infrastructure.Migrations
             modelBuilder.Entity("Hospital.Domain.Models.Specialization", b =>
                 {
                     b.Navigation("Doctors");
-
-                    b.Navigation("Services");
                 });
 
             modelBuilder.Entity("Hospital.Domain.Models.User", b =>

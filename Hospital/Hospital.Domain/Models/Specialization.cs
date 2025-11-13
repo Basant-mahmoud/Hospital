@@ -16,6 +16,8 @@ namespace Hospital.Domain.Models
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
         public ICollection<Doctor> Doctors { get; set; } = new List<Doctor>();
-        public ICollection<Service> Services { get; set; } = new List<Service>();
+        //public ICollection<Service> Services { get; set; } = new List<Service>();
+        public ICollection<Branch> Branches { get; set; } = new List<Branch>();
+
     }
 }
