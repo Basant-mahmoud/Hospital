@@ -22,7 +22,7 @@ namespace Hospital.Controllers
         }
 
 
-        [HttpPost("GetBrach")]
+        [HttpPost("GetEvent")]
         public async Task<IActionResult> GetEvent(GetEvent @event)
         {
             var eventDto = await _eventService.GetAsync(@event);
@@ -31,5 +31,14 @@ namespace Hospital.Controllers
 
             return Ok(eventDto);
         }
+        [HttpGet("GetAllEvents")]
+        public async Task<IActionResult> GetAllEvent()
+        {
+           var events = await _eventService.GetAllAsync();
+            if(events == null || !events.Any())
+                return NotFound();
+            return Ok(events);
+        }
+
     }
 }
