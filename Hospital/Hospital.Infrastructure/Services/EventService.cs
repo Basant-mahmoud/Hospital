@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Hospital.Application.DTO;
+using Hospital.Application.DTO.Event;
 using Hospital.Application.Interfaces.Repos;
 using Hospital.Application.Interfaces.Services;
 using Hospital.Domain.Models;
@@ -52,11 +52,14 @@ namespace Hospital.Infrastructure.Services
             throw new NotImplementedException();
         }
 
-        public async Task<EventDto?> GetAsync(int id)
+        public async Task<EventDto?> GetAsync(GetEvent @event)
         {
-            var eventEntity = await _eventRepository.GetAsync(id);
+            //check brach is exist 
+            if(@event.EventId <= 0)
+                throw new ArgumentException("Invalid event ID.", nameof(@event.EventId));
+            var eventEntity = await _eventRepository.GetAsync(@event.EventId);
             if (eventEntity == null)
-                throw new KeyNotFoundException($"Event with ID {id} not found.");
+                throw new KeyNotFoundException($"Event with ID {@event.EventId} not found.");
             return _mapper.Map<EventDto>(eventEntity);
 
         }

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Hospital.Application.DTO;
+using Hospital.Application.DTO.Event;
 using Hospital.Domain.Models;
 using System;
 using System.Collections.Generic;

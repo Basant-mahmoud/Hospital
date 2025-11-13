@@ -1,4 +1,4 @@
-﻿using Hospital.Application.DTO;
+﻿using Hospital.Application.DTO.Event;
 using Hospital.Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -13,7 +13,7 @@ namespace Hospital.Application.Interfaces.Services
         Task<EventDto> AddAsync(AddEventDto @eventdto);
         Task<int> UpdateAsync(EventDto @eventdto);
         Task<int> DeleteAsync(AddEventDto @eventdto);
-        Task<EventDto?> GetAsync(int id);
+        Task<EventDto?> GetAsync(GetEvent @event);
         Task<IEnumerable<AddEventDto>> GetAllAsync();
 
     }

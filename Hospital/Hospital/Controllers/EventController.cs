@@ -1,4 +1,4 @@
-﻿using Hospital.Application.DTO;
+﻿using Hospital.Application.DTO.Event;
 using Hospital.Application.Interfaces.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -23,9 +23,9 @@ namespace Hospital.Controllers
 
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetEvent(int id)
+        public async Task<IActionResult> GetEvent(GetEvent @event)
         {
-            var eventDto = await _eventService.GetAsync(id);
+            var eventDto = await _eventService.GetAsync(@event);
             if (eventDto == null)
                 return NotFound();
 
