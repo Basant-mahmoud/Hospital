@@ -21,6 +21,8 @@ namespace Hospital.Application.MappingProfiles
 
             // optionally allow two-way mapping
             CreateMap<EventDto, Event>().ReverseMap();
+            CreateMap<AddEventDto, Event>().ReverseMap();
+
         }
     }
 }

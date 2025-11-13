@@ -32,14 +32,18 @@ namespace Hospital.Infrastructure.Repository
             return await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Event>> GetAllAsync()
+        public async Task<IEnumerable<Event>> GetAllAsync( int branchId)
         {
-            return await _dbContext.Events.ToListAsync();
+            return await _dbContext.Events
+                  .AsNoTracking()
+                .Where(b=>b.BranchId== branchId).ToListAsync();
         }
 
         public async Task<Event?> GetAsync(int id)
         {
-            return await _dbContext.Events.FirstOrDefaultAsync(e => e.EventId == id);
+            return await _dbContext.Events
+                .AsNoTracking()
+                .FirstOrDefaultAsync(e => e.EventId == id);
         }
 
         public async Task<int> UpdateAsync(Event @event)

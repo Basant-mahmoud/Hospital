@@ -12,9 +12,9 @@ namespace Hospital.Application.Interfaces.Services
     {
         Task<EventDto> AddAsync(AddEventDto @eventdto);
         Task<int> UpdateAsync(EventDto @eventdto);
-        Task<int> DeleteAsync(AddEventDto @eventdto);
-        Task<EventDto?> GetAsync(GetEvent @event);
-        Task<IEnumerable<AddEventDto>> GetAllAsync();
+        Task<int> DeleteAsync(GetEventDto eventdto);
+        Task<EventDto?> GetAsync(GetEventDto @event);
+        Task<IEnumerable<AddEventDto>> GetAllAsync(int branchId);
 
     }
 }

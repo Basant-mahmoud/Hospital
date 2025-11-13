@@ -23,7 +23,7 @@ namespace Hospital.Controllers
 
 
         [HttpPost("GetEvent")]
-        public async Task<IActionResult> GetEvent(GetEvent @event)
+        public async Task<IActionResult> GetEvent(GetEventDto @event)
         {
             var eventDto = await _eventService.GetAsync(@event);
             if (eventDto == null)
@@ -32,12 +32,36 @@ namespace Hospital.Controllers
             return Ok(eventDto);
         }
         [HttpGet("GetAllEvents")]
-        public async Task<IActionResult> GetAllEvent()
+        public async Task<IActionResult> GetAllEvents([FromQuery] int branchId)
         {
-           var events = await _eventService.GetAllAsync();
-            if(events == null || !events.Any())
-                return NotFound();
+            var events = await _eventService.GetAllAsync(branchId);
+            if (events == null || !events.Any())
+                return NotFound("No events found for this branch.");
+
             return Ok(events);
+        }
+
+        [HttpPut("UpdateEvent")]
+        public async Task<IActionResult> UpdateEvent([FromBody] EventDto eventDto)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await _eventService.UpdateAsync(eventDto);
+            if (result == 0)
+                return NotFound($"No event found with ID = {eventDto.EventId}");
+
+            return Ok("Event updated successfully.");
+        }
+
+        [HttpDelete("DeleteEvent")]
+        public async Task<IActionResult> DeleteEvent(GetEventDto dto)
+        {
+            var result = await _eventService.DeleteAsync(dto);
+            if (result == 0)
+                return NotFound($"No event found with ID = {dto.EventId}");
+
+            return Ok($"Event with ID = {dto.EventId} deleted successfully.");
         }
 
     }

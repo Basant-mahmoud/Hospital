@@ -13,7 +13,7 @@ namespace Hospital.Application.Interfaces.Repos
         Task<int> UpdateAsync(Event @event);
         Task<int> DeleteAsync(Event @event);
         Task<Event?> GetAsync(int id);               
-        Task<IEnumerable<Event>> GetAllAsync();
+        Task<IEnumerable<Event>> GetAllAsync(int branchId);
 
     }
 }
