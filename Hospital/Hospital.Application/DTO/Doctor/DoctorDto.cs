@@ -11,10 +11,21 @@ namespace Hospital.Application.DTO.Doctor
 {
     public class DoctorDto
     {
-        [Key] public int DoctorId { get; set; }
+        public int DoctorId { get; set; }
+        public string UserId { get; set; } = null!;
+        public string? UserName { get; set; }
+        public string? Email { get; set; }
+        public string? FullName { get; set; }
+
+        public int SpecializationId { get; set; }
+        public string? SpecializationName { get; set; }
+
+        public List<int> BranchID { get; set; } = new();
         public string? Biography { get; set; }
-        [Range(0, 80)] public int? ExperienceYears { get; set; }
-        [Column(TypeName = "decimal(10,2)")] public decimal? ConsultationFees { get; set; }
+        public int? ExperienceYears { get; set; }
+        public decimal? ConsultationFees { get; set; }
         public bool? Available { get; set; }
+
+       
     }
 }

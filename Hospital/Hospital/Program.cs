@@ -5,6 +5,7 @@ using Hospital.Application.Interfaces.Repos;
 using Hospital.Application.Interfaces.Services;
 using Hospital.Application.MappingProfiles;
 using Hospital.Domain.Models;
+using Hospital.Infrastructure.Repos;
 using Hospital.Infrastructure.Repository;
 using Hospital.Infrastructure.Services;
 using Hospital.Middleware;
@@ -40,6 +41,8 @@ namespace Hospital
             builder.Services.AddScoped<IBannerService, BannerService>();
             builder.Services.AddScoped<IServiceService, ServiceService>();
             builder.Services.AddScoped<ISpecializationService, SpecializationService>();
+            builder.Services.AddScoped<IDoctorService, DoctorService>();
+
 
             //injection repository
             builder.Services.AddScoped<IEventRepository, EventRepository>();
@@ -48,6 +51,8 @@ namespace Hospital
             builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
             builder.Services.AddScoped<IBannerRepository,BannerRepository>();
             builder.Services.AddScoped<ISpecializationRepository, SpecializationRepository>();
+            builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
+
 
             //automapper
             builder.Services.AddAutoMapper(typeof(EventProfile));
