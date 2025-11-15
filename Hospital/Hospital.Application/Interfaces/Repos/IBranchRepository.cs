@@ -14,5 +14,7 @@ namespace Hospital.Application.Interfaces.Repos
         Task AddAsync(Branch branch);
         Task UpdateAsync(Branch branch);
         Task DeleteAsync(Branch branch);
+        Task<List<Branch>> GetByIdsAsync(IEnumerable<int> ids);
     }
 }
+

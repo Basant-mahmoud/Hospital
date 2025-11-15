@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hospital.Domain.Enum;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace Hospital.Application.DTO.Banner
         [Url, StringLength(300)]
         public string? LinkURL { get; set; }
 
-        
+        [EnumDataType(typeof(BannerType))]
         public int? Type { get; set; }
 
     }

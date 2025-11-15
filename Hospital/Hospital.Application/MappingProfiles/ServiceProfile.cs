@@ -13,11 +13,19 @@ namespace Hospital.Application.MappingProfiles
     {
         public ServiceProfile()
         {
-            CreateMap<CreateServiceDto, Service>();
-            CreateMap<UpdateServiceDto, Service>();
-            CreateMap<Service, ServiceDto>();
-              
-              
+            CreateMap<CreateServiceDto, Service>()
+                       .ForMember(dest => dest.Branches, opt => opt.Ignore());
+
+            CreateMap<UpdateServiceDto, Service>()
+                .ForMember(dest => dest.Branches, opt => opt.Ignore());
+
+            CreateMap<Service, ServiceDto>()
+                .ForMember(dest => dest.BranchesID, opt =>
+                    opt.MapFrom(src => src.Branches
+                        .Select(b => new BranchIdDTO { BranchId = b.BranchId })
+                    ));
+
+
         }
     }
 }

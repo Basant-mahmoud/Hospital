@@ -25,12 +25,17 @@ namespace Hospital.Infrastructure.Repository
 
         public async Task<IEnumerable<Service>> GetAllAsync()
         {
-            return await _context.Services.ToListAsync();
+          
+            return await _context.Services
+            .Include(s => s.Branches) 
+            .ToListAsync();
         }
 
         public async Task<Service?> GetByIdAsync(int id)
         {
-            return await _context.Services.FindAsync(id);
+            return await _context.Services
+            .Include(s => s.Branches) 
+            .FirstOrDefaultAsync(s => s.ServiceId == id);
         }
 
         public async Task<Service> AddAsync(Service service)
@@ -55,6 +60,13 @@ namespace Hospital.Infrastructure.Repository
                 await _context.SaveChangesAsync();
             }
         }
+        public async Task<bool> ExistsByNameInBranchesAsync(string name, IEnumerable<int> branchIds)
+        {
+            return await _context.Services
+                .Where(s => s.Name.ToLower() == name.ToLower())
+                .AnyAsync(s => s.Branches.Any(b => branchIds.Contains(b.BranchId)));
+        }
+
     }
 }
 

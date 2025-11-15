@@ -46,7 +46,7 @@ namespace Hospital.Controllers
                 return BadRequest(ModelState);
 
             await _bannerService.UpdateAsync(dto);
-            return NoContent();
+            return Ok("updated Successfully");
         }
 
         [HttpDelete("{id}")]
@@ -54,7 +54,7 @@ namespace Hospital.Controllers
         {
             var deleted = await _bannerService.DeleteAsync(id);
             if (!deleted) return NotFound();
-            return NoContent();
+            return Ok("Deleted Successfully");
         }
     }
 }

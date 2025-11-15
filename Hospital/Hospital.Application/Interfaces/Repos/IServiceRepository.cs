@@ -14,6 +14,8 @@ namespace Hospital.Application.Interfaces.Repos
         Task<Service> AddAsync(Service service);
         Task UpdateAsync(Service service);
         Task DeleteAsync(int id);
+        Task<bool> ExistsByNameInBranchesAsync(string name, IEnumerable<int> branchIds);
+
 
     }
 }

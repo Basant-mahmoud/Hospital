@@ -57,7 +57,7 @@ namespace Hospital.Controllers
                 return BadRequest(ModelState);
 
             await _serviceService.UpdateAsync(dto);
-            return NoContent();
+            return Ok("updated Successfully");
         }
 
         // DELETE: api/services/5
@@ -66,7 +66,7 @@ namespace Hospital.Controllers
         {
             var deleted = await _serviceService.DeleteAsync(id);
             if (!deleted) return NotFound();
-            return NoContent();
+            return Ok("Deleted Successfully");
         }
     }
 }

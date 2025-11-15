@@ -15,12 +15,14 @@ namespace Hospital.Infrastructure.Services
     public class ServiceService : IServiceService
     {
         private readonly IServiceRepository _serviceRepository;
+        private readonly IBranchRepository _branchRepository;
         private readonly IMapper _mapper;
 
-        public ServiceService(IServiceRepository serviceRepository, IMapper mapper)
+        public ServiceService(IServiceRepository serviceRepository, IMapper mapper, IBranchRepository branchRepository)
         {
             _serviceRepository = serviceRepository;
             _mapper = mapper;
+            this._branchRepository = branchRepository;
         }
 
         public async Task<IEnumerable<ServiceDto>> GetAllAsync()
@@ -40,13 +42,37 @@ namespace Hospital.Infrastructure.Services
             if (string.IsNullOrWhiteSpace(dto.Name))
                 throw new ArgumentException("Service name cannot be empty.");
 
+            var branchIds = dto.BranchesID?.Select(b => b.BranchId).Distinct().ToList() ?? new List<int>();
+
+            // Load branches
+            var branches = new List<Branch>();
+            if (branchIds.Any())
+            {
+                branches = await _branchRepository.GetByIdsAsync(branchIds);
+                if (branches.Count != branchIds.Count)
+                    throw new ArgumentException("One or more branches do not exist.");
+            }
+
+            // Check for duplicate service in these branches
+            if (branchIds.Any())
+            {
+                var exists = await _serviceRepository.ExistsByNameInBranchesAsync(dto.Name, branchIds);
+                if (exists)
+                    throw new ArgumentException($"Service '{dto.Name}' already exists in one or more of the selected branches.");
+            }
+
             var service = _mapper.Map<Service>(dto);
+            service.Branches = branches;
             service.CreatedAt = DateTime.UtcNow;
             service.UpdatedAt = DateTime.UtcNow;
 
             await _serviceRepository.AddAsync(service);
             return _mapper.Map<ServiceDto>(service);
         }
+
+
+
+
 
         public async Task UpdateAsync(UpdateServiceDto dto)
         {
@@ -56,6 +82,14 @@ namespace Hospital.Infrastructure.Services
 
             _mapper.Map(dto, existing);
             existing.UpdatedAt = DateTime.UtcNow;
+
+            // Update branches
+            if (dto.BranchesID != null)
+            {
+                var branchIds = dto.BranchesID.Select(b => b.BranchId).ToList();
+                var branches = await _branchRepository.GetByIdsAsync(branchIds);
+                existing.Branches = branches.ToList();
+            }
 
             await _serviceRepository.UpdateAsync(existing);
         }
