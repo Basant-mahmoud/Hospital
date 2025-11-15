@@ -34,7 +34,7 @@ namespace Hospital.Infrastructure.Services
             if (dto.BranchIds == null || !dto.BranchIds.Any())
                 throw new ArgumentException("At least one branch must be assigned.");
 
-            var branches = await _specRepo.GetBranchesByIdsAsync(dto.BranchIds);
+            var branches = await _branchRepo.GetBranchesByIdsAsync(dto.BranchIds);
             if (branches.Count != dto.BranchIds.Count)
                 throw new ArgumentException("One or more branches not found.");
 
@@ -94,16 +94,14 @@ namespace Hospital.Infrastructure.Services
 
         public async Task<int> UpdateAsync(UpdateSpecialization dto)
         {
-            // 1️⃣ Fetch specialization including branches
             var specialization = await _specRepo.GetAsync(dto.SpecializationId);
             if (specialization == null)
                 throw new KeyNotFoundException("Specialization not found.");
 
-            // 2️⃣ Validate input
             if (string.IsNullOrWhiteSpace(dto.Name))
                 throw new ArgumentException("Specialization name is required.");
 
-            // 3️⃣ Prevent duplicate specialization in the same branch
+            // Check for duplicates in other branches
             var existingSpecs = await _specRepo.GetAllSpecializationInSystemAsync();
             foreach (var branchId in dto.BranchIds)
             {
@@ -118,17 +116,25 @@ namespace Hospital.Infrastructure.Services
                 }
             }
 
-            // 4️⃣ Update only specialization fields
+            var branches = await _branchRepo.GetBranchesByIdsAsync(dto.BranchIds);
+            // Fail if any branch is missing
+            if (branches.Count != dto.BranchIds.Count)
+            {
+                var missingBranchIds = dto.BranchIds.Except(branches.Select(b => b.BranchId));
+                throw new KeyNotFoundException($"Branches with IDs {string.Join(", ", missingBranchIds)} not found.");
+            }
+
             specialization.Name = dto.Name;
             specialization.Description = dto.Description;
             specialization.UpdatedAt = DateTime.UtcNow;
 
-            // ✅ DO NOT MODIFY Branches if they stay the same
-            // Only modify branches if you want to truly add/remove branches
-
+            // Add only branches not already assigned
+            foreach (var branch in branches)
+            {
+                if (!specialization.Branches.Any(b => b.BranchId == branch.BranchId))
+                    specialization.Branches.Add(branch);
+            }
             return await _specRepo.UpdateAsync(specialization);
         }
-
-
     }
 }

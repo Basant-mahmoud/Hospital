@@ -37,7 +37,7 @@ namespace Hospital.Controllers
         public async Task<ActionResult<SpecializationDTO>> Update([FromBody] UpdateSpecialization dto)
         {
             var updated = await _service.UpdateAsync(dto);
-            return Ok(updated);
+            return Ok("Updated Successfully");
         }
         [HttpDelete("Delete")]
         public async Task<IActionResult> Delete([FromBody] GetSpecializationDto dto)

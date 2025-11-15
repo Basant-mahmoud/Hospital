@@ -15,6 +15,5 @@ namespace Hospital.Application.Interfaces.Repos
         Task<Specialization?> GetAsync(int id);
         Task<IEnumerable<Specialization>> GetAllByBranchAsync(int branchId);
         Task<IEnumerable<Specialization>> GetAllSpecializationInSystemAsync();
-        Task<List<Branch>> GetBranchesByIdsAsync(List<int> branchIds);
     }
 }

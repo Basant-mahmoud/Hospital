@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Net;
 using System.Text.Json;
 
 namespace Hospital.Middleware
@@ -37,6 +38,7 @@ namespace Hospital.Middleware
                     ArgumentNullException => (int)HttpStatusCode.BadRequest,
                     ArgumentException => (int)HttpStatusCode.BadRequest,
                     KeyNotFoundException => (int)HttpStatusCode.NotFound,
+                    ValidationException => (int)HttpStatusCode.BadRequest,
                     UnauthorizedAccessException => (int)HttpStatusCode.Unauthorized,
                     _ => (int)HttpStatusCode.InternalServerError
                 };

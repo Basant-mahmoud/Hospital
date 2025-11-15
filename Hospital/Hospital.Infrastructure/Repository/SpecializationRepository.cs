@@ -34,7 +34,6 @@ namespace Hospital.Infrastructure.Repository
         public async Task<IEnumerable<Specialization>> GetAllByBranchAsync(int branchId)
         {
             var specializations = await _dbContext.Specializations
-                .AsNoTracking()
                 .Where(s => s.Branches.Any(b => b.BranchId == branchId))
                 .ToListAsync();
 
@@ -53,7 +52,6 @@ namespace Hospital.Infrastructure.Repository
         public async Task<Specialization?> GetAsync(int id)
         {
             return await _dbContext.Specializations
-               .AsNoTracking()
                .Include(s => s.Branches)
                .FirstOrDefaultAsync(s => s.SpecializationId == id);
         }
@@ -62,13 +60,6 @@ namespace Hospital.Infrastructure.Repository
         {
             _dbContext.Specializations.Update(specialization);
             return await _dbContext.SaveChangesAsync();
-        }
-
-        public async Task<List<Branch>> GetBranchesByIdsAsync(List<int> branchIds)
-        {
-            return await _dbContext.Branches
-                .Where(b => branchIds.Contains(b.BranchId))
-                .ToListAsync();
         }
     }
 }

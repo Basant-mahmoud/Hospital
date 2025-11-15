@@ -36,7 +36,7 @@ namespace Hospital.Infrastructure.Repository
 
         public async Task<Branch?> GetByIdAsync(int id)
         {
-            return await _context.Branches.AsNoTracking()
+            return await _context.Branches
                 .FirstOrDefaultAsync(e => e.BranchId == id);
         }
 
@@ -44,6 +44,13 @@ namespace Hospital.Infrastructure.Repository
         {
             _context.Branches.Update(branch);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<List<Branch>> GetBranchesByIdsAsync(List<int> branchIds)
+        {
+            return await _context.Branches
+                .Where(b => branchIds.Contains(b.BranchId))
+                .ToListAsync();
         }
     }
 }
