@@ -28,7 +28,7 @@ namespace Hospital.Domain.Models
         public ICollection<Appointment> CreatedAppointments { get; set; } = new List<Appointment>();
 
 
-        public string RefreshToken { get; set; }
+        public string? RefreshToken { get; set; }
         public DateTime RefreshTokenExpiryTime { get; set; }
     }
 }

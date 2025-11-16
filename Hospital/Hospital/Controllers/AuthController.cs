@@ -25,7 +25,6 @@ namespace Hospital.Controllers
             throw new Exception("This is a test exception!");
         }
         [HttpPost("register")]
-       // [Authorize(Roles = "Patient,Admin")]
         public async Task<IActionResult> RegisterAsync([FromBody] RegisterModel model)
         {
             // Validate email format
@@ -39,11 +38,11 @@ namespace Hospital.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            // Call the register method of AuthService
+            // Call AuthService
             var result = await _authService.RegisterAsync(model);
 
-            // Handle authentication result
-            if (!result.IsAuthenticated)
+            // If registration failed, return bad request
+            if (!result.IsRegistered)
             {
                 ModelState.AddModelError("RegistrationError", result.Message);
                 return BadRequest(ModelState);
@@ -52,9 +51,8 @@ namespace Hospital.Controllers
             return Ok(result);
         }
 
-        [HttpPost("login")]
-       // [Authorize(Roles = "Doctor,Patient,Admin")]
 
+        [HttpPost("login")]
         public async Task<IActionResult> LoginAsync([FromBody] LoginModel model)
         {
             if (!ModelState.IsValid)

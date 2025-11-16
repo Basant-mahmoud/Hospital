@@ -5,6 +5,7 @@ using Hospital.Application.Interfaces.Repos;
 using Hospital.Application.Interfaces.Services;
 using Hospital.Domain.Models;
 using Microsoft.Extensions.Logging;
+using System.ComponentModel.DataAnnotations;
 
 namespace Hospital.Infrastructure.Services
 {
@@ -49,15 +50,15 @@ namespace Hospital.Infrastructure.Services
 
             var authResult = await _authService.RegisterAsync(registerModel);
 
-            if (!authResult.IsAuthenticated)
-                throw new InvalidOperationException("Failed to create user: " + authResult.Message);
+            //if (!authResult.IsAuthenticated)
+            //    throw new ValidationException("Failed to create user: " + authResult.Message);
 
             // 2) Map dto -> Doctor
             var doctor = _mapper.Map<Doctor>(dto);
 
             // 3) Extract UserId from token
-            var userId = TokenHelper.GetUserIdFromToken(authResult.Token);
-            doctor.UserId = userId;
+            //var userId = TokenHelper.GetUserIdFromToken(authResult.Token);
+           // doctor.UserId = userId;
 
             doctor.CreatedAt = DateTime.UtcNow;
             doctor.UpdatedAt = DateTime.UtcNow;
@@ -106,10 +107,8 @@ namespace Hospital.Infrastructure.Services
             var doctor = await _doctorRepo.GetAsync(dto.DoctorId)
                 ?? throw new KeyNotFoundException($"Doctor with ID {dto.DoctorId} not found.");
 
-            // تحديث الحقول الموجودة في Doctor
             _mapper.Map(dto, doctor);
 
-            // تحديث الحقول الموجودة في User
             if (doctor.User != null)
             {
                 doctor.User.UserName = dto.UserName;
@@ -117,7 +116,7 @@ namespace Hospital.Infrastructure.Services
                 doctor.User.FullName = dto.FullName;
             }
 
-            // تحديث الفروع بناءً على BranchID
+            // Update Branch based on BranchID
             if (dto.BranchID != null && dto.BranchID.Any())
             {
                 doctor.Branches = new List<Branch>();

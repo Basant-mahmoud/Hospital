@@ -1,4 +1,5 @@
-﻿using Hospital.Domain.Models;
+﻿using Hospital.Application.DTO.Auth;
+using Hospital.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace Hospital.Application.Interfaces.Services
 {
     public interface IAuthService
     {
-        Task<AuthModel> RegisterAsync(RegisterModel model);
+        Task<RegisterDto> RegisterAsync(RegisterModel model);
         Task<AuthModel> LoginAsync(LoginModel model);
         Task<string> AddRoleAsync(AddRoleModel mode);
         Task<bool> ForgotPasswordAsync(string email);

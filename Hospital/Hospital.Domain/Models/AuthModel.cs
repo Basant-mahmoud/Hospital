@@ -21,7 +21,6 @@ namespace Hospital.Domain.Models
         //for refresh token 
         //
        // public string? UserId { get; set; }   // <-- مهم
-
         public string RefreshToken { get; set; }
         public DateTime RefreshTokenExpiration { get; set; }
 

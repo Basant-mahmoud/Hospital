@@ -1,4 +1,5 @@
-﻿using Hospital.Application.Helper;
+﻿using Hospital.Application.DTO.Auth;
+using Hospital.Application.Helper;
 using Hospital.Application.Interfaces.Repos;
 using Hospital.Application.Interfaces.Services;
 using Hospital.Domain.Models;
@@ -32,65 +33,50 @@ namespace Hospital.Infrastructure.Services
             _emailService = emailService;
         }
 
-        public async Task<AuthModel> RegisterAsync(RegisterModel model)
+        public async Task<RegisterDto> RegisterAsync(RegisterModel model)
         {
+            // Check if email exists
             if (await _authRepository.EmailExistAsync(model.Email))
-                return new AuthModel { Message = "Email is already registered!" };
+                return new RegisterDto { Message = "Email already exists!" };
 
+            // Check if username exists
             if (await _authRepository.UsernameExistsAsync(model.Username))
-                return new AuthModel { Message = "Username is already registered!" };
+                return new RegisterDto { Message = "Username already exists!" };
 
+            // Validate role
             if (string.IsNullOrEmpty(model.Role) || (model.Role != "Patient" && model.Role != "Doctor"))
-            {
-                return new AuthModel { Message = "Invalid role. Only 'Patient' or 'Doctor' are allowed." };
-            }
+                return new RegisterDto { Message = "Invalid role. Only 'Patient' or 'Doctor' allowed." };
 
+            // Ensure role exists before creating user
+            if (!await _roleManager.RoleExistsAsync(model.Role))
+                await _roleManager.CreateAsync(new IdentityRole(model.Role));
+
+            // Create user
             var user = new User
             {
                 UserName = model.Username,
                 Email = model.Email,
                 FullName = model.Name,
+                PhoneNumber = model.PhoneNumber,
                 Role = model.Role,
-               PhoneNumber = model.PhoneNumber,
-                CreatedAt = DateTime.Now,
-                UpdatedAt = DateTime.Now,
-
-                RefreshToken = GenerateRefreshToken(),
-                RefreshTokenExpiryTime = DateTime.Now.AddDays(7)
-
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);
 
             if (!result.Succeeded)
-            {
-                var errors = string.Join(",", result.Errors.Select(e => e.Description));
-                return new AuthModel { Message = errors };
-            }
-
-            var roleExists = await _roleManager.RoleExistsAsync(model.Role);
-            if (!roleExists)
-            {
-                await _roleManager.CreateAsync(new IdentityRole(model.Role));
-            }
+                return new RegisterDto { Message = string.Join(", ", result.Errors.Select(e => e.Description)) };
 
             await _userManager.AddToRoleAsync(user, model.Role);
 
-            var jwtSecurityToken = await CreateJwtToken(user);
-
-            return new AuthModel
+            return new RegisterDto
             {
-                Email = user.Email,
-                ExpiresOn = jwtSecurityToken.ValidTo,
-                IsAuthenticated = true,
-                Roles = new List<string> { model.Role },
-                Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken),
-                Username = user.UserName,
-                passward = model.Password,
-                RefreshToken = user.RefreshToken,
-                RefreshTokenExpiration = user.RefreshTokenExpiryTime
+                Message = "Account registered successfully. Please login.",
+                IsRegistered = true
             };
         }
+
 
 
         public async Task<AuthModel> LoginAsync(LoginModel model)
