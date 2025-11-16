@@ -51,7 +51,7 @@ namespace Hospital.Infrastructure.Services
             var authResult = await _authService.RegisterAsync(registerModel);
 
 
-            if (!authResult.IsAuthenticated)
+            if (!authResult.IsRegistered)
                 throw new InvalidOperationException("Failed to create user: " + authResult.Message);
 
             // 2) Map dto -> Doctor
