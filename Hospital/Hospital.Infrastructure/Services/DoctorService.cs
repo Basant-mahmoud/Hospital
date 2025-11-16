@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
+using Clinic.Infrastructure.Persistence;
 using Hospital.Application.DTO.Doctor;
 using Hospital.Application.Helper;
 using Hospital.Application.Interfaces.Repos;
 using Hospital.Application.Interfaces.Services;
 using Hospital.Domain.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System.ComponentModel.DataAnnotations;
 
@@ -17,6 +19,7 @@ namespace Hospital.Infrastructure.Services
         private readonly IEmailService _emailService;
         private readonly IMapper _mapper;
         private readonly ILogger<DoctorService> _logger;
+        private readonly AppDbContext _context ;
 
 
         public DoctorService(
@@ -25,7 +28,8 @@ namespace Hospital.Infrastructure.Services
         IBranchRepository branchRepo,
         IEmailService emailService,
         IAuthService authService,
-        ILogger<DoctorService> logger)
+        ILogger<DoctorService> logger,
+        AppDbContext context)
         {
             _mapper = mapper;
             _doctorRepo = doctorRepo;
@@ -33,82 +37,160 @@ namespace Hospital.Infrastructure.Services
             _emailService = emailService;
             _authService = authService;
             _logger = logger;
+            _context = context;
         }
 
+        //public async Task<DoctorDto> AddAsync(AddDoctorDto dto)
+        //{
+        //    // 1) Register user via AuthService
+        //    var registerModel = new RegisterModel
+        //    {
+        //        Email = dto.Email,
+        //        Username = dto.Username,
+        //        Password = dto.Password,
+        //        Name = dto.Name,
+        //        PhoneNumber = dto.PhoneNumber,
+        //        Role = "Doctor"
+        //    };
+
+        //    var authResult = await _authService.RegisterAsync(registerModel);
+
+
+        //    if (!authResult.IsRegistered)
+        //        throw new InvalidOperationException("Failed to create user: " + authResult.Message);
+
+        //    // 2) Map dto -> Doctor
+        //    var doctor = _mapper.Map<Doctor>(dto);
+
+        //    // 3)  find UserId
+        //    var userId = await _authService.GetUserIdByEmailAsync(dto.Email);
+
+        //    doctor.UserId = userId;
+
+        //    doctor.CreatedAt = DateTime.UtcNow;
+        //    doctor.UpdatedAt = DateTime.UtcNow;
+
+        //    // 4) Validate Branches before adding doctor
+        //    var distinctBranchIds = dto.BranchIds.Distinct().ToList();
+        //    var branches = new List<Branch>();
+
+        //    foreach (var branchId in distinctBranchIds)
+        //    {
+        //        var branch = await _branchRepo.GetByIdAsync(branchId);
+
+        //        if (branch == null)
+        //        {
+        //            // rollback user creation logic if needed
+        //            throw new ArgumentException($"Branch with ID {branchId} does not exist. Please create the branch first.");
+        //        }
+
+        //        branches.Add(branch);
+        //    }
+
+        //    doctor.Branches = branches;
+
+        //    // 5) Save doctor
+        //    var created = await _doctorRepo.AddAsync(doctor);
+
+        //    // 6) Send email to doctor with credentials
+        //    var emailBody = $@"
+        // <p>Hi doctor {dto.Name},</p>
+        // <p>You are registered to our system. You can check your account using the following credentials:</p>
+        // <ul>
+        //     <li>Username: {dto.Username}</li>
+        //     <li>Email: {dto.Email}</li>
+        //     <li>Password: {dto.Password}</li>
+        // </ul>
+        // <p>Best regards from our team.</p>";
+
+        //    try
+        //    {
+        //        await _emailService.SendEmailAsync(dto.Email, "Doctor Account Registration", emailBody);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _logger.LogWarning("Failed to send email to doctor {DoctorEmail}: {Message}", dto.Email, ex.Message);
+        //    }
+
+        //    return _mapper.Map<DoctorDto>(created);
+        //}
         public async Task<DoctorDto> AddAsync(AddDoctorDto dto)
         {
-            // 1) Register user via AuthService
-            var registerModel = new RegisterModel
-            {
-                Email = dto.Email,
-                Username = dto.Username,
-                Password = dto.Password,
-                Name = dto.Name,
-                PhoneNumber = dto.PhoneNumber,
-                Role = "Doctor"
-            };
-
-            var authResult = await _authService.RegisterAsync(registerModel);
-
-
-            if (!authResult.IsRegistered)
-                throw new InvalidOperationException("Failed to create user: " + authResult.Message);
-
-            // 2) Map dto -> Doctor
-            var doctor = _mapper.Map<Doctor>(dto);
-
-            // 3)  find UserId
-            var userId = await _authService.GetUserIdByEmailAsync(dto.Email);
-
-            doctor.UserId = userId;
-
-            doctor.CreatedAt = DateTime.UtcNow;
-            doctor.UpdatedAt = DateTime.UtcNow;
-
-            // 4) Validate Branches before adding doctor
-            var distinctBranchIds = dto.BranchIds.Distinct().ToList();
-            var branches = new List<Branch>();
-
-            foreach (var branchId in distinctBranchIds)
-            {
-                var branch = await _branchRepo.GetByIdAsync(branchId);
-
-                if (branch == null)
-                {
-                    // rollback user creation logic if needed
-                    throw new ArgumentException($"Branch with ID {branchId} does not exist. Please create the branch first.");
-                }
-
-                branches.Add(branch);
-            }
-
-            doctor.Branches = branches;
-
-            // 5) Save doctor
-            var created = await _doctorRepo.AddAsync(doctor);
-
-            // 6) Send email to doctor with credentials
-            var emailBody = $@"
-         <p>Hi doctor {dto.Name},</p>
-         <p>You are registered to our system. You can check your account using the following credentials:</p>
-         <ul>
-             <li>Username: {dto.Username}</li>
-             <li>Email: {dto.Email}</li>
-             <li>Password: {dto.Password}</li>
-         </ul>
-         <p>Best regards from our team.</p>";
+            using var transaction = await _context.Database.BeginTransactionAsync();
 
             try
             {
-                await _emailService.SendEmailAsync(dto.Email, "Doctor Account Registration", emailBody);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogWarning("Failed to send email to doctor {DoctorEmail}: {Message}", dto.Email, ex.Message);
-            }
+                // 1️⃣ Register user via AuthService
+                var registerModel = new RegisterModel
+                {
+                    Email = dto.Email,
+                    Username = dto.Username,
+                    Password = dto.Password,
+                    Name = dto.Name,
+                    PhoneNumber = dto.PhoneNumber,
+                    Role = "Doctor"
+                };
 
-            return _mapper.Map<DoctorDto>(created);
+                var authResult = await _authService.RegisterAsync(registerModel);
+
+                if (!authResult.IsRegistered || string.IsNullOrEmpty(authResult.UserId))
+                    throw new InvalidOperationException("Failed to create user: " + authResult.Message);
+
+                // 2️⃣ Map DTO -> Doctor entity
+                var doctor = _mapper.Map<Doctor>(dto);
+                doctor.UserId = authResult.UserId;
+                doctor.CreatedAt = DateTime.UtcNow;
+                doctor.UpdatedAt = DateTime.UtcNow;
+
+                // 3️⃣ Validate and assign branches
+                var distinctBranchIds = dto.BranchIds.Distinct().ToList();
+                var branches = await _branchRepo.GetByIdsAsync(distinctBranchIds);
+
+                var missingBranchIds = distinctBranchIds.Except(branches.Select(b => b.BranchId)).ToList();
+                if (missingBranchIds.Any())
+                    throw new ArgumentException($"Branches not found: {string.Join(", ", missingBranchIds)}");
+
+                doctor.Branches = branches.ToList();
+
+                // 4️⃣ Save doctor
+                var createdDoctor = await _doctorRepo.AddAsync(doctor);
+
+                // 5️⃣ Commit transaction
+                await transaction.CommitAsync();
+
+                // 6️⃣ Send email to doctor with credentials
+                try
+                {
+                    var emailBody = $@"
+                <p>Hi Dr. {dto.Name},</p>
+                <p>Your account has been created. You can log in with the following credentials:</p>
+                <ul>
+                    <li>Username: {dto.Username}</li>
+                    <li>Email: {dto.Email}</li>
+                    <li>Password: {dto.Password}</li>
+                </ul>
+                <p>Best regards,</p>
+                <p>The Team</p>";
+
+                    await _emailService.SendEmailAsync(dto.Email, "Doctor Account Registration", emailBody);
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogWarning("Failed to send email to doctor {DoctorEmail}: {Message}", dto.Email, ex.Message);
+                }
+
+                // 7️⃣ Return DTO
+                return _mapper.Map<DoctorDto>(createdDoctor);
+            }
+            catch
+            {
+                // Rollback transaction if any exception occurs
+                await transaction.RollbackAsync();
+                throw;
+            }
         }
+
+
 
 
 

@@ -10,5 +10,7 @@ namespace Hospital.Application.DTO.Auth
     {
         public string Message { get; set; }
         public bool IsRegistered { get; set; }
+
+        public string? UserId { get; set; }
     }
 }

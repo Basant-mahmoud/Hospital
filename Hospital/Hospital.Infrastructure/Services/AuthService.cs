@@ -73,7 +73,8 @@ namespace Hospital.Infrastructure.Services
             return new RegisterDto
             {
                 Message = "Account registered successfully. Please login.",
-                IsRegistered = true
+                IsRegistered = true,
+                UserId = user.Id
             };
         }
 

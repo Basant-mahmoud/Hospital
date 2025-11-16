@@ -42,6 +42,7 @@ namespace Hospital
             builder.Services.AddScoped<IServiceService, ServiceService>();
             builder.Services.AddScoped<ISpecializationService, SpecializationService>();
             builder.Services.AddScoped<IDoctorService, DoctorService>();
+            builder.Services.AddScoped<IScheduleService, ScheduleService>();
 
 
             //injection repository
@@ -52,6 +53,7 @@ namespace Hospital
             builder.Services.AddScoped<IBannerRepository,BannerRepository>();
             builder.Services.AddScoped<ISpecializationRepository, SpecializationRepository>();
             builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
+            builder.Services.AddScoped<IScheduleRepository, ScheduleRepository>();
 
 
             //automapper
@@ -61,6 +63,7 @@ namespace Hospital
             builder.Services.AddAutoMapper(typeof(SpecializationProfile));
             builder.Services.AddAutoMapper(typeof(BannerProfile));
             builder.Services.AddAutoMapper(typeof(ServiceProfile));
+            builder.Services.AddAutoMapper(typeof(ScheduleProfile));
 
 
             //add cors
@@ -77,6 +80,10 @@ namespace Hospital
 
             // Add services to the container.
             builder.Services.Configure<JWT>(builder.Configuration.GetSection("JWT"));
+            builder.Services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(options =>
+            {
+                options.SerializerOptions.Converters.Add(new TimeOnlyJsonConverter());
+            });
 
             // Add Identity
             builder.Services.AddIdentity<User, IdentityRole>(options =>
