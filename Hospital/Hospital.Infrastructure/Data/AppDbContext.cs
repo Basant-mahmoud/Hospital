@@ -167,16 +167,21 @@ namespace Clinic.Infrastructure.Persistence
                 e.HasOne(a => a.Creator).WithMany(u => u.CreatedAppointments)
                     .HasForeignKey(a => a.CreatedBy).OnDelete(DeleteBehavior.SetNull);
             });
-
             model.Entity<Schedule>(e =>
             {
                 e.ToTable("Schedules");
-                e.Property(p => p.StartTime).HasConversion(timeOnlyConverter);
-                e.Property(p => p.EndTime).HasConversion(timeOnlyConverter);
+
+                // Change StartTime and EndTime to DateTime (no conversion needed)
+                e.Property(p => p.StartTime).IsRequired();
+                e.Property(p => p.EndTime).IsRequired();
+
                 e.Property(p => p.CreatedAt).HasDefaultValueSql("GETUTCDATE()");
                 e.Property(p => p.UpdatedAt).HasDefaultValueSql("GETUTCDATE()");
-                e.HasOne(s => s.Doctor).WithMany(d => d.Schedules)
-                    .HasForeignKey(s => s.DoctorId).OnDelete(DeleteBehavior.Cascade);
+
+                e.HasOne(s => s.Doctor)
+                    .WithMany(d => d.Schedules)
+                    .HasForeignKey(s => s.DoctorId)
+                    .OnDelete(DeleteBehavior.Cascade);
             });
 
             model.Entity<MedicalRecord>(e =>

@@ -84,10 +84,7 @@ namespace Hospital
 
             // Add services to the container.
             builder.Services.Configure<JWT>(builder.Configuration.GetSection("JWT"));
-            builder.Services.Configure<Microsoft.AspNetCore.Http.Json.JsonOptions>(options =>
-            {
-                options.SerializerOptions.Converters.Add(new TimeOnlyJsonConverter());
-            });
+
 
             // Add Identity
             builder.Services.AddIdentity<User, IdentityRole>(options =>

@@ -10,8 +10,8 @@ namespace Hospital.Application.DTO.Schedule
     {
         public int ScheduleId { get; set; }
         public int DoctorId { get; set; }
-        public string DayOfWeek { get; set; } = null!; public TimeOnly StartTime { get; set; }
-        public TimeOnly EndTime { get; set; }
+        public string DayOfWeek { get; set; } = null!; public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
 

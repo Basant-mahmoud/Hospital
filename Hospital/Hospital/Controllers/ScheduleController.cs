@@ -51,14 +51,14 @@ namespace Hospital.Controllers
         }
 
         // PUT: api/Schedule/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] UpdateScheduleDto dto)
+        [HttpPut]
+        public async Task<IActionResult> Update( [FromBody] UpdateScheduleDto dto)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
-            if (id != dto.ScheduleId) return BadRequest("ID mismatch");
+            
 
             await _scheduleService.UpdateAsync(dto);
-            return NoContent();
+            return Ok("Updated Succsefully");
         }
 
         // DELETE: api/Schedule/5

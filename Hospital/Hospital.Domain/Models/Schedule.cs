@@ -13,8 +13,8 @@ namespace Hospital.Domain.Models
         [Required] public int DoctorId { get; set; }
         public Doctor Doctor { get; set; } = null!;
         [Required, StringLength(20)] public string DayOfWeek { get; set; } = null!;
-        [Required] public TimeOnly StartTime { get; set; }
-        [Required] public TimeOnly EndTime { get; set; }
+        [Required] public DateTime StartTime { get; set; }
+        [Required] public DateTime EndTime { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
     }

@@ -46,8 +46,8 @@ namespace Hospital.Infrastructure.Services
                 return new RegisterDto { Message = "Username already exists!" };
 
             // Validate role
-            if (string.IsNullOrEmpty(model.Role) || (model.Role != "Patient"))
-                return new RegisterDto { Message = "Invalid role. Only 'Patient' allowed." };
+            if (string.IsNullOrEmpty(model.Role) || (model.Role != "Patient") && (model.Role != "Doctor")&& (model.Role != "Admin"))
+                return new RegisterDto { Message = "Invalid role. Only 'Patient' ,'Doctor'  and 'Admin' allowed." };
 
             // Ensure role exists before creating user
             if (!await _roleManager.RoleExistsAsync(model.Role))

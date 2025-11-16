@@ -19,9 +19,9 @@ namespace Hospital.Application.DTO.Schedule
         public string DayOfWeek { get; set; } = null!;
 
         [Required]
-        public TimeOnly StartTime { get; set; }
+        public DateTime StartTime { get; set; }
 
         [Required]
-        public TimeOnly EndTime { get; set; }
+        public DateTime EndTime { get; set; }
     }
 }

@@ -12,64 +12,58 @@ namespace Hospital.Infrastructure.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             var adminId = Guid.NewGuid().ToString();
-
             var hasher = new PasswordHasher<User>();
-            var adminUser = new User
-            {
-                Id = adminId,
-                FullName = "Admin",
-                UserName = "admin",
-                NormalizedUserName = "ADMIN",
-                Email = "admin@Hospital.com",
-                NormalizedEmail = "ADMIN@HOSPITAL.COM",
-                Role = "Admin",
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow,
-                EmailConfirmed = true,
-                AccessFailedCount = 0,         
-                PhoneNumberConfirmed = false,
-                TwoFactorEnabled = false,
-                LockoutEnabled = false,
-                SecurityStamp = Guid.NewGuid().ToString()
+            var passwordHash = hasher.HashPassword(null!, "Admin@123");
 
-            };
-
-            var passwordHash = hasher.HashPassword(adminUser, "Admin@123");
-
+            // Insert admin user
             migrationBuilder.InsertData(
-     table: "Users",
-     columns: new[]
-     {
-        "Id", "FullName", "UserName", "NormalizedUserName", "Email", "NormalizedEmail",
-        "PasswordHash", "Role", "CreatedAt", "UpdatedAt", "EmailConfirmed",
-        "AccessFailedCount", "PhoneNumberConfirmed", "TwoFactorEnabled", "LockoutEnabled", "SecurityStamp"
-     },
-     values: new object[]
-     {
-        adminUser.Id,
-        adminUser.FullName,
-        adminUser.UserName,
-        adminUser.NormalizedUserName,
-        adminUser.Email,
-        adminUser.NormalizedEmail,
-        passwordHash,
-        adminUser.Role,
-        adminUser.CreatedAt,
-        adminUser.UpdatedAt,
-        adminUser.EmailConfirmed,
-        adminUser.AccessFailedCount,
-        adminUser.PhoneNumberConfirmed,
-        adminUser.TwoFactorEnabled,
-        adminUser.LockoutEnabled,
-        adminUser.SecurityStamp
-     }
- );
+                table: "Users",
+                columns: new[]
+                {
+            "Id", "FullName", "UserName", "NormalizedUserName", "Email", "NormalizedEmail",
+            "PasswordHash", "Role", "CreatedAt", "UpdatedAt", "EmailConfirmed",
+            "AccessFailedCount", "PhoneNumberConfirmed", "TwoFactorEnabled", "LockoutEnabled", "SecurityStamp"
+                },
+                values: new object[]
+                {
+            adminId,
+            "Admin",
+            "admin",
+            "ADMIN",
+            "admin@Hospital.com",
+            "ADMIN@HOSPITAL.COM",
+            passwordHash,
+            "Admin",
+            DateTime.UtcNow,
+            DateTime.UtcNow,
+            true,
+            0,
+            false,
+            false,
+            false,
+            Guid.NewGuid().ToString()
+                }
+            );
 
+            // Assign role using string interpolation
+            migrationBuilder.Sql($@"
+        INSERT INTO [AspNetUserRoles] ([UserId], [RoleId])
+        SELECT '{adminId}', [Id]
+        FROM [AspNetRoles]
+        WHERE [Name] = 'Admin';
+    ");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.Sql("DELETE FROM [Users] WHERE Role = 'Admin'");
+            // First, delete from AspNetUserRoles
+            migrationBuilder.Sql(@"
+        DELETE FROM [AspNetUserRoles]
+        WHERE [UserId] IN (SELECT [Id] FROM [Users] WHERE [UserName] = 'admin');
+    ");
+
+            // Then, delete from Users table
+            migrationBuilder.Sql("DELETE FROM [Users] WHERE [UserName] = 'admin';");
         }
     }
 }
