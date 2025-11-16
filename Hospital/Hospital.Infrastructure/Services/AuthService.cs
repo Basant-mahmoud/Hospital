@@ -251,6 +251,17 @@ namespace Hospital.Infrastructure.Services
             return authModel;
         }
 
+        public async Task<string?> GetUserIdByEmailAsync(string email)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+
+            if (user == null)
+                return null;
+
+            return user.Id;
+        }
+
+
 
 
 

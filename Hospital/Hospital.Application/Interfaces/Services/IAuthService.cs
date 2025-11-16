@@ -16,6 +16,7 @@ namespace Hospital.Application.Interfaces.Services
         Task<bool> ForgotPasswordAsync(string email);
         Task<bool> ResetPasswordAsync(string email, string token, string newPassword);
         Task<AuthModel> RefreshTokenAsync(string token);
+        Task<string?> GetUserIdByEmailAsync(string email);
 
     }
 }
