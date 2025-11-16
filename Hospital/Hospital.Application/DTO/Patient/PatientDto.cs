@@ -13,5 +13,7 @@ namespace Hospital.Application.DTO.Patient
         public string FullName { get; set; } = null!;
         public string Email { get; set; } = null!;
         public string PhoneNumber { get; set; } = null!;
+
+        public List<MedicalRecordDto> MedicalRecords { get; set; } = new();
     }
 }

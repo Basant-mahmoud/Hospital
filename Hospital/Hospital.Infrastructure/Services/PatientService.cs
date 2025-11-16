@@ -44,6 +44,9 @@ namespace Hospital.Infrastructure.Services
             // Update User fields manually
             patient.User.FullName = dto.FullName;
             patient.User.PhoneNumber = dto.PhoneNumber;
+            patient.User.Email = dto.Email ?? patient.User.Email;
+            patient.User.NormalizedEmail= dto.Email?.ToUpper() ?? patient.User.NormalizedEmail;
+            patient.User.NormalizedUserName= dto.Email?.ToUpper() ?? patient.User.NormalizedUserName;
 
             patient.UpdatedAt = DateTime.UtcNow;
             await _patientRepository.UpdateAsync(patient);

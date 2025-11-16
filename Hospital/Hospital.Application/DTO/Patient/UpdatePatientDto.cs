@@ -12,5 +12,6 @@ namespace Hospital.Application.DTO.Patient
         [Required] public int PatientId { get; set; }
         [Required] public string FullName { get; set; } = null!;
         [Required] public string PhoneNumber { get; set; } = null!;
+        public string? Email { get; set; } = null!;
     }
 }

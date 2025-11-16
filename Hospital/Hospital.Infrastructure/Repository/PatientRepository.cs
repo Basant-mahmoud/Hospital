@@ -28,8 +28,12 @@ namespace Hospital.Infrastructure.Repository
         {
             return await _dbContext.Patients
                 .Include(p => p.User)
+                .Include(p => p.MedicalRecords)
+                    .ThenInclude(m => m.Doctor)
+                        .ThenInclude(d => d.User)
                 .FirstOrDefaultAsync(p => p.PatientId == id);
         }
+
 
         public async Task<List<Patient>> GetAllAsync()
         {
