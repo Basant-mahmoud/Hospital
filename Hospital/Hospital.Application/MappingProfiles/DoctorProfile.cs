@@ -35,6 +35,11 @@ namespace Hospital.Application.MappingProfiles
             .ForMember(dest => dest.CreatedAt, opt => opt.Ignore()) // لا تغير CreatedAt
             .ForMember(dest => dest.UpdatedAt, opt => opt.Ignore()); // UpdatedAt هنديره يدوياً
 
+            CreateMap<DoctorSelfUpdateDto, Doctor>()
+    .ForMember(dest => dest.User, opt => opt.Ignore()) // Don't overwrite the User navigation automatically
+    .ForMember(dest => dest.Branches, opt => opt.Ignore()); // Handle branches manually if needed
+
+
         }
     }
 }

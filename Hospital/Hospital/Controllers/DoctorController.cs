@@ -1,5 +1,6 @@
 ﻿using Hospital.Application.DTO.Doctor;
 using Hospital.Application.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hospital.Controllers
@@ -78,6 +79,32 @@ namespace Hospital.Controllers
         {
             var doctors = await _doctorService.GetAllEventInSystemAsync();
             return Ok(doctors);
+        }
+
+        [HttpPut("doctor/self-update")]
+        //[Authorize(Roles = "Doctor")]
+        public async Task<IActionResult> SelfUpdate(DoctorSelfUpdateDto dto)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            try
+            {
+                await _doctorService.UpdatePersonalInfoAsync(dto);
+                return Ok(new { Message = "Personal info updated successfully." });
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(new { ex.Message });
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(new { ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = "Internal server error." });
+            }
         }
     }
 }

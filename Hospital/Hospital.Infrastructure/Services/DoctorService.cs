@@ -231,6 +231,41 @@ namespace Hospital.Infrastructure.Services
             return await _doctorRepo.UpdateAsync(doctor);
         }
 
+        public async Task UpdatePersonalInfoAsync(DoctorSelfUpdateDto dto)
+        {
+            if (dto == null)
+                throw new ArgumentNullException(nameof(dto));
+
+            // 1️⃣ Get existing doctor
+            var doctor = await _doctorRepo.GetAsync(dto.DoctorId);
+            if (doctor == null)
+                throw new KeyNotFoundException($"Doctor with ID {dto.DoctorId} not found.");
+
+            // 2️⃣ Map DTO to entity (ignores User & Branches)
+            _mapper.Map(dto, doctor);
+
+            // 3️⃣ Update User info manually
+            if (doctor.User != null)
+            {
+                doctor.User.FullName = dto.FullName ?? doctor.User.FullName;
+                if (!string.IsNullOrEmpty(dto.PhoneNumber))
+                    doctor.User.PhoneNumber = dto.PhoneNumber;
+            }
+
+            // 4️⃣ Update branches if any
+            if (dto.BranchIds != null && dto.BranchIds.Any())
+            {
+                var branches = await _branchRepo.GetByIdsAsync(dto.BranchIds.Distinct());
+                doctor.Branches = branches.ToList();
+            }
+
+            // 5️⃣ Update timestamps
+            doctor.UpdatedAt = DateTime.UtcNow;
+
+            // 6️⃣ Save changes
+            await _doctorRepo.UpdateAsync(doctor);
+        }
+
 
 
         public async Task<int> DeleteAsync(GetDoctorDto dto)
@@ -263,5 +298,7 @@ namespace Hospital.Infrastructure.Services
             var doctors = await _doctorRepo.GetAllAsync();
             return _mapper.Map<IEnumerable<DoctorDto>>(doctors);
         }
+
+
     }
 }
