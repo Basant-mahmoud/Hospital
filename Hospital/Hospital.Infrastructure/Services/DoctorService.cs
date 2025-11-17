@@ -126,7 +126,7 @@ namespace Hospital.Infrastructure.Services
 
 
 
-        public async Task<int> UpdateAsync(DoctorDto dto)
+        public async Task<int> UpdateAsync(UpdateDoctorDto dto)
         {
             if (dto == null) throw new ArgumentNullException(nameof(dto));
 

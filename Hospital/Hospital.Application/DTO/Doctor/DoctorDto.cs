@@ -1,4 +1,5 @@
-﻿using Hospital.Domain.Models;
+﻿using Hospital.Application.DTO.Branch;
+using Hospital.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -20,7 +21,7 @@ namespace Hospital.Application.DTO.Doctor
         public string? SpecializationName { get; set; }
         public string? ImageURL { get; set; }
 
-        public List<int> BranchID { get; set; } = new();
+        public ICollection<BranchDto> Branchs { get; set; } = new List<BranchDto>();
         public string? Biography { get; set; }
         public int? ExperienceYears { get; set; }
         public decimal? ConsultationFees { get; set; }

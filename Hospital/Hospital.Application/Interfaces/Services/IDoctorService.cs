@@ -11,7 +11,7 @@ namespace Hospital.Application.Interfaces.Services
     public interface IDoctorService
     {
         Task<DoctorDto> AddAsync(AddDoctorDto doctordto);
-        Task<int> UpdateAsync(DoctorDto doctordto);
+        Task<int> UpdateAsync(UpdateDoctorDto doctordto);
         Task<int> DeleteAsync(GetDoctorDto doctordto);
         Task<DoctorDto?> GetAsync(GetDoctorDto doctordto);
         Task<IEnumerable<DoctorDto>> GetAllAsync(int branchId);

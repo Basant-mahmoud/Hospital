@@ -29,7 +29,7 @@ namespace Hospital.Controllers
 
         // ------------------- Update Doctor -------------------
         [HttpPut("update")]
-        public async Task<IActionResult> UpdateDoctor([FromBody] DoctorDto dto)
+        public async Task<IActionResult> UpdateDoctor([FromBody] UpdateDoctorDto dto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
