@@ -81,6 +81,15 @@ namespace Hospital.Controllers
             return Ok(doctors);
         }
 
+        // ------------------- Get All Doctors in Specialization -------------------
+        [HttpGet("BySpecialization/{specializationId}")]
+        public async Task<IActionResult> GetDoctorsBySpecialization(int specializationId)
+        {
+            var result = await _doctorService.GetDoctorsBySpecializationIdAsync(specializationId);
+            return Ok(result);
+        }
+
+
         [HttpPut("doctor/self-update")]
         //[Authorize(Roles = "Doctor")]
         public async Task<IActionResult> SelfUpdate(DoctorSelfUpdateDto dto)

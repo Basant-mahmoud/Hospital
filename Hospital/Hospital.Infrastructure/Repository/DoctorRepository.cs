@@ -40,6 +40,7 @@ namespace Hospital.Infrastructure.Repos
                 .Include(d => d.User)
                 .Include(d => d.Specialization)
                 .Include(d => d.Branches)
+                 .Include(d => d.Schedules)
                 .FirstOrDefaultAsync(d => d.DoctorId == doctorId);
         }
 
@@ -49,6 +50,7 @@ namespace Hospital.Infrastructure.Repos
                 .Include(d => d.User)
                 .Include(d => d.Specialization)
                 .Include(d => d.Branches)
+                 .Include(d => d.Schedules)
                 .Where(d => d.Branches.Any(b => b.BranchId == branchId))
                 .ToListAsync();
         }
@@ -59,7 +61,21 @@ namespace Hospital.Infrastructure.Repos
                 .Include(d => d.User)
                 .Include(d => d.Specialization)
                 .Include(d => d.Branches)
+                 .Include(d => d.Schedules)
                 .ToListAsync();
         }
+
+        public async Task<IEnumerable<Doctor>> GetDoctorsBySpecializationIdAsync(int specializationId)
+        {
+            return await _context.Doctors
+                .Include(d => d.User)
+                .Include(d => d.Branches)
+                    .ThenInclude(b => b.Specializations)
+                .Where(d => d.Branches
+                    .Any(b => b.Specializations
+                        .Any(s => s.SpecializationId == specializationId)))
+                .ToListAsync();
+        }
+
     }
 }

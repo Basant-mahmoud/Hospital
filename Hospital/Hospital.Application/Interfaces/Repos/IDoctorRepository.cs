@@ -14,6 +14,7 @@ namespace Hospital.Application.Interfaces.Repos
         Task<int> DeleteAsync(int doctorId);
         Task<Doctor?> GetAsync(int doctorId);
         Task<IEnumerable<Doctor>> GetAllByBranchAsync(int branchId);
+        Task<IEnumerable<Doctor>> GetDoctorsBySpecializationIdAsync(int specializationId);
         Task<IEnumerable<Doctor>> GetAllAsync();
     }
 }
