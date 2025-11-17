@@ -18,6 +18,7 @@ namespace Hospital.Application.DTO.Doctor
 
         public int SpecializationId { get; set; }
         public string? SpecializationName { get; set; }
+        public string? ImageURL { get; set; }
 
         public List<int> BranchID { get; set; } = new();
         public string? Biography { get; set; }
