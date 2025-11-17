@@ -21,11 +21,12 @@ namespace Hospital.Application.MappingProfiles
                  .ForMember(dest => dest.UpdatedAt, opt => opt.Ignore());
 
             CreateMap<Doctor, DoctorDto>()
-      .ForMember(d => d.UserName, opt => opt.MapFrom(s => s.User.UserName))
-      .ForMember(d => d.Email, opt => opt.MapFrom(s => s.User.Email))
-      .ForMember(d => d.FullName, opt => opt.MapFrom(s => s.User.FullName))
-      .ForMember(d => d.SpecializationName, opt => opt.MapFrom(s => s.Specialization != null ? s.Specialization.Name : null))
-      .ForMember(d => d.BranchID, opt => opt.MapFrom(s => s.Branches.Select(b => b.BranchId).ToList()));
+     .ForMember(d => d.UserName, opt => opt.MapFrom(s => s.User.UserName))
+     .ForMember(d => d.Email, opt => opt.MapFrom(s => s.User.Email))
+     .ForMember(d => d.FullName, opt => opt.MapFrom(s => s.User.FullName))
+     .ForMember(d => d.SpecializationName, opt => opt.MapFrom(s => s.Specialization != null ? s.Specialization.Name : null))
+     .ForMember(d => d.BranchID, opt => opt.MapFrom(s => s.Branches.Select(b => b.BranchId).ToList()));
+
 
 
             CreateMap<DoctorDto, Doctor>()

@@ -24,7 +24,8 @@ namespace Hospital.Application.DTO.Doctor
         public int? ExperienceYears { get; set; }
         public decimal? ConsultationFees { get; set; }
         public bool? Available { get; set; }
+        public ICollection<DoctorSchuduleDto> Schedules { get; set; } = new List<DoctorSchuduleDto>();
 
-       
+
     }
 }

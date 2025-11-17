@@ -40,6 +40,7 @@ namespace Hospital.Infrastructure.Repos
                 .Include(d => d.User)
                 .Include(d => d.Specialization)
                 .Include(d => d.Branches)
+                 .Include(d => d.Schedules)
                 .FirstOrDefaultAsync(d => d.DoctorId == doctorId);
         }
 
@@ -49,6 +50,7 @@ namespace Hospital.Infrastructure.Repos
                 .Include(d => d.User)
                 .Include(d => d.Specialization)
                 .Include(d => d.Branches)
+                 .Include(d => d.Schedules)
                 .Where(d => d.Branches.Any(b => b.BranchId == branchId))
                 .ToListAsync();
         }
@@ -59,6 +61,7 @@ namespace Hospital.Infrastructure.Repos
                 .Include(d => d.User)
                 .Include(d => d.Specialization)
                 .Include(d => d.Branches)
+                 .Include(d => d.Schedules)
                 .ToListAsync();
         }
     }
