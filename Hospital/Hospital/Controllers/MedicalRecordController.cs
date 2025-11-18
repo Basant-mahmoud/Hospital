@@ -26,8 +26,13 @@ namespace Hospital.Controllers
         [HttpPut]
         public async Task<ActionResult<int>> Update([FromBody] UpdateMedicalRecordDto dto)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
             var result = await _medicalRecordService.UpdateAsync(dto);
-            return Ok(result);
+            if (result == 0)
+                return BadRequest($" failed to update");
+            else
+            return Ok("Updated Successfully");
         }
 
         // 3️⃣ Delete Medical Record
@@ -35,7 +40,10 @@ namespace Hospital.Controllers
         public async Task<ActionResult<int>> Delete(int id)
         {
             var result = await _medicalRecordService.DeleteAsync(id);
-            return Ok(result);
+            if (result == 0)
+                return NotFound($"failed to delete medical record");
+
+            return Ok("Deleted Successfully");
         }
 
         // 4️⃣ Get Medical Record by Id

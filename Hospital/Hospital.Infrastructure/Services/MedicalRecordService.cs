@@ -37,34 +37,38 @@ namespace Hospital.Infrastructure.Services
         }
 
 
-        public async Task<PatientMedicalRecordDto> AddAsync(AddMedicalRecordDto dto)
+        public async Task<MedicalRecordDto> AddAsync(AddMedicalRecordDto dto)
         {
-           
-            // التأكد من وجود الدوكتور
+            // Check doctor
             var doctor = await _doctorService.GetAsync(new() { DoctorId = dto.DoctorId });
             if (doctor == null)
                 throw new Exception($"Doctor with Id {dto.DoctorId} not found");
 
-            // التأكد من وجود الباشن
+            // Check patient
             var patient = await _patientService.GetPatientByIdAsync(dto.PatientId);
             if (patient == null)
                 throw new Exception($"Patient with Id {dto.PatientId} not found");
 
-            //// جلب UserId من التوكن
-            //var userId = _httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
-            //if (userId == null)
-            //    throw new Exception("User not authenticated");
+            // Check appointment
+          //  var appointment = await _appointmentService.GetByIdAsync(dto.AppointmentId);
+          //  if (appointment == null)
+          //      throw new Exception($"Appointment with Id {dto.AppointmentId} not found");
 
-            // تحويل DTO لـ MedicalRecord باستخدام AutoMapper
+            // Map
             var medicalRecord = _mapper.Map<MedicalRecord>(dto);
             medicalRecord.CreatedAt = DateTime.UtcNow;
             medicalRecord.UpdatedAt = DateTime.UtcNow;
 
+            // Save
             await _medicalRecordRepo.AddAsync(medicalRecord);
 
-            var resultDto = _mapper.Map<PatientMedicalRecordDto>(medicalRecord);
-            return resultDto;
+            // Reload with full relations
+            var fullRecord = await _medicalRecordRepo.GetByIdWithRelationsAsync(medicalRecord.RecordId);
+
+            // Map result
+            return _mapper.Map<MedicalRecordDto>(fullRecord);
         }
+
 
         // 2️⃣ Delete
         public async Task<int> DeleteAsync(int id)
@@ -76,12 +80,12 @@ namespace Hospital.Infrastructure.Services
 
       
         // 3️⃣ Get one record
-        public async Task<PatientMedicalRecordDto?> GetByMedicalRecordIdAsync(GetMedicalRecordDto dto)
+        public async Task<MedicalRecordDto?> GetByMedicalRecordIdAsync(GetMedicalRecordDto dto)
         {
 
             var record = await _medicalRecordRepo.GetAsync(dto.MedicalRecordId);
             if (record == null) return null;
-            return _mapper.Map<PatientMedicalRecordDto>(record);
+            return _mapper.Map<MedicalRecordDto>(record);
         }
 
        
@@ -96,16 +100,16 @@ namespace Hospital.Infrastructure.Services
 
             return await _medicalRecordRepo.UpdateAsync(record);
         }
-        public async Task<List<PatientMedicalRecordDto>> GetByDoctorId(int doctorId)
+        public async Task<List<MedicalRecordDto>> GetByDoctorId(int doctorId)
         {
             var records = await _medicalRecordRepo.GetByDoctorIdAsync(doctorId);
-            return _mapper.Map<List<PatientMedicalRecordDto>>(records);
+            return _mapper.Map<List<MedicalRecordDto>>(records);
         }
 
-        public async Task<List<PatientMedicalRecordDto>> GetByPatientId(int patientId)
+        public async Task<List<MedicalRecordDto>> GetByPatientId(int patientId)
         {
             var records = await _medicalRecordRepo.GetByPatientIdAsync(patientId);
-            return _mapper.Map<List<PatientMedicalRecordDto>>(records);
+            return _mapper.Map<List<MedicalRecordDto>>(records);
         }
 
     }

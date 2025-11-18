@@ -6,17 +6,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MedicalRecordDto = Hospital.Application.DTO.MedicalRecord.MedicalRecordDto;
 
 namespace Hospital.Application.Interfaces.Services
 {
     public interface IMedicalRecordService
     {
-        Task<PatientMedicalRecordDto> AddAsync(AddMedicalRecordDto @eventdto);
+        Task<MedicalRecordDto> AddAsync(AddMedicalRecordDto @eventdto);
         Task<int> UpdateAsync(UpdateMedicalRecordDto @eventdto);
         Task<int> DeleteAsync(int id);
-        Task<PatientMedicalRecordDto?> GetByMedicalRecordIdAsync(GetMedicalRecordDto dto);
-        Task<List<PatientMedicalRecordDto>> GetByDoctorId(int DoctorId);
-        Task<List<PatientMedicalRecordDto>> GetByPatientId(int PatientId);
+        Task<MedicalRecordDto?> GetByMedicalRecordIdAsync(GetMedicalRecordDto dto);
+        Task<List<MedicalRecordDto>> GetByDoctorId(int DoctorId);
+        Task<List<MedicalRecordDto>> GetByPatientId(int PatientId);
 
     }
 }

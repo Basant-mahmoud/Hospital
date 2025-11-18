@@ -15,6 +15,7 @@ namespace Hospital.Application.Interfaces.Repos
         Task<MedicalRecord?> GetAsync(int id);
         Task<IEnumerable<MedicalRecord>> GetByDoctorIdAsync(int doctorId);
         Task<IEnumerable<MedicalRecord>> GetByPatientIdAsync(int patientId);
+        Task<MedicalRecord> GetByIdWithRelationsAsync(int id);
 
     }
 }

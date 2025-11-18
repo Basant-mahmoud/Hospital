@@ -8,19 +8,10 @@ namespace Hospital.Application.DTO.MedicalRecord
 {
     public class PatientMedicalRecordDto
     {
-        public int RecordId { get; set; }
-        public int AppointmentId { get; set; }
-
-        public int DoctorId { get; set; }
-        public string? DoctorName { get; set; }
-
         public int PatientId { get; set; }
-        public string? PatientName { get; set; }
-
-        public string? Diagnosis { get; set; }
-        public string? TreatmentPlan { get; set; }
-        public string? Notes { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
+        public string UserId { get; set; } = null!;
+        public string FullName { get; set; } = null!;
+        public string Email { get; set; } = null!;
+        public string PhoneNumber { get; set; } = null!;
     }
 }

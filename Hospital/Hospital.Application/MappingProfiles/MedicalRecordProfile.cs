@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Hospital.Application.DTO.Appointment;
 using Hospital.Application.DTO.MedicalRecord;
 using Hospital.Domain.Models;
 using System;
@@ -13,11 +14,33 @@ namespace Hospital.Application.MappingProfiles
     {
         public MedicalRecordProfile()
         {
-            CreateMap<MedicalRecord, PatientMedicalRecordDto>().ReverseMap();
             CreateMap<AddMedicalRecordDto, MedicalRecord>();
-            CreateMap<MedicalRecord, PatientMedicalRecordDto>()
-    .ForMember(dest => dest.DoctorName, opt => opt.MapFrom(src => src.Doctor.User.FullName))
-    .ForMember(dest => dest.PatientName, opt => opt.MapFrom(src => src.Patient.User.FullName));
+            CreateMap<UpdateMedicalRecordDto, MedicalRecord>();
+
+            // main mapping
+            CreateMap<MedicalRecord, MedicalRecordDto>()
+                .ForMember(dest => dest.Doctor, opt => opt.MapFrom(src => src.Doctor))
+                .ForMember(dest => dest.Patient, opt => opt.MapFrom(src => src.Patient))
+                .ForMember(dest => dest.Appointment, opt => opt.MapFrom(src => src.Appointment));
+
+            // patient part
+            CreateMap<Patient, PatientMedicalRecordDto>()
+                .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.User.Id))
+                .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => src.User.FullName))
+                .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.User.Email))
+                .ForMember(dest => dest.PhoneNumber, opt => opt.MapFrom(src => src.User.PhoneNumber));
+
+            CreateMap<Appointment, AppointmentDto>()
+                .ForMember(dest => dest.Branch, opt => opt.MapFrom(src => new BranchShortDto
+                {
+                    BranchId = src.Branch.BranchId,
+                    Name = src.Branch.BranchName
+                }));
+            CreateMap<Doctor, DoctorMedicalDto>()
+    .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.User.UserName))
+    .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.User.Email))
+    .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => src.User.FullName));
+
 
         }
     }
