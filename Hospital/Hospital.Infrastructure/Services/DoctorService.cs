@@ -230,7 +230,7 @@ namespace Hospital.Infrastructure.Services
             return _mapper.Map<IEnumerable<DoctorDto>>(doctors);
         }
 
-        public async Task<IEnumerable<DoctorDto>> GetAllEventInSystemAsync()
+        public async Task<IEnumerable<DoctorDto>> GetAllDoctorInSystemAsync()
         {
             var doctors = await _doctorRepo.GetAllAsync();
             return _mapper.Map<IEnumerable<DoctorDto>>(doctors);

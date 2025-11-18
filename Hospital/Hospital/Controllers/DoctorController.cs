@@ -77,7 +77,7 @@ namespace Hospital.Controllers
         [HttpGet("all")]
         public async Task<IActionResult> GetAll()
         {
-            var doctors = await _doctorService.GetAllEventInSystemAsync();
+            var doctors = await _doctorService.GetAllDoctorInSystemAsync();
             return Ok(doctors);
         }
 

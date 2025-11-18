@@ -45,6 +45,7 @@ namespace Hospital
             builder.Services.AddScoped<IPatientService, PatientService>();
             builder.Services.AddScoped<IScheduleService, ScheduleService>();
             builder.Services.AddScoped<ISupportTicketService, SupportTicketService>();
+            builder.Services.AddScoped<IMedicalRecordService, MedicalRecordService>();
 
 
 
@@ -60,6 +61,7 @@ namespace Hospital
             builder.Services.AddScoped<IPatientRepository, PatientRepository>();
             builder.Services.AddScoped<IScheduleRepository, ScheduleRepository>();
             builder.Services.AddScoped<ISupportTicketRepository, SupportTicketRepository>();
+            builder.Services.AddScoped<IMedicalRecordRepository, MedicalRecordRepository>();
 
 
             //automapper
@@ -72,6 +74,9 @@ namespace Hospital
             builder.Services.AddAutoMapper(typeof(PatientProfile));
             builder.Services.AddAutoMapper(typeof(ScheduleProfile));
             builder.Services.AddAutoMapper(typeof(SupportTicketProfile));
+            builder.Services.AddAutoMapper(typeof(DoctorProfile));
+            builder.Services.AddAutoMapper(typeof(MedicalRecordProfile));
+
 
 
             //add cors

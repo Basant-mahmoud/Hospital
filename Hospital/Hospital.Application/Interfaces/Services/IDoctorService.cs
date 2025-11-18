@@ -15,7 +15,7 @@ namespace Hospital.Application.Interfaces.Services
         Task<int> DeleteAsync(GetDoctorDto doctordto);
         Task<DoctorDto?> GetAsync(GetDoctorDto doctordto);
         Task<IEnumerable<DoctorDto>> GetAllAsync(int branchId);
-        Task<IEnumerable<DoctorDto>> GetAllEventInSystemAsync();
+        Task<IEnumerable<DoctorDto>> GetAllDoctorInSystemAsync();
         Task<IEnumerable<DoctorDto>> GetDoctorsBySpecializationIdAsync(int specializationId);
         Task UpdatePersonalInfoAsync(DoctorSelfUpdateDto dto);
     }
