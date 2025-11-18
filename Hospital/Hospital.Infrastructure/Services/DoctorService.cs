@@ -251,5 +251,7 @@ namespace Hospital.Infrastructure.Services
             return _mapper.Map<IEnumerable<DoctorDto>>(doctors);
         }
 
+        
+
     }
 }

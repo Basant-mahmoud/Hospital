@@ -17,6 +17,8 @@ namespace Hospital.Infrastructure.Services
     {
         private readonly IMedicalRecordRepository _medicalRecordRepo;
         private readonly IDoctorService _doctorService;
+        private readonly IDoctorRepository _doctorRepoy;
+        private readonly IAppointmentService _appointmentService;
         private readonly IPatientService _patientService;
         private readonly IBranchService _branchService;
         private readonly IMapper _mapper;
@@ -25,52 +27,47 @@ namespace Hospital.Infrastructure.Services
             IMedicalRecordRepository medicalRecordRepo,
             IDoctorService doctorService,
             IPatientService patientService,
-            IHttpContextAccessor httpContextAccessor,
             IMapper mapper,
-            IBranchService branchService)
+            IBranchService branchService,
+            IAppointmentService appointmentService,
+            IDoctorRepository doctorRepoy)
         {
             _medicalRecordRepo = medicalRecordRepo;
             _doctorService = doctorService;
             _patientService = patientService;
             _mapper = mapper;
             _branchService = branchService;
+            _appointmentService = appointmentService;
+            _doctorRepoy = doctorRepoy;
         }
 
 
         public async Task<MedicalRecordDto> AddAsync(AddMedicalRecordDto dto)
         {
-            // Check doctor
             var doctor = await _doctorService.GetAsync(new() { DoctorId = dto.DoctorId });
             if (doctor == null)
                 throw new Exception($"Doctor with Id {dto.DoctorId} not found");
 
-            // Check patient
             var patient = await _patientService.GetPatientByIdAsync(dto.PatientId);
             if (patient == null)
                 throw new Exception($"Patient with Id {dto.PatientId} not found");
 
-            // Check appointment
-          //  var appointment = await _appointmentService.GetByIdAsync(dto.AppointmentId);
-          //  if (appointment == null)
-          //      throw new Exception($"Appointment with Id {dto.AppointmentId} not found");
+            var appointment = await _appointmentService.GetByIdAsync(dto.AppointmentId);
+           if (appointment == null)
+              throw new Exception($"Appointment with Id {dto.AppointmentId} not found");
 
-            // Map
             var medicalRecord = _mapper.Map<MedicalRecord>(dto);
             medicalRecord.CreatedAt = DateTime.UtcNow;
             medicalRecord.UpdatedAt = DateTime.UtcNow;
 
-            // Save
             await _medicalRecordRepo.AddAsync(medicalRecord);
 
-            // Reload with full relations
             var fullRecord = await _medicalRecordRepo.GetByIdWithRelationsAsync(medicalRecord.RecordId);
 
-            // Map result
             return _mapper.Map<MedicalRecordDto>(fullRecord);
         }
 
 
-        // 2️⃣ Delete
         public async Task<int> DeleteAsync(int id)
         {
             var record = await _medicalRecordRepo.GetAsync(id);
@@ -79,7 +76,6 @@ namespace Hospital.Infrastructure.Services
         }
 
       
-        // 3️⃣ Get one record
         public async Task<MedicalRecordDto?> GetByMedicalRecordIdAsync(GetMedicalRecordDto dto)
         {
 
@@ -89,9 +85,20 @@ namespace Hospital.Infrastructure.Services
         }
 
        
-        // 6️⃣ Update record
         public async Task<int> UpdateAsync(UpdateMedicalRecordDto dto)
         {
+            var doctor = await _doctorService.GetAsync(new() { DoctorId = dto.DoctorId });
+            if (doctor == null)
+                throw new Exception($"Doctor with Id {dto.DoctorId} not found");
+
+            var patient = await _patientService.GetPatientByIdAsync(dto.PatientId);
+            if (patient == null)
+                throw new Exception($"Patient with Id {dto.PatientId} not found");
+
+            var appointment = await _appointmentService.GetByIdAsync(dto.AppointmentId);
+            if (appointment == null)
+                throw new Exception($"Appointment with Id {dto.AppointmentId} not found");
+
             var record = await _medicalRecordRepo.GetAsync(dto.RecordId);
             if (record == null) throw new Exception($"MedicalRecord with Id {dto.RecordId} not found");
 
@@ -102,12 +109,19 @@ namespace Hospital.Infrastructure.Services
         }
         public async Task<List<MedicalRecordDto>> GetByDoctorId(int doctorId)
         {
+            
+            var doctor = await _doctorRepoy.GetAsync(doctorId);
+            if (doctor == null)
+                throw new Exception($"Doctor with Id {doctorId} not found");
             var records = await _medicalRecordRepo.GetByDoctorIdAsync(doctorId);
             return _mapper.Map<List<MedicalRecordDto>>(records);
         }
 
         public async Task<List<MedicalRecordDto>> GetByPatientId(int patientId)
         {
+            var patient = await _patientService.GetPatientByIdAsync(patientId);
+            if (patient == null)
+                throw new Exception($"Patient with Id {patientId} not found");
             var records = await _medicalRecordRepo.GetByPatientIdAsync(patientId);
             return _mapper.Map<List<MedicalRecordDto>>(records);
         }
