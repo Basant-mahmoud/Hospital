@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hospital.Domain.Enum;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,13 +10,24 @@ namespace Hospital.Domain.Models
 {
     public class Schedule
     {
-        [Key] public int ScheduleId { get; set; }
-        [Required] public int DoctorId { get; set; }
+        [Key]
+        public int ScheduleId { get; set; }
+
+        [Required]
+        public int DoctorId { get; set; }
         public Doctor Doctor { get; set; } = null!;
-        [Required, StringLength(20)] public string DayOfWeek { get; set; } = null!;
-        [Required] public DateTime StartTime { get; set; }
-        [Required] public DateTime EndTime { get; set; }
+
+        [Required, StringLength(20)]
+        public string DayOfWeek { get; set; } = null!;  // Example: "Monday"
+
+        [Required]
+        public AppointmentShift Shift { get; set; }     // Morning / Afternoon / Evening
+
+        public DateTime StartTime { get; set; }         // Auto-filled
+        public DateTime EndTime { get; set; }           // Auto-filled
+
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
     }
+
 }

@@ -9,13 +9,14 @@ namespace Hospital.Infrastructure.Services
 {
     public interface IScheduleService
     {
-        Task<IEnumerable<ScheduleDto>> GetAllAsync();
-        Task<ScheduleDto?> GetByIdAsync(int id);
-        Task<IEnumerable<ScheduleDto>> GetAllByDoctorIdAsync(int doctorId);
-
         Task<ScheduleDto> CreateAsync(CreateScheduleDto dto);
-        Task UpdateAsync(UpdateScheduleDto dto);
-        Task<bool> DeleteAsync(int id);
+        Task<ScheduleDto> UpdateAsync(UpdateScheduleDto dto);
+        Task<bool> DeleteAsync(int scheduleId);
+        Task<ScheduleDto?> GetByIdAsync(int scheduleId);
+        Task<IEnumerable<ScheduleDto>> GetAllAsync();
+        Task<IEnumerable<ScheduleDto>> GetDoctorsByDateAsync(string dayOfWeek);
+        Task<IEnumerable<ScheduleDto>> GetDoctorsByDateAndShiftAsync(string dayOfWeek, Domain.Enum.AppointmentShift shift);
+        Task<IEnumerable<ScheduleDto>> GetSchedulesByDoctorIdAsync(int doctorId);
 
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualBasic;
+﻿using Hospital.Domain.Enum;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,17 +11,10 @@ namespace Hospital.Application.DTO.Schedule
 {
     public class CreateScheduleDto
     {
-        [Required]
         public int DoctorId { get; set; }
-
-        [Required, StringLength(20)]
         public string DayOfWeek { get; set; } = null!;
 
-        [Required]
-        public DateTime StartTime { get; set; }
-
-        [Required]
-        public DateTime EndTime { get; set; }
+        public AppointmentShift AppointmentShift { get; set; }
     }
 
 }
