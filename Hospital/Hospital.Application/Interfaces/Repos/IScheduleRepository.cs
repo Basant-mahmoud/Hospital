@@ -9,13 +9,12 @@ namespace Hospital.Application.Interfaces.Repos
 {
     public interface IScheduleRepository
     {
+        Task<Schedule> AddAsync(Schedule schedule);
+        Task<int> UpdateAsync(Schedule schedule);
+        Task<int> DeleteAsync(int scheduleId);
+        Task<Schedule?> GetByIdAsync(int scheduleId);
         Task<IEnumerable<Schedule>> GetAllAsync();
-        Task<Schedule?> GetByIdAsync(int id);
-        Task<IEnumerable<Schedule>> GetAllByDoctorIdAsync(int id);
-        Task AddAsync(Schedule schedule);
-        Task UpdateAsync(Schedule schedule);
-        Task DeleteAsync(int id);
-
-        Task<bool> DoctorHasScheduleAsync(int doctorId, string dayOfWeek);
+        Task<IEnumerable<Schedule>> GetAllByDoctorIdAsync(int doctorId);
+        Task<IEnumerable<Schedule>> GetAllByDayOfWeekAsync(string dayOfWeek);
     }
 }

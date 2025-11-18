@@ -1,73 +1,112 @@
 ﻿using Hospital.Application.DTO.Schedule;
+using Hospital.Application.Interfaces.Services;
 using Hospital.Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hospital.Controllers
 {
-   
     [Route("api/[controller]")]
     [ApiController]
     public class ScheduleController : ControllerBase
     {
-        private readonly IScheduleService _scheduleService;
+        private readonly IScheduleService _service;
 
-        public ScheduleController(IScheduleService scheduleService)
+        public ScheduleController(IScheduleService service)
         {
-            _scheduleService = scheduleService;
+            _service = service;
         }
 
-        // GET: api/Schedule
-        [HttpGet]
-        public async Task<IActionResult> GetAll()
-        {
-            var schedules = await _scheduleService.GetAllAsync();
-            return Ok(schedules);
-        }
-
-        // GET: api/Schedule/5
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
-        {
-            var schedule = await _scheduleService.GetByIdAsync(id);
-            return schedule == null ? NotFound() : Ok(schedule);
-        }
-
-        // GET: api/Schedule/doctor/5
-        [HttpGet("doctor/{doctorId}")]
-        public async Task<IActionResult> GetAllByDoctorId(int doctorId)
-        {
-            var schedules = await _scheduleService.GetAllByDoctorIdAsync(doctorId);
-            return Ok(schedules);
-        }
-
-        // POST: api/Schedule
+        // Create a new schedule
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateScheduleDto dto)
+        public async Task<ActionResult<ScheduleDto>> Create([FromBody] CreateScheduleDto dto)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
-            var created = await _scheduleService.CreateAsync(dto);
-            return CreatedAtAction(nameof(GetById), new { id = created.ScheduleId }, created);
+            var result = await _service.CreateAsync(dto);
+            return Ok(result);
         }
 
-        // PUT: api/Schedule/5
+        // Update existing schedule
         [HttpPut]
-        public async Task<IActionResult> Update( [FromBody] UpdateScheduleDto dto)
+        public async Task<ActionResult<ScheduleDto>> Update([FromBody] UpdateScheduleDto dto)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-            
-
-            await _scheduleService.UpdateAsync(dto);
-            return Ok("Updated Succsefully");
+            var result = await _service.UpdateAsync(dto);
+            return Ok(result);
         }
 
-        // DELETE: api/Schedule/5
+        // Delete schedule
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            var deleted = await _scheduleService.DeleteAsync(id);
-            return deleted ? NoContent() : NotFound();
+            var deleted = await _service.DeleteAsync(id);
+            return deleted ? Ok("Deleted SuccessFully") : NotFound();
+        }
+
+        // Get schedule by ID
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ScheduleDto>> GetById(int id)
+        {
+            var result = await _service.GetByIdAsync(id);
+            return result == null ? NotFound() : Ok(result);
+        }
+
+        // Get all schedules
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<ScheduleDto>>> GetAll()
+        {
+            var result = await _service.GetAllAsync();
+            return Ok(result);
+        }
+
+        // Get schedules by doctor ID
+        [HttpGet("doctor/{doctorId}")]
+        public async Task<ActionResult<IEnumerable<ScheduleDto>>> GetByDoctorId(int doctorId)
+        {
+            if (doctorId <= 0)
+                return BadRequest("Invalid doctor ID.");
+
+            var schedules = await _service.GetSchedulesByDoctorIdAsync(doctorId);
+
+            if (schedules == null || !schedules.Any())
+                return NotFound($"No schedules found for doctor ID {doctorId}.");
+
+            return Ok(schedules);
+        }
+
+        // Get schedules by day name (e.g., "Monday")
+        [HttpGet("day/{dayOfWeek}")]
+        public async Task<ActionResult<IEnumerable<ScheduleDto>>> GetDoctorsByDay(string dayOfWeek)
+        {
+            var result = await _service.GetDoctorsByDateAsync(dayOfWeek);
+            return Ok(result);
+        }
+
+        // Get schedules by date
+        [HttpGet("date/{date}")]
+        public async Task<ActionResult<IEnumerable<ScheduleDto>>> GetDoctorsByDate(DateOnly date)
+        {
+            if (date < DateOnly.FromDateTime(DateTime.Today))
+                return BadRequest("Cannot get schedules for a past date.");
+            var dayOfWeek = date.DayOfWeek.ToString();
+            var result = await _service.GetDoctorsByDateAsync(dayOfWeek);
+            return Ok(result);
+        }
+
+        // Get schedules by day name and shift
+        [HttpGet("day/{dayOfWeek}/shift/{shift}")]
+        public async Task<ActionResult<IEnumerable<ScheduleDto>>> GetDoctorsByDayAndShift(string dayOfWeek, Domain.Enum.AppointmentShift shift)
+        {
+            var result = await _service.GetDoctorsByDateAndShiftAsync(dayOfWeek, shift);
+            return Ok(result);
+        }
+
+        // Get schedules by date and shift
+        [HttpGet("date/{date}/shift/{shift}")]
+        public async Task<ActionResult<IEnumerable<ScheduleDto>>> GetDoctorsByDateAndShift(DateOnly date, Domain.Enum.AppointmentShift shift)
+        {
+            if (date < DateOnly.FromDateTime(DateTime.Today))
+                return BadRequest("Cannot get schedules for a past date.");
+            var dayOfWeek = date.DayOfWeek.ToString();
+            var result = await _service.GetDoctorsByDateAndShiftAsync(dayOfWeek, shift);
+            return Ok(result);
         }
     }
 }
-

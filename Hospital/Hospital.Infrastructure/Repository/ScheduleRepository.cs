@@ -7,61 +7,67 @@ namespace Hospital.Infrastructure.Repository
 {
     public class ScheduleRepository : IScheduleRepository
     {
-        private readonly AppDbContext _context;
 
-        public ScheduleRepository(AppDbContext context)
-        {
-            _context = context;
-        }
+            private readonly AppDbContext _context;
 
-        public async Task AddAsync(Schedule schedule)
-        {
-            await _context.Schedules.AddAsync(schedule);
-            await _context.SaveChangesAsync();
-        }
+            public ScheduleRepository(AppDbContext context)
+            {
+                _context = context;
+            }
 
-        public async Task DeleteAsync(int id)
-        {
-            var schedule = await _context.Schedules.FindAsync(id);
-            if (schedule == null) return;
+            public async Task<Schedule> AddAsync(Schedule schedule)
+            {
+                schedule.CreatedAt = DateTime.UtcNow;
+                schedule.UpdatedAt = DateTime.UtcNow;
+                await _context.Schedules.AddAsync(schedule);
+                await _context.SaveChangesAsync();
+                return schedule;
+            }
 
-            _context.Schedules.Remove(schedule);
-            await _context.SaveChangesAsync();
-        }
+            public async Task<int> UpdateAsync(Schedule schedule)
+            {
+                schedule.UpdatedAt = DateTime.UtcNow;
+                _context.Schedules.Update(schedule);
+                return await _context.SaveChangesAsync();
+            }
 
-        public async Task<bool> DoctorHasScheduleAsync(int doctorId, string dayOfWeek)
-        {
-            return await _context.Schedules
-                .AnyAsync(s => s.DoctorId == doctorId &&
-                               s.DayOfWeek.ToLower() == dayOfWeek.ToLower());
-        }
+            public async Task<int> DeleteAsync(int scheduleId)
+            {
+                var schedule = await _context.Schedules.FindAsync(scheduleId);
+                if (schedule == null) return 0;
+                _context.Schedules.Remove(schedule);
+                return await _context.SaveChangesAsync();
+            }
 
-        public async Task<IEnumerable<Schedule>> GetAllAsync()
-        {
-            return await _context.Schedules
-                .Include(s => s.Doctor)
-                .ToListAsync();
-        }
+            public async Task<Schedule?> GetByIdAsync(int scheduleId)
+            {
+                return await _context.Schedules
+                    .Include(s => s.Doctor)
+                    .FirstOrDefaultAsync(s => s.ScheduleId == scheduleId);
+            }
 
-        public async Task<IEnumerable<Schedule>> GetAllByDoctorIdAsync(int doctorId)
-        {
-            return await _context.Schedules
-                .Where(s => s.DoctorId == doctorId)
-                .Include(s => s.Doctor)
-                .ToListAsync();
-        }
+            public async Task<IEnumerable<Schedule>> GetAllAsync()
+            {
+                return await _context.Schedules
+                    .Include(s => s.Doctor)
+                    .ToListAsync();
+            }
 
-        public async Task<Schedule?> GetByIdAsync(int id)
-        {
-            return await _context.Schedules
-                .Include(s => s.Doctor)
-                .FirstOrDefaultAsync(s => s.ScheduleId == id);
-        }
+            public async Task<IEnumerable<Schedule>> GetAllByDoctorIdAsync(int doctorId)
+            {
+                return await _context.Schedules
+                    .Where(s => s.DoctorId == doctorId)
+                    .Include(s => s.Doctor)
+                    .ToListAsync();
+            }
 
-        public async Task UpdateAsync(Schedule schedule)
-        {
-            _context.Schedules.Update(schedule);
-            await _context.SaveChangesAsync();
+            public async Task<IEnumerable<Schedule>> GetAllByDayOfWeekAsync(string dayOfWeek)
+            {
+                return await _context.Schedules
+                    .Where(s => s.DayOfWeek.ToLower() == dayOfWeek.ToLower())
+                    .Include(s => s.Doctor)
+                    .ToListAsync();
+            }
         }
     }
-}
+
