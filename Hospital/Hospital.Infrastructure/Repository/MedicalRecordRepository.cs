@@ -37,25 +37,6 @@ namespace Hospital.Infrastructure.Repository
             return await _dbContext.SaveChangesAsync();
         }
 
-        //public async Task<IEnumerable<MedicalRecord>> GetAllAsync(int branchId)
-        //{
-        //    return await _dbContext.MedicalRecords
-        //        .Include(m => m.Doctor)
-        //        .Include(m => m.Patient)
-        //        .Include(m => m.Appointment)
-        //        .Where(m => m.Doctor.DoctorId == branchId) 
-        //        .ToListAsync();
-        //}
-
-        public async Task<IEnumerable<MedicalRecord>> GetAllEventInSystemAsync()
-        {
-            return await _dbContext.MedicalRecords
-                .Include(m => m.Doctor)
-                .Include(m => m.Patient)
-                .Include(m => m.Appointment)
-                .ToListAsync();
-        }
-
         public async Task<MedicalRecord?> GetAsync(int id)
         {
             return await _dbContext.MedicalRecords
@@ -67,8 +48,8 @@ namespace Hospital.Infrastructure.Repository
         public async Task<IEnumerable<MedicalRecord>> GetByDoctorIdAsync(int doctorId)
         {
             return await _dbContext.MedicalRecords
-                .Include(m => m.Patient) // جلب بيانات المريض
-                .Include(m => m.Doctor)  // جلب بيانات الدكتور
+                .Include(m => m.Patient)
+                .Include(m => m.Doctor)  
                 .Include(m => m.Appointment)
                 .Where(m => m.DoctorId == doctorId)
                 .ToListAsync();
