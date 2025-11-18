@@ -1,9 +1,11 @@
-﻿using Hospital.Application.DTO.Auth;
+﻿using Clinic.Infrastructure.Persistence;
+using Hospital.Application.DTO.Auth;
 using Hospital.Application.Helper;
 using Hospital.Application.Interfaces.Repos;
 using Hospital.Application.Interfaces.Services;
 using Hospital.Domain.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -24,8 +26,9 @@ namespace Hospital.Infrastructure.Services
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IEmailService _emailService;
         private readonly IPatientRepository _patientRepository;
+        private readonly AppDbContext _context;
 
-        public AuthService(IOptions<JWT> jwt, IAuthRepository authRepository, UserManager<User> userManager, RoleManager<IdentityRole> roleManager, IEmailService emailService, IPatientRepository patientRepository)
+        public AuthService(IOptions<JWT> jwt, IAuthRepository authRepository, UserManager<User> userManager, RoleManager<IdentityRole> roleManager, IEmailService emailService, IPatientRepository patientRepository, AppDbContext context)
         {
             _jwt = jwt.Value;
             _authRepository = authRepository;
@@ -33,6 +36,7 @@ namespace Hospital.Infrastructure.Services
             _roleManager = roleManager;
             _emailService = emailService;
             _patientRepository = patientRepository;
+            _context = context;
         }
 
         public async Task<RegisterDto> RegisterAsync(RegisterModel model)
@@ -98,6 +102,39 @@ namespace Hospital.Infrastructure.Services
 
 
 
+        //public async Task<AuthModel> LoginAsync(LoginModel model)
+        //{
+        //    var authModel = new AuthModel();
+        //    var user = await _userManager.FindByEmailAsync(model.Email);
+
+        //    if (user == null || !await _userManager.CheckPasswordAsync(user, model.Password))
+        //    {
+        //        authModel.Message = "Email or Password is incorrect!";
+        //        return authModel;
+        //    }
+
+        //    var jwtSecurityToken = await CreateJwtToken(user);
+        //    var rolesList = await _userManager.GetRolesAsync(user);
+
+        //    // create refresh token
+        //    var refreshToken = GenerateRefreshToken();
+        //    user.RefreshToken = refreshToken;
+        //    user.RefreshTokenExpiryTime = DateTime.Now.AddDays(7); //for week
+        //    await _userManager.UpdateAsync(user);
+
+        //    authModel.IsAuthenticated = true;
+        //    authModel.Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
+        //    authModel.Email = user.Email;
+        //    authModel.Username = user.UserName;
+        //    authModel.ExpiresOn = jwtSecurityToken.ValidTo;
+        //    authModel.Roles = rolesList.ToList();
+        //    authModel.RefreshToken = refreshToken;
+        //    authModel.RefreshTokenExpiration = user.RefreshTokenExpiryTime;
+
+        //    return authModel;
+        //}
+
+
         public async Task<AuthModel> LoginAsync(LoginModel model)
         {
             var authModel = new AuthModel();
@@ -127,8 +164,23 @@ namespace Hospital.Infrastructure.Services
             authModel.RefreshToken = refreshToken;
             authModel.RefreshTokenExpiration = user.RefreshTokenExpiryTime;
 
+            // 🔹 إضافة DoctorId أو PatientId حسب الـ Role
+            if (rolesList.Contains("Doctor"))
+            {
+                var doctor = await _context.Doctors.FirstOrDefaultAsync(d => d.UserId == user.Id);
+                if (doctor != null)
+                    authModel.DoctorId = doctor.DoctorId;
+            }
+            else if (rolesList.Contains("Patient"))
+            {
+                var patient = await _context.Patients.FirstOrDefaultAsync(p => p.UserId == user.Id);
+                if (patient != null)
+                    authModel.PatientId = patient.PatientId;
+            }
+
             return authModel;
         }
+
 
 
         public async Task<string> AddRoleAsync(AddRoleModel model)
