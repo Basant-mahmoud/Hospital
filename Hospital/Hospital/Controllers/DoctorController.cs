@@ -1,7 +1,9 @@
 ﻿using Hospital.Application.DTO.Doctor;
 using Hospital.Application.Interfaces.Services;
+using Hospital.Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using OfficeOpenXml;
 
 namespace Hospital.Controllers
 {
@@ -27,8 +29,98 @@ namespace Hospital.Controllers
             return Ok(created);
         }
 
-        // ------------------- Update Doctor -------------------
-        [HttpPut("update")]
+
+
+
+
+[HttpPost("add-from-excel")]
+    public async Task<IActionResult> AddDoctorsFromExcel(IFormFile file)
+    {
+        if (file == null || file.Length == 0)
+            return BadRequest("No file uploaded.");
+
+        var doctors = new List<AddDoctorDto>();
+
+        using (var stream = new MemoryStream())
+        {
+            await file.CopyToAsync(stream);
+            stream.Position = 0;
+
+            // 🌟 EPPlus النسخة القديمة - الترخيص سهل
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+            using (var package = new ExcelPackage(stream))
+            {
+                var sheet = package.Workbook.Worksheets.FirstOrDefault();
+                if (sheet == null)
+                    return BadRequest("Excel file has no sheets.");
+
+                for (int row = 2; row <= sheet.Dimension.End.Row; row++)
+                {
+                    var dto = new AddDoctorDto
+                    {
+                        Name = sheet.Cells[row, 1].Text,
+                        Email = sheet.Cells[row, 2].Text,
+                        Username = sheet.Cells[row, 3].Text,
+                        Password = sheet.Cells[row, 4].Text,
+                        PhoneNumber = sheet.Cells[row, 5].Text,
+                        SpecializationId = int.TryParse(sheet.Cells[row, 6].Text, out int spec) ? spec : 0,
+                        ImageURL = sheet.Cells[row, 7].Text,
+                        Biography = sheet.Cells[row, 9].Text,
+                        ExperienceYears = int.TryParse(sheet.Cells[row, 10].Text, out int exp) ? exp : null,
+                        ConsultationFees = decimal.TryParse(sheet.Cells[row, 11].Text, out decimal fees) ? fees : null,
+                        Available = bool.TryParse(sheet.Cells[row, 12].Text, out bool avail) ? avail : null
+                    };
+
+                    // Branch IDs → comma separated
+                    var branches = sheet.Cells[row, 8].Text;
+                    if (!string.IsNullOrEmpty(branches))
+                    {
+                        dto.BranchIds = branches
+                            .Split(",", StringSplitOptions.RemoveEmptyEntries)
+                            .Select(id => int.Parse(id.Trim()))
+                            .ToList();
+                    }
+
+                    doctors.Add(dto);
+                }
+            }
+        }
+
+        // ⬇ Process Each Doctor & Add To DB
+        var results = new List<object>();
+
+        foreach (var doctor in doctors)
+        {
+            try
+            {
+                var created = await _doctorService.AddAsync(doctor);
+
+                results.Add(new
+                {
+                    doctor.Email,
+                    Status = "Success",
+                    DoctorId = created.DoctorId
+                });
+            }
+            catch (Exception ex)
+            {
+                results.Add(new
+                {
+                    doctor.Email,
+                    Status = "Failed",
+                    Error = ex.Message
+                });
+            }
+        }
+
+        return Ok(results);
+    }
+
+
+
+    // ------------------- Update Doctor -------------------
+    [HttpPut("update")]
         public async Task<IActionResult> UpdateDoctor([FromBody] UpdateDoctorDto dto)
         {
             if (!ModelState.IsValid)

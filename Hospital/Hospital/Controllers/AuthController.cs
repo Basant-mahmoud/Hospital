@@ -5,6 +5,10 @@ using Hospital.Domain.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using OfficeOpenXml;
+using System.Collections.Generic;
+using System.ComponentModel;
+using OfficeOpenXml;
 
 namespace Hospital.Controllers
 {
@@ -50,6 +54,58 @@ namespace Hospital.Controllers
 
             return Ok(result);
         }
+
+
+        [HttpPost("register-from-excel")]
+        public async Task<IActionResult> RegisterFromExcelAsync(IFormFile file)
+        {
+            if (file == null || file.Length == 0)
+                return BadRequest("No file uploaded.");
+
+            var users = new List<RegisterModel>();
+
+            using (var stream = new MemoryStream())
+            {
+                await file.CopyToAsync(stream);
+
+                OfficeOpenXml.ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+
+                using (var package = new ExcelPackage(stream))
+                {
+                    var worksheet = package.Workbook.Worksheets.FirstOrDefault();
+                    if (worksheet == null)
+                        return BadRequest("No worksheet found in Excel file.");
+
+                    for (int row = 2; row <= worksheet.Dimension.End.Row; row++)
+                    {
+                        var model = new RegisterModel
+                        {
+                            Username = worksheet.Cells[row, 1].Text,
+                            Email = worksheet.Cells[row, 2].Text,
+                            Name = worksheet.Cells[row, 3].Text,
+                            Role = worksheet.Cells[row, 5].Text,
+                            PhoneNumber = worksheet.Cells[row, 4].Text,
+                            Password = worksheet.Cells[row, 6].Text
+                        };
+
+                        users.Add(model);
+                    }
+                }
+            }
+
+            var results = new List<RegisterDto>();
+
+            foreach (var user in users)
+            {
+                var result = await _authService.RegisterAsync(user);
+                results.Add(result);
+            }
+
+            return Ok(results);
+        }
+
+
+
 
 
         [HttpPost("login")]
