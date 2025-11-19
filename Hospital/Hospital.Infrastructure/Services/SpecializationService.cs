@@ -60,17 +60,22 @@ namespace Hospital.Infrastructure.Services
 
         public async Task<int> DeleteAsync(GetSpecializationDto dto)
         {
-            if(dto.BranchId == null)
-                throw new ArgumentNullException("BranchId must exist");
-            var branch = await _branchRepo.GetByIdAsync(dto.BranchId);
-            if (branch == null)
-                throw new KeyNotFoundException("Branch not found.");
             var specialization = await _specRepo.GetAsync(dto.SpecializationId);
             if (specialization == null)
                 throw new KeyNotFoundException("Specialization not found.");
 
-            return await _specRepo.DeleteAsync(specialization);
+            // find branch
+            var branch = specialization.Branches
+                .FirstOrDefault(b => b.BranchId == dto.BranchId);
+            if (branch == null)
+                throw new KeyNotFoundException("Specialization does not belong to this branch.");
+
+            // remove only the relation
+            specialization.Branches.Remove(branch);
+            
+            return await _specRepo.UpdateAsync(specialization);
         }
+
 
         public async Task<IEnumerable<SpecializationInfoDto>> GetAllByBranchAsync(int branchId)
         {
