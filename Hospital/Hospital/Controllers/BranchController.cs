@@ -1,5 +1,6 @@
 ﻿using Hospital.Application.DTO.Branch;
 using Hospital.Application.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,8 +16,10 @@ namespace Hospital.Controllers
             _branchService = branchService;
         }
         [HttpGet("GetAll")]
+        [Authorize(Roles = "Patient")]
         public async Task<IActionResult> GetAll()
         {
+
             return Ok(await _branchService.GetAllAsync());
         }
 

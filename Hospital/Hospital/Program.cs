@@ -1,10 +1,12 @@
-﻿
-using Clinic.Infrastructure.Persistence;
+﻿using Clinic.Infrastructure.Persistence;
 using Hospital.Application.Helper;
+using Hospital.Application.Interfaces.Payment;
 using Hospital.Application.Interfaces.Repos;
 using Hospital.Application.Interfaces.Services;
 using Hospital.Application.MappingProfiles;
 using Hospital.Domain.Models;
+using Hospital.Infrastructure.Payment;
+using Hospital.Infrastructure.PaymentRepAndService;
 using Hospital.Infrastructure.Repos;
 using Hospital.Infrastructure.Repository;
 using Hospital.Infrastructure.Services;
@@ -13,8 +15,11 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Text;
 using System.Text.Json;
+
 namespace Hospital
 {
     public class Program
@@ -23,16 +28,36 @@ namespace Hospital
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-
+            // =====================================
+            // MVC + Swagger
+            // =====================================
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            // =====================================
+            // Database
+            // =====================================
             builder.Services.AddDbContext<AppDbContext>(opt =>
-            opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-            //injection service
+                opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+            // =====================================
+            // Config Sections
+            // =====================================
             builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpSettings"));
+            builder.Services.Configure<PaymobOptions>(builder.Configuration.GetSection(PaymobOptions.SectionName));
+            builder.Services.Configure<JWT>(builder.Configuration.GetSection("JWT"));
+
+            // =====================================
+            // HttpClient
+            // =====================================
+            builder.Services.AddHttpClient<IPaymobClient, PaymobClient>();
+
+            // =====================================
+            // Dependency Injection
+            // =====================================
+            builder.Services.AddScoped<IPaymentService, PaymentService>();
+            builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
             builder.Services.AddScoped<IEmailService, EmailService>();
             builder.Services.AddScoped<IEventService, EventService>();
             builder.Services.AddScoped<IBranchService, BranchService>();
@@ -48,14 +73,11 @@ namespace Hospital
             builder.Services.AddScoped<IMedicalRecordService, MedicalRecordService>();
             builder.Services.AddScoped<IAppointmentService, AppointmentService>();
 
-
-
-            //injection repository
             builder.Services.AddScoped<IEventRepository, EventRepository>();
             builder.Services.AddScoped<IBranchRepository, BranchRepository>();
             builder.Services.AddScoped<INewsRepository, NewsRepository>();
             builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
-            builder.Services.AddScoped<IBannerRepository,BannerRepository>();
+            builder.Services.AddScoped<IBannerRepository, BannerRepository>();
             builder.Services.AddScoped<ISpecializationRepository, SpecializationRepository>();
             builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
             builder.Services.AddScoped<IPatientRepository, PatientRepository>();
@@ -63,9 +85,26 @@ namespace Hospital
             builder.Services.AddScoped<ISupportTicketRepository, SupportTicketRepository>();
             builder.Services.AddScoped<IMedicalRecordRepository, MedicalRecordRepository>();
             builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
+            builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 
+            // =====================================
+            // Identity
+            // =====================================
+            builder.Services
+                .AddIdentity<User, IdentityRole>(options =>
+                {
+                    options.Password.RequireDigit = true;
+                    options.Password.RequireLowercase = true;
+                    options.Password.RequireUppercase = true;
+                    options.Password.RequiredLength = 6;
+                    options.Password.RequireNonAlphanumeric = false;
+                })
+                .AddEntityFrameworkStores<AppDbContext>()
+                .AddDefaultTokenProviders();
 
-            //automapper
+            // =====================================
+            // AutoMapper
+            // =====================================
             builder.Services.AddAutoMapper(typeof(EventProfile));
             builder.Services.AddAutoMapper(typeof(BranchProfile));
             builder.Services.AddAutoMapper(typeof(NewsProfile));
@@ -79,79 +118,86 @@ namespace Hospital
             builder.Services.AddAutoMapper(typeof(MedicalRecordProfile));
             builder.Services.AddAutoMapper(typeof(AppointmentProfile));
 
-
-            //add cors
+            // =====================================
+            // CORS
+            // =====================================
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy("AllowWebApp",
                     policyBuilder => policyBuilder
-                        .WithOrigins("http://127.0.0.1:5500", "http://localhost:4200")
+                        .WithOrigins(
+                            "http://127.0.0.1:5500",
+                            "http://localhost:4200"
+                        )
                         .AllowAnyHeader()
                         .AllowAnyMethod()
                         .AllowCredentials());
             });
 
+            // =====================================
+            // JWT Authentication
+            // =====================================
 
-            // Add services to the container.
-            builder.Services.Configure<JWT>(builder.Configuration.GetSection("JWT"));
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
-
-            // Add Identity
-            builder.Services.AddIdentity<User, IdentityRole>(options =>
-            {
-                options.Password.RequireDigit = true;
-                options.Password.RequireLowercase = true;
-                options.Password.RequireUppercase = true;
-                options.Password.RequiredLength = 6;
-                options.Password.RequireNonAlphanumeric = false;
-            })
-           .AddEntityFrameworkStores<AppDbContext>()
-           .AddDefaultTokenProviders(); //for reset password
-
-
-            // REPO
-            builder.Services.AddScoped<IAuthRepository, AuthRepository>();
-            builder.Services.AddScoped<IAuthService, AuthService>();
-
-            // Configure JWT authentication
-            builder.Services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(options =>
-            {
-                options.RequireHttpsMetadata = false;
-                options.SaveToken = true;
-                options.TokenValidationParameters = new TokenValidationParameters
+            builder.Services
+                .AddAuthentication(options =>
                 {
-                    ValidateIssuerSigningKey = true,
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateLifetime = true,
-                    ValidIssuer = builder.Configuration["JWT:Issuer"],
-                    ValidAudience = builder.Configuration["JWT:Audience"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"]))
-                };
-            });
+                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer(options =>
+                {
+                    options.RequireHttpsMetadata = false;
+                    options.SaveToken = true;
+
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+
+                        ValidIssuer = builder.Configuration["JWT:Issuer"],
+                        ValidAudience = builder.Configuration["JWT:Audience"],
+                        IssuerSigningKey = new SymmetricSecurityKey(
+                            Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"])
+                        ),
+
+                        // IMPORTANT FIX:
+                        // ASP.NET Core must use ClaimTypes.Role for authorization to work
+                        NameClaimType = "uid",
+                        RoleClaimType = ClaimTypes.Role
+                    };
+                });
+
+            // =====================================
+            // Authorization Policies
+            // =====================================
             builder.Services.AddAuthorization(options =>
             {
                 options.AddPolicy("AdminPolicy", policy => policy.RequireRole("Admin"));
                 options.AddPolicy("DoctorPolicy", policy => policy.RequireRole("Doctor"));
                 options.AddPolicy("PatientPolicy", policy => policy.RequireRole("Patient"));
             });
+
+            // =====================================
+            // JSON Settings
+            // =====================================
             builder.Services.AddControllers().AddJsonOptions(opts =>
             {
-                opts.JsonSerializerOptions.IgnoreNullValues = true;
+                opts.JsonSerializerOptions.DefaultIgnoreCondition =
+                    System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
                 opts.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
             });
 
+            // =====================================
+            // App Pipeline
+            // =====================================
             var app = builder.Build();
 
-            //Global Exception Handler Middleware
             app.UseMiddleware<GlobalExceptionHandler>();
 
-            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -160,13 +206,11 @@ namespace Hospital
 
             app.UseHttpsRedirection();
             app.UseCors("AllowWebApp");
-            app.UseAuthentication();
+
+            app.UseAuthentication(); // MUST COME FIRST
             app.UseAuthorization();
 
-
-
             app.MapControllers();
-
             app.Run();
         }
     }

@@ -13,6 +13,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace Hospital.Infrastructure.Services
 {
@@ -153,7 +154,13 @@ namespace Hospital.Infrastructure.Services
             var roleClaims = new List<Claim>();
 
             foreach (var role in roles)
-                roleClaims.Add(new Claim("roles", role));
+            {
+                // Standard role claim so ASP.NET can evaluate [Authorize(Roles="...")]
+                roleClaims.Add(new Claim(ClaimTypes.Role, role));
+
+                //// Optional: keep "roles" string claim if some clients expect it
+                //roleClaims.Add(new Claim("roles", role));
+            }
 
             var claims = new[]
             {

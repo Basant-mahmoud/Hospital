@@ -22,6 +22,7 @@ namespace Clinic.Infrastructure.Persistence
         public DbSet<News> News => Set<News>();
         public DbSet<Event> Events => Set<Event>();
         public DbSet<Banner> Banners => Set<Banner>();
+        public DbSet<Payment> Payments => Set<Payment>();
 
         protected override void OnModelCreating(ModelBuilder model)
         {
@@ -39,10 +40,9 @@ namespace Clinic.Infrastructure.Persistence
             var apptStatusConverter = new EnumToStringConverter<AppointmentStatus>();
             var ticketStatusConverter = new EnumToStringConverter<TicketStatus>();
             var bannerTypeConverter = new EnumToStringConverter<BannerType>();
+            var paymentStatusConverter = new EnumToStringConverter<PaymentStatus>();
 
-            // -------------------------------
             // User
-            // -------------------------------
             model.Entity<User>(e =>
             {
                 e.ToTable("Users");
@@ -51,12 +51,9 @@ namespace Clinic.Infrastructure.Persistence
                 e.Property(u => u.DateOfBirth).HasConversion(dateOnlyConverter);
                 e.Property(u => u.CreatedAt).HasDefaultValueSql("GETUTCDATE()");
                 e.Property(u => u.UpdatedAt).HasDefaultValueSql("GETUTCDATE()");
-
             });
 
-            // -------------------------------
             // Branch
-            // -------------------------------
             model.Entity<Branch>(e =>
             {
                 e.ToTable("Branches");
@@ -67,16 +64,13 @@ namespace Clinic.Infrastructure.Persistence
                  .WithMany(d => d.Branches);
             });
 
-            // -------------------------------
             // Specialization
-            // -------------------------------
             model.Entity<Specialization>(e =>
             {
                 e.ToTable("Specializations");
                 e.Property(p => p.CreatedAt).HasDefaultValueSql("GETUTCDATE()");
                 e.Property(p => p.UpdatedAt).HasDefaultValueSql("GETUTCDATE()");
 
-                // Many-to-Many: Branch <-> Specialization
                 e.HasMany(s => s.Branches)
                  .WithMany(b => b.Specializations)
                  .UsingEntity<Dictionary<string, object>>(
@@ -90,16 +84,13 @@ namespace Clinic.Infrastructure.Persistence
                     });
             });
 
-            // -------------------------------
             // Service
-            // -------------------------------
             model.Entity<Service>(e =>
             {
                 e.ToTable("Services");
                 e.Property(p => p.CreatedAt).HasDefaultValueSql("GETUTCDATE()");
                 e.Property(p => p.UpdatedAt).HasDefaultValueSql("GETUTCDATE()");
 
-                // Many-to-Many: Branch <-> Service
                 e.HasMany(s => s.Branches)
                  .WithMany(b => b.Services)
                  .UsingEntity<Dictionary<string, object>>(
@@ -113,9 +104,7 @@ namespace Clinic.Infrastructure.Persistence
                     });
             });
 
-            // -------------------------------
-            // Remaining entities (Doctors, Patients, Appointments, etc.)
-            // -------------------------------
+            // Doctor
             model.Entity<Doctor>(e =>
             {
                 e.ToTable("Doctors");
@@ -133,14 +122,12 @@ namespace Clinic.Infrastructure.Persistence
                     .HasForeignKey(d => d.SpecializationId)
                     .OnDelete(DeleteBehavior.Restrict);
 
-                // ⭐ Many-to-Many without join class
                 e.HasMany(d => d.Branches)
                     .WithMany(b => b.Doctors)
                     .UsingEntity(j => j.ToTable("DoctorBranches"));
             });
 
-
-
+            // Patient
             model.Entity<Patient>(e =>
             {
                 e.ToTable("Patients");
@@ -150,32 +137,41 @@ namespace Clinic.Infrastructure.Persistence
                     .HasForeignKey<Patient>(p => p.UserId).OnDelete(DeleteBehavior.Cascade);
             });
 
+            // Appointment
             model.Entity<Appointment>(e =>
             {
                 e.ToTable("Appointments");
                 e.Property(p => p.Date).HasConversion(dateOnlyConverter);
                 e.Property(p => p.Time).HasColumnType("datetime2");
-                //e.Property(p => p.Time).HasConversion(timeOnlyConverter);
                 e.Property(p => p.Status).HasConversion(apptStatusConverter).HasMaxLength(20);
                 e.Property(p => p.CreatedAt).HasDefaultValueSql("GETUTCDATE()");
                 e.Property(p => p.UpdatedAt).HasDefaultValueSql("GETUTCDATE()");
+
                 e.HasOne(a => a.Patient).WithMany(p => p.Appointments)
                     .HasForeignKey(a => a.PatientId).OnDelete(DeleteBehavior.Restrict);
+
                 e.HasOne(a => a.Doctor).WithMany(d => d.Appointments)
                     .HasForeignKey(a => a.DoctorId).OnDelete(DeleteBehavior.Restrict);
+
                 e.HasOne(a => a.Branch).WithMany(b => b.Appointments)
                     .HasForeignKey(a => a.BranchId).OnDelete(DeleteBehavior.Restrict);
+
                 e.HasOne(a => a.Creator).WithMany(u => u.CreatedAppointments)
                     .HasForeignKey(a => a.CreatedBy).OnDelete(DeleteBehavior.SetNull);
+
+                // 1:1 Appointment–Payment (principal side)
+                e.HasOne(a => a.Payment)
+                    .WithOne(p => p.Appointment)
+                    .HasForeignKey<Payment>(p => p.AppointmentId)
+                    .OnDelete(DeleteBehavior.Restrict);
             });
+
+            // Schedule
             model.Entity<Schedule>(e =>
             {
                 e.ToTable("Schedules");
-
-                // Change StartTime and EndTime to DateTime (no conversion needed)
                 e.Property(p => p.StartTime).IsRequired();
                 e.Property(p => p.EndTime).IsRequired();
-
                 e.Property(p => p.CreatedAt).HasDefaultValueSql("GETUTCDATE()");
                 e.Property(p => p.UpdatedAt).HasDefaultValueSql("GETUTCDATE()");
 
@@ -185,6 +181,7 @@ namespace Clinic.Infrastructure.Persistence
                     .OnDelete(DeleteBehavior.Cascade);
             });
 
+            // MedicalRecord
             model.Entity<MedicalRecord>(e =>
             {
                 e.ToTable("MedicalRecords");
@@ -198,6 +195,7 @@ namespace Clinic.Infrastructure.Persistence
                     .HasForeignKey(m => m.PatientId).OnDelete(DeleteBehavior.Restrict);
             });
 
+            // SupportTicket
             model.Entity<SupportTicket>(e =>
             {
                 e.ToTable("SupportTickets");
@@ -208,6 +206,7 @@ namespace Clinic.Infrastructure.Persistence
                     .HasForeignKey(t => t.UserId).OnDelete(DeleteBehavior.Cascade);
             });
 
+            // News
             model.Entity<News>(e =>
             {
                 e.ToTable("News");
@@ -215,6 +214,7 @@ namespace Clinic.Infrastructure.Persistence
                 e.Property(p => p.UpdatedAt).HasDefaultValueSql("GETUTCDATE()");
             });
 
+            // Event
             model.Entity<Event>(e =>
             {
                 e.ToTable("Events");
@@ -222,12 +222,30 @@ namespace Clinic.Infrastructure.Persistence
                 e.Property(p => p.UpdatedAt).HasDefaultValueSql("GETUTCDATE()");
             });
 
+            // Banner
             model.Entity<Banner>(e =>
             {
                 e.ToTable("Banners");
                 e.Property(p => p.Type).HasConversion(bannerTypeConverter).HasMaxLength(20);
                 e.Property(p => p.CreatedAt).HasDefaultValueSql("GETUTCDATE()");
                 e.Property(p => p.UpdatedAt).HasDefaultValueSql("GETUTCDATE()");
+            });
+
+            // Payment
+            model.Entity<Payment>(e =>
+            {
+                e.ToTable("Payments");
+
+                e.Property(p => p.Amount).HasPrecision(10, 2);
+                e.Property(p => p.Currency).HasMaxLength(3);
+                e.Property(p => p.Status)
+                    .HasConversion(paymentStatusConverter)
+                    .HasMaxLength(20);
+                e.Property(p => p.CreatedAt).HasDefaultValueSql("GETUTCDATE()");
+                e.Property(p => p.UpdatedAt).HasDefaultValueSql("GETUTCDATE()");
+
+                // enforce 1:1 at DB level
+                e.HasIndex(p => p.AppointmentId).IsUnique();
             });
         }
 
