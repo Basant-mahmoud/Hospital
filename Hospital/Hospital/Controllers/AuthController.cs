@@ -5,6 +5,10 @@ using Hospital.Domain.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using OfficeOpenXml;
+using System.Collections.Generic;
+using System.ComponentModel;
+using OfficeOpenXml;
 using System.Security.Claims;
 
 namespace Hospital.Controllers
@@ -88,6 +92,10 @@ namespace Hospital.Controllers
             return Ok(result);
         }
 
+
+
+
+
         [HttpPost("login")]
         public async Task<IActionResult> LoginAsync([FromBody] LoginModel model)
         {
@@ -120,16 +128,59 @@ namespace Hospital.Controllers
         [HttpPost("forgot-password")]
         public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordDto dto)
         {
+            if (string.IsNullOrWhiteSpace(dto.Email) || !ValidationHelper.IsValidEmail(dto.Email))
+            {
+                ModelState.AddModelError("Email", "Invalid email format.");
+            }
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
             var result = await _authService.ForgotPasswordAsync(dto.Email);
             if (!result) return BadRequest("Could not process request.");
             return Ok("If your email is registered and confirmed, you will receive a reset link.");
         }
 
+        [HttpPost("Verify-Code")]
+        public async Task<IActionResult> VerifyCode([FromBody] VerifyCodeDto dto)
+        {
+            if (string.IsNullOrWhiteSpace(dto.Email) || !ValidationHelper.IsValidEmail(dto.Email))
+            {
+                ModelState.AddModelError("Email", "Invalid email format.");
+            }
+            if (string.IsNullOrWhiteSpace(dto.Code) || !System.Text.RegularExpressions.Regex.IsMatch(dto.Code, @"^\d{6}$"))
+            {
+                ModelState.AddModelError("Code", "Code must be exactly 6 digits.");
+            }
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _authService.VerifyCodeAsync(dto.Email, dto.Code);
+            if (!result) return BadRequest("Invalid or expired code.");
+            return Ok("Code verified successfully.");
+        }
+
+
         [HttpPost("reset-password")]
         public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDto dto)
         {
-            var result = await _authService.ResetPasswordAsync(dto.Email, dto.Token, dto.NewPassword);
-            if (!result) return BadRequest("Reset password failed.");
+            // Validate email
+            if (string.IsNullOrWhiteSpace(dto.Email) || !ValidationHelper.IsValidEmail(dto.Email))
+            {
+                ModelState.AddModelError("Email", "Invalid email format.");
+            }
+
+            // Validate password: not null and first letter capital
+            if (string.IsNullOrWhiteSpace(dto.NewPassword) || !char.IsUpper(dto.NewPassword[0]))
+            {
+                ModelState.AddModelError("NewPassword", "Password must start with an uppercase letter.");
+            }
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            // Call service
+            var result = await _authService.ResetPasswordAsync(dto.Email, dto.NewPassword);
+            if (!result)
+                return BadRequest("Reset password failed.");
+
             return Ok("Password has been reset successfully.");
         }
 

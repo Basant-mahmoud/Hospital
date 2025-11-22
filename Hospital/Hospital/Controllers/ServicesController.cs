@@ -5,6 +5,7 @@ using Hospital.Application.Interfaces.Services;
 using Hospital.Domain.Models;
 using Hospital.Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
+using OfficeOpenXml;
 
 namespace Hospital.Controllers
 {
@@ -47,6 +48,81 @@ namespace Hospital.Controllers
 
             var created = await _serviceService.CreateAsync(dto);
             return CreatedAtAction(nameof(GetById), new { id = created.ServiceId }, created);
+        }
+
+        [HttpPost("add-services-from-excel")]
+        public async Task<IActionResult> AddServicesFromExcel(IFormFile file)
+        {
+            if (file == null || file.Length == 0)
+                return BadRequest("No file uploaded.");
+
+            var services = new List<CreateServiceDto>();
+
+            using (var stream = new MemoryStream())
+            {
+                await file.CopyToAsync(stream);
+                stream.Position = 0;
+
+                // EPPlus النسخة القديمة ≤ 5.8
+                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+                using (var package = new ExcelPackage(stream))
+                {
+                    var sheet = package.Workbook.Worksheets.FirstOrDefault();
+                    if (sheet == null)
+                        return BadRequest("Excel file has no sheets.");
+
+                    for (int row = 2; row <= sheet.Dimension.End.Row; row++)
+                    {
+                        var dto = new CreateServiceDto
+                        {
+                            Name = sheet.Cells[row, 1].Text,
+                            Description = sheet.Cells[row, 2].Text,
+                            ImageURL = sheet.Cells[row, 3].Text,
+                        };
+
+                        // Branch IDs → comma separated (مثال: "1,2,3")
+                        var branches = sheet.Cells[row, 4].Text;
+                        if (!string.IsNullOrEmpty(branches))
+                        {
+                            dto.BranchesID = branches
+                                .Split(",", StringSplitOptions.RemoveEmptyEntries)
+                                .Select(id => new BranchIdDTO { BranchId = int.Parse(id.Trim()) })
+                                .ToList();
+                        }
+
+                        services.Add(dto);
+                    }
+                }
+            }
+
+            var results = new List<object>();
+
+            foreach (var service in services)
+            {
+                try
+                {
+                    var created = await _serviceService.CreateAsync(service);
+
+                    results.Add(new
+                    {
+                        service.Name,
+                        Status = "Success",
+                        ServiceId = created.ServiceId
+                    });
+                }
+                catch (Exception ex)
+                {
+                    results.Add(new
+                    {
+                        service.Name,
+                        Status = "Failed",
+                        Error = ex.Message
+                    });
+                }
+            }
+
+            return Ok(results);
         }
 
         // PUT: api/services

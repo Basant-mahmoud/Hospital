@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Hospital.Application.DTO.Auth
 {
-    public class ResetPasswordDto
+    public class VerifyCodeDto
     {
         public string Email { get; set; }
-        public string NewPassword { get; set; }
+        public string Code { get; set; }
     }
 }

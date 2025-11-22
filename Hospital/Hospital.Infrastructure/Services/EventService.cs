@@ -67,12 +67,12 @@ namespace Hospital.Infrastructure.Services
                 return result;
         }
 
-        public async Task<IEnumerable<AddEventDto>> GetAllAsync(int branchId)
+        public async Task<IEnumerable<EventDto>> GetAllAsync(int branchId)
         {
             var eventEntitys=await _eventRepository.GetAllAsync( branchId);
             if (eventEntitys == null || !eventEntitys.Any())
-                return Enumerable.Empty<AddEventDto>();
-            return _mapper.Map<IEnumerable<AddEventDto>>(eventEntitys);
+                return Enumerable.Empty<EventDto>();
+            return _mapper.Map<IEnumerable<EventDto>>(eventEntitys);
         }
 
         public async Task<EventDto?> GetAsync(GetEventDto @event)
@@ -109,13 +109,13 @@ namespace Hospital.Infrastructure.Services
             return await _eventRepository.UpdateAsync(eventEntity);
         }
 
-        public async Task<IEnumerable<AddEventDto>> GetAllEventInSystemAsync()
+        public async Task<IEnumerable<EventDto>> GetAllEventInSystemAsync()
         {
             
             var events=await  _eventRepository.GetAllEventInSystemAsync();
             if (events == null || !events.Any())
-                return Enumerable.Empty<AddEventDto>();
-            return _mapper.Map<IEnumerable<AddEventDto>>(events);
+                return Enumerable.Empty<EventDto>();
+            return _mapper.Map<IEnumerable<EventDto>>(events);
         }
     }
 }

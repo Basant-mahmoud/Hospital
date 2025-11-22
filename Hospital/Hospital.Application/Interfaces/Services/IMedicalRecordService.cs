@@ -18,6 +18,7 @@ namespace Hospital.Application.Interfaces.Services
         Task<MedicalRecordDto?> GetByMedicalRecordIdAsync(GetMedicalRecordDto dto);
         Task<List<MedicalRecordDto>> GetByDoctorId(int DoctorId);
         Task<List<MedicalRecordDto>> GetByPatientId(int PatientId);
+        Task<List<MedicalRecordDto>> GetRecordsBetweenDoctorAndPatientAsync(int doctorId, int patientId);
 
     }
 }

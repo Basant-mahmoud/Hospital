@@ -18,9 +18,8 @@ namespace Hospital.Domain.Models
         public string name { get; set; }
         public string passward { get; set; }
 
-        //for refresh token 
-        //
-       // public string? UserId { get; set; }   // <-- مهم
+        public int? DoctorId { get; set; }
+        public int? PatientId { get; set; }
         public string RefreshToken { get; set; }
         public DateTime RefreshTokenExpiration { get; set; }
 

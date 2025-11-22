@@ -14,9 +14,10 @@ namespace Hospital.Application.Interfaces.Services
         Task<AuthModel> LoginAsync(LoginModel model);
         Task<string> AddRoleAsync(AddRoleModel mode);
         Task<bool> ForgotPasswordAsync(string email);
-        Task<bool> ResetPasswordAsync(string email, string token, string newPassword);
+        Task<bool> ResetPasswordAsync(string email, string newPassword);
         Task<AuthModel> RefreshTokenAsync(string token);
         Task<string?> GetUserIdByEmailAsync(string email);
+        Task<bool> VerifyCodeAsync(string email, string code);
 
     }
 }
