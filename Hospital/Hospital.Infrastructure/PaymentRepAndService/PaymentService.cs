@@ -1,14 +1,13 @@
-﻿using Clinic.Infrastructure.Persistence;
+﻿using Hospital.Application.DTO.PaymentDTOs;
 using Hospital.Application.Interfaces.Payment;
-using Hospital.Domain.Models;
 using Hospital.Domain.Enum;
-using Microsoft.EntityFrameworkCore;
+using Hospital.Domain.Models;
+using Microsoft.Extensions.Options;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
-using Hospital.Application.DTO.PaymentDTOs;
 
 namespace Hospital.Infrastructure.Payment
 {
@@ -16,11 +15,16 @@ namespace Hospital.Infrastructure.Payment
     {
         private readonly IPaymentRepository _paymentRepository;
         private readonly IPaymobClient _paymobClient;
+        private readonly PaymobOptions _options;
 
-        public PaymentService(IPaymentRepository paymentRepository, IPaymobClient paymobClient)
+        public PaymentService(
+            IPaymentRepository paymentRepository,
+            IPaymobClient paymobClient,
+            IOptions<PaymobOptions> options)
         {
             _paymentRepository = paymentRepository;
             _paymobClient = paymobClient;
+            _options = options.Value;
         }
 
         public async Task<string> CreatePaymobPaymentForAppointmentAsync(
@@ -31,127 +35,108 @@ namespace Hospital.Infrastructure.Payment
             // Load appointment
             var appointment = await _paymentRepository.GetAppointmentWithPatientAndDoctorAsync(appointmentId, ct);
             if (appointment == null)
-                throw new InvalidOperationException("Appointment not found.");
+                throw new InvalidOperationException($"Appointment {appointmentId} not found.");
 
-            if (appointment.Payment != null)
-                throw new InvalidOperationException("Payment already exists for this appointment.");
+            // Verify user owns this appointment
+            if (appointment.Patient.UserId != currentUserId)
+                throw new UnauthorizedAccessException("You can only pay for your own appointments.");
 
-            if (appointment.Patient.User.Id != currentUserId)
-                throw new UnauthorizedAccessException("Current user cannot pay for this appointment.");
+            // Check if already paid
+            if (appointment.Payment != null && appointment.Payment.Status == PaymentStatus.Paid)
+                throw new InvalidOperationException("This appointment has already been paid for.");
 
-            var user = appointment.Patient.User;
+            // Get consultation fee
+            var amount = appointment.Doctor.ConsultationFees
+                ?? throw new InvalidOperationException("Doctor consultation fee not set.");
 
-            // Create Payment entity
+            // Step 1: Authenticate with Paymob
+            var authResponse = await _paymobClient.AuthenticateAsync(ct);
+            var authToken = authResponse;
+
+            // Step 2: Create Paymob order
+            var merchantOrderId = $"APT-{appointmentId}-{DateTime.UtcNow.Ticks}";
+            var orderResponse = await _paymobClient.CreateOrderAsync(
+                authToken.token,
+                amount,
+                "EGP",
+                merchantOrderId,
+                ct);
+
+            // Step 3: Generate payment key
+            var paymentKeyResponse = await _paymobClient.GeneratePaymentKeyAsync(
+                authToken.token,
+                orderResponse.id,
+                amount,
+                "EGP",
+                appointment.Patient.User.Email,
+                $"{appointment.Patient.User.FullName}",
+                appointment.Patient.User.PhoneNumber,
+                redirectUrl: null, // You can add your frontend callback URL here
+                ct);
+
+            // Step 4: Create Payment record in DB
             var payment = new Hospital.Domain.Models.Payment
             {
-                AppointmentId = appointment.AppointmentId,
-                Amount = appointment.Doctor.ConsultationFees.Value,
+                AppointmentId = appointmentId,
+                Amount = amount,
                 Currency = "EGP",
+                PaymobOrderId = orderResponse.id,
+                PaymobMerchantOrderId = merchantOrderId,
                 Status = PaymentStatus.Pending,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
             };
 
             await _paymentRepository.AddPaymentAsync(payment, ct);
 
-            var merchantOrderId = payment.PaymentId.ToString();
-
-            // Paymob: authenticate
-            var authToken = await _paymobClient.AuthenticateAsync(ct);
-
-            // Create Paymob order
-            var paymobOrderId = await _paymobClient.CreateOrderAsync(
-                authToken,
-                payment.Amount,
-                payment.Currency,
-                merchantOrderId,
-                ct);
-
-            payment.PaymobOrderId = paymobOrderId;
-            payment.PaymobMerchantOrderId = merchantOrderId;
-
-            await _paymentRepository.UpdatePaymentAsync(payment, ct);
-
-            // Generate Paymob payment key
-            var paymentKey = await _paymobClient.GeneratePaymentKeyAsync(
-                authToken,
-                paymobOrderId,
-                payment.Amount,
-                payment.Currency,
-                user.Email ?? "test@example.com",
-                user.FullName,
-                user.PhoneNumber ?? "NA",
-                redirectUrl: "http://127.0.0.1:5500/payment-callback.html", // your callback page
-                ct
-);
-
-            return paymentKey;
+            // Return payment token for frontend
+            return paymentKeyResponse.token;
         }
 
-        /// <summary>
-        /// Handles Paymob webhook/callback to update payment status
-        /// </summary>
-        public async Task HandlePaymobCallbackAsync(PaymobCallbackDto dto, CancellationToken ct = default)
+        public async Task<Hospital.Domain.Models.Payment?> HandlePaymobCallbackAsync(
+            PaymobCallbackDto dto,
+            CancellationToken ct = default)
         {
-            // 1️⃣ Load the payment by Paymob merchant order id
+            // Find payment by merchant order ID
             var payment = await _paymentRepository.GetPaymentByMerchantOrderIdAsync(dto.OrderId, ct);
+
             if (payment == null)
-                throw new InvalidOperationException("Payment not found for this merchant order.");
+                return null; // Payment not found
 
-            // 2️⃣ Update the Paymob transaction id (convert string to long safely)
-            if (long.TryParse(dto.PaymentId, out var transactionId))
-            {
-                payment.PaymobTransactionId = transactionId;
-            }
-            else
-            {
-                throw new InvalidOperationException("Invalid Paymob transaction ID.");
-            }
+            // Prevent duplicate processing
+            if (payment.Status == PaymentStatus.Paid)
+                return payment; // Already processed
 
-            // 3️⃣ Map string status to enum
-            payment.Status = dto.Status.ToUpper() switch
-            {
-                "CAPTURED" => Domain.Enum.PaymentStatus.Paid,
-                "FAILED" => Domain.Enum.PaymentStatus.Failed,
-                "PENDING" => Domain.Enum.PaymentStatus.Pending,
-                _ => Domain.Enum.PaymentStatus.Pending
-            };
-
-            // 4️⃣ Update timestamps
+            // Update payment with Paymob data
+            payment.PaymobTransactionId = long.TryParse(dto.PaymentId, out var txId) ? txId : (long?)null;
+            payment.GatewayResponse = JsonSerializer.Serialize(dto);
             payment.UpdatedAt = DateTime.UtcNow;
 
-            // 5️⃣ Save changes
+            // Map Paymob status to our enum
+            payment.Status = MapPaymobStatus(dto.Status);
+
+            // Update in database
             await _paymentRepository.UpdatePaymentAsync(payment, ct);
+
+            return payment;
         }
-        /// <summary>
-        /// Confirms the payment after Paymob processing
-        /// </summary>
-        //public async Task<bool> ConfirmPaymentAsync(string paymentToken, CancellationToken ct = default)
-        //{
-        //    // 1️⃣ Validate the payment token with Paymob (you might need a Paymob endpoint for this)
-        //    // For example, you can call Paymob API to check if the payment was successful
-        //    var paymentStatus = await _paymobClient.CheckPaymentStatusAsync(paymentToken, ct);
 
-        //    if (paymentStatus == null)
-        //        throw new InvalidOperationException("Payment not found or token invalid.");
 
-        //    // 2️⃣ Load the payment from your database
-        //    // walaa look here
-        //    //var payment = await _paymentRepository.GetPaymentByPaymobOrderIdAsync(paymentStatus.OrderId, ct);
-        //    //if (payment == null)
-        //    //    throw new InvalidOperationException("Payment record not found in database.");
 
-        //    // 3️⃣ Update payment status
-        //    payment.Status = paymentStatus.Success ? PaymentStatus.Paid : PaymentStatus.Failed;
-        //    payment.PaymobTransactionId = paymentStatus.TransactionId;
-        //    payment.UpdatedAt = DateTime.UtcNow;
-
-        //    await _paymentRepository.UpdatePaymentAsync(payment, ct);
-
-        //    return payment.Status == PaymentStatus.Paid;
-        //}
-
+        private PaymentStatus MapPaymobStatus(string paymobStatus)
+        {
+            return paymobStatus?.ToLowerInvariant() switch
+            {
+                "success" => PaymentStatus.Paid,
+                "paid" => PaymentStatus.Paid,
+                "true" => PaymentStatus.Paid,
+                "failed" => PaymentStatus.Failed,
+                "false" => PaymentStatus.Failed,
+                "pending" => PaymentStatus.Pending,
+                "cancelled" => PaymentStatus.Cancelled,
+                "canceled" => PaymentStatus.Cancelled,
+                _ => PaymentStatus.Failed
+            };
+        }
     }
-
-    // DTO for Paymob callback
-
-
 }

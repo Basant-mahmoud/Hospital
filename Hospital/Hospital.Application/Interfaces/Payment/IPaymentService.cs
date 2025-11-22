@@ -28,7 +28,7 @@ namespace Hospital.Application.Interfaces.Payment
         /// <param name="ct">Cancellation token</param>
         /// <returns>Updated payment entity or null if not found</returns>
 
-        Task HandlePaymobCallbackAsync(PaymobCallbackDto dto, CancellationToken ct = default);
+        Task<Hospital.Domain.Models.Payment?> HandlePaymobCallbackAsync(PaymobCallbackDto dto, CancellationToken ct = default);
     }
 }
 

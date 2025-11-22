@@ -6,9 +6,9 @@ namespace Hospital.Application.Interfaces.Payment
 {
     public interface IPaymobClient
     {
-        Task<string> AuthenticateAsync(CancellationToken ct = default);
+        Task<PaymobAuthResponse> AuthenticateAsync(CancellationToken ct = default);
 
-        Task<long> CreateOrderAsync(
+        Task<PaymobOrderResponse> CreateOrderAsync(
             string authToken,
             decimal amount,
             string currency,
@@ -18,7 +18,7 @@ namespace Hospital.Application.Interfaces.Payment
         /// <summary>
         /// Generates a Paymob payment key with optional redirect URL for post-payment callback.
         /// </summary>
-        Task<string> GeneratePaymentKeyAsync(
+        Task<PaymobPaymentKeyResponse> GeneratePaymentKeyAsync(
             string authToken,
             long paymobOrderId,
             decimal amount,

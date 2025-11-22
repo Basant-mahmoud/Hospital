@@ -16,7 +16,7 @@ namespace Hospital.Application.Interfaces.Payment
         Task UpdatePaymentAsync(Hospital.Domain.Models.Payment payment, CancellationToken ct = default);
 
         // Save changes
-        Task SaveChangesAsync(CancellationToken ct = default);
+        Task<int> SaveChangesAsync(CancellationToken ct = default);
 
         // Get payment by Paymob merchant order ID (for callback processing)
         Task<Hospital.Domain.Models.Payment?> GetPaymentByMerchantOrderIdAsync(string merchantOrderId, CancellationToken ct = default);

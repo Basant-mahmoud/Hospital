@@ -23,6 +23,7 @@ namespace Hospital.Infrastructure.PaymentRepAndService
                 .Include(a => a.Patient)
                     .ThenInclude(p => p.User)
                 .Include(a => a.Doctor)
+                    .ThenInclude(d => d.User) // Added: Include Doctor's User for billing data
                 .FirstOrDefaultAsync(a => a.AppointmentId == appointmentId, ct);
         }
 
@@ -38,21 +39,25 @@ namespace Hospital.Infrastructure.PaymentRepAndService
             await _dbContext.SaveChangesAsync(ct);
         }
 
+        public async Task<int> SaveChangesAsync(CancellationToken ct = default)
+        {
+            return await _dbContext.SaveChangesAsync(ct);
+        }
+
         public async Task<Hospital.Domain.Models.Payment?> GetPaymentByMerchantOrderIdAsync(string merchantOrderId, CancellationToken ct = default)
         {
             return await _dbContext.Payments
+                .Include(p => p.Appointment) // Include appointment for context
                 .FirstOrDefaultAsync(p => p.PaymobMerchantOrderId == merchantOrderId, ct);
         }
 
         public async Task<Hospital.Domain.Models.Payment?> GetPaymentByTransactionIdAsync(long transactionId, CancellationToken ct = default)
         {
             return await _dbContext.Payments
+                .Include(p => p.Appointment)
                 .FirstOrDefaultAsync(p => p.PaymobTransactionId == transactionId, ct);
         }
 
-        public async Task SaveChangesAsync(CancellationToken ct = default)
-        {
-            await _dbContext.SaveChangesAsync(ct);
-        }
+
     }
 }
