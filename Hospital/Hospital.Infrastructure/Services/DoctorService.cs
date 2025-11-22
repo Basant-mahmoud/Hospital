@@ -251,7 +251,7 @@ namespace Hospital.Infrastructure.Services
 
             return _mapper.Map<IEnumerable<DoctorDto>>(doctors);
         }
-        public async Task<List<AppointmentDto>> GetTodayForDoctorAsync(int doctorId)
+        public async Task<List<AppoinmentandPaientDetaliesDto>> GetTodayForDoctorAsync(int doctorId)
         {
             if (doctorId <= 0)
                 throw new ArgumentException("Invalid doctor ID.");
@@ -261,13 +261,15 @@ namespace Hospital.Infrastructure.Services
                 throw new KeyNotFoundException($"Doctor with ID {doctorId} does not exist.");
 
             var today = DateOnly.FromDateTime(DateTime.UtcNow);
-            var records = await _doctorRepo.GetTodayCompletedForDoctorAsync(doctorId, today);
 
-            if (records == null || !records.Any())
-                return new List<AppointmentDto>();
+            var appointments = await _doctorRepo.GetTodayCompletedForDoctorAsync(doctorId, today);
 
-            return _mapper.Map<List<AppointmentDto>>(records);
+            if (appointments == null || !appointments.Any())
+                return new List<AppoinmentandPaientDetaliesDto>();
+
+            return _mapper.Map<List<AppoinmentandPaientDetaliesDto>>(appointments);
         }
+
 
 
     }

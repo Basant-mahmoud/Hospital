@@ -77,17 +77,20 @@ namespace Hospital.Infrastructure.Repos
                         .Any(s => s.SpecializationId == specializationId)))
                 .ToListAsync();
         }
+       
         public async Task<List<Appointment>> GetTodayCompletedForDoctorAsync(int doctorId, DateOnly date)
         {
             return await _context.Appointments
+                .Include(a => a.Patient)             
+                    .ThenInclude(p => p.User)         
+                .Include(a => a.Branch)               
                 .Where(a =>
                     a.DoctorId == doctorId &&
-                    a.Date.Year == date.Year &&
-                    a.Date.Month == date.Month &&
-                    a.Date.Day == date.Day &&
+                    a.Date == date &&
                     a.Status == AppointmentStatus.Confirmed)
                 .ToListAsync();
         }
+
 
     }
 }

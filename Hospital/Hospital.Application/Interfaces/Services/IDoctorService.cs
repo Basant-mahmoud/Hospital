@@ -19,6 +19,6 @@ namespace Hospital.Application.Interfaces.Services
         Task<IEnumerable<DoctorDto>> GetAllDoctorInSystemAsync();
         Task<IEnumerable<DoctorDto>> GetDoctorsBySpecializationIdAsync(int specializationId);
         Task UpdatePersonalInfoAsync(DoctorSelfUpdateDto dto);
-        Task<List<AppointmentDto>> GetTodayForDoctorAsync(int doctorId);
+        Task<List<AppoinmentandPaientDetaliesDto>> GetTodayForDoctorAsync(int doctorId);
     }
 }
