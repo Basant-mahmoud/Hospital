@@ -2,6 +2,7 @@
 using Hospital.Application.DTO.Appointment;
 using Hospital.Application.DTO.MedicalRecord;
 using Hospital.Domain.Models;
+using Hospital.Domain.Enum;
 using System;
 
 namespace Hospital.Application.MappingProfiles
@@ -15,10 +16,14 @@ namespace Hospital.Application.MappingProfiles
                 .ForMember(dest => dest.AppointmentId, opt => opt.Ignore())
                 .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(_ => DateTime.UtcNow))
                 .ForMember(dest => dest.UpdatedAt, opt => opt.MapFrom(_ => DateTime.UtcNow));
+            // PaymentMethod هنا Enum → Enum مباشرة، لا تحتاج Enum.Parse
 
             // Appointment → AppointmentDto
             CreateMap<Appointment, AppointmentDto>()
-                .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToString()));
+                .ForMember(dest => dest.Status,
+                    opt => opt.MapFrom(src => src.Status.ToString()))
+                .ForMember(dest => dest.PaymentMethod,
+                    opt => opt.MapFrom(src => src.PaymentMethod.ToString())); // Enum → String
 
             // Branch → BranchShortDto
             CreateMap<Branch, BranchShortDto>();
