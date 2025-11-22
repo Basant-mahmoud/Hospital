@@ -196,6 +196,10 @@ namespace Hospital.Infrastructure.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
+                    b.Property<string>("ImageURL")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
                     b.Property<string>("Phone")
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");

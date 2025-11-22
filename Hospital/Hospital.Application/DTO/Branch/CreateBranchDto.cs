@@ -22,5 +22,7 @@ namespace Hospital.Application.DTO.Branch
         public string? Email { get; set; }
 
         public string? Description { get; set; }
+        [Url, StringLength(300)] public string? ImageURL { get; set; }
+
     }
 }

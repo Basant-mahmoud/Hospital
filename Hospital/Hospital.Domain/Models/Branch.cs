@@ -27,6 +27,8 @@ namespace Hospital.Domain.Models
         public ICollection<News> News { get; set; } = new List<News>();
         public ICollection<Event> Events { get; set; } = new List<Event>();
         public ICollection<Specialization> Specializations { get; set; } = new List<Specialization>();
+        [Url, StringLength(300)] public string? ImageURL { get; set; }
+
 
 
     }
