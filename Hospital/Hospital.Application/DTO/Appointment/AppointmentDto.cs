@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hospital.Domain.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,8 @@ namespace Hospital.Application.DTO.Appointment
 
         public string? Notes { get; set; }
         public BranchShortDto Branch { get; set; }
+
+        public PaymentMethod PaymentMethod { get; set; }
 
     }
     public class BranchShortDto

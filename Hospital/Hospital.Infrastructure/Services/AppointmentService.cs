@@ -43,6 +43,13 @@ namespace Hospital.Infrastructure.Services
             if (branch == null)
                 throw new ArgumentException("Branch does not exist.");
 
+
+            if (dto.PaymentMethod != PaymentMethod.Cash &&
+                dto.PaymentMethod != PaymentMethod.Paymob)
+            {
+                throw new ArgumentException("Invalid payment method. Allowed: Cash or Paymob");
+            }
+
             if (dto.Date < DateOnly.FromDateTime(DateTime.UtcNow.Date))
                 throw new ArgumentException("Appointment date cannot be in the past.");
 

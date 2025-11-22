@@ -31,6 +31,9 @@ namespace Hospital.Domain.Models
         [Required]
         public AppointmentStatus Status { get; set; } = AppointmentStatus.Confirmed;
 
+        [Required]  
+        public PaymentMethod PaymentMethod { get; set; }
+
         public string? CreatedBy { get; set; }
         public User? Creator { get; set; }
 
