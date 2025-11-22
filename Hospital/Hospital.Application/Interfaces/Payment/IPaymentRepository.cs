@@ -23,6 +23,7 @@ namespace Hospital.Application.Interfaces.Payment
 
         // Get payment by Paymob transaction ID (optional)
         Task<Hospital.Domain.Models.Payment?> GetPaymentByTransactionIdAsync(long transactionId, CancellationToken ct = default);
+        Task<Hospital.Domain.Models.Payment> CreatePendingPaymentAsync(int appointmentId, decimal amount, string currency = "EGP");
 
     }
 }

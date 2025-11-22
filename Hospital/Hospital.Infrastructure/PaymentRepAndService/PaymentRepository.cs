@@ -1,5 +1,6 @@
 ﻿using Clinic.Infrastructure.Persistence;
 using Hospital.Application.Interfaces.Payment;
+using Hospital.Domain.Enum;
 using Hospital.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Threading;
@@ -57,7 +58,25 @@ namespace Hospital.Infrastructure.PaymentRepAndService
                 .Include(p => p.Appointment)
                 .FirstOrDefaultAsync(p => p.PaymobTransactionId == transactionId, ct);
         }
+        public async Task<Hospital.Domain.Models.Payment> CreatePendingPaymentAsync(int appointmentId, decimal amount, string currency = "EGP")
+        {
+            var payment = new Hospital.Domain.Models.Payment
+            {
+                AppointmentId = appointmentId,
+                Amount = amount,
+                Currency = currency,
+                Status = PaymentStatus.Pending,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            };
 
+            _dbContext.Payments.Add(payment);
+            await _dbContext.SaveChangesAsync();
 
+            return payment;
+        }
     }
+
+
 }
+

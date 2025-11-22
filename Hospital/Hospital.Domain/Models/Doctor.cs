@@ -22,7 +22,7 @@ namespace Hospital.Domain.Models
         public ICollection<Branch> Branches { get; set; } = new List<Branch>();
         public string? Biography { get; set; }
         [Range(0, 80)] public int? ExperienceYears { get; set; }
-        [Column(TypeName = "decimal(10,2)")] public decimal? ConsultationFees { get; set; }
+        [Column(TypeName = "decimal(10,2)")] public decimal ConsultationFees { get; set; }
         public bool? Available { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }

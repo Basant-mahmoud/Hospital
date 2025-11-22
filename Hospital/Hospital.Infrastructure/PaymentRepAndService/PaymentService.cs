@@ -46,8 +46,7 @@ namespace Hospital.Infrastructure.Payment
                 throw new InvalidOperationException("This appointment has already been paid for.");
 
             // Get consultation fee
-            var amount = appointment.Doctor.ConsultationFees
-                ?? throw new InvalidOperationException("Doctor consultation fee not set.");
+            var amount = appointment.Doctor.ConsultationFees;
 
             // Step 1: Authenticate with Paymob
             var authResponse = await _paymobClient.AuthenticateAsync(ct);

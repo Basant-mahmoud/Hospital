@@ -1,9 +1,13 @@
 ﻿using AutoMapper;
+using Clinic.Infrastructure.Persistence;
 using Hospital.Application.DTO.Appointment;
+using Hospital.Application.Interfaces.Payment;
 using Hospital.Application.Interfaces.Repos;
 using Hospital.Application.Interfaces.Services;
 using Hospital.Domain.Enum;
 using Hospital.Domain.Models;
+using Hospital.Infrastructure.Repos;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,17 +23,27 @@ namespace Hospital.Infrastructure.Services
         private readonly IPatientRepository _patientRepo;
         private readonly IDoctorRepository _doctorRepository;
         private readonly IBranchRepository _branchRepo;
-
-        public AppointmentService(IAppointmentRepository appointmentRepo, IPatientRepository patientRepo, IDoctorRepository doctorRepository, IBranchRepository branchRepo, IMapper mapper)
+        private readonly IPaymentRepository _PaymentRepo;
+        private readonly AppDbContext _dbContext;
+        public AppointmentService(IAppointmentRepository appointmentRepo, IPatientRepository patientRepo, IDoctorRepository doctorRepository, IBranchRepository branchRepo, IMapper mapper, IPaymentRepository PaymentRepo, AppDbContext dbContext)
         {
             _appointmentRepo = appointmentRepo;
             _patientRepo = patientRepo;
             _doctorRepository = doctorRepository;
             _branchRepo = branchRepo;
             _mapper = mapper;
+            _PaymentRepo = PaymentRepo;
+            _dbContext = dbContext;
         }
 
-        public async Task<AppointmentDto> AddAsync(AddAppointmentDto dto)
+      
+
+
+     public async Task<AppointmentDto> AddAsync(AddAppointmentDto dto)
+    {
+        await using var transaction = await _dbContext.Database.BeginTransactionAsync();
+
+        try
         {
             var patient = await _patientRepo.GetByIdAsync(dto.PatientId);
             if (patient == null)
@@ -43,7 +57,6 @@ namespace Hospital.Infrastructure.Services
             if (branch == null)
                 throw new ArgumentException("Branch does not exist.");
 
-
             if (dto.PaymentMethod != PaymentMethod.Cash &&
                 dto.PaymentMethod != PaymentMethod.Paymob)
             {
@@ -56,23 +69,47 @@ namespace Hospital.Infrastructure.Services
             if (dto.Time.Hour < 8 || dto.Time.Hour > 20)
                 throw new ArgumentException("Appointment time must be between 08:00 and 20:00.");
 
-            // Prevent duplicate appointment (doctor same date/time)
+            // Prevent duplicate appointment
             var exists = await _appointmentRepo.ExistsAsync(dto.DoctorId, dto.Date, dto.Time);
             if (exists)
                 throw new ArgumentException("Doctor already has an appointment at this time.");
 
+            // Map appointment
             var appointment = _mapper.Map<Appointment>(dto);
             appointment.CreatedAt = DateTime.UtcNow;
             appointment.UpdatedAt = DateTime.UtcNow;
             appointment.Status = AppointmentStatus.Confirmed;
 
+            // Add appointment
             var created = await _appointmentRepo.AddAsync(appointment);
+
+            // لو الدفع Paymob اعمل سجل في Payment
+            if (created != null && created.PaymentMethod == PaymentMethod.Paymob)
+            {
+                var payment = await _PaymentRepo.CreatePendingPaymentAsync(
+                    created.AppointmentId,
+                    doctor.ConsultationFees,
+                    "EGP"
+                );
+
+                if (payment == null)
+                    throw new InvalidOperationException("Cannot create payment");
+            }
+
+            // Commit الترانزكشن
+            await transaction.CommitAsync();
 
             return _mapper.Map<AppointmentDto>(created);
         }
+        catch
+        {
+            // Rollback في حالة أي خطأ
+            await transaction.RollbackAsync();
+            throw; // نعيد رمي الاستثناء للفوق
+        }
+    }
 
-
-        public async Task<int> DeleteAsync(int id)
+    public async Task<int> DeleteAsync(int id)
         {
             if (id <= 0)
                 throw new ArgumentException("Invalid appointment ID.");

@@ -224,7 +224,7 @@ namespace Hospital.Infrastructure.Migrations
                     b.Property<string>("Biography")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("ConsultationFees")
+                    b.Property<decimal>("ConsultationFees")
                         .HasPrecision(10, 2)
                         .HasColumnType("decimal(10,2)");
 
