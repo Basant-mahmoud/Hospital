@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Clinic.Infrastructure.Persistence;
+using Hospital.Application.DTO.Appointment;
 using Hospital.Application.DTO.Doctor;
 using Hospital.Application.Helper;
 using Hospital.Application.Interfaces.Repos;
@@ -250,8 +251,24 @@ namespace Hospital.Infrastructure.Services
 
             return _mapper.Map<IEnumerable<DoctorDto>>(doctors);
         }
+        public async Task<List<AppointmentDto>> GetTodayForDoctorAsync(int doctorId)
+        {
+            if (doctorId <= 0)
+                throw new ArgumentException("Invalid doctor ID.");
 
-        
+            var doctor = await _doctorRepo.GetAsync(doctorId);
+            if (doctor == null)
+                throw new KeyNotFoundException($"Doctor with ID {doctorId} does not exist.");
+
+            var today = DateOnly.FromDateTime(DateTime.UtcNow);
+            var records = await _doctorRepo.GetTodayCompletedForDoctorAsync(doctorId, today);
+
+            if (records == null || !records.Any())
+                return new List<AppointmentDto>();
+
+            return _mapper.Map<List<AppointmentDto>>(records);
+        }
+
 
     }
 }

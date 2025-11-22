@@ -207,5 +207,12 @@ namespace Hospital.Controllers
                 return StatusCode(500, new { Message = "Internal server error." });
             }
         }
+        [HttpGet("doctor/{doctorId:int}/today")]
+        public async Task<IActionResult> GetTodayAppointmentsForDoctor(int doctorId)
+        {
+            var result = await _doctorService.GetTodayForDoctorAsync(doctorId);
+            return Ok(result);
+        }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using Hospital.Application.DTO.Doctor;
+﻿using Hospital.Application.DTO.Appointment;
+using Hospital.Application.DTO.Doctor;
 using Hospital.Application.DTO.Event;
 using System;
 using System.Collections.Generic;
@@ -18,5 +19,6 @@ namespace Hospital.Application.Interfaces.Services
         Task<IEnumerable<DoctorDto>> GetAllDoctorInSystemAsync();
         Task<IEnumerable<DoctorDto>> GetDoctorsBySpecializationIdAsync(int specializationId);
         Task UpdatePersonalInfoAsync(DoctorSelfUpdateDto dto);
+        Task<List<AppointmentDto>> GetTodayForDoctorAsync(int doctorId);
     }
 }

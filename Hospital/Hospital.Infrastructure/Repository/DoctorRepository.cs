@@ -1,5 +1,6 @@
 ﻿using Clinic.Infrastructure.Persistence;
 using Hospital.Application.Interfaces.Repos;
+using Hospital.Domain.Enum;
 using Hospital.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -74,6 +75,17 @@ namespace Hospital.Infrastructure.Repos
                 .Where(d => d.Branches
                     .Any(b => b.Specializations
                         .Any(s => s.SpecializationId == specializationId)))
+                .ToListAsync();
+        }
+        public async Task<List<Appointment>> GetTodayCompletedForDoctorAsync(int doctorId, DateOnly date)
+        {
+            return await _context.Appointments
+                .Where(a =>
+                    a.DoctorId == doctorId &&
+                    a.Date.Year == date.Year &&
+                    a.Date.Month == date.Month &&
+                    a.Date.Day == date.Day &&
+                    a.Status == AppointmentStatus.Confirmed)
                 .ToListAsync();
         }
 
