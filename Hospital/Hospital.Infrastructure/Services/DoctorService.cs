@@ -3,8 +3,10 @@ using Clinic.Infrastructure.Persistence;
 using Hospital.Application.DTO.Appointment;
 using Hospital.Application.DTO.Doctor;
 using Hospital.Application.Helper;
+using Hospital.Application.Interfaces.Payment;
 using Hospital.Application.Interfaces.Repos;
 using Hospital.Application.Interfaces.Services;
+using Hospital.Domain.Enum;
 using Hospital.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -22,6 +24,7 @@ namespace Hospital.Infrastructure.Services
         private readonly ILogger<DoctorService> _logger;
         private readonly AppDbContext _context ;
         private readonly IAppointmentRepository _appointmentRepository;
+        private readonly IPaymentRepository _paymentRepository;
 
 
         public DoctorService(
@@ -32,6 +35,7 @@ namespace Hospital.Infrastructure.Services
         IAuthService authService,
         ILogger<DoctorService> logger,
          IAppointmentRepository appointmentRepository,
+         IPaymentRepository paymentRepository,
         AppDbContext context)
         {
             _mapper = mapper;
@@ -42,6 +46,7 @@ namespace Hospital.Infrastructure.Services
             _logger = logger;
             _context = context;
              _appointmentRepository=appointmentRepository;
+            _paymentRepository=paymentRepository;
         }
 
       
@@ -272,10 +277,24 @@ namespace Hospital.Infrastructure.Services
 
             return _mapper.Map<List<AppoinmentandPaientDetaliesDto>>(appointments);
         }
-        public async Task<bool>> convertStatuesOFPaymentToPayied(int appoimentid)
+        public async Task<bool> convertStatuesOFPaymentToPayied(int appointmentId)
         {
-            i
+            // 1️⃣ Get payment by appointment
+            var payment = await _paymentRepository.GetPaymentByAppointmentIdAsync(appointmentId);
+
+            if (payment == null)
+                return false; // Payment not found
+
+            // 2️⃣ Update status
+            payment.Status = PaymentStatus.Paid;
+            payment.UpdatedAt = DateTime.UtcNow;
+
+            // 3️⃣ Save changes
+            await _paymentRepository.UpdatePaymentAsync(payment);
+
+            return true;
         }
+
 
 
 

@@ -213,10 +213,13 @@ namespace Hospital.Controllers
             var result = await _doctorService.GetTodayForDoctorAsync(doctorId);
             return Ok(result);
         }
+        [HttpPut("convertStatuesOFPaymentToPayied/{Appoimentid:int}")]
         public async Task<IActionResult> convertStatuesOFPaymentToPayied(int Appoimentid)
         {
             var result = await _doctorService.convertStatuesOFPaymentToPayied(Appoimentid);
-            return Ok(result);
+            if(result==true)
+               return Ok("Payment Paid successfully");
+            return BadRequest("Payment Not Paid");
         }
 
     }

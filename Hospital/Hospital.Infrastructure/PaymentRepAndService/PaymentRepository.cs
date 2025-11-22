@@ -75,6 +75,18 @@ namespace Hospital.Infrastructure.PaymentRepAndService
 
             return payment;
         }
+         public async  Task<int> GetTodayCompletedForDoctorAsync(Hospital.Domain.Models.Payment payment)
+        {
+           _dbContext.Payments.Update(payment);
+           return await _dbContext.SaveChangesAsync();
+        }
+        public async Task<Hospital.Domain.Models.Payment?> GetPaymentByAppointmentIdAsync(int appointmentId, CancellationToken ct = default)
+        {
+            return await _dbContext.Payments
+                .FirstOrDefaultAsync(p => p.AppointmentId == appointmentId, ct);
+        }
+
+
     }
 
 

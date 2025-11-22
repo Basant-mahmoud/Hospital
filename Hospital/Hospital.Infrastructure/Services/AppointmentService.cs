@@ -84,7 +84,7 @@ namespace Hospital.Infrastructure.Services
             var created = await _appointmentRepo.AddAsync(appointment);
 
             // لو الدفع Paymob اعمل سجل في Payment
-            if (created != null && created.PaymentMethod == PaymentMethod.Paymob)
+            if (created != null && created.PaymentMethod == PaymentMethod.Cash)
             {
                 var payment = await _PaymentRepo.CreatePendingPaymentAsync(
                     created.AppointmentId,
