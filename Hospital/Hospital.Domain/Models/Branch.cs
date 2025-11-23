@@ -19,15 +19,13 @@ namespace Hospital.Domain.Models
         public string? Description { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
-
-        //public ICollection<User> Users { get; set; } = new List<User>();
         public ICollection<Doctor> Doctors { get; set; } = new List<Doctor>();
         public ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
         public ICollection<Service> Services { get; set; } = new List<Service>();
         public ICollection<News> News { get; set; } = new List<News>();
         public ICollection<Event> Events { get; set; } = new List<Event>();
         public ICollection<Specialization> Specializations { get; set; } = new List<Specialization>();
-
+        [Url, StringLength(300)] public string? ImageURL { get; set; }
 
     }
 }

@@ -42,15 +42,12 @@ namespace Hospital.Infrastructure.Services
 
         public async Task<RegisterDto> RegisterAsync(RegisterModel model)
         {
-            // Check if email exists
             if (await _authRepository.EmailExistAsync(model.Email))
                 return new RegisterDto { Message = "Email already exists!" };
 
-            // Check if username exists
             if (await _authRepository.UsernameExistsAsync(model.Username))
                 return new RegisterDto { Message = "Username already exists!" };
 
-            // Validate role
             if (string.IsNullOrEmpty(model.Role) || (model.Role != "Patient") && (model.Role != "Doctor")&& (model.Role != "Admin"))
                 return new RegisterDto { Message = "Invalid role. Only 'Patient' ,'Doctor'  and 'Admin' allowed." };
 
@@ -58,7 +55,6 @@ namespace Hospital.Infrastructure.Services
             if (!await _roleManager.RoleExistsAsync(model.Role))
                 await _roleManager.CreateAsync(new IdentityRole(model.Role));
 
-            // Create user
             var user = new User
             {
                 UserName = model.Username,
@@ -77,7 +73,6 @@ namespace Hospital.Infrastructure.Services
 
             await _userManager.AddToRoleAsync(user, model.Role);
 
-            // Create patient if role is Patient
             if (model.Role == "Patient")
             {
                 var patient = new Patient
@@ -92,7 +87,6 @@ namespace Hospital.Infrastructure.Services
                 await _patientRepository.AddAsync(patient);
             }
 
-
             return new RegisterDto
             {
                 Message = "Account registered successfully. Please login.",
@@ -100,41 +94,6 @@ namespace Hospital.Infrastructure.Services
                 UserId = user.Id
             };
         }
-
-
-
-        //public async Task<AuthModel> LoginAsync(LoginModel model)
-        //{
-        //    var authModel = new AuthModel();
-        //    var user = await _userManager.FindByEmailAsync(model.Email);
-
-        //    if (user == null || !await _userManager.CheckPasswordAsync(user, model.Password))
-        //    {
-        //        authModel.Message = "Email or Password is incorrect!";
-        //        return authModel;
-        //    }
-
-        //    var jwtSecurityToken = await CreateJwtToken(user);
-        //    var rolesList = await _userManager.GetRolesAsync(user);
-
-        //    // create refresh token
-        //    var refreshToken = GenerateRefreshToken();
-        //    user.RefreshToken = refreshToken;
-        //    user.RefreshTokenExpiryTime = DateTime.Now.AddDays(7); //for week
-        //    await _userManager.UpdateAsync(user);
-
-        //    authModel.IsAuthenticated = true;
-        //    authModel.Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
-        //    authModel.Email = user.Email;
-        //    authModel.Username = user.UserName;
-        //    authModel.ExpiresOn = jwtSecurityToken.ValidTo;
-        //    authModel.Roles = rolesList.ToList();
-        //    authModel.RefreshToken = refreshToken;
-        //    authModel.RefreshTokenExpiration = user.RefreshTokenExpiryTime;
-
-        //    return authModel;
-        //}
-
 
         public async Task<AuthModel> LoginAsync(LoginModel model)
         {
@@ -150,7 +109,6 @@ namespace Hospital.Infrastructure.Services
             var jwtSecurityToken = await CreateJwtToken(user);
             var rolesList = await _userManager.GetRolesAsync(user);
 
-            // create refresh token
             var refreshToken = GenerateRefreshToken();
             user.RefreshToken = refreshToken;
             user.RefreshTokenExpiryTime = DateTime.Now.AddDays(7); //for week
@@ -165,13 +123,13 @@ namespace Hospital.Infrastructure.Services
             authModel.RefreshToken = refreshToken;
             authModel.RefreshTokenExpiration = user.RefreshTokenExpiryTime;
 
-            // 🔹 إضافة DoctorId أو PatientId حسب الـ Role
             if (rolesList.Contains("Doctor"))
             {
                 var doctor = await _context.Doctors.FirstOrDefaultAsync(d => d.UserId == user.Id);
                 if (doctor != null)
                     authModel.DoctorId = doctor.DoctorId;
             }
+
             else if (rolesList.Contains("Patient"))
             {
                 var patient = await _context.Patients.FirstOrDefaultAsync(p => p.UserId == user.Id);
@@ -181,8 +139,6 @@ namespace Hospital.Infrastructure.Services
 
             return authModel;
         }
-
-
 
         public async Task<string> AddRoleAsync(AddRoleModel model)
         {
@@ -209,9 +165,6 @@ namespace Hospital.Infrastructure.Services
             {
                 // Standard role claim so ASP.NET can evaluate [Authorize(Roles="...")]
                 roleClaims.Add(new Claim(ClaimTypes.Role, role));
-
-                //// Optional: keep "roles" string claim if some clients expect it
-                //roleClaims.Add(new Claim("roles", role));
             }
 
             var claims = new[]
@@ -237,14 +190,10 @@ namespace Hospital.Infrastructure.Services
             return jwtSecurityToken;
         }
 
-
-
         public async Task<bool> ForgotPasswordAsync(string email)
         {
             
-            // seach abour email in database or not 
             var user = await _userManager.FindByEmailAsync(email);
-
             if (user != null)
             {
                 // generate code to send it to email function that make rendom code of 6 digits
@@ -263,27 +212,23 @@ namespace Hospital.Infrastructure.Services
 
                 // Email content
                 var html = $@"
-          <p>Hi {user.FullName},</p>
-          <p>Your password reset code is: <b>{code}</b></p>
-          <p>This code is valid for 10 minutes.</p>";
-
-
-                
+                <p>Hi {user.FullName},</p>
+                <p>Your password reset code is: <b>{code}</b></p>
+                <p>This code is valid for 10 minutes.</p>";
 
                 try
                 {
-                    // send email
                     await _emailService.SendEmailAsync(email, "Your verification code", html);
                 }
                 catch (Exception ex)
                 {
-                    // any error in sending email
                     return false; 
                 }
             }
-
             return true;
         }
+
+
         public async Task<bool> VerifyCodeAsync(string email, string code)
         {
             var user = await _userManager.FindByEmailAsync(email);
@@ -294,7 +239,6 @@ namespace Hospital.Infrastructure.Services
             return resetCode != null;
         }
 
-        // this  function to reset password
         public async Task<bool> ResetPasswordAsync(string email, string newPassword)
         {
             var user = await _userManager.FindByEmailAsync(email);
@@ -316,12 +260,10 @@ namespace Hospital.Infrastructure.Services
             rng.GetBytes(randomBytes);
             return Convert.ToBase64String(randomBytes);
         }
-
        
         public async Task<AuthModel> RefreshTokenAsync(string token)
         {
             var authModel = new AuthModel();
-
             var user = _userManager.Users.SingleOrDefault(u => u.RefreshToken == token);
 
             if (user == null || user.RefreshTokenExpiryTime <= DateTime.Now)
@@ -363,11 +305,5 @@ namespace Hospital.Infrastructure.Services
         {
             return new Random().Next(100000, 999999).ToString();
         }
-
-
-
-
-
-
     }
 }

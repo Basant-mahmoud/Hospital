@@ -13,7 +13,6 @@ namespace Hospital.Application.DTO.Patient
         public string? TreatmentPlan { get; set; }
         public string? Notes { get; set; }
         public DateTime CreatedAt { get; set; }
-
         public int DoctorId { get; set; }
         public string DoctorName { get; set; } = null!;
     }

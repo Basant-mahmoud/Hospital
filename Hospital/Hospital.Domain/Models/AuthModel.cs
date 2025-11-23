@@ -17,7 +17,6 @@ namespace Hospital.Domain.Models
         public DateTime ExpiresOn { get; set; }
         public string name { get; set; }
         public string passward { get; set; }
-
         public int? DoctorId { get; set; }
         public int? PatientId { get; set; }
         public string RefreshToken { get; set; }

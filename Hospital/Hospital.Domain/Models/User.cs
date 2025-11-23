@@ -17,7 +17,6 @@ namespace Hospital.Domain.Models
         public DateOnly? DateOfBirth { get; set; }
         [Required, StringLength(50)] public string Role { get; set; } = "User";
 
-
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
 

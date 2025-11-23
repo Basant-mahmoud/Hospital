@@ -9,6 +9,7 @@ namespace Hospital.Domain.Models
 {
     public class RegisterModel
     {
+
         [Required, StringLength(100)]
         public string Name { get; set; }
 
@@ -23,7 +24,6 @@ namespace Hospital.Domain.Models
 
         [Required, StringLength(50)]
         public string Role { get; set; }
-
         public string? PhoneNumber { get; set; }
 
 

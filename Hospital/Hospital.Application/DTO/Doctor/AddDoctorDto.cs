@@ -13,8 +13,6 @@ namespace Hospital.Application.DTO.Doctor
         public string Username { get; set; } = null!;
         public string Password { get; set; } = null!;
         public string? PhoneNumber { get; set; }
-
-        // doctor specific
         public int SpecializationId { get; set; }
         public string? ImageURL { get; set; }
         public List<int> BranchIds { get; set; } = new();

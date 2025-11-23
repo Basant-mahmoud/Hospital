@@ -10,6 +10,7 @@ namespace Hospital.Application.DTO.Banner
 {
     public class CreateBannerDto
     {
+
         [Required, StringLength(150)]
         public string Title { get; set; } = null!;
 

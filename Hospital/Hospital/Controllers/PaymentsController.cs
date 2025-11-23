@@ -19,24 +19,24 @@ namespace Hospital.Controllers
     {
         private readonly IPaymentService _paymentService;
         private readonly PaymobOptions _paymobOptions;
+        private readonly ILogger<PaymentController> _logger;
 
-        public PaymentController(
-            IPaymentService paymentService,
-            IOptions<PaymobOptions> paymobOptions)
+        public PaymentController(IPaymentService paymentService, IOptions<PaymobOptions> paymobOptions, ILogger<PaymentController> logger)
         {
             _paymentService = paymentService;
             _paymobOptions = paymobOptions.Value;
+            _logger = logger;
         }
 
         [HttpPost("create")]
         [Authorize(Roles = "Patient")]
-        public async Task<IActionResult> CreatePayment(
-        [FromBody] CreatePaymentRequest request,
-        CancellationToken ct)
+        public async Task<IActionResult> CreatePayment([FromBody] CreatePaymentRequest request,CancellationToken ct)
         {
+            _logger.LogInformation("create payment by credite card called at {time}", DateTime.Now);
+
             try
             {
-                // FIX: Use "uid" instead of ClaimTypes.NameIdentifier
+                // Use "uid" instead of ClaimTypes.NameIdentifier
                 var userId = User.FindFirst("uid")?.Value;
 
                 if (string.IsNullOrEmpty(userId))
@@ -72,6 +72,9 @@ namespace Hospital.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> PaymobCallback([FromBody] JsonElement rawCallback, CancellationToken ct)
         {
+            _logger.LogInformation("Call back paymob called at {time}", DateTime.Now);
+
+
             try
             {
                 var callbackJson = rawCallback.GetRawText();
@@ -119,6 +122,8 @@ namespace Hospital.Controllers
         //{
         //    try
         //    {
+        //            _logger.LogInformation("Verify Hmac Signature called at {time}", DateTime.Now);
+
         //        var amountCents = obj.GetProperty("amount_cents").GetInt32().ToString();
         //        var createdAt = obj.GetProperty("created_at").GetString();
         //        var currency = obj.GetProperty("currency").GetString();

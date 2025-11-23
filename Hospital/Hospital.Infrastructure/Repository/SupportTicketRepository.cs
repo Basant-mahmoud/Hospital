@@ -12,14 +12,13 @@ namespace Hospital.Infrastructure.Repository
 {
     public class SupportTicketRepository : ISupportTicketRepository
     {
-        private readonly AppDbContext _context;
 
+        private readonly AppDbContext _context;
         public SupportTicketRepository(AppDbContext context)
         {
             _context = context;
         }
 
-        // Patient creates a new ticket
         public async Task<SupportTicket> AddAsync(SupportTicket ticket)
         {
             ticket.CreatedAt = DateTime.UtcNow;
@@ -30,7 +29,6 @@ namespace Hospital.Infrastructure.Repository
             return ticket;
         }
 
-        // Get ticket by ID
         public async Task<SupportTicket?> GetByIdAsync(int ticketId)
         {
             return await _context.SupportTickets
@@ -38,7 +36,6 @@ namespace Hospital.Infrastructure.Repository
                 .FirstOrDefaultAsync(t => t.TicketId == ticketId);
         }
 
-        // Get all tickets (admin)
         public async Task<IEnumerable<SupportTicket>> GetAllAsync()
         {
             return await _context.SupportTickets
@@ -47,7 +44,6 @@ namespace Hospital.Infrastructure.Repository
                 .ToListAsync();
         }
 
-        // Get tickets for a specific patient
         public async Task<IEnumerable<SupportTicket>> GetAllByPatientIdAsync(string patientId)
         {
             return await _context.SupportTickets
@@ -57,7 +53,6 @@ namespace Hospital.Infrastructure.Repository
                 .ToListAsync();
         }
 
-        // Update ticket (admin only)
         public async Task<int> UpdateAsync(SupportTicket ticket)
         {
             ticket.UpdatedAt = DateTime.UtcNow;
@@ -65,7 +60,6 @@ namespace Hospital.Infrastructure.Repository
             return await _context.SaveChangesAsync();
         }
 
-        // Delete ticket (optional)
         public async Task<int> DeleteAsync(int ticketId)
         {
             var ticket = await _context.SupportTickets.FindAsync(ticketId);

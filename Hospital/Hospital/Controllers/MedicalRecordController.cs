@@ -10,15 +10,19 @@ namespace Hospital.Controllers
     public class MedicalRecordController : ControllerBase
     {
         private readonly IMedicalRecordService _medicalRecordService;
+        private readonly ILogger<MedicalRecordController> _logger;
 
-        public MedicalRecordController(IMedicalRecordService medicalRecordService)
+        public MedicalRecordController(IMedicalRecordService medicalRecordService, ILogger<MedicalRecordController> logger)
         {
             _medicalRecordService = medicalRecordService;
+            _logger = logger;
         }
 
         [HttpPost]
         public async Task<ActionResult<PatientMedicalRecordDto>> Add([FromBody] AddMedicalRecordDto dto)
         {
+            _logger.LogInformation("add medical record  called at {time}", DateTime.Now);
+
             var result = await _medicalRecordService.AddAsync(dto);
             return Ok(result);
         }
@@ -26,6 +30,8 @@ namespace Hospital.Controllers
         [HttpPut]
         public async Task<ActionResult<int>> Update([FromBody] UpdateMedicalRecordDto dto)
         {
+            _logger.LogInformation("update medical record  called at {time}", DateTime.Now);
+
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             var result = await _medicalRecordService.UpdateAsync(dto);
@@ -35,10 +41,11 @@ namespace Hospital.Controllers
             return Ok("Updated Successfully");
         }
 
-        // 3️⃣ Delete Medical Record
         [HttpDelete("{id}")]
         public async Task<ActionResult<int>> Delete(int id)
         {
+            _logger.LogInformation("delete medical record  called at {time}", DateTime.Now);
+
             var result = await _medicalRecordService.DeleteAsync(id);
             if (result == 0)
                 return NotFound($"failed to delete medical record");
@@ -46,34 +53,40 @@ namespace Hospital.Controllers
             return Ok("Deleted Successfully");
         }
 
-        // 4️⃣ Get Medical Record by Id
         [HttpGet("{id}")]
         public async Task<ActionResult<PatientMedicalRecordDto?>> GetById(int id)
         {
+            _logger.LogInformation("get medical  record by id called at {time}", DateTime.Now);
+
             var dto = new GetMedicalRecordDto { MedicalRecordId = id };
             var record = await _medicalRecordService.GetByMedicalRecordIdAsync(dto);
             if (record == null) return NotFound();
             return Ok(record);
         }
 
-        // 5️⃣ Get all Medical Records by DoctorId
         [HttpGet("by-doctor/{doctorId}")]
         public async Task<ActionResult<List<PatientMedicalRecordDto>>> GetByDoctor(int doctorId)
         {
+            _logger.LogInformation("get medical record by doctor id   called at {time}", DateTime.Now);
+
             var records = await _medicalRecordService.GetByDoctorId(doctorId);
             return Ok(records);
         }
 
-        // 6️⃣ Get all Medical Records by PatientId
         [HttpGet("by-patient/{patientId}")]
         public async Task<ActionResult<List<PatientMedicalRecordDto>>> GetByPatient(int patientId)
         {
+            _logger.LogInformation("get medical record by patient id called at {time}", DateTime.Now);
+
             var records = await _medicalRecordService.GetByPatientId(patientId);
             return Ok(records);
         }
+
         [HttpGet("records/doctor/{doctorId}/patient/{patientId}")]
         public async Task<IActionResult> GetHistory(int doctorId, int patientId)
         {
+            _logger.LogInformation("get medical record history by doctor id and patient id   called at {time}", DateTime.Now);
+
             var result = await _medicalRecordService.GetRecordsBetweenDoctorAndPatientAsync(doctorId, patientId);
             return Ok(result);
         }

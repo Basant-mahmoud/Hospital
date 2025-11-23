@@ -15,6 +15,6 @@ namespace Hospital.Application.Interfaces.Services
         Task<int> DeleteAsync(GetEventDto eventdto);
         Task<EventDto?> GetAsync(GetEventDto @event);
         Task<IEnumerable<EventDto>> GetAllAsync(int branchId);
-       Task<IEnumerable<EventDto>> GetAllEventInSystemAsync();
+        Task<IEnumerable<EventDto>> GetAllEventInSystemAsync();
     }
 }

@@ -13,11 +13,13 @@ namespace Hospital.Infrastructure.Repository
 {
     public class SpecializationRepository : ISpecializationRepository
     {
+
         private readonly AppDbContext _dbContext;
         public SpecializationRepository(AppDbContext dbContext)
         {
             _dbContext = dbContext;
         }
+
         public async Task<Specialization> AddAsync(Specialization specialization)
         {
             await _dbContext.Specializations.AddAsync(specialization);
@@ -42,7 +44,6 @@ namespace Hospital.Infrastructure.Repository
 
             return specializations;
         }
-
 
         public async Task<IEnumerable<Specialization>> GetAllSpecializationInSystemAsync()
         {

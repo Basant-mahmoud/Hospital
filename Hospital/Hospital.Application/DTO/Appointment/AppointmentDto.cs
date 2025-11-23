@@ -10,15 +10,11 @@ namespace Hospital.Application.DTO.Appointment
     public class AppointmentDto
     {
         public int AppointmentId { get; set; }
-
         public DateOnly Date { get; set; }
         public DateTime Time { get; set; }
-
         public string Status { get; set; }
-
         public string? Notes { get; set; }
         public BranchShortDto Branch { get; set; }
-
         public PaymentMethod PaymentMethod { get; set; }
 
     }

@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using Hospital.Application.DTO.Appointment;
-using Hospital.Application.DTO.MedicalRecord;
 using Hospital.Domain.Models;
-using System;
 
 namespace Hospital.Application.MappingProfiles
 {
@@ -18,7 +16,10 @@ namespace Hospital.Application.MappingProfiles
 
             // Appointment → AppointmentDto
             CreateMap<Appointment, AppointmentDto>()
-                .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToString()));
+                .ForMember(dest => dest.Status,
+                    opt => opt.MapFrom(src => src.Status.ToString()))
+                .ForMember(dest => dest.PaymentMethod,
+                    opt => opt.MapFrom(src => src.PaymentMethod.ToString())); // Enum → String
 
             // Branch → BranchShortDto
             CreateMap<Branch, BranchShortDto>();

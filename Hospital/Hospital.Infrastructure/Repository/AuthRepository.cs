@@ -22,12 +22,10 @@ namespace Hospital.Infrastructure.Repository
 
         public async Task<bool> EmailExistAsync(string email)
         {
-
             return await _userManager.FindByEmailAsync(email) != null;
         }
         public async Task<bool> UsernameExistsAsync(string username)
         {
-
             return await _userManager.FindByNameAsync(username) != null;
         }
     }

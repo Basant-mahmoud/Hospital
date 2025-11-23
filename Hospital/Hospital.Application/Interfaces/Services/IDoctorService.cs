@@ -20,5 +20,6 @@ namespace Hospital.Application.Interfaces.Services
         Task<IEnumerable<DoctorDto>> GetDoctorsBySpecializationIdAsync(int specializationId);
         Task UpdatePersonalInfoAsync(DoctorSelfUpdateDto dto);
         Task<List<AppoinmentandPaientDetaliesDto>> GetTodayForDoctorAsync(int doctorId);
+        Task<bool> convertStatuesOFPaymentToPayied(int appoimentid);
     }
 }

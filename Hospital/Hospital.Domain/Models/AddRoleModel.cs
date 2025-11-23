@@ -9,6 +9,7 @@ namespace Hospital.Domain.Models
 {
     public class AddRoleModel
     {
+
         [Required]
         public string UserId { get; set; }
 

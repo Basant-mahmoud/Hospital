@@ -12,6 +12,7 @@ namespace Hospital.Infrastructure.Repository
 {
     public class BannerRepository : IBannerRepository
     {
+
         private readonly AppDbContext _context;
         public BannerRepository(AppDbContext context) => _context = context;
 

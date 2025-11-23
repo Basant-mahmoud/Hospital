@@ -16,13 +16,11 @@ namespace Hospital.Application.MappingProfiles
         public SupportTicketProfile()
         {
             CreateMap<CreateSupportTicketDto, SupportTicket>()
-     .ForMember(dest => dest.Status, opt => opt.MapFrom(src => TicketStatus.Open))
-     .ForMember(dest => dest.CreatedAt, opt => opt.Ignore())
-     .ForMember(dest => dest.UpdatedAt, opt => opt.Ignore())
-     .ForMember(dest => dest.UserId, opt => opt.Ignore()) // will set in service
-     .ForMember(dest => dest.User, opt => opt.Ignore());
-
-
+                 .ForMember(dest => dest.Status, opt => opt.MapFrom(src => TicketStatus.Open))
+                 .ForMember(dest => dest.CreatedAt, opt => opt.Ignore())
+                 .ForMember(dest => dest.UpdatedAt, opt => opt.Ignore())
+                 .ForMember(dest => dest.UserId, opt => opt.Ignore()) 
+                 .ForMember(dest => dest.User, opt => opt.Ignore());
 
             CreateMap<UpdateSupportTicketDto, SupportTicket>()
                 .ForMember(dest => dest.User, opt => opt.Ignore())

@@ -17,9 +17,7 @@ namespace Hospital.Application.MappingProfiles
                 .ForMember(dest => dest.DoctorName,
                            opt => opt.MapFrom(src => src.Doctor.User.FullName));
 
-            // -----------------------------------------
             // Mapping: Patient → PatientDto
-            // -----------------------------------------
             CreateMap<Patient, PatientDto>()
                 .ForMember(dest => dest.FullName,
                            opt => opt.MapFrom(src => src.User.FullName))
@@ -28,11 +26,9 @@ namespace Hospital.Application.MappingProfiles
                 .ForMember(dest => dest.PhoneNumber,
                            opt => opt.MapFrom(src => src.User.PhoneNumber))
                 .ForMember(dest => dest.MedicalRecords,
-                           opt => opt.MapFrom(src => src.MedicalRecords)); // ⬅ مهم
+                           opt => opt.MapFrom(src => src.MedicalRecords));
 
-            // -----------------------------------------
             // Mapping for updating patient
-            // -----------------------------------------
             CreateMap<UpdatePatientDto, Patient>()
                 .ForMember(dest => dest.UpdatedAt, opt => opt.MapFrom(_ => DateTime.UtcNow))
                 .ForMember(dest => dest.PatientId, opt => opt.MapFrom(src => src.PatientId))

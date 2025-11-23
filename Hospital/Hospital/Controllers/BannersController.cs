@@ -13,10 +13,12 @@ namespace Hospital.Controllers
     public class BannersController : ControllerBase
     {
         private readonly IBannerService _bannerService;
+        private readonly ILogger<BannersController> _logger;
 
-        public BannersController(IBannerService bannerService)
+        public BannersController(IBannerService bannerService, ILogger<BannersController> logger)
         {
             _bannerService = bannerService;
+            _logger = logger;
         }
 
         [HttpGet]

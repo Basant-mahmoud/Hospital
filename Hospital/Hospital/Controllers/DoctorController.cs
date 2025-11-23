@@ -12,16 +12,21 @@ namespace Hospital.Controllers
     public class DoctorController : ControllerBase
     {
         private readonly IDoctorService _doctorService;
+        private readonly ILogger<DoctorController> _logger;
 
-        public DoctorController(IDoctorService doctorService)
+        public DoctorController(IDoctorService doctorService, ILogger<DoctorController> logger)
         {
             _doctorService = doctorService;
+            _logger = logger;
+
         }
 
         // ------------------- Add Doctor -------------------
         [HttpPost("add")]
         public async Task<IActionResult> AddDoctor([FromBody] AddDoctorDto dto)
         {
+            _logger.LogInformation("add doctor called at {time}", DateTime.Now);
+
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
@@ -29,106 +34,99 @@ namespace Hospital.Controllers
             return Ok(created);
         }
 
-
-
-
-
-   [HttpPost("add-from-excel")]
-    public async Task<IActionResult> AddDoctorsFromExcel(IFormFile file)
-    {
-        if (file == null || file.Length == 0)
-            return BadRequest("No file uploaded.");
-
-        var doctors = new List<AddDoctorDto>();
-
-        using (var stream = new MemoryStream())
+        //  ------------ Add Doctor Using Excel Sheet--------
+        [HttpPost("add-from-excel")]
+        public async Task<IActionResult> AddDoctorsFromExcel(IFormFile file)
         {
-            await file.CopyToAsync(stream);
-            stream.Position = 0;
+            _logger.LogInformation("add doctor using excel called at {time}", DateTime.Now);
 
-            // 🌟 EPPlus النسخة القديمة - الترخيص سهل
-            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            if (file == null || file.Length == 0)
+                return BadRequest("No file uploaded.");
 
-            using (var package = new ExcelPackage(stream))
+            var doctors = new List<AddDoctorDto>();
+            using (var stream = new MemoryStream())
             {
-                var sheet = package.Workbook.Worksheets.FirstOrDefault();
-                if (sheet == null)
-                    return BadRequest("Excel file has no sheets.");
+                await file.CopyToAsync(stream);
+                stream.Position = 0;
 
-                for (int row = 2; row <= sheet.Dimension.End.Row; row++)
+                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+                using (var package = new ExcelPackage(stream))
                 {
-                    var dto = new AddDoctorDto
-                    {
-                        Name = sheet.Cells[row, 1].Text,
-                        Email = sheet.Cells[row, 2].Text,
-                        Username = sheet.Cells[row, 3].Text,
-                        Password = sheet.Cells[row, 4].Text,
-                        PhoneNumber = sheet.Cells[row, 5].Text,
-                        SpecializationId = int.TryParse(sheet.Cells[row, 6].Text, out int spec) ? spec : 0,
-                        ImageURL = sheet.Cells[row, 7].Text,
-                        Biography = sheet.Cells[row, 9].Text,
-                        ExperienceYears = int.TryParse(sheet.Cells[row, 10].Text, out int exp) ? exp : null,
-                        ConsultationFees = decimal.TryParse(sheet.Cells[row, 11].Text, out decimal fees) ? fees : null,
-                        Available = bool.TryParse(sheet.Cells[row, 12].Text, out bool avail) ? avail : null
-                    };
+                    var sheet = package.Workbook.Worksheets.FirstOrDefault();
+                    if (sheet == null)
+                        return BadRequest("Excel file has no sheets.");
 
-                    // Branch IDs → comma separated
-                    var branches = sheet.Cells[row, 8].Text;
-                    if (!string.IsNullOrEmpty(branches))
+                    for (int row = 2; row <= sheet.Dimension.End.Row; row++)
                     {
-                        dto.BranchIds = branches
-                            .Split(",", StringSplitOptions.RemoveEmptyEntries)
-                            .Select(id => int.Parse(id.Trim()))
-                            .ToList();
+                        var dto = new AddDoctorDto
+                        {
+                            Name = sheet.Cells[row, 1].Text,
+                            Email = sheet.Cells[row, 2].Text,
+                            Username = sheet.Cells[row, 3].Text,
+                            Password = sheet.Cells[row, 4].Text,
+                            PhoneNumber = sheet.Cells[row, 5].Text,
+                            SpecializationId = int.TryParse(sheet.Cells[row, 6].Text, out int spec) ? spec : 0,
+                            ImageURL = sheet.Cells[row, 7].Text,
+                            Biography = sheet.Cells[row, 9].Text,
+                            ExperienceYears = int.TryParse(sheet.Cells[row, 10].Text, out int exp) ? exp : null,
+                            ConsultationFees = decimal.TryParse(sheet.Cells[row, 11].Text, out decimal fees) ? fees : null,
+                            Available = bool.TryParse(sheet.Cells[row, 12].Text, out bool avail) ? avail : null
+                        };
+
+                        // Branch IDs → comma separated
+                        var branches = sheet.Cells[row, 8].Text;
+                        if (!string.IsNullOrEmpty(branches))
+                        {
+                            dto.BranchIds = branches
+                                .Split(",", StringSplitOptions.RemoveEmptyEntries)
+                                .Select(id => int.Parse(id.Trim()))
+                                .ToList();
+                        }
+
+                        doctors.Add(dto);
                     }
-
-                    doctors.Add(dto);
                 }
             }
+
+            var results = new List<object>();
+            foreach (var doctor in doctors)
+            {
+                try
+                {
+                    var created = await _doctorService.AddAsync(doctor);
+                    results.Add(new
+                    {
+                        doctor.Email,
+                        Status = "Success",
+                        DoctorId = created.DoctorId
+                    });
+                }
+                catch (Exception ex)
+                {
+                    results.Add(new
+                    {
+                        doctor.Email,
+                        Status = "Failed",
+                        Error = ex.Message
+                    });
+                }
+            }
+
+            return Ok(results);
         }
 
-        // ⬇ Process Each Doctor & Add To DB
-        var results = new List<object>();
-
-        foreach (var doctor in doctors)
-        {
-            try
-            {
-                var created = await _doctorService.AddAsync(doctor);
-
-                results.Add(new
-                {
-                    doctor.Email,
-                    Status = "Success",
-                    DoctorId = created.DoctorId
-                });
-            }
-            catch (Exception ex)
-            {
-                results.Add(new
-                {
-                    doctor.Email,
-                    Status = "Failed",
-                    Error = ex.Message
-                });
-            }
-        }
-
-        return Ok(results);
-    }
-
-
-
-    // ------------------- Update Doctor -------------------
-    [HttpPut("update")]
+        // ------------------- Update Doctor -------------------
+        [HttpPut("update")]
         public async Task<IActionResult> UpdateDoctor([FromBody] UpdateDoctorDto dto)
         {
+            _logger.LogInformation("Update doctor called at {time}", DateTime.Now);
+
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             var updated = await _doctorService.UpdateAsync(dto);
             if (updated == 0)
-                return NotFound(new { message = "Doctor not found" });
+               return NotFound(new { message = "Doctor not found" });
 
             return Ok(new { message = "Doctor updated successfully" });
         }
@@ -137,6 +135,8 @@ namespace Hospital.Controllers
         [HttpDelete("delete/{doctorId}")]
         public async Task<IActionResult> DeleteDoctor(int doctorId)
         {
+            _logger.LogInformation("Delete doctor called at {time}", DateTime.Now);
+
             var dto = new GetDoctorDto { DoctorId = doctorId };
             var deleted = await _doctorService.DeleteAsync(dto);
             if (deleted == 0)
@@ -149,6 +149,8 @@ namespace Hospital.Controllers
         [HttpGet("{doctorId}")]
         public async Task<IActionResult> GetDoctor(int doctorId)
         {
+            _logger.LogInformation("Get  doctor By Id called at {time}", DateTime.Now);
+
             var dto = new GetDoctorDto { DoctorId = doctorId };
             var doctor = await _doctorService.GetAsync(dto);
             if (doctor == null)
@@ -161,6 +163,8 @@ namespace Hospital.Controllers
         [HttpGet("branch/{branchId}")]
         public async Task<IActionResult> GetByBranch(int branchId)
         {
+            _logger.LogInformation("get doctor by Branch called at {time}", DateTime.Now);
+
             var doctors = await _doctorService.GetAllAsync(branchId);
             return Ok(doctors);
         }
@@ -169,6 +173,8 @@ namespace Hospital.Controllers
         [HttpGet("all")]
         public async Task<IActionResult> GetAll()
         {
+            _logger.LogInformation("get all doctor in system called at {time}", DateTime.Now);
+
             var doctors = await _doctorService.GetAllDoctorInSystemAsync();
             return Ok(doctors);
         }
@@ -177,6 +183,8 @@ namespace Hospital.Controllers
         [HttpGet("BySpecialization/{specializationId}")]
         public async Task<IActionResult> GetDoctorsBySpecialization(int specializationId)
         {
+            _logger.LogInformation("get doctor by Specialization  called at {time}", DateTime.Now);
+
             var result = await _doctorService.GetDoctorsBySpecializationIdAsync(specializationId);
             return Ok(result);
         }
@@ -186,6 +194,8 @@ namespace Hospital.Controllers
         //[Authorize(Roles = "Doctor")]
         public async Task<IActionResult> SelfUpdate(DoctorSelfUpdateDto dto)
         {
+            _logger.LogInformation("SelfUpdate doctor called at {time}", DateTime.Now);
+
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
@@ -207,11 +217,25 @@ namespace Hospital.Controllers
                 return StatusCode(500, new { Message = "Internal server error." });
             }
         }
+
         [HttpGet("doctor/{doctorId:int}/today")]
         public async Task<IActionResult> GetTodayAppointmentsForDoctor(int doctorId)
         {
+            _logger.LogInformation("GetTodayAppointmentsForDoctor  called at {time}", DateTime.Now);
+
             var result = await _doctorService.GetTodayForDoctorAsync(doctorId);
             return Ok(result);
+        }
+
+        [HttpPut("convertStatuesOFPaymentToPayied/{Appoimentid:int}")]
+        public async Task<IActionResult> convertStatuesOFPaymentToPayied(int Appoimentid)
+        {
+            _logger.LogInformation("convertStatuesOFPaymentToPayied pay by cach  called at {time}", DateTime.Now);
+
+            var result = await _doctorService.convertStatuesOFPaymentToPayied(Appoimentid);
+            if(result==true)
+               return Ok("Payment Paid successfully");
+            return BadRequest("Payment Not Paid");
         }
 
     }

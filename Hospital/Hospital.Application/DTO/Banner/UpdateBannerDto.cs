@@ -10,6 +10,7 @@ namespace Hospital.Application.DTO.Banner
 {
     public class UpdateBannerDto
     {
+
         [Required]
         public int BannerId { get; set; }
 

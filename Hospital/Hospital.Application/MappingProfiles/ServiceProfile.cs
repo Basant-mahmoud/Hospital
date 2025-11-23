@@ -14,7 +14,7 @@ namespace Hospital.Application.MappingProfiles
         public ServiceProfile()
         {
             CreateMap<CreateServiceDto, Service>()
-                       .ForMember(dest => dest.Branches, opt => opt.Ignore());
+                .ForMember(dest => dest.Branches, opt => opt.Ignore());
 
             CreateMap<UpdateServiceDto, Service>()
                 .ForMember(dest => dest.Branches, opt => opt.Ignore());
@@ -24,8 +24,6 @@ namespace Hospital.Application.MappingProfiles
                     opt.MapFrom(src => src.Branches
                         .Select(b => new BranchIdDTO { BranchId = b.BranchId })
                     ));
-
-
         }
     }
 }

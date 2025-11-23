@@ -9,6 +9,7 @@ namespace Hospital.Domain.Models
 {
     public class PasswordResetCode
     {
+
         [Key]
         public int Id { get; set; }
         public string UserId { get; set; }

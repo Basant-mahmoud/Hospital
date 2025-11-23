@@ -1,5 +1,6 @@
 ﻿using Clinic.Infrastructure.Persistence;
 using Hospital.Application.Interfaces.Payment;
+using Hospital.Domain.Enum;
 using Hospital.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Threading;
@@ -9,8 +10,8 @@ namespace Hospital.Infrastructure.PaymentRepAndService
 {
     public class PaymentRepository : IPaymentRepository
     {
-        private readonly AppDbContext _dbContext;
 
+        private readonly AppDbContext _dbContext;
         public PaymentRepository(AppDbContext dbContext)
         {
             _dbContext = dbContext;
@@ -23,7 +24,7 @@ namespace Hospital.Infrastructure.PaymentRepAndService
                 .Include(a => a.Patient)
                     .ThenInclude(p => p.User)
                 .Include(a => a.Doctor)
-                    .ThenInclude(d => d.User) // Added: Include Doctor's User for billing data
+                    .ThenInclude(d => d.User) 
                 .FirstOrDefaultAsync(a => a.AppointmentId == appointmentId, ct);
         }
 
@@ -47,7 +48,7 @@ namespace Hospital.Infrastructure.PaymentRepAndService
         public async Task<Hospital.Domain.Models.Payment?> GetPaymentByMerchantOrderIdAsync(string merchantOrderId, CancellationToken ct = default)
         {
             return await _dbContext.Payments
-                .Include(p => p.Appointment) // Include appointment for context
+                .Include(p => p.Appointment) 
                 .FirstOrDefaultAsync(p => p.PaymobMerchantOrderId == merchantOrderId, ct);
         }
 
@@ -58,6 +59,34 @@ namespace Hospital.Infrastructure.PaymentRepAndService
                 .FirstOrDefaultAsync(p => p.PaymobTransactionId == transactionId, ct);
         }
 
+        public async Task<Hospital.Domain.Models.Payment> CreatePendingPaymentAsync(int appointmentId, decimal amount, string currency = "EGP")
+        {
+            var payment = new Hospital.Domain.Models.Payment
+            {
+                AppointmentId = appointmentId,
+                Amount = amount,
+                Currency = currency,
+                Status = PaymentStatus.Pending,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            };
+
+            _dbContext.Payments.Add(payment);
+            await _dbContext.SaveChangesAsync();
+
+            return payment;
+        }
+         public async  Task<int> GetTodayCompletedForDoctorAsync(Hospital.Domain.Models.Payment payment)
+        {
+           _dbContext.Payments.Update(payment);
+           return await _dbContext.SaveChangesAsync();
+        }
+        public async Task<Hospital.Domain.Models.Payment?> GetPaymentByAppointmentIdAsync(int appointmentId, CancellationToken ct = default)
+        {
+            return await _dbContext.Payments
+                .FirstOrDefaultAsync(p => p.AppointmentId == appointmentId, ct);
+        }
 
     }
 }
+

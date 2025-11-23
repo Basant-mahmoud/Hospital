@@ -33,12 +33,8 @@ namespace Hospital.Infrastructure.Payment
             return result ?? throw new InvalidOperationException("Failed to parse Paymob auth response.");
         }
 
-        public async Task<PaymobOrderResponse> CreateOrderAsync(
-            string authToken,
-            decimal amount,
-            string currency,
-            string merchantOrderId,
-            CancellationToken ct = default)
+        public async Task<PaymobOrderResponse> CreateOrderAsync(string authToken,decimal amount,string currency,
+            string merchantOrderId,CancellationToken ct = default)
         {
             var amountCents = (int)(amount * 100);
             var request = new PaymobOrderRequest
@@ -58,16 +54,8 @@ namespace Hospital.Infrastructure.Payment
             return result ?? throw new InvalidOperationException("Failed to parse Paymob order response.");
         }
 
-        public async Task<PaymobPaymentKeyResponse> GeneratePaymentKeyAsync(
-            string authToken,
-            long paymobOrderId,
-            decimal amount,
-            string currency,
-            string customerEmail,
-            string fullName,
-            string phone,
-            string redirectUrl = null,
-            CancellationToken ct = default)
+        public async Task<PaymobPaymentKeyResponse> GeneratePaymentKeyAsync(string authToken,long paymobOrderId,decimal amount,string currency,
+            string customerEmail,string fullName, string phone, string redirectUrl = null,CancellationToken ct = default)
         {
             var amountCents = (int)(amount * 100);
             var names = fullName.Split(' ', 2);
@@ -96,19 +84,14 @@ namespace Hospital.Infrastructure.Payment
             response.EnsureSuccessStatusCode();
 
             PaymobPaymentKeyResponse? result = await response.Content.ReadFromJsonAsync<PaymobPaymentKeyResponse>(ct);
-
             return result ?? throw new InvalidOperationException("Failed to parse Paymob payment key response.");
         }
 
-        public async Task<PaymobPaymentStatusDto> CheckPaymentStatusAsync(
-            string paymentToken,
-            CancellationToken ct = default)
+        public async Task<PaymobPaymentStatusDto> CheckPaymentStatusAsync(string paymentToken,CancellationToken ct = default)
         {
             // This would require additional Paymob API endpoint
             // For now, return a basic implementation
             throw new NotImplementedException("Payment status check not yet implemented.");
         }
-
-
     }
 }

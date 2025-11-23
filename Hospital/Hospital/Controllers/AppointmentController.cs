@@ -1,5 +1,6 @@
 ﻿using Hospital.Application.DTO.Appointment;
 using Hospital.Application.Interfaces.Services;
+using Hospital.Controllers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hospital.API.Controllers
@@ -9,16 +10,20 @@ namespace Hospital.API.Controllers
     public class AppointmentController : ControllerBase
     {
         private readonly IAppointmentService _appointmentService;
+        private readonly ILogger<AppointmentController> _logger;
 
-        public AppointmentController(IAppointmentService appointmentService)
+        public AppointmentController(IAppointmentService appointmentService, ILogger<AppointmentController> logger)
         {
             _appointmentService = appointmentService;
+            _logger = logger;
         }
 
         // ---------------------- Add Appointment ----------------------
         [HttpPost]
         public async Task<IActionResult> Add([FromBody] AddAppointmentDto dto)
         {
+            _logger.LogInformation("Add Appointment called at {time}", DateTime.Now);
+
             var created = await _appointmentService.AddAsync(dto);
             return CreatedAtAction(nameof(GetById), new { id = created.AppointmentId }, created);
         }
@@ -27,6 +32,8 @@ namespace Hospital.API.Controllers
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById(int id)
         {
+            _logger.LogInformation("Get Appointment ByID called at {time}", DateTime.Now);
+
             var result = await _appointmentService.GetByIdAsync(id);
             return Ok(result);
         }
@@ -35,6 +42,8 @@ namespace Hospital.API.Controllers
         [HttpGet("doctor/{doctorId:int}")]
         public async Task<IActionResult> GetByDoctorId(int doctorId)
         {
+            _logger.LogInformation("Get Appointment by GetByDoctorId  called at {time}", DateTime.Now);
+
             var result = await _appointmentService.GetByDoctorId(doctorId);
             return Ok(result);
         }
@@ -43,14 +52,18 @@ namespace Hospital.API.Controllers
         [HttpGet("patient/{patientId:int}")]
         public async Task<IActionResult> GetByPatientId(int patientId)
         {
+            _logger.LogInformation("Get Appointment by GetByPatientId  called at {time}", DateTime.Now);
+
             var result = await _appointmentService.GetByPatientId(patientId);
             return Ok(result);
         }
 
-        // ---------------------- Delete Appointment ----------------------
+        // ---------------------- Delete Appointment ---------------------
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> Delete(int id)
         {
+            _logger.LogInformation("Delete Appointment called at {time}", DateTime.Now);
+
             await _appointmentService.DeleteAsync(id);
             return Ok(new { message = "Appointment deleted successfully." });
         }

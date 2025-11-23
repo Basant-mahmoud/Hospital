@@ -13,8 +13,6 @@ namespace Hospital.Domain.Models
         [Required, StringLength(120)] public string Name { get; set; } = null!;
         public string? Description { get; set; }
         [Url, StringLength(300)] public string? ImageURL { get; set; }
-        //public int? BranchId { get; set; }
-        //public Branch? Branch { get; set; }
         //public int? SpecializationId { get; set; }
         //public Specialization? Specialization { get; set; }
         public DateTime CreatedAt { get; set; }

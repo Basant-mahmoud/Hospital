@@ -14,24 +14,28 @@ namespace Hospital.Controllers
     public class ServicesController : ControllerBase
     {
         private readonly IServiceService _serviceService;
+        private readonly ILogger<ServicesController> _logger;
 
-        public ServicesController(IServiceService serviceService)
+        public ServicesController(IServiceService serviceService, ILogger<ServicesController> logger)
         {
             _serviceService = serviceService;
+            _logger = logger;
         }
 
-        // GET: api/services
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
+            _logger.LogInformation("get all services called at {time}", DateTime.Now);
+
             var services = await _serviceService.GetAllAsync();
             return Ok(services);
         }
 
-        // GET: api/services/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
+            _logger.LogInformation("get service by id  called at {time}", DateTime.Now);
+
             var service = await _serviceService.GetByIdAsync(id);
             if (service == null)
                 return NotFound();
@@ -39,10 +43,11 @@ namespace Hospital.Controllers
             return Ok(service);
         }
 
-        // POST: api/services
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateServiceDto dto)
         {
+            _logger.LogInformation("create services called at {time}", DateTime.Now);
+
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
@@ -53,6 +58,8 @@ namespace Hospital.Controllers
         [HttpPost("add-services-from-excel")]
         public async Task<IActionResult> AddServicesFromExcel(IFormFile file)
         {
+            _logger.LogInformation("all services by excel sheet services called at {time}", DateTime.Now);
+
             if (file == null || file.Length == 0)
                 return BadRequest("No file uploaded.");
 
@@ -63,7 +70,6 @@ namespace Hospital.Controllers
                 await file.CopyToAsync(stream);
                 stream.Position = 0;
 
-                // EPPlus النسخة القديمة ≤ 5.8
                 ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
                 using (var package = new ExcelPackage(stream))
@@ -81,7 +87,6 @@ namespace Hospital.Controllers
                             ImageURL = sheet.Cells[row, 3].Text,
                         };
 
-                        // Branch IDs → comma separated (مثال: "1,2,3")
                         var branches = sheet.Cells[row, 4].Text;
                         if (!string.IsNullOrEmpty(branches))
                         {
@@ -97,7 +102,6 @@ namespace Hospital.Controllers
             }
 
             var results = new List<object>();
-
             foreach (var service in services)
             {
                 try
@@ -125,10 +129,11 @@ namespace Hospital.Controllers
             return Ok(results);
         }
 
-        // PUT: api/services
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] UpdateServiceDto dto)
         {
+            _logger.LogInformation("update services called at {time}", DateTime.Now);
+
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
@@ -136,10 +141,11 @@ namespace Hospital.Controllers
             return Ok("updated Successfully");
         }
 
-        // DELETE: api/services/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
+            _logger.LogInformation("delete services called at {time}", DateTime.Now);
+
             var deleted = await _serviceService.DeleteAsync(id);
             if (!deleted) return NotFound();
             return Ok("Deleted Successfully");

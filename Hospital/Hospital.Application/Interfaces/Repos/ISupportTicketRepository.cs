@@ -9,11 +9,11 @@ namespace Hospital.Application.Interfaces.Repos
 {
     public interface ISupportTicketRepository
     {
-        Task<SupportTicket> AddAsync(SupportTicket ticket); // patient creates
-        Task<SupportTicket?> GetByIdAsync(int ticketId);    // get one
-        Task<IEnumerable<SupportTicket>> GetAllAsync();     // all tickets (admin)
-        Task<IEnumerable<SupportTicket>> GetAllByPatientIdAsync(string patientId); // patient and admin
-        Task<int> UpdateAsync(SupportTicket ticket);        // admin only
-        Task<int> DeleteAsync(int ticketId);               // admin only
+        Task<SupportTicket> AddAsync(SupportTicket ticket); 
+        Task<SupportTicket?> GetByIdAsync(int ticketId);    
+        Task<IEnumerable<SupportTicket>> GetAllAsync();     
+        Task<IEnumerable<SupportTicket>> GetAllByPatientIdAsync(string patientId);
+        Task<int> UpdateAsync(SupportTicket ticket);       
+        Task<int> DeleteAsync(int ticketId);               
     }
 }
