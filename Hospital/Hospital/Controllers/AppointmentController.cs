@@ -67,5 +67,22 @@ namespace Hospital.API.Controllers
             await _appointmentService.DeleteAsync(id);
             return Ok(new { message = "Appointment deleted successfully." });
         }
+
+        [HttpGet("GetAll")]
+        public async Task<IActionResult> GetAll()
+        {
+            _logger.LogInformation("Get All Appointments called at {time}", DateTime.Now);
+            var result = await _appointmentService.GetAllAsync();
+            return Ok(result);
+        }
+        [HttpPut("MarkAsCompleted/{id:int}")]
+        public async Task<IActionResult> MarkAsCompleted(int id)
+        {
+            _logger.LogInformation("Mark Appointment as Completed called at {time}", DateTime.Now);
+            var result = await _appointmentService.MarkAsCompletedAsync(id);
+            return Ok(result);
+        }
+
+
     }
 }

@@ -11,6 +11,7 @@ using Hospital.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System.ComponentModel.DataAnnotations;
+using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
 
 namespace Hospital.Infrastructure.Services
 {
@@ -290,7 +291,36 @@ namespace Hospital.Infrastructure.Services
             }
 
             var today = DateOnly.FromDateTime(DateTime.UtcNow);
-            var appointments = await _doctorRepo.GetTodayCompletedForDoctorAsync(doctorId, today);
+            var appointments = await _doctorRepo.GetAppoimentsByDateForDoctorAsync(doctorId, today);
+
+            if (appointments == null || !appointments.Any())
+            {
+                _logger.LogInformation("No appointments found for doctor ID {DoctorId} today", doctorId);
+                return new List<AppoinmentandPaientDetaliesDto>();
+            }
+
+            return _mapper.Map<List<AppoinmentandPaientDetaliesDto>>(appointments);
+        }
+        public async Task<List<AppoinmentandPaientDetaliesDto>> GetAppoinmentsForDoctorByDateAsync(int doctorId , DateOnly date)
+        {
+            _logger.LogInformation("Fetching {date}'s appointments for doctor ID {DoctorId}",date , doctorId);
+
+            if (doctorId <= 0) throw new ArgumentException("Invalid doctor ID.");
+
+            var doctor = await _doctorRepo.GetAsync(doctorId);
+            if (doctor == null)
+            {
+                _logger.LogWarning("Doctor with ID {DoctorId} does not exist", doctorId);
+                throw new KeyNotFoundException($"Doctor with ID {doctorId} does not exist.");
+            }
+
+            if (date < DateOnly.FromDateTime(DateTime.UtcNow))
+            {
+                _logger.LogWarning("The provided date {Date} is in the past", date);
+                throw new ArgumentException("The provided date cannot be in the past.");
+            }
+
+            var appointments = await _doctorRepo.GetAppoimentsByDateForDoctorAsync(doctorId, date);
 
             if (appointments == null || !appointments.Any())
             {
@@ -320,5 +350,69 @@ namespace Hospital.Infrastructure.Services
 
             return true;
         }
+
+        public async Task<int> CancelAppointmentsForDoctorbyDate(int id , DateOnly date)
+        {
+            _logger.LogInformation("Cancelling appointments for doctor ID {DoctorId} on date {Date}", id, DateTime.UtcNow);
+            var doctor = await _doctorRepo.GetAsync(id);
+            if (doctor == null)
+            {
+                _logger.LogWarning("Doctor with ID {DoctorId} does not exist", id);
+                throw new KeyNotFoundException($"Doctor with ID {id} does not exist.");
+            }
+            var appointments = await _doctorRepo.GetAppoimentsByDateForDoctorAsync(id, date);
+            if (appointments == null || !appointments.Any())
+            {
+                _logger.LogInformation("No appointments found for doctor ID {DoctorId} on date {Date}", id, DateTime.UtcNow);
+                return 0;
+            }
+            int cancelledCount = 0;
+            foreach (var appointment in appointments)
+            {
+                if (appointment.Status != AppointmentStatus.Cancelled)
+                {
+                    appointment.Status = AppointmentStatus.Cancelled;
+                    appointment.UpdatedAt = DateTime.UtcNow;
+                    var result = await _appointmentRepository.UpdateAsync(appointment);
+                    if (result == 0) {
+                        _logger.LogWarning(
+                            "Failed to update appointment {AppointmentId} for doctor ID {DoctorId} on date {AppointmentDate}",
+                            appointment.AppointmentId, id, date);
+                    }
+                    else
+                    {
+                        // send email to patient about cancellation
+                        // Email content
+                        var html = $@"
+                        <p>Dear {appointment.Patient.User.FullName},</p>
+
+                        <p>We regret to inform you that your appointment scheduled for <b>{appointment.Date}</b> with <b>Dr. {appointment.Doctor.User.FullName}</b> has been cancelled due to unforeseen circumstances.</p>
+
+                        <p>We sincerely apologize for any inconvenience this may cause. Our team will be happy to assist you in booking another available time that best fits your schedule.</p>
+
+                        <p>If you would like to reschedule or need additional support, please feel free to contact us at your convenience.</p>
+
+                        <p>Kind regards,<br/>
+                        Hospital Support Team</p>";
+
+
+
+                        try
+                        {
+                            await _emailService.SendEmailAsync(appointment.Patient.User.Email, "Appoinment Cancellation", html);
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new InvalidOperationException($"Failed to send cancellation email: {ex.Message}");
+                        }
+                    }
+                    cancelledCount++;
+                }
+            }
+            _logger.LogInformation("Cancelled {CancelledCount} appointments for doctor ID {DoctorId} on date {Date}", cancelledCount, id, DateTime.UtcNow);
+            return cancelledCount;
+
+        }
+
     }
 }

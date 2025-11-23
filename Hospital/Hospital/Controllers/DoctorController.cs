@@ -227,6 +227,30 @@ namespace Hospital.Controllers
             return Ok(result);
         }
 
+        [HttpGet("doctor/{doctorId:int}/date/{date:datetime}")]
+        public async Task<IActionResult> GetAppointmentsForDoctor(int doctorId, DateTime date)
+        {
+            _logger.LogInformation("GetAppointmentsForDoctor called at {time}", DateTime.Now);
+
+            var dateOnly = DateOnly.FromDateTime(date);
+
+            var result = await _doctorService.GetAppoinmentsForDoctorByDateAsync(doctorId, dateOnly);
+            return Ok(result);
+        }
+
+        [HttpPut("doctor/{doctorId:int}/date/{date:datetime}")]
+        public async Task<IActionResult> CancelAppointmentsForDoctorbyDate(int doctorId, DateTime date)
+        {
+            _logger.LogInformation("GetAppointmentsForDoctor called at {time}", DateTime.Now);
+
+            var dateOnly = DateOnly.FromDateTime(date);
+
+            var result = await _doctorService.CancelAppointmentsForDoctorbyDate(doctorId, dateOnly);
+            return Ok($"{result} appointment(s) were successfully cancelled.");
+
+        }
+
+
         [HttpPut("convertStatuesOFPaymentToPayied/{Appoimentid:int}")]
         public async Task<IActionResult> convertStatuesOFPaymentToPayied(int Appoimentid)
         {

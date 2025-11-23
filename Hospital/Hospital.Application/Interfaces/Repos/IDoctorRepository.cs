@@ -16,6 +16,6 @@ namespace Hospital.Application.Interfaces.Repos
         Task<IEnumerable<Doctor>> GetAllByBranchAsync(int branchId);
         Task<IEnumerable<Doctor>> GetDoctorsBySpecializationIdAsync(int specializationId);
         Task<IEnumerable<Doctor>> GetAllAsync();
-        Task<List<Appointment>> GetTodayCompletedForDoctorAsync(int doctorId, DateOnly date);
+        Task<List<Appointment>> GetAppoimentsByDateForDoctorAsync(int doctorId, DateOnly date);
     }
 }

@@ -161,7 +161,27 @@ namespace Hospital.Controllers
 
             return Ok(result);
         }
-       
+
+        [HttpGet("getAdminData")]
+        [Authorize(Roles ="Admin")]  // Make sure the endpoint requires a token
+        public IActionResult GetAdminData()
+        {
+            _logger.LogInformation("GetAdminData called at {time}", DateTime.Now);
+
+            // Get User ID from JWT claim "uid"
+            var userId = User.FindFirst("uid")?.Value;
+
+            if (userId == null)
+                return Unauthorized("Invalid token or user ID not found.");
+
+            // TODO: Call service/repository to get user data
+            var userData = _authService.GetUserDetails(userId);
+
+
+
+            return Ok(userData.Result);
+        }
+
     }
 
 }

@@ -38,7 +38,14 @@ namespace Hospital.Infrastructure.Repository
                 .Include(a => a.Branch)
                 .FirstOrDefaultAsync(a => a.AppointmentId == id);
         }
-
+        public async Task<IEnumerable<Appointment>> GetAllAsync()
+        {
+            return await _context.Appointments
+                .Include(a => a.Patient)
+                .Include(a => a.Doctor)
+                .Include(a => a.Branch)
+                .ToListAsync();
+        }
 
         public async Task<IEnumerable<Appointment>> GetByDoctorIdAsync(int doctorId)
         {
@@ -65,6 +72,12 @@ namespace Hospital.Infrastructure.Repository
                     a.DoctorId == doctorId &&
                     a.Date == date &&
                     a.Time == time);
+        }
+
+        public async Task<int> UpdateAsync(Appointment appointment)
+        {
+            _context.Appointments.Update(appointment);
+            return await _context.SaveChangesAsync();
         }
 
     }

@@ -204,5 +204,33 @@ namespace Hospital.Infrastructure.Services
             var records = await _appointmentRepo.GetByPatientIdAsync(PatientId);
             return _mapper.Map<List<AppointmentDto>>(records ?? new List<Appointment>());
         }
+
+        public async Task<List<AppointmentDto>> GetAllAsync()
+        {
+            _logger.LogInformation("Fetching all appointments");
+            var records = await _appointmentRepo.GetAllAsync();
+            return _mapper.Map<List<AppointmentDto>>(records ?? new List<Appointment>());
+        }
+
+        public async Task<string> MarkAsCompletedAsync(int id)
+        {
+            var appointment = await _appointmentRepo.GetAsync(id);
+            if (appointment == null)
+            {
+                _logger.LogWarning("Appointment with ID {AppointmentId} not found", id);
+                throw new KeyNotFoundException($"Appointment with ID {id} not found.");
+            }
+            appointment.Status = AppointmentStatus.Completed;
+            appointment.UpdatedAt = DateTime.UtcNow;
+            var result = await _appointmentRepo.UpdateAsync(appointment);
+            _logger.LogInformation("Appointment with ID {AppointmentId} marked as completed", id);
+            if (result == null)
+            {
+                _logger.LogError("Failed to update appointment with ID {AppointmentId}", id);
+                throw new InvalidOperationException("Failed to update appointment status.");
+
+            }
+            return "Appointment marked as completed successfully.";
+        }
     }
 }
