@@ -1,4 +1,5 @@
 ﻿using Hospital.Domain.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,7 @@ namespace Hospital.Application.Interfaces.Repos
         //Task<bool > convertStatuesOFPaymentToPayied(Hospital.Domain.Models.Payment payment);
         Task<IEnumerable<Appointment>> GetAllAsync();
         Task<int> UpdateAsync(Appointment appointment);
+        Task<int> UpdateRangeAsync(IEnumerable<Appointment> appointments);
 
     }
 }
