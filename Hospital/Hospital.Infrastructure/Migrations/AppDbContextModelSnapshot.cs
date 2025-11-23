@@ -395,6 +395,32 @@ namespace Hospital.Infrastructure.Migrations
                     b.ToTable("News", (string)null);
                 });
 
+            modelBuilder.Entity("Hospital.Domain.Models.PasswordResetCode", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ExpireAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("PasswordResetCodes");
+                });
+
             modelBuilder.Entity("Hospital.Domain.Models.Patient", b =>
                 {
                     b.Property<int>("PatientId")
@@ -1017,6 +1043,17 @@ namespace Hospital.Infrastructure.Migrations
                     b.Navigation("Branch");
                 });
 
+            modelBuilder.Entity("Hospital.Domain.Models.PasswordResetCode", b =>
+                {
+                    b.HasOne("Hospital.Domain.Models.User", "User")
+                        .WithMany("PasswordResetCodes")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Hospital.Domain.Models.Patient", b =>
                 {
                     b.HasOne("Hospital.Domain.Models.User", "User")
@@ -1154,6 +1191,8 @@ namespace Hospital.Infrastructure.Migrations
                     b.Navigation("CreatedAppointments");
 
                     b.Navigation("DoctorProfile");
+
+                    b.Navigation("PasswordResetCodes");
 
                     b.Navigation("PatientProfile");
 

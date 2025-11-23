@@ -22,6 +22,7 @@ namespace Clinic.Infrastructure.Persistence
         public DbSet<News> News => Set<News>();
         public DbSet<Event> Events => Set<Event>();
         public DbSet<Banner> Banners => Set<Banner>();
+        public DbSet<PasswordResetCode> PasswordResetCodes => Set<PasswordResetCode>();
         public DbSet<Payment> Payments => Set<Payment>();
 
         protected override void OnModelCreating(ModelBuilder model)

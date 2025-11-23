@@ -2,6 +2,7 @@
 using Hospital.Application.Interfaces.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using OfficeOpenXml;
 
 namespace Hospital.Controllers
 {
@@ -20,6 +21,80 @@ namespace Hospital.Controllers
         {
             var result = await _service.AddAsync(dto);
             return CreatedAtAction(nameof(Get), new { id = result.SpecializationId }, result);
+        }
+
+        [HttpPost("add-from-excel")]
+        public async Task<IActionResult> AddSpecializationsFromExcel(IFormFile file)
+        {
+            if (file == null || file.Length == 0)
+                return BadRequest("No file uploaded.");
+
+            var specializations = new List<CreateSpecialization>();
+
+            using (var stream = new MemoryStream())
+            {
+                await file.CopyToAsync(stream);
+                stream.Position = 0;
+
+                // 🌟 EPPlus License setup للنسخ القديمة 5.8
+                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+                using (var package = new ExcelPackage(stream))
+                {
+                    var sheet = package.Workbook.Worksheets.FirstOrDefault();
+                    if (sheet == null)
+                        return BadRequest("Excel file has no sheets.");
+
+                    for (int row = 2; row <= sheet.Dimension.End.Row; row++)
+                    {
+                        var dto = new CreateSpecialization
+                        {
+                            Name = sheet.Cells[row, 1].Text,
+                            Description = sheet.Cells[row, 2].Text
+                        };
+
+                        // Branch IDs → comma separated (مثال: "1,2,3")
+                        var branches = sheet.Cells[row, 3].Text;
+                        if (!string.IsNullOrEmpty(branches))
+                        {
+                            dto.BranchIds = branches
+                                .Split(",", StringSplitOptions.RemoveEmptyEntries)
+                                .Select(id => int.Parse(id.Trim()))
+                                .ToList();
+                        }
+
+                        specializations.Add(dto);
+                    }
+                }
+            }
+
+            var results = new List<object>();
+
+            foreach (var specialization in specializations)
+            {
+                try
+                {
+                    var created = await _service.AddAsync(specialization);
+
+                    results.Add(new
+                    {
+                        specialization.Name,
+                        Status = "Success",
+                        SpecializationId = created.SpecializationId
+                    });
+                }
+                catch (Exception ex)
+                {
+                    results.Add(new
+                    {
+                        specialization.Name,
+                        Status = "Failed",
+                        Error = ex.Message
+                    });
+                }
+            }
+
+            return Ok(results);
         }
         [HttpGet("Get/{id}")]
         public async Task<ActionResult<SpecializationDTO>> Get(int id)

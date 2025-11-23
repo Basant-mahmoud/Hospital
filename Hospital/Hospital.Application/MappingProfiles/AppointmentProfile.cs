@@ -29,6 +29,12 @@ namespace Hospital.Application.MappingProfiles
                 .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => src.User.FullName))
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.User.Email))
                 .ForMember(dest => dest.PhoneNumber, opt => opt.MapFrom(src => src.User.PhoneNumber));
+
+            // Appointment → AppoinmentandPaientDetaliesDto
+            CreateMap<Appointment, AppoinmentandPaientDetaliesDto>()
+                .ForMember(dest => dest.appointmentDetails, opt => opt.MapFrom(src => src))
+                .ForMember(dest => dest.patientInfo, opt => opt.MapFrom(src => src.Patient));
+
         }
     }
 }

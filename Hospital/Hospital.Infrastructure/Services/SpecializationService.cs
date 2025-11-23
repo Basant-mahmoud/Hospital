@@ -60,17 +60,22 @@ namespace Hospital.Infrastructure.Services
 
         public async Task<int> DeleteAsync(GetSpecializationDto dto)
         {
-            if(dto.BranchId == null)
-                throw new ArgumentNullException("BranchId must exist");
-            var branch = await _branchRepo.GetByIdAsync(dto.BranchId);
-            if (branch == null)
-                throw new KeyNotFoundException("Branch not found.");
             var specialization = await _specRepo.GetAsync(dto.SpecializationId);
             if (specialization == null)
                 throw new KeyNotFoundException("Specialization not found.");
 
-            return await _specRepo.DeleteAsync(specialization);
+            // find branch
+            var branch = specialization.Branches
+                .FirstOrDefault(b => b.BranchId == dto.BranchId);
+            if (branch == null)
+                throw new KeyNotFoundException("Specialization does not belong to this branch.");
+
+            // remove only the relation
+            specialization.Branches.Remove(branch);
+            
+            return await _specRepo.UpdateAsync(specialization);
         }
+
 
         public async Task<IEnumerable<SpecializationInfoDto>> GetAllByBranchAsync(int branchId)
         {
@@ -101,8 +106,9 @@ namespace Hospital.Infrastructure.Services
             if (string.IsNullOrWhiteSpace(dto.Name))
                 throw new ArgumentException("Specialization name is required.");
 
-            // Check for duplicates in other branches
             var existingSpecs = await _specRepo.GetAllSpecializationInSystemAsync();
+
+            // Check for duplicates in other branches
             foreach (var branchId in dto.BranchIds)
             {
                 if (existingSpecs.Any(s =>
@@ -110,31 +116,44 @@ namespace Hospital.Infrastructure.Services
                     s.Name.Trim().ToLower() == dto.Name.Trim().ToLower() &&
                     s.Branches.Any(b => b.BranchId == branchId)))
                 {
-                    var branch = await _branchRepo.GetByIdAsync(branchId);
                     throw new InvalidOperationException(
-                        $"Specialization '{dto.Name}' already exists in branch '{branch?.BranchName}'.");
+                        $"Specialization '{dto.Name}' already exists in branch '{branchId}'.");
                 }
             }
 
             var branches = await _branchRepo.GetBranchesByIdsAsync(dto.BranchIds);
-            // Fail if any branch is missing
+
             if (branches.Count != dto.BranchIds.Count)
             {
                 var missingBranchIds = dto.BranchIds.Except(branches.Select(b => b.BranchId));
                 throw new KeyNotFoundException($"Branches with IDs {string.Join(", ", missingBranchIds)} not found.");
             }
 
+            // Update fields
             specialization.Name = dto.Name;
             specialization.Description = dto.Description;
             specialization.UpdatedAt = DateTime.UtcNow;
 
-            // Add only branches not already assigned
+            // Remove branches that are no longer selected
+            var branchesToRemove = specialization.Branches
+                .Where(b => !dto.BranchIds.Contains(b.BranchId))
+                .ToList();
+
+            foreach (var branch in branchesToRemove)
+                specialization.Branches.Remove(branch);
+
+            // Add new branches that are not already assigned
             foreach (var branch in branches)
             {
                 if (!specialization.Branches.Any(b => b.BranchId == branch.BranchId))
+                {
                     specialization.Branches.Add(branch);
+                }
             }
+
             return await _specRepo.UpdateAsync(specialization);
         }
+
+
     }
 }

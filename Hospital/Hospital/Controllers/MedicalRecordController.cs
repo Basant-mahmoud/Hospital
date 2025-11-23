@@ -71,8 +71,14 @@ namespace Hospital.Controllers
             var records = await _medicalRecordService.GetByPatientId(patientId);
             return Ok(records);
         }
+        [HttpGet("records/doctor/{doctorId}/patient/{patientId}")]
+        public async Task<IActionResult> GetHistory(int doctorId, int patientId)
+        {
+            var result = await _medicalRecordService.GetRecordsBetweenDoctorAndPatientAsync(doctorId, patientId);
+            return Ok(result);
+        }
 
-       
-        
+
+
     }
 }

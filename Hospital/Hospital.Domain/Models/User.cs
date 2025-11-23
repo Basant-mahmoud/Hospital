@@ -26,7 +26,7 @@ namespace Hospital.Domain.Models
         public Patient? PatientProfile { get; set; }
 
         public ICollection<Appointment> CreatedAppointments { get; set; } = new List<Appointment>();
-
+        public ICollection<PasswordResetCode> PasswordResetCodes { get; set; } = new List<PasswordResetCode>();
 
         public string? RefreshToken { get; set; }
         public DateTime RefreshTokenExpiryTime { get; set; }

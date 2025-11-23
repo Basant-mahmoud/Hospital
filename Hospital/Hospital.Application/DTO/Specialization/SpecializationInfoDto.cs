@@ -15,6 +15,7 @@ namespace Hospital.Application.DTO.Specialization
         public string? Description { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
-        public ICollection<DoctorDto> Doctors { get; set; } = new List<DoctorDto>();
+        public List<BranchMiniDto> Branches { get; set; } = new();
+        public ICollection<DoctorMiniDto> Doctors { get; set; } = new List<DoctorMiniDto>();
     }
 }

@@ -126,5 +126,30 @@ namespace Hospital.Infrastructure.Services
             return _mapper.Map<List<MedicalRecordDto>>(records);
         }
 
+        public async Task<List<MedicalRecordDto>> GetRecordsBetweenDoctorAndPatientAsync(int doctorId, int patientId)
+        {
+            if (doctorId == 0)
+                throw new Exception("Doctor Id Not Valied");
+            // Check doctor
+            var doctor = await _doctorRepoy.GetAsync(doctorId);
+            if (doctor == null)
+                throw new Exception($"Doctor with Id {doctorId} not found");
+            if (doctorId == 0)
+                throw new Exception("Patient Id Not Valied");
+            // Check patient
+            var patient = await _patientService.GetPatientByIdAsync(patientId);
+            if (patient == null)
+                throw new Exception($"Patient with Id {patientId} not found");
+
+            // Fetch record
+            var records = await _medicalRecordRepo.GetByDoctorAndPatientAsync(doctorId, patientId);
+
+            if (records == null || !records.Any())
+                return new List<MedicalRecordDto>(); 
+
+            return _mapper.Map<List<MedicalRecordDto>>(records);
+        }
+
+
     }
 }

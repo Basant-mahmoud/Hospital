@@ -64,6 +64,17 @@ namespace Hospital.Infrastructure.Repository
                 .Where(m => m.PatientId == patientId)
                 .ToListAsync();
         }
+
+        public async Task<IEnumerable<MedicalRecord>> GetByDoctorAndPatientAsync(int doctorId, int patientId)
+        {
+            return await _dbContext.MedicalRecords
+                .Include(r => r.Doctor).ThenInclude(d => d.User)
+                .Include(r => r.Patient).ThenInclude(p => p.User)
+                .Include(r => r.Appointment).ThenInclude(a => a.Branch)
+                .Where(r => r.DoctorId == doctorId && r.PatientId == patientId)
+                .ToListAsync();
+        }
+
         public async Task<MedicalRecord> GetByIdWithRelationsAsync(int id)
         {
             return await _dbContext.MedicalRecords
