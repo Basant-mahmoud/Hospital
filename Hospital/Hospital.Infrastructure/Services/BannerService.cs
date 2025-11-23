@@ -67,9 +67,6 @@ namespace Hospital.Infrastructure.Services
 
             await _bannerRepository.DeleteAsync(id);
             return true;
-
-
-
         }
     }
 }

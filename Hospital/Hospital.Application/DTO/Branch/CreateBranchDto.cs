@@ -9,6 +9,7 @@ namespace Hospital.Application.DTO.Branch
 {
     public class CreateBranchDto
     {
+
         [Required, StringLength(150)]
         public string BranchName { get; set; } = null!;
 

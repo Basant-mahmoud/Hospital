@@ -10,8 +10,8 @@ namespace Hospital.Infrastructure.PaymentRepAndService
 {
     public class PaymentRepository : IPaymentRepository
     {
-        private readonly AppDbContext _dbContext;
 
+        private readonly AppDbContext _dbContext;
         public PaymentRepository(AppDbContext dbContext)
         {
             _dbContext = dbContext;
@@ -24,7 +24,7 @@ namespace Hospital.Infrastructure.PaymentRepAndService
                 .Include(a => a.Patient)
                     .ThenInclude(p => p.User)
                 .Include(a => a.Doctor)
-                    .ThenInclude(d => d.User) // Added: Include Doctor's User for billing data
+                    .ThenInclude(d => d.User) 
                 .FirstOrDefaultAsync(a => a.AppointmentId == appointmentId, ct);
         }
 
@@ -48,7 +48,7 @@ namespace Hospital.Infrastructure.PaymentRepAndService
         public async Task<Hospital.Domain.Models.Payment?> GetPaymentByMerchantOrderIdAsync(string merchantOrderId, CancellationToken ct = default)
         {
             return await _dbContext.Payments
-                .Include(p => p.Appointment) // Include appointment for context
+                .Include(p => p.Appointment) 
                 .FirstOrDefaultAsync(p => p.PaymobMerchantOrderId == merchantOrderId, ct);
         }
 
@@ -58,6 +58,7 @@ namespace Hospital.Infrastructure.PaymentRepAndService
                 .Include(p => p.Appointment)
                 .FirstOrDefaultAsync(p => p.PaymobTransactionId == transactionId, ct);
         }
+
         public async Task<Hospital.Domain.Models.Payment> CreatePendingPaymentAsync(int appointmentId, decimal amount, string currency = "EGP")
         {
             var payment = new Hospital.Domain.Models.Payment
@@ -86,9 +87,6 @@ namespace Hospital.Infrastructure.PaymentRepAndService
                 .FirstOrDefaultAsync(p => p.AppointmentId == appointmentId, ct);
         }
 
-
     }
-
-
 }
 

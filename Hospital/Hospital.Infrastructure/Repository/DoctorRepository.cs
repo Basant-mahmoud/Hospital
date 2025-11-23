@@ -9,7 +9,10 @@ namespace Hospital.Infrastructure.Repos
     public class DoctorRepository : IDoctorRepository
     {
         private readonly AppDbContext _context;
-        public DoctorRepository(AppDbContext context) { _context = context; }
+        public DoctorRepository(AppDbContext context) 
+        {
+            _context = context; 
+        }
 
         public async Task<Doctor> AddAsync(Doctor doctor)
         {

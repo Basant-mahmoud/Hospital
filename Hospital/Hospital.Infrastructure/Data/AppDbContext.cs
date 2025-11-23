@@ -9,7 +9,6 @@ namespace Clinic.Infrastructure.Persistence
     public class AppDbContext : IdentityDbContext<User>
     {
         public AppDbContext(DbContextOptions options) : base(options) { }
-
         public DbSet<Branch> Branches => Set<Branch>();
         public DbSet<Specialization> Specializations => Set<Specialization>();
         public DbSet<Doctor> Doctors => Set<Doctor>();
@@ -33,9 +32,9 @@ namespace Clinic.Infrastructure.Persistence
                 d => d.ToDateTime(TimeOnly.MinValue),
                 dt => DateOnly.FromDateTime(DateTime.SpecifyKind(dt, DateTimeKind.Utc)));
 
-            var timeOnlyConverter = new ValueConverter<TimeOnly, TimeSpan>(
-                t => t.ToTimeSpan(),
-                ts => TimeOnly.FromTimeSpan(ts));
+            //var timeOnlyConverter = new ValueConverter<TimeOnly, TimeSpan>(
+            //    t => t.ToTimeSpan(),
+            //    ts => TimeOnly.FromTimeSpan(ts));
 
             var genderConverter = new EnumToStringConverter<GenderType>();
             var apptStatusConverter = new EnumToStringConverter<AppointmentStatus>();
@@ -236,7 +235,6 @@ namespace Clinic.Infrastructure.Persistence
             model.Entity<Payment>(e =>
             {
                 e.ToTable("Payments");
-
                 e.Property(p => p.Amount).HasPrecision(10, 2);
                 e.Property(p => p.Currency).HasMaxLength(3);
                 e.Property(p => p.Status)

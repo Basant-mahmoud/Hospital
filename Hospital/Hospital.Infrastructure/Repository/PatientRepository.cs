@@ -12,8 +12,8 @@ namespace Hospital.Infrastructure.Repository
 {
     public class PatientRepository : IPatientRepository
     {
-        private readonly AppDbContext _dbContext;
 
+        private readonly AppDbContext _dbContext;
         public PatientRepository(AppDbContext dbContext)
         {
             _dbContext = dbContext;
@@ -24,6 +24,7 @@ namespace Hospital.Infrastructure.Repository
             _dbContext.Patients.Add(patient);
             await _dbContext.SaveChangesAsync();
         }
+
         public async Task<Patient?> GetByIdAsync(int id)
         {
             return await _dbContext.Patients
@@ -33,7 +34,6 @@ namespace Hospital.Infrastructure.Repository
                         .ThenInclude(d => d.User)
                 .FirstOrDefaultAsync(p => p.PatientId == id);
         }
-
 
         public async Task<List<Patient>> GetAllAsync()
         {

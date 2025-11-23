@@ -71,7 +71,7 @@ namespace Hospital.Controllers
             return Ok(schedules);
         }
 
-        // Get schedules by day name (e.g., "Monday")
+        // Get schedules by day name (e.g,"Monday")
         [HttpGet("day/{dayOfWeek}")]
         public async Task<ActionResult<IEnumerable<ScheduleDto>>> GetDoctorsByDay(string dayOfWeek)
         {

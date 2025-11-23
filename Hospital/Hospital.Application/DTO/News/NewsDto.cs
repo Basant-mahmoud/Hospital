@@ -9,7 +9,7 @@ namespace Hospital.Application.DTO.News
 {
     public class NewsDto
     {
-         public int NewsId { get; set; }
+        public int NewsId { get; set; }
         [Required, StringLength(150)] public string Title { get; set; } = null!;
         public string? Description { get; set; }
         [Url, StringLength(300)] public string? ImageURL { get; set; }

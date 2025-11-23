@@ -18,8 +18,6 @@ namespace Hospital.Infrastructure.Services
         private readonly ISupportTicketRepository _repo;
         private readonly IPatientRepository _PatientRepository;
         private readonly IMapper _mapper;
-
-
         public SupportTicketService(ISupportTicketRepository repo, IMapper mapper, IPatientRepository PatientRepository)
         {
             _repo = repo;
@@ -27,7 +25,6 @@ namespace Hospital.Infrastructure.Services
             _PatientRepository = PatientRepository;
         }
 
-        // Patient creates a ticket
         public async Task<SupportTicketDto> CreateAsync(CreateSupportTicketDto dto)
         {
             if (dto == null)
@@ -37,28 +34,24 @@ namespace Hospital.Infrastructure.Services
             if (string.IsNullOrWhiteSpace(dto.Subject) || string.IsNullOrWhiteSpace(dto.Message))
                 throw new ArgumentException("Subject and Message are required.");
 
-            // 1️⃣ Get the userId from PatientId
+            // Get the userId from PatientId
             var patient = await _PatientRepository.GetByIdAsync(dto.PatientId);
             if (patient == null)
                 throw new KeyNotFoundException("Patient not found.");
 
-            // 2️⃣ Map DTO -> SupportTicket
+            // Map DTO -> SupportTicket
             var ticket = _mapper.Map<SupportTicket>(dto);
 
-            // 3️⃣ Set UserId, Status, timestamps manually
+            // Set UserId, Status, timestamps manually
             ticket.UserId = patient.UserId;
             ticket.Status = Domain.Enum.TicketStatus.Open;
             ticket.CreatedAt = DateTime.UtcNow;
             ticket.UpdatedAt = DateTime.UtcNow;
 
-            // 4️⃣ Save ticket
             var created = await _repo.AddAsync(ticket);
-
-            // 5️⃣ Return mapped DTO
             return _mapper.Map<SupportTicketDto>(created);
         }
 
-        // Admin updates ticket
         public async Task<SupportTicketDto> UpdateAsync(UpdateSupportTicketDto dto)
         {
             if (dto == null)
@@ -73,16 +66,12 @@ namespace Hospital.Infrastructure.Services
 
             // Only map allowed fields (Response, Status)
             _mapper.Map(dto, ticket);
-
             ticket.UpdatedAt = DateTime.UtcNow;
 
             await _repo.UpdateAsync(ticket);
-
             return _mapper.Map<SupportTicketDto>(ticket);
         }
 
-
-        // Delete ticket
         public async Task<bool> DeleteAsync(int ticketId)
         {
             var existing = await _repo.GetByIdAsync(ticketId);
@@ -92,7 +81,6 @@ namespace Hospital.Infrastructure.Services
             return true;
         }
 
-        // Get ticket by Id
         public async Task<SupportTicketDto?> GetByIdAsync(int ticketId)
         {
             var ticket = await _repo.GetByIdAsync(ticketId);

@@ -13,11 +13,9 @@ namespace Hospital.Application.DTO.Doctor
         public string? UserName { get; set; }
         public string? Email { get; set; }
         public string? FullName { get; set; }
-
         public int SpecializationId { get; set; }
         public string? SpecializationName { get; set; }
         public string? ImageURL { get; set; }
-
         public ICollection<int> BranchID { get; set; } = new List<int>();
         public string? Biography { get; set; }
         public int? ExperienceYears { get; set; }

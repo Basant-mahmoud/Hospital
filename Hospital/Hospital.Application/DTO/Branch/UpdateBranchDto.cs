@@ -9,6 +9,7 @@ namespace Hospital.Application.DTO.Branch
 {
     public class UpdateBranchDto
     {
+
         [Required]
         public int BranchId { get; set; }
 

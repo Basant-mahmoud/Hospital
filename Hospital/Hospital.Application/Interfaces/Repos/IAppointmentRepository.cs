@@ -15,7 +15,7 @@ namespace Hospital.Application.Interfaces.Repos
         Task<IEnumerable<Appointment>> GetByDoctorIdAsync(int doctorId);
         Task<IEnumerable<Appointment>> GetByPatientIdAsync(int patientId);
         Task<bool> ExistsAsync(int doctorId, DateOnly date, DateTime time);
-    //    Task<bool > convertStatuesOFPaymentToPayied(Hospital.Domain.Models.Payment payment);
+        //Task<bool > convertStatuesOFPaymentToPayied(Hospital.Domain.Models.Payment payment);
 
     }
 }

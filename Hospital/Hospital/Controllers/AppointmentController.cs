@@ -47,7 +47,7 @@ namespace Hospital.API.Controllers
             return Ok(result);
         }
 
-        // ---------------------- Delete Appointment ----------------------
+        // ---------------------- Delete Appointment ---------------------
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> Delete(int id)
         {

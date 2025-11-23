@@ -36,80 +36,70 @@ namespace Hospital.Infrastructure.Services
             _dbContext = dbContext;
         }
 
-      
-
-
-     public async Task<AppointmentDto> AddAsync(AddAppointmentDto dto)
-    {
-        await using var transaction = await _dbContext.Database.BeginTransactionAsync();
-
-        try
+        public async Task<AppointmentDto> AddAsync(AddAppointmentDto dto)
         {
-            var patient = await _patientRepo.GetByIdAsync(dto.PatientId);
-            if (patient == null)
-                throw new ArgumentException("Patient does not exist.");
-
-            var doctor = await _doctorRepository.GetAsync(dto.DoctorId);
-            if (doctor == null)
-                throw new ArgumentException("Doctor does not exist.");
-
-            var branch = await _branchRepo.GetByIdAsync(dto.BranchId);
-            if (branch == null)
-                throw new ArgumentException("Branch does not exist.");
-
-            if (dto.PaymentMethod != PaymentMethod.Cash &&
-                dto.PaymentMethod != PaymentMethod.Paymob)
+            await using var transaction = await _dbContext.Database.BeginTransactionAsync();
+            try
             {
-                throw new ArgumentException("Invalid payment method. Allowed: Cash or Paymob");
+                var patient = await _patientRepo.GetByIdAsync(dto.PatientId);
+                if (patient == null)
+                    throw new ArgumentException("Patient does not exist.");
+
+                var doctor = await _doctorRepository.GetAsync(dto.DoctorId);
+                if (doctor == null)
+                    throw new ArgumentException("Doctor does not exist.");
+
+                var branch = await _branchRepo.GetByIdAsync(dto.BranchId);
+                if (branch == null)
+                    throw new ArgumentException("Branch does not exist.");
+
+                if (dto.PaymentMethod != PaymentMethod.Cash &&
+                    dto.PaymentMethod != PaymentMethod.Paymob)
+                {
+                    throw new ArgumentException("Invalid payment method. Allowed: Cash or Paymob");
+                }
+
+                if (dto.Date < DateOnly.FromDateTime(DateTime.UtcNow.Date))
+                    throw new ArgumentException("Appointment date cannot be in the past.");
+
+                if (dto.Time.Hour < 8 || dto.Time.Hour > 20)
+                    throw new ArgumentException("Appointment time must be between 08:00 and 20:00.");
+
+                // Prevent duplicate appointment
+                var exists = await _appointmentRepo.ExistsAsync(dto.DoctorId, dto.Date, dto.Time);
+                if (exists)
+                    throw new ArgumentException("Doctor already has an appointment at this time.");
+
+                var appointment = _mapper.Map<Appointment>(dto);
+                appointment.CreatedAt = DateTime.UtcNow;
+                appointment.UpdatedAt = DateTime.UtcNow;
+                appointment.Status = AppointmentStatus.Confirmed;
+
+                var created = await _appointmentRepo.AddAsync(appointment);
+
+                if (created != null && created.PaymentMethod == PaymentMethod.Cash)
+                {
+                    var payment = await _PaymentRepo.CreatePendingPaymentAsync(
+                        created.AppointmentId,
+                        doctor.ConsultationFees,
+                        "EGP"
+                    );
+
+                    if (payment == null)
+                        throw new InvalidOperationException("Cannot create payment");
+                }
+
+                await transaction.CommitAsync();
+                return _mapper.Map<AppointmentDto>(created);
             }
-
-            if (dto.Date < DateOnly.FromDateTime(DateTime.UtcNow.Date))
-                throw new ArgumentException("Appointment date cannot be in the past.");
-
-            if (dto.Time.Hour < 8 || dto.Time.Hour > 20)
-                throw new ArgumentException("Appointment time must be between 08:00 and 20:00.");
-
-            // Prevent duplicate appointment
-            var exists = await _appointmentRepo.ExistsAsync(dto.DoctorId, dto.Date, dto.Time);
-            if (exists)
-                throw new ArgumentException("Doctor already has an appointment at this time.");
-
-            // Map appointment
-            var appointment = _mapper.Map<Appointment>(dto);
-            appointment.CreatedAt = DateTime.UtcNow;
-            appointment.UpdatedAt = DateTime.UtcNow;
-            appointment.Status = AppointmentStatus.Confirmed;
-
-            // Add appointment
-            var created = await _appointmentRepo.AddAsync(appointment);
-
-            // لو الدفع Paymob اعمل سجل في Payment
-            if (created != null && created.PaymentMethod == PaymentMethod.Cash)
+            catch
             {
-                var payment = await _PaymentRepo.CreatePendingPaymentAsync(
-                    created.AppointmentId,
-                    doctor.ConsultationFees,
-                    "EGP"
-                );
-
-                if (payment == null)
-                    throw new InvalidOperationException("Cannot create payment");
+                await transaction.RollbackAsync();
+                throw; 
             }
-
-            // Commit الترانزكشن
-            await transaction.CommitAsync();
-
-            return _mapper.Map<AppointmentDto>(created);
         }
-        catch
-        {
-            // Rollback في حالة أي خطأ
-            await transaction.RollbackAsync();
-            throw; // نعيد رمي الاستثناء للفوق
-        }
-    }
 
-    public async Task<int> DeleteAsync(int id)
+        public async Task<int> DeleteAsync(int id)
         {
             if (id <= 0)
                 throw new ArgumentException("Invalid appointment ID.");

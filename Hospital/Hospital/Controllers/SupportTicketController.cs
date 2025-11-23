@@ -42,7 +42,6 @@ namespace Hospital.Controllers
             }
             catch (Exception ex)
             {
-                // Optionally log ex.Message
                 return StatusCode(500, new { message = "Internal server error." });
             }
         }
@@ -77,7 +76,6 @@ namespace Hospital.Controllers
             return Ok(ticket);
         }
 
-        // GET: api/SupportTicket/patient/{patientId}
         [HttpGet("patient/{patientId}")]
         public async Task<ActionResult<IEnumerable<SupportTicketDto>>> GetAllByPatientId(int patientId)
         {

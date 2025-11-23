@@ -26,16 +26,8 @@ namespace Hospital.Infrastructure.Services
         private readonly IAppointmentRepository _appointmentRepository;
         private readonly IPaymentRepository _paymentRepository;
 
-
-        public DoctorService(
-        IMapper mapper,
-        IDoctorRepository doctorRepo,
-        IBranchRepository branchRepo,
-        IEmailService emailService,
-        IAuthService authService,
-        ILogger<DoctorService> logger,
-         IAppointmentRepository appointmentRepository,
-         IPaymentRepository paymentRepository,
+        public DoctorService(IMapper mapper,IDoctorRepository doctorRepo,IBranchRepository branchRepo,IEmailService emailService,
+        IAuthService authService,ILogger<DoctorService> logger,IAppointmentRepository appointmentRepository,IPaymentRepository paymentRepository,
         AppDbContext context)
         {
             _mapper = mapper;
@@ -53,15 +45,12 @@ namespace Hospital.Infrastructure.Services
         public async Task<DoctorDto> AddAsync(AddDoctorDto dto)
         {
             using var transaction = await _context.Database.BeginTransactionAsync();
-
             try
             {
-                // 0️⃣ Validate Specialization
                 var specialization = await _context.Specializations.FindAsync(dto.SpecializationId);
                 if (specialization == null)
                     throw new KeyNotFoundException($"Specialization with ID {dto.SpecializationId} does not exist.");
 
-                // 1️⃣ Register user via AuthService
                 var registerModel = new RegisterModel
                 {
                     Email = dto.Email,
@@ -73,17 +62,16 @@ namespace Hospital.Infrastructure.Services
                 };
 
                 var authResult = await _authService.RegisterAsync(registerModel);
-
                 if (!authResult.IsRegistered || string.IsNullOrEmpty(authResult.UserId))
                     throw new InvalidOperationException("Failed to create user: " + authResult.Message);
 
-                // 2️⃣ Map DTO -> Doctor entity
+                // Map DTO -> Doctor entity
                 var doctor = _mapper.Map<Doctor>(dto);
                 doctor.UserId = authResult.UserId;
                 doctor.CreatedAt = DateTime.UtcNow;
                 doctor.UpdatedAt = DateTime.UtcNow;
 
-                // 3️⃣ Validate and assign branches
+                // Validate and assign branches
                 var distinctBranchIds = dto.BranchIds.Distinct().ToList();
                 var branches = await _branchRepo.GetByIdsAsync(distinctBranchIds);
 
@@ -93,25 +81,22 @@ namespace Hospital.Infrastructure.Services
 
                 doctor.Branches = branches.ToList();
 
-                // 4️⃣ Save doctor
                 var createdDoctor = await _doctorRepo.AddAsync(doctor);
 
-                // 5️⃣ Commit transaction
                 await transaction.CommitAsync();
 
-                // 6️⃣ Send email to doctor with credentials
                 try
                 {
                     var emailBody = $@"
-                <p>Hi Dr. {dto.Name},</p>
-                <p>Your account has been created. You can log in with the following credentials:</p>
-                <ul>
-                    <li>Username: {dto.Username}</li>
-                    <li>Email: {dto.Email}</li>
-                    <li>Password: {dto.Password}</li>
-                </ul>
-                <p>Best regards,</p>
-                <p>The Team</p>";
+                    <p>Hi Dr. {dto.Name},</p>
+                    <p>Your account has been created. You can log in with the following credentials:</p>
+                    <ul>
+                        <li>Username: {dto.Username}</li>
+                        <li>Email: {dto.Email}</li>
+                        <li>Password: {dto.Password}</li>
+                    </ul>
+                    <p>Best regards,</p>
+                    <p>The Team</p>";
 
                     await _emailService.SendEmailAsync(dto.Email, "Doctor Account Registration", emailBody);
                 }
@@ -120,20 +105,14 @@ namespace Hospital.Infrastructure.Services
                     _logger.LogWarning("Failed to send email to doctor {DoctorEmail}: {Message}", dto.Email, ex.Message);
                 }
 
-                // 7️⃣ Return DTO
                 return _mapper.Map<DoctorDto>(createdDoctor);
             }
             catch
             {
-                // Rollback transaction if any exception occurs
                 await transaction.RollbackAsync();
                 throw;
             }
         }
-
-
-
-
 
         public async Task<int> UpdateAsync(UpdateDoctorDto dto)
         {
@@ -177,20 +156,16 @@ namespace Hospital.Infrastructure.Services
             if (dto == null)
                 throw new ArgumentNullException(nameof(dto));
 
-            // 0️⃣ Validate Specialization
             var specialization = await _context.Specializations.FindAsync(dto.SpecializationId);
             if (specialization == null)
                 throw new KeyNotFoundException($"Specialization with ID {dto.SpecializationId} does not exist.");
 
-            // 1️⃣ Get existing doctor
             var doctor = await _doctorRepo.GetAsync(dto.DoctorId);
             if (doctor == null)
                 throw new KeyNotFoundException($"Doctor with ID {dto.DoctorId} not found.");
 
-            // 2️⃣ Map DTO to entity (ignores User & Branches)
             _mapper.Map(dto, doctor);
 
-            // 3️⃣ Update User info manually
             if (doctor.User != null)
             {
                 doctor.User.FullName = dto.FullName ?? doctor.User.FullName;
@@ -198,21 +173,15 @@ namespace Hospital.Infrastructure.Services
                     doctor.User.PhoneNumber = dto.PhoneNumber;
             }
 
-            // 4️⃣ Update branches if any
             if (dto.BranchIds != null && dto.BranchIds.Any())
             {
                 var branches = await _branchRepo.GetByIdsAsync(dto.BranchIds.Distinct());
                 doctor.Branches = branches.ToList();
             }
 
-            // 5️⃣ Update timestamps
             doctor.UpdatedAt = DateTime.UtcNow;
-
-            // 6️⃣ Save changes
             await _doctorRepo.UpdateAsync(doctor);
         }
-
-
 
         public async Task<int> DeleteAsync(GetDoctorDto dto)
         {
@@ -244,8 +213,6 @@ namespace Hospital.Infrastructure.Services
             var doctors = await _doctorRepo.GetAllAsync();
             return _mapper.Map<IEnumerable<DoctorDto>>(doctors);
         }
-
-
 
         public async Task<IEnumerable<DoctorDto>> GetDoctorsBySpecializationIdAsync(int specializationId)
         {
@@ -279,24 +246,15 @@ namespace Hospital.Infrastructure.Services
         }
         public async Task<bool> convertStatuesOFPaymentToPayied(int appointmentId)
         {
-            // 1️⃣ Get payment by appointment
             var payment = await _paymentRepository.GetPaymentByAppointmentIdAsync(appointmentId);
-
             if (payment == null)
-                return false; // Payment not found
+                return false; 
 
-            // 2️⃣ Update status
             payment.Status = PaymentStatus.Paid;
             payment.UpdatedAt = DateTime.UtcNow;
 
-            // 3️⃣ Save changes
             await _paymentRepository.UpdatePaymentAsync(payment);
-
             return true;
         }
-
-
-
-
     }
 }

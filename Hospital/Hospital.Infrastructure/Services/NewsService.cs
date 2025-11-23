@@ -15,7 +15,6 @@ namespace Hospital.Infrastructure.Services
         private readonly INewsRepository _newsRepository;
         private readonly IBranchService _branchService;
         private readonly IMapper _mapper;
-
         public NewsService(INewsRepository newsRepository, IMapper mapper, IBranchService branchService)
         {
             _newsRepository = newsRepository;

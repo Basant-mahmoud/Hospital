@@ -17,10 +17,7 @@ namespace Hospital.Infrastructure.Payment
         private readonly IPaymobClient _paymobClient;
         private readonly PaymobOptions _options;
 
-        public PaymentService(
-            IPaymentRepository paymentRepository,
-            IPaymobClient paymobClient,
-            IOptions<PaymobOptions> options)
+        public PaymentService(IPaymentRepository paymentRepository, IPaymobClient paymobClient, IOptions<PaymobOptions> options)
         {
             _paymentRepository = paymentRepository;
             _paymobClient = paymobClient;
@@ -92,19 +89,16 @@ namespace Hospital.Infrastructure.Payment
             return paymentKeyResponse.token;
         }
 
-        public async Task<Hospital.Domain.Models.Payment?> HandlePaymobCallbackAsync(
-            PaymobCallbackDto dto,
-            CancellationToken ct = default)
+        public async Task<Hospital.Domain.Models.Payment?> HandlePaymobCallbackAsync(PaymobCallbackDto dto,CancellationToken ct = default)
         {
             // Find payment by merchant order ID
             var payment = await _paymentRepository.GetPaymentByMerchantOrderIdAsync(dto.OrderId, ct);
-
             if (payment == null)
-                return null; // Payment not found
+                return null; 
 
             // Prevent duplicate processing
             if (payment.Status == PaymentStatus.Paid)
-                return payment; // Already processed
+                return payment; 
 
             // Update payment with Paymob data
             payment.PaymobTransactionId = long.TryParse(dto.PaymentId, out var txId) ? txId : (long?)null;
@@ -119,8 +113,6 @@ namespace Hospital.Infrastructure.Payment
 
             return payment;
         }
-
-
 
         private PaymentStatus MapPaymobStatus(string paymobStatus)
         {

@@ -29,98 +29,87 @@ namespace Hospital.Controllers
             return Ok(created);
         }
 
-
-
-
-
-   [HttpPost("add-from-excel")]
-    public async Task<IActionResult> AddDoctorsFromExcel(IFormFile file)
-    {
-        if (file == null || file.Length == 0)
-            return BadRequest("No file uploaded.");
-
-        var doctors = new List<AddDoctorDto>();
-
-        using (var stream = new MemoryStream())
+        //  ------------ Add Doctor Using Excel Sheet--------
+        [HttpPost("add-from-excel")]
+        public async Task<IActionResult> AddDoctorsFromExcel(IFormFile file)
         {
-            await file.CopyToAsync(stream);
-            stream.Position = 0;
+            if (file == null || file.Length == 0)
+                return BadRequest("No file uploaded.");
 
-            // 🌟 EPPlus النسخة القديمة - الترخيص سهل
-            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-
-            using (var package = new ExcelPackage(stream))
+            var doctors = new List<AddDoctorDto>();
+            using (var stream = new MemoryStream())
             {
-                var sheet = package.Workbook.Worksheets.FirstOrDefault();
-                if (sheet == null)
-                    return BadRequest("Excel file has no sheets.");
+                await file.CopyToAsync(stream);
+                stream.Position = 0;
 
-                for (int row = 2; row <= sheet.Dimension.End.Row; row++)
+                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+                using (var package = new ExcelPackage(stream))
                 {
-                    var dto = new AddDoctorDto
-                    {
-                        Name = sheet.Cells[row, 1].Text,
-                        Email = sheet.Cells[row, 2].Text,
-                        Username = sheet.Cells[row, 3].Text,
-                        Password = sheet.Cells[row, 4].Text,
-                        PhoneNumber = sheet.Cells[row, 5].Text,
-                        SpecializationId = int.TryParse(sheet.Cells[row, 6].Text, out int spec) ? spec : 0,
-                        ImageURL = sheet.Cells[row, 7].Text,
-                        Biography = sheet.Cells[row, 9].Text,
-                        ExperienceYears = int.TryParse(sheet.Cells[row, 10].Text, out int exp) ? exp : null,
-                        ConsultationFees = decimal.TryParse(sheet.Cells[row, 11].Text, out decimal fees) ? fees : null,
-                        Available = bool.TryParse(sheet.Cells[row, 12].Text, out bool avail) ? avail : null
-                    };
+                    var sheet = package.Workbook.Worksheets.FirstOrDefault();
+                    if (sheet == null)
+                        return BadRequest("Excel file has no sheets.");
 
-                    // Branch IDs → comma separated
-                    var branches = sheet.Cells[row, 8].Text;
-                    if (!string.IsNullOrEmpty(branches))
+                    for (int row = 2; row <= sheet.Dimension.End.Row; row++)
                     {
-                        dto.BranchIds = branches
-                            .Split(",", StringSplitOptions.RemoveEmptyEntries)
-                            .Select(id => int.Parse(id.Trim()))
-                            .ToList();
+                        var dto = new AddDoctorDto
+                        {
+                            Name = sheet.Cells[row, 1].Text,
+                            Email = sheet.Cells[row, 2].Text,
+                            Username = sheet.Cells[row, 3].Text,
+                            Password = sheet.Cells[row, 4].Text,
+                            PhoneNumber = sheet.Cells[row, 5].Text,
+                            SpecializationId = int.TryParse(sheet.Cells[row, 6].Text, out int spec) ? spec : 0,
+                            ImageURL = sheet.Cells[row, 7].Text,
+                            Biography = sheet.Cells[row, 9].Text,
+                            ExperienceYears = int.TryParse(sheet.Cells[row, 10].Text, out int exp) ? exp : null,
+                            ConsultationFees = decimal.TryParse(sheet.Cells[row, 11].Text, out decimal fees) ? fees : null,
+                            Available = bool.TryParse(sheet.Cells[row, 12].Text, out bool avail) ? avail : null
+                        };
+
+                        // Branch IDs → comma separated
+                        var branches = sheet.Cells[row, 8].Text;
+                        if (!string.IsNullOrEmpty(branches))
+                        {
+                            dto.BranchIds = branches
+                                .Split(",", StringSplitOptions.RemoveEmptyEntries)
+                                .Select(id => int.Parse(id.Trim()))
+                                .ToList();
+                        }
+
+                        doctors.Add(dto);
                     }
-
-                    doctors.Add(dto);
                 }
             }
+
+            var results = new List<object>();
+            foreach (var doctor in doctors)
+            {
+                try
+                {
+                    var created = await _doctorService.AddAsync(doctor);
+                    results.Add(new
+                    {
+                        doctor.Email,
+                        Status = "Success",
+                        DoctorId = created.DoctorId
+                    });
+                }
+                catch (Exception ex)
+                {
+                    results.Add(new
+                    {
+                        doctor.Email,
+                        Status = "Failed",
+                        Error = ex.Message
+                    });
+                }
+            }
+
+            return Ok(results);
         }
 
-        // ⬇ Process Each Doctor & Add To DB
-        var results = new List<object>();
-
-        foreach (var doctor in doctors)
-        {
-            try
-            {
-                var created = await _doctorService.AddAsync(doctor);
-
-                results.Add(new
-                {
-                    doctor.Email,
-                    Status = "Success",
-                    DoctorId = created.DoctorId
-                });
-            }
-            catch (Exception ex)
-            {
-                results.Add(new
-                {
-                    doctor.Email,
-                    Status = "Failed",
-                    Error = ex.Message
-                });
-            }
-        }
-
-        return Ok(results);
-    }
-
-
-
-    // ------------------- Update Doctor -------------------
-    [HttpPut("update")]
+        // ------------------- Update Doctor -------------------
+        [HttpPut("update")]
         public async Task<IActionResult> UpdateDoctor([FromBody] UpdateDoctorDto dto)
         {
             if (!ModelState.IsValid)
@@ -128,7 +117,7 @@ namespace Hospital.Controllers
 
             var updated = await _doctorService.UpdateAsync(dto);
             if (updated == 0)
-                return NotFound(new { message = "Doctor not found" });
+               return NotFound(new { message = "Doctor not found" });
 
             return Ok(new { message = "Doctor updated successfully" });
         }
@@ -207,12 +196,14 @@ namespace Hospital.Controllers
                 return StatusCode(500, new { Message = "Internal server error." });
             }
         }
+
         [HttpGet("doctor/{doctorId:int}/today")]
         public async Task<IActionResult> GetTodayAppointmentsForDoctor(int doctorId)
         {
             var result = await _doctorService.GetTodayForDoctorAsync(doctorId);
             return Ok(result);
         }
+
         [HttpPut("convertStatuesOFPaymentToPayied/{Appoimentid:int}")]
         public async Task<IActionResult> convertStatuesOFPaymentToPayied(int Appoimentid)
         {

@@ -41,7 +41,6 @@ namespace Hospital.Infrastructure.Services
             _doctorRepoy = doctorRepoy;
         }
 
-
         public async Task<MedicalRecordDto> AddAsync(AddMedicalRecordDto dto)
         {
             var doctor = await _doctorService.GetAsync(new() { DoctorId = dto.DoctorId });
@@ -67,14 +66,12 @@ namespace Hospital.Infrastructure.Services
             return _mapper.Map<MedicalRecordDto>(fullRecord);
         }
 
-
         public async Task<int> DeleteAsync(int id)
         {
             var record = await _medicalRecordRepo.GetAsync(id);
             if (record == null) throw new Exception($"MedicalRecord with Id {id} not found");
             return await _medicalRecordRepo.DeleteAsync(record);
         }
-
       
         public async Task<MedicalRecordDto?> GetByMedicalRecordIdAsync(GetMedicalRecordDto dto)
         {
@@ -83,7 +80,6 @@ namespace Hospital.Infrastructure.Services
             if (record == null) return null;
             return _mapper.Map<MedicalRecordDto>(record);
         }
-
        
         public async Task<int> UpdateAsync(UpdateMedicalRecordDto dto)
         {
@@ -130,26 +126,23 @@ namespace Hospital.Infrastructure.Services
         {
             if (doctorId == 0)
                 throw new Exception("Doctor Id Not Valied");
-            // Check doctor
+
             var doctor = await _doctorRepoy.GetAsync(doctorId);
             if (doctor == null)
                 throw new Exception($"Doctor with Id {doctorId} not found");
+
             if (doctorId == 0)
                 throw new Exception("Patient Id Not Valied");
-            // Check patient
+
             var patient = await _patientService.GetPatientByIdAsync(patientId);
             if (patient == null)
                 throw new Exception($"Patient with Id {patientId} not found");
 
-            // Fetch record
             var records = await _medicalRecordRepo.GetByDoctorAndPatientAsync(doctorId, patientId);
-
             if (records == null || !records.Any())
                 return new List<MedicalRecordDto>(); 
 
             return _mapper.Map<List<MedicalRecordDto>>(records);
         }
-
-
     }
 }

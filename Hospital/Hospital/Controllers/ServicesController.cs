@@ -14,13 +14,11 @@ namespace Hospital.Controllers
     public class ServicesController : ControllerBase
     {
         private readonly IServiceService _serviceService;
-
         public ServicesController(IServiceService serviceService)
         {
             _serviceService = serviceService;
         }
 
-        // GET: api/services
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -28,7 +26,6 @@ namespace Hospital.Controllers
             return Ok(services);
         }
 
-        // GET: api/services/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -39,7 +36,6 @@ namespace Hospital.Controllers
             return Ok(service);
         }
 
-        // POST: api/services
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateServiceDto dto)
         {
@@ -63,7 +59,6 @@ namespace Hospital.Controllers
                 await file.CopyToAsync(stream);
                 stream.Position = 0;
 
-                // EPPlus النسخة القديمة ≤ 5.8
                 ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
                 using (var package = new ExcelPackage(stream))
@@ -81,7 +76,6 @@ namespace Hospital.Controllers
                             ImageURL = sheet.Cells[row, 3].Text,
                         };
 
-                        // Branch IDs → comma separated (مثال: "1,2,3")
                         var branches = sheet.Cells[row, 4].Text;
                         if (!string.IsNullOrEmpty(branches))
                         {
@@ -97,7 +91,6 @@ namespace Hospital.Controllers
             }
 
             var results = new List<object>();
-
             foreach (var service in services)
             {
                 try
@@ -125,7 +118,6 @@ namespace Hospital.Controllers
             return Ok(results);
         }
 
-        // PUT: api/services
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] UpdateServiceDto dto)
         {
@@ -136,7 +128,6 @@ namespace Hospital.Controllers
             return Ok("updated Successfully");
         }
 
-        // DELETE: api/services/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {

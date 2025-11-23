@@ -13,7 +13,6 @@ namespace Hospital.Controllers
     public class BannersController : ControllerBase
     {
         private readonly IBannerService _bannerService;
-
         public BannersController(IBannerService bannerService)
         {
             _bannerService = bannerService;

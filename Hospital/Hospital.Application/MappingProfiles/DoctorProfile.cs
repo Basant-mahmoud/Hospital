@@ -14,7 +14,7 @@ namespace Hospital.Application.MappingProfiles
     {
         public DoctorProfile()
         {
-            // Add Doctor
+
             CreateMap<AddDoctorDto, Doctor>()
                 .ForMember(dest => dest.DoctorId, opt => opt.Ignore())
                 .ForMember(dest => dest.UserId, opt => opt.Ignore())
@@ -41,15 +41,15 @@ namespace Hospital.Application.MappingProfiles
 
             // DoctorDto → Doctor
             CreateMap<DoctorDto, Doctor>()
-            .ForMember(dest => dest.DoctorId, opt => opt.Ignore()) // لا تغير الـ PK
-            .ForMember(dest => dest.UserId, opt => opt.Ignore())   // لا تغير UserId
-            .ForMember(dest => dest.Branches, opt => opt.Ignore()) // لا تغير العلاقات هنا
-            .ForMember(dest => dest.CreatedAt, opt => opt.Ignore()) // لا تغير CreatedAt
-            .ForMember(dest => dest.UpdatedAt, opt => opt.Ignore()); // UpdatedAt هنديره يدوياً
+                .ForMember(dest => dest.DoctorId, opt => opt.Ignore()) 
+                .ForMember(dest => dest.UserId, opt => opt.Ignore())   
+                .ForMember(dest => dest.Branches, opt => opt.Ignore()) 
+                .ForMember(dest => dest.CreatedAt, opt => opt.Ignore()) 
+                .ForMember(dest => dest.UpdatedAt, opt => opt.Ignore()); 
 
             CreateMap<DoctorSelfUpdateDto, Doctor>()
-    .ForMember(dest => dest.User, opt => opt.Ignore()) // Don't overwrite the User navigation automatically
-    .ForMember(dest => dest.Branches, opt => opt.Ignore()) // Handle branches manually if needed
+                .ForMember(dest => dest.User, opt => opt.Ignore()) // Don't overwrite the User navigation automatically
+                .ForMember(dest => dest.Branches, opt => opt.Ignore()) // Handle branches manually if needed
                 .ForMember(dest => dest.DoctorId, opt => opt.Ignore())
                 .ForMember(dest => dest.UserId, opt => opt.Ignore())
                 .ForMember(dest => dest.Branches, opt => opt.Ignore())
@@ -57,11 +57,11 @@ namespace Hospital.Application.MappingProfiles
                 .ForMember(dest => dest.UpdatedAt, opt => opt.Ignore());
 
             CreateMap<UpdateDoctorDto, Doctor>()
-    .ForMember(dest => dest.DoctorId, opt => opt.Ignore())
-    .ForMember(dest => dest.UserId, opt => opt.Ignore())
-    .ForMember(dest => dest.Branches, opt => opt.Ignore())
-    .ForMember(dest => dest.CreatedAt, opt => opt.Ignore())
-    .ForMember(dest => dest.UpdatedAt, opt => opt.Ignore());
+                .ForMember(dest => dest.DoctorId, opt => opt.Ignore())
+                .ForMember(dest => dest.UserId, opt => opt.Ignore())
+                .ForMember(dest => dest.Branches, opt => opt.Ignore())
+                .ForMember(dest => dest.CreatedAt, opt => opt.Ignore())
+                .ForMember(dest => dest.UpdatedAt, opt => opt.Ignore());    
 
         }
     }

@@ -10,6 +10,7 @@ namespace Hospital.Domain.Models
 {
     public class Schedule
     {
+
         [Key]
         public int ScheduleId { get; set; }
 
@@ -23,8 +24,8 @@ namespace Hospital.Domain.Models
         [Required]
         public AppointmentShift Shift { get; set; }     // Morning / Afternoon / Evening
 
-        public DateTime StartTime { get; set; }         // Auto-filled
-        public DateTime EndTime { get; set; }           // Auto-filled
+        public DateTime StartTime { get; set; }         
+        public DateTime EndTime { get; set; }           
 
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }

@@ -17,7 +17,6 @@ namespace Hospital.Infrastructure.Services
         private readonly IServiceRepository _serviceRepository;
         private readonly IBranchRepository _branchRepository;
         private readonly IMapper _mapper;
-
         public ServiceService(IServiceRepository serviceRepository, IMapper mapper, IBranchRepository branchRepository)
         {
             _serviceRepository = serviceRepository;
@@ -44,7 +43,6 @@ namespace Hospital.Infrastructure.Services
 
             var branchIds = dto.BranchesID?.Select(b => b.BranchId).Distinct().ToList() ?? new List<int>();
 
-            // Load branches
             var branches = new List<Branch>();
             if (branchIds.Any())
             {
@@ -53,7 +51,6 @@ namespace Hospital.Infrastructure.Services
                     throw new ArgumentException("One or more branches do not exist.");
             }
 
-            // Check for duplicate service in these branches
             if (branchIds.Any())
             {
                 var exists = await _serviceRepository.ExistsByNameInBranchesAsync(dto.Name, branchIds);
@@ -70,10 +67,6 @@ namespace Hospital.Infrastructure.Services
             return _mapper.Map<ServiceDto>(service);
         }
 
-
-
-
-
         public async Task UpdateAsync(UpdateServiceDto dto)
         {
             var existing = await _serviceRepository.GetByIdAsync(dto.ServiceId);
@@ -83,7 +76,6 @@ namespace Hospital.Infrastructure.Services
             _mapper.Map(dto, existing);
             existing.UpdatedAt = DateTime.UtcNow;
 
-            // Update branches
             if (dto.BranchesID != null)
             {
                 var branchIds = dto.BranchesID.Select(b => b.BranchId).ToList();

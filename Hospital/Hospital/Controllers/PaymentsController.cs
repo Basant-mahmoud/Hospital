@@ -19,10 +19,7 @@ namespace Hospital.Controllers
     {
         private readonly IPaymentService _paymentService;
         private readonly PaymobOptions _paymobOptions;
-
-        public PaymentController(
-            IPaymentService paymentService,
-            IOptions<PaymobOptions> paymobOptions)
+        public PaymentController(IPaymentService paymentService, IOptions<PaymobOptions> paymobOptions)
         {
             _paymentService = paymentService;
             _paymobOptions = paymobOptions.Value;
@@ -30,13 +27,11 @@ namespace Hospital.Controllers
 
         [HttpPost("create")]
         [Authorize(Roles = "Patient")]
-        public async Task<IActionResult> CreatePayment(
-        [FromBody] CreatePaymentRequest request,
-        CancellationToken ct)
+        public async Task<IActionResult> CreatePayment([FromBody] CreatePaymentRequest request,CancellationToken ct)
         {
             try
             {
-                // FIX: Use "uid" instead of ClaimTypes.NameIdentifier
+                // Use "uid" instead of ClaimTypes.NameIdentifier
                 var userId = User.FindFirst("uid")?.Value;
 
                 if (string.IsNullOrEmpty(userId))

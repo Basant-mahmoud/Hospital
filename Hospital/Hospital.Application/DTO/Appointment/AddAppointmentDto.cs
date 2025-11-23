@@ -17,7 +17,6 @@ namespace Hospital.Application.DTO.Appointment
         [Required] public DateOnly Date { get; set; }
         [Required] public DateTime Time { get; set; }
         [Required] public AppointmentStatus Status { get; set; } = AppointmentStatus.Confirmed;
-
         [Required] public PaymentMethod PaymentMethod { get; set; }
         public string? Notes { get; set; }
     }

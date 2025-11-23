@@ -9,14 +9,13 @@ namespace Hospital.Application.DTO.ServiceDTOS
 {
     public class CreateServiceDto
     {
+
         [Required, StringLength(120)]
         public string Name { get; set; } = null!;
-
         public string? Description { get; set; }
 
         [Url, StringLength(300)]
         public string? ImageURL { get; set; }
-
         public ICollection<BranchIdDTO>? BranchesID { get; set; } = new List<BranchIdDTO>();
     }
 }

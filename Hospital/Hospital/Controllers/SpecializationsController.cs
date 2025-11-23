@@ -11,11 +11,11 @@ namespace Hospital.Controllers
     public class SpecializationsController : ControllerBase
     {
         private readonly ISpecializationService _service;
-
         public SpecializationsController(ISpecializationService service)
         {
             _service = service;
         }
+
         [HttpPost("Create")]
         public async Task<ActionResult<SpecializationDTO>> Create([FromBody] CreateSpecialization dto)
         {
@@ -36,7 +36,6 @@ namespace Hospital.Controllers
                 await file.CopyToAsync(stream);
                 stream.Position = 0;
 
-                // 🌟 EPPlus License setup للنسخ القديمة 5.8
                 ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
                 using (var package = new ExcelPackage(stream))
@@ -53,7 +52,6 @@ namespace Hospital.Controllers
                             Description = sheet.Cells[row, 2].Text
                         };
 
-                        // Branch IDs → comma separated (مثال: "1,2,3")
                         var branches = sheet.Cells[row, 3].Text;
                         if (!string.IsNullOrEmpty(branches))
                         {
@@ -69,7 +67,6 @@ namespace Hospital.Controllers
             }
 
             var results = new List<object>();
-
             foreach (var specialization in specializations)
             {
                 try
@@ -96,24 +93,28 @@ namespace Hospital.Controllers
 
             return Ok(results);
         }
+
         [HttpGet("Get/{id}")]
         public async Task<ActionResult<SpecializationDTO>> Get(int id)
         {
             var result = await _service.GetAsync(id);
             return Ok(result);
         }
+
         [HttpGet("GetAll")]
         public async Task<ActionResult<IEnumerable<SpecializationDTO>>> GetAll()
         {
             var result = await _service.GetAllSpecializaionInSystemAsync();
             return Ok(result);
         }
+
         [HttpPut("Update")]
         public async Task<ActionResult<SpecializationDTO>> Update([FromBody] UpdateSpecialization dto)
         {
             var updated = await _service.UpdateAsync(dto);
             return Ok("Updated Successfully");
         }
+
         [HttpDelete("Delete")]
         public async Task<IActionResult> Delete([FromBody] GetSpecializationDto dto)
         {
@@ -123,6 +124,7 @@ namespace Hospital.Controllers
 
             return Ok("Specialization deleted successfully.");
         }
+
         [HttpGet("Branch/{branchId}")]
         public async Task<ActionResult<IEnumerable<SpecializationDTO>>> GetAllByBranch(int branchId)
         {

@@ -9,12 +9,12 @@ namespace Hospital.Application.DTO.ServiceDTOS
 {
     public class UpdateServiceDto
     {
+
         [Required]
         public int ServiceId { get; set; }
 
         [Required, StringLength(120)]
         public string Name { get; set; } = null!;
-
         public string? Description { get; set; }
 
         [Url, StringLength(300)]

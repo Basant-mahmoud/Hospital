@@ -11,7 +11,6 @@ namespace Hospital.Application.DTO.Specialization
     public class CreateSpecialization
     {
         [Required, StringLength(120)] public string Name { get; set; } 
-
         public string? Description { get; set; }
         public List<int> BranchIds { get; set; } = new List<int>();
     }

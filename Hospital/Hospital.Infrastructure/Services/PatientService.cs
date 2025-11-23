@@ -14,12 +14,12 @@ namespace Hospital.Infrastructure.Services
     {
         private readonly IPatientRepository _patientRepository;
         private readonly IMapper _mapper;
-
         public PatientService(IPatientRepository patientRepository, IMapper mapper)
         {
             _patientRepository = patientRepository;
             _mapper = mapper;
         }
+
         public async Task<PatientDto> GetPatientByIdAsync(int id)
         {
             var patient = await _patientRepository.GetByIdAsync(id);
@@ -41,7 +41,6 @@ namespace Hospital.Infrastructure.Services
             if (patient == null)
                 throw new KeyNotFoundException($"Patient with ID {dto.PatientId} not found");
 
-            // Update User fields manually
             patient.User.FullName = dto.FullName;
             patient.User.PhoneNumber = dto.PhoneNumber;
             patient.User.Email = dto.Email ?? patient.User.Email;

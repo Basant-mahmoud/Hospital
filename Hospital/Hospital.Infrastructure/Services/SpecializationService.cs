@@ -16,16 +16,13 @@ namespace Hospital.Infrastructure.Services
         private readonly ISpecializationRepository _specRepo;
         private readonly IBranchRepository _branchRepo;
         private readonly IMapper _mapper;
-
-        public SpecializationService(
-            ISpecializationRepository specRepo,
-            IBranchRepository branchRepo,
-            IMapper mapper)
+        public SpecializationService(ISpecializationRepository specRepo,IBranchRepository branchRepo,IMapper mapper)
         {
             _specRepo = specRepo;
             _branchRepo = branchRepo;
             _mapper = mapper;
         }
+
         public async Task<SpecializationDTO> AddAsync(CreateSpecialization dto)
         {
             if (string.IsNullOrWhiteSpace(dto.Name))
@@ -64,15 +61,12 @@ namespace Hospital.Infrastructure.Services
             if (specialization == null)
                 throw new KeyNotFoundException("Specialization not found.");
 
-            // find branch
             var branch = specialization.Branches
                 .FirstOrDefault(b => b.BranchId == dto.BranchId);
             if (branch == null)
                 throw new KeyNotFoundException("Specialization does not belong to this branch.");
 
-            // remove only the relation
             specialization.Branches.Remove(branch);
-            
             return await _specRepo.UpdateAsync(specialization);
         }
 
@@ -129,7 +123,6 @@ namespace Hospital.Infrastructure.Services
                 throw new KeyNotFoundException($"Branches with IDs {string.Join(", ", missingBranchIds)} not found.");
             }
 
-            // Update fields
             specialization.Name = dto.Name;
             specialization.Description = dto.Description;
             specialization.UpdatedAt = DateTime.UtcNow;
@@ -153,7 +146,6 @@ namespace Hospital.Infrastructure.Services
 
             return await _specRepo.UpdateAsync(specialization);
         }
-
 
     }
 }

@@ -14,13 +14,13 @@ namespace Hospital.Controllers
         {
             _eventService = eventService;
         }
+
         [HttpPost("CreateEvent")]
         public async Task<IActionResult> CreateEvent([FromBody] AddEventDto eventDto)
         {
             var createdEvent = await _eventService.AddAsync(eventDto);
             return CreatedAtAction(nameof(GetEvent), new { id = createdEvent.EventId }, createdEvent);
         }
-
 
         [HttpPost("GetEvent")]
         public async Task<IActionResult> GetEvent(GetEventDto @event)
@@ -31,6 +31,7 @@ namespace Hospital.Controllers
 
             return Ok(eventDto);
         }
+
         [HttpGet("GetAllEvents")]
         public async Task<IActionResult> GetAllEvents([FromQuery] int branchId)
         {
@@ -63,6 +64,7 @@ namespace Hospital.Controllers
 
             return Ok($"Event with ID = {dto.EventId} deleted successfully.");
         }
+
         [HttpGet("GetAllEventsInSystem")]
         public async Task<IActionResult> GetAllEventsInSystem()
         {

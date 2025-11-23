@@ -11,7 +11,6 @@ namespace Hospital.Controllers
     public class PatientController : ControllerBase
     {
         private readonly IPatientService _patientService;
-
         public PatientController(IPatientService patientService)
         {
             _patientService = patientService;

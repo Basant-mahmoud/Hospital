@@ -3,13 +3,8 @@ using Hospital.Application.Helper;
 using Hospital.Application.Interfaces.Services;
 using Hospital.Domain.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using OfficeOpenXml;
-using System.Collections.Generic;
-using System.ComponentModel;
-using OfficeOpenXml;
-using System.Security.Claims;
+
 
 namespace Hospital.Controllers
 {
@@ -18,55 +13,9 @@ namespace Hospital.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IAuthService _authService;
-
-
-    public AuthController(IAuthService authService)
+        public AuthController(IAuthService authService)
         {
             _authService = authService;
-        }
-
-        // ============================
-        // 🔹 TEST AUTHENTICATION
-        // ============================
-        [HttpGet("test-auth")]
-        [Authorize]
-        public IActionResult TestAuthentication()
-        {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier)
-                         ?? User.FindFirstValue("uid")
-                         ?? "Not found";
-
-            var roles = User.FindAll(ClaimTypes.Role).Select(r => r.Value).ToList();
-
-            return Ok(new
-            {
-                Message = "You are authenticated!",
-                UserId = userId,
-                Roles = roles
-            });
-        }
-
-        // ============================
-        // 🔹 TEST ROLE AUTHORIZATION (Patient)
-        // ============================
-        [HttpGet("test-role")]
-        [Authorize(Roles = "Patient")]
-        public IActionResult TestRole()
-        {
-            return Ok(new
-            {
-                Message = "Authorization success! You have the Patient role."
-            });
-        }
-
-        // ======================
-        // Existing endpoints...
-        // ======================
-
-        [HttpGet("throw")]
-        public IActionResult ThrowError()
-        {
-            throw new Exception("This is a test exception!");
         }
 
         [HttpPost("register")]
@@ -92,10 +41,6 @@ namespace Hospital.Controllers
             return Ok(result);
         }
 
-
-
-
-
         [HttpPost("login")]
         public async Task<IActionResult> LoginAsync([FromBody] LoginModel model)
         {
@@ -109,6 +54,7 @@ namespace Hospital.Controllers
 
             return Ok(result);
         }
+
 
         [HttpPost("addrole")]
         [Authorize]
@@ -125,6 +71,7 @@ namespace Hospital.Controllers
             return Ok(model);
         }
 
+
         [HttpPost("forgot-password")]
         public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordDto dto)
         {
@@ -138,6 +85,7 @@ namespace Hospital.Controllers
             if (!result) return BadRequest("Could not process request.");
             return Ok("If your email is registered and confirmed, you will receive a reset link.");
         }
+
 
         [HttpPost("Verify-Code")]
         public async Task<IActionResult> VerifyCode([FromBody] VerifyCodeDto dto)
@@ -184,6 +132,7 @@ namespace Hospital.Controllers
             return Ok("Password has been reset successfully.");
         }
 
+
         [HttpPost("refresh-token")]
         public async Task<IActionResult> RefreshToken([FromBody] RefreshToken tokendto)
         {
@@ -193,48 +142,7 @@ namespace Hospital.Controllers
 
             return Ok(result);
         }
-        //////////////////test ////////////////////
-        // Test endpoint
-        [HttpGet("whoami")]
-        [Authorize] // requires valid token
-        public IActionResult WhoAmI()
-        {
-            var userId = User.FindFirst("uid")?.Value;
-            var roles = User.Claims
-                .Where(c => c.Type == ClaimTypes.Role)
-                .Select(c => c.Value)
-                .ToList();
-
-            return Ok(new
-            {
-                UserId = userId,
-                Roles = roles
-            });
-        }
-
-        // Test Admin-only
-        [HttpGet("admin-only")]
-        [Authorize(Roles = "Admin")]
-        public IActionResult AdminOnly()
-        {
-            return Ok("You are Admin — Authorization works!");
-        }
-
-        // Test Doctor-only
-        [HttpGet("doctor-only")]
-        [Authorize(Roles = "Doctor")]
-        public IActionResult DoctorOnly()
-        {
-            return Ok("You are Doctor — Authorization works!");
-        }
-
-        // Test Patient-only
-        [HttpGet("patient-only")]
-        [Authorize(Roles = "Patient")]
-        public IActionResult PatientOnly()
-        {
-            return Ok("You are Patient — Authorization works!");
-        }
+       
     }
 
 }

@@ -14,10 +14,10 @@ using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
 namespace Hospital.Infrastructure.Repository
 {
     public class ServiceRepository : IServiceRepository
-
     {
-        private readonly AppDbContext _context;
 
+
+        private readonly AppDbContext _context;
         public ServiceRepository(AppDbContext context)
         {
             _context = context;
@@ -60,6 +60,7 @@ namespace Hospital.Infrastructure.Repository
                 await _context.SaveChangesAsync();
             }
         }
+
         public async Task<bool> ExistsByNameInBranchesAsync(string name, IEnumerable<int> branchIds)
         {
             return await _context.Services

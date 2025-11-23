@@ -27,10 +27,8 @@ namespace Hospital.Application.MappingProfiles
 
             CreateMap<Specialization, SpecializationDTO>().ReverseMap();
             CreateMap<Specialization, SpecializationInfoDto>()
-             .ForMember(dest => dest.Doctors,
-                        opt => opt.MapFrom(src => src.Doctors))
-             .ForMember(dest => dest.Branches,
-                        opt => opt.MapFrom(src => src.Branches));
+                .ForMember(dest => dest.Doctors, opt => opt.MapFrom(src => src.Doctors))
+                .ForMember(dest => dest.Branches, opt => opt.MapFrom(src => src.Branches));
 
             CreateMap<Doctor, DoctorMiniDto>()
                 .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => src.User.FullName));

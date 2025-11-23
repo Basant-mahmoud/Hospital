@@ -15,9 +15,6 @@ namespace Hospital.Application.Interfaces.Repos
         Task<int> DeleteAsync(Event @event);
         Task<Event?> GetAsync(int id);               
         Task<IEnumerable<Event>> GetAllAsync(int branchId);
-
         Task<IEnumerable<Event>> GetAllEventInSystemAsync();
-
-
     }
 }

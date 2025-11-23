@@ -9,6 +9,7 @@ namespace Hospital.Application.DTO.PaymentDTOs
 {
     public class PaymobCallbackDto
     {
+        
         [JsonPropertyName("paymentId")]
         public string PaymentId { get; set; }
 

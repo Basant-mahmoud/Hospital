@@ -12,12 +12,13 @@ namespace Hospital.Infrastructure.Repository
 {
     public class MedicalRecordRepository : IMedicalRecordRepository
     {
-        private readonly AppDbContext _dbContext;
 
+        private readonly AppDbContext _dbContext;
         public MedicalRecordRepository(AppDbContext dbContext)
         {
             _dbContext = dbContext;
         }
+
         public async Task<MedicalRecord> AddAsync(MedicalRecord medical)
         {
             await _dbContext.MedicalRecords.AddAsync(medical);

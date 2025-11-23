@@ -9,6 +9,7 @@ namespace Hospital.Application.DTO.MedicalRecord
 {
     public class UpdateMedicalRecordDto
     {
+
         [Required]
         public int RecordId { get; set; } 
 
@@ -20,11 +21,8 @@ namespace Hospital.Application.DTO.MedicalRecord
 
         [Required]
         public int PatientId { get; set; }
-
         public string? Diagnosis { get; set; }
-
         public string? TreatmentPlan { get; set; }
-
         public string? Notes { get; set; }
     }
 }

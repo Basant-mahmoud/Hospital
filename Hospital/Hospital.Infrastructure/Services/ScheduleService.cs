@@ -16,7 +16,6 @@ namespace Hospital.Infrastructure.Services
         private readonly IScheduleRepository _repo;
         private readonly IDoctorRepository _doctorRepo;
         private readonly IMapper _mapper;
-
         public ScheduleService(IScheduleRepository repo, IMapper mapper, IDoctorRepository doctorRepo)
         {
             _repo = repo;
@@ -26,25 +25,24 @@ namespace Hospital.Infrastructure.Services
 
         public async Task<ScheduleDto> CreateAsync(CreateScheduleDto dto)
         {
-            // ✅ Validate Doctor exists
+            // Validate Doctor exists
             var doctor = await _doctorRepo.GetAsync(dto.DoctorId);
             if (doctor == null)
                 throw new KeyNotFoundException("Doctor not found.");
 
-            // ✅ Validate DayOfWeek
+            // Validate DayOfWeek
             if (!Enum.TryParse<DayOfWeek>(dto.DayOfWeek, true, out _))
                 throw new ArgumentException("Invalid day of the week. Must be Sunday, Monday, etc.");
 
-            // ✅ Validate AppointmentShift
+            // Validate AppointmentShift
             if (!ShiftTimeRanges.Shifts.ContainsKey(dto.AppointmentShift))
                 throw new ArgumentException("Invalid appointment shift.");
 
-            // ✅ Prevent duplicate schedule for same doctor/day/shift
+            // Prevent duplicate schedule for same doctor/day/shift
             var existingSchedules = await _repo.GetAllByDayOfWeekAsync(dto.DayOfWeek);
             if (existingSchedules.Any(s => s.DoctorId == dto.DoctorId && s.Shift == dto.AppointmentShift))
                 throw new InvalidOperationException("Doctor already has a schedule for this day and shift.");
 
-            // Map and compute times
             var schedule = _mapper.Map<Schedule>(dto);
             var timeRange = ShiftTimeRanges.Shifts[dto.AppointmentShift];
             schedule.Shift = dto.AppointmentShift;
@@ -63,7 +61,6 @@ namespace Hospital.Infrastructure.Services
             if (schedule == null)
                 throw new KeyNotFoundException("Schedule not found.");
 
-            // Validate optional shift
             if (dto.AppointmentShift.HasValue)
             {
                 if (!ShiftTimeRanges.Shifts.ContainsKey(dto.AppointmentShift.Value))
@@ -74,7 +71,6 @@ namespace Hospital.Infrastructure.Services
                 schedule.EndTime = DateTime.Today.Add(range.End);
                 schedule.Shift = dto.AppointmentShift.Value;
 
-                // Prevent duplicates
                 var otherSchedules = await _repo.GetAllByDayOfWeekAsync(schedule.DayOfWeek);
                 if (otherSchedules.Any(s => s.DoctorId == schedule.DoctorId && s.Shift == schedule.Shift && s.ScheduleId != schedule.ScheduleId))
                     throw new InvalidOperationException("Doctor already has a schedule for this day and shift.");

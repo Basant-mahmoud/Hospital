@@ -10,5 +10,5 @@ namespace Hospital.Application.DTO.News
     {
         public int NewsId { get; set; }
         public int branchId { get; set; }
-        }
+    }
 }

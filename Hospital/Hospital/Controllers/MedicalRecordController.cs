@@ -35,7 +35,6 @@ namespace Hospital.Controllers
             return Ok("Updated Successfully");
         }
 
-        // 3️⃣ Delete Medical Record
         [HttpDelete("{id}")]
         public async Task<ActionResult<int>> Delete(int id)
         {
@@ -46,7 +45,6 @@ namespace Hospital.Controllers
             return Ok("Deleted Successfully");
         }
 
-        // 4️⃣ Get Medical Record by Id
         [HttpGet("{id}")]
         public async Task<ActionResult<PatientMedicalRecordDto?>> GetById(int id)
         {
@@ -56,7 +54,6 @@ namespace Hospital.Controllers
             return Ok(record);
         }
 
-        // 5️⃣ Get all Medical Records by DoctorId
         [HttpGet("by-doctor/{doctorId}")]
         public async Task<ActionResult<List<PatientMedicalRecordDto>>> GetByDoctor(int doctorId)
         {
@@ -64,13 +61,13 @@ namespace Hospital.Controllers
             return Ok(records);
         }
 
-        // 6️⃣ Get all Medical Records by PatientId
         [HttpGet("by-patient/{patientId}")]
         public async Task<ActionResult<List<PatientMedicalRecordDto>>> GetByPatient(int patientId)
         {
             var records = await _medicalRecordService.GetByPatientId(patientId);
             return Ok(records);
         }
+
         [HttpGet("records/doctor/{doctorId}/patient/{patientId}")]
         public async Task<IActionResult> GetHistory(int doctorId, int patientId)
         {

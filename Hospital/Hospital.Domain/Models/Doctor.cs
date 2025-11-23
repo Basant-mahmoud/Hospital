@@ -15,9 +15,6 @@ namespace Hospital.Domain.Models
         public User User { get; set; } = null!;
         [Required] public int SpecializationId { get; set; }
         public Specialization Specialization { get; set; } = null!;
-        //[Required] public int BranchId { get; set; }
-        //public Branch Branch { get; set; } = null!;
-
         [Url, StringLength(300)] public string? ImageURL { get; set; }
         public ICollection<Branch> Branches { get; set; } = new List<Branch>();
         public string? Biography { get; set; }

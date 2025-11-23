@@ -13,11 +13,13 @@ namespace Hospital.Infrastructure.Repository
 {
     public class NewsRepository : INewsRepository
     {
+
         private readonly AppDbContext _dbContext;
         public NewsRepository(AppDbContext context)
         {
             _dbContext = context;
         }
+
         public async Task<News> AddAsync(News news)
         {
             _dbContext.News.Add(news);
