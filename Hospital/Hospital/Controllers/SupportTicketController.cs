@@ -12,10 +12,13 @@ namespace Hospital.Controllers
     {
         private readonly ISupportTicketService _ticketService;
         private readonly IPatientService _patientService;
-        public SupportTicketController(ISupportTicketService ticketService , IPatientService patientService)
+        private readonly ILogger<SupportTicketController> _logger;
+
+        public SupportTicketController(ISupportTicketService ticketService , IPatientService patientService, ILogger<SupportTicketController> logger)
         {
             _ticketService = ticketService;
             _patientService = patientService;
+            _logger = logger;
         }
 
         // -----------------------------
@@ -24,6 +27,8 @@ namespace Hospital.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody] CreateSupportTicketDto dto)
         {
+            _logger.LogInformation("create Support Ticket called at {time}", DateTime.Now);
+
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
@@ -53,6 +58,8 @@ namespace Hospital.Controllers
         //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAll()
         {
+            _logger.LogInformation("get all Support Ticket called at {time}", DateTime.Now);
+
             var tickets = await _ticketService.GetAllAsync();
             return Ok(tickets);
         }
@@ -64,6 +71,8 @@ namespace Hospital.Controllers
         //[Authorize] // both Admin and Patient can access, check authorization
         public async Task<IActionResult> GetById(int ticketId)
         {
+            _logger.LogInformation("get  Support by id Ticket called at {time}", DateTime.Now);
+
             var ticket = await _ticketService.GetByIdAsync(ticketId);
             if (ticket == null) return NotFound();
 
@@ -79,6 +88,9 @@ namespace Hospital.Controllers
         [HttpGet("patient/{patientId}")]
         public async Task<ActionResult<IEnumerable<SupportTicketDto>>> GetAllByPatientId(int patientId)
         {
+            _logger.LogInformation("get all Support Ticket  by patient id " +
+                "called at {time}", DateTime.Now);
+
             if (patientId==null)
                 return BadRequest("PatientId is required.");
             var patient = await _patientService.GetPatientByIdAsync(patientId);
@@ -96,6 +108,8 @@ namespace Hospital.Controllers
         //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> Update([FromBody] UpdateSupportTicketDto dto)
         {
+            _logger.LogInformation("update Support Ticket called at {time}", DateTime.Now);
+
             var updated = await _ticketService.UpdateAsync(dto);
             return Ok(updated);
         }
@@ -107,6 +121,8 @@ namespace Hospital.Controllers
         //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int ticketId)
         {
+            _logger.LogInformation("delete Support Ticket called at {time}", DateTime.Now);
+
             var success = await _ticketService.DeleteAsync(ticketId);
             if (!success) return NotFound();
 

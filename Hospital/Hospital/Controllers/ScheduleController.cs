@@ -10,16 +10,20 @@ namespace Hospital.Controllers
     public class ScheduleController : ControllerBase
     {
         private readonly IScheduleService _service;
+        private readonly ILogger<ScheduleController> _logger;
 
-        public ScheduleController(IScheduleService service)
+        public ScheduleController(IScheduleService service, ILogger<ScheduleController> logger)
         {
             _service = service;
+            _logger = logger;
         }
 
         // Create a new schedule
         [HttpPost]
         public async Task<ActionResult<ScheduleDto>> Create([FromBody] CreateScheduleDto dto)
         {
+            _logger.LogInformation("create schedule  called at {time}", DateTime.Now);
+
             var result = await _service.CreateAsync(dto);
             return Ok(result);
         }
@@ -28,6 +32,8 @@ namespace Hospital.Controllers
         [HttpPut]
         public async Task<ActionResult<ScheduleDto>> Update([FromBody] UpdateScheduleDto dto)
         {
+            _logger.LogInformation("update schedule  called at {time}", DateTime.Now);
+
             var result = await _service.UpdateAsync(dto);
             return Ok(result);
         }
@@ -36,6 +42,8 @@ namespace Hospital.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
+            _logger.LogInformation("delete schedule  called at {time}", DateTime.Now);
+
             var deleted = await _service.DeleteAsync(id);
             return deleted ? Ok("Deleted SuccessFully") : NotFound();
         }
@@ -44,6 +52,8 @@ namespace Hospital.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<ScheduleDto>> GetById(int id)
         {
+            _logger.LogInformation("get schedule by id called at {time}", DateTime.Now);
+
             var result = await _service.GetByIdAsync(id);
             return result == null ? NotFound() : Ok(result);
         }
@@ -52,6 +62,8 @@ namespace Hospital.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ScheduleDto>>> GetAll()
         {
+            _logger.LogInformation("get all schedule called at {time}", DateTime.Now);
+
             var result = await _service.GetAllAsync();
             return Ok(result);
         }
@@ -60,6 +72,8 @@ namespace Hospital.Controllers
         [HttpGet("doctor/{doctorId}")]
         public async Task<ActionResult<IEnumerable<ScheduleDto>>> GetByDoctorId(int doctorId)
         {
+            _logger.LogInformation("get schedule by doctor id called at {time}", DateTime.Now);
+
             if (doctorId <= 0)
                 return BadRequest("Invalid doctor ID.");
 
@@ -75,6 +89,8 @@ namespace Hospital.Controllers
         [HttpGet("day/{dayOfWeek}")]
         public async Task<ActionResult<IEnumerable<ScheduleDto>>> GetDoctorsByDay(string dayOfWeek)
         {
+            _logger.LogInformation("get schedule to doctor by day called at {time}", DateTime.Now);
+
             var result = await _service.GetDoctorsByDateAsync(dayOfWeek);
             return Ok(result);
         }
@@ -83,6 +99,8 @@ namespace Hospital.Controllers
         [HttpGet("date/{date}")]
         public async Task<ActionResult<IEnumerable<ScheduleDto>>> GetDoctorsByDate(DateOnly date)
         {
+            _logger.LogInformation("get schedule to doctor by date called at {time}", DateTime.Now);
+
             if (date < DateOnly.FromDateTime(DateTime.Today))
                 return BadRequest("Cannot get schedules for a past date.");
             var dayOfWeek = date.DayOfWeek.ToString();
@@ -94,6 +112,8 @@ namespace Hospital.Controllers
         [HttpGet("day/{dayOfWeek}/shift/{shift}")]
         public async Task<ActionResult<IEnumerable<ScheduleDto>>> GetDoctorsByDayAndShift(string dayOfWeek, Domain.Enum.AppointmentShift shift)
         {
+            _logger.LogInformation("get schedule to doctor by shift called at {time}", DateTime.Now);
+
             var result = await _service.GetDoctorsByDateAndShiftAsync(dayOfWeek, shift);
             return Ok(result);
         }
@@ -102,6 +122,8 @@ namespace Hospital.Controllers
         [HttpGet("date/{date}/shift/{shift}")]
         public async Task<ActionResult<IEnumerable<ScheduleDto>>> GetDoctorsByDateAndShift(DateOnly date, Domain.Enum.AppointmentShift shift)
         {
+            _logger.LogInformation("get schedule to doctor by data and shift called at {time}", DateTime.Now);
+
             if (date < DateOnly.FromDateTime(DateTime.Today))
                 return BadRequest("Cannot get schedules for a past date.");
             var dayOfWeek = date.DayOfWeek.ToString();

@@ -1,4 +1,5 @@
-﻿using Hospital.Application.DTO.Auth;
+﻿using Hospital.API.Controllers;
+using Hospital.Application.DTO.Auth;
 using Hospital.Application.Helper;
 using Hospital.Application.Interfaces.Services;
 using Hospital.Domain.Models;
@@ -13,14 +14,19 @@ namespace Hospital.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IAuthService _authService;
-        public AuthController(IAuthService authService)
+        private readonly ILogger<AuthController> _logger;
+
+        public AuthController(IAuthService authService, ILogger<AuthController> logger)
         {
             _authService = authService;
+            _logger = logger;
         }
 
         [HttpPost("register")]
         public async Task<IActionResult> RegisterAsync([FromBody] RegisterModel model)
         {
+            _logger.LogInformation("Register called at {time}", DateTime.Now);
+
             if (!ValidationHelper.IsValidEmail(model.Email))
             {
                 ModelState.AddModelError("Email", "Invalid email format");
@@ -44,6 +50,8 @@ namespace Hospital.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> LoginAsync([FromBody] LoginModel model)
         {
+            _logger.LogInformation("Login called at {time}", DateTime.Now);
+
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
@@ -60,6 +68,8 @@ namespace Hospital.Controllers
         [Authorize]
         public async Task<IActionResult> AddRoleAsync([FromBody] AddRoleModel model)
         {
+            _logger.LogInformation("AddRole called at {time}", DateTime.Now);
+
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
@@ -75,6 +85,8 @@ namespace Hospital.Controllers
         [HttpPost("forgot-password")]
         public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordDto dto)
         {
+            _logger.LogInformation("ForgotPassword called at {time}", DateTime.Now);
+
             if (string.IsNullOrWhiteSpace(dto.Email) || !ValidationHelper.IsValidEmail(dto.Email))
             {
                 ModelState.AddModelError("Email", "Invalid email format.");
@@ -90,6 +102,9 @@ namespace Hospital.Controllers
         [HttpPost("Verify-Code")]
         public async Task<IActionResult> VerifyCode([FromBody] VerifyCodeDto dto)
         {
+            _logger.LogInformation("VerifyCode called at {time}", DateTime.Now);
+
+
             if (string.IsNullOrWhiteSpace(dto.Email) || !ValidationHelper.IsValidEmail(dto.Email))
             {
                 ModelState.AddModelError("Email", "Invalid email format.");
@@ -109,6 +124,8 @@ namespace Hospital.Controllers
         [HttpPost("reset-password")]
         public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDto dto)
         {
+            _logger.LogInformation("ResetPassword called at {time}", DateTime.Now);
+
             // Validate email
             if (string.IsNullOrWhiteSpace(dto.Email) || !ValidationHelper.IsValidEmail(dto.Email))
             {
@@ -136,6 +153,8 @@ namespace Hospital.Controllers
         [HttpPost("refresh-token")]
         public async Task<IActionResult> RefreshToken([FromBody] RefreshToken tokendto)
         {
+            _logger.LogInformation("RefreshToken called at {time}", DateTime.Now);
+
             var result = await _authService.RefreshTokenAsync(tokendto.Token);
             if (!result.IsAuthenticated)
                 return BadRequest(result.Message);

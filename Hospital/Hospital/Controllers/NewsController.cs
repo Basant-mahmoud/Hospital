@@ -11,14 +11,19 @@ namespace Hospital.Controllers
     public class NewsController : ControllerBase
     {
         private readonly INewsService _newsService;
-        public NewsController(INewsService newsService)
+        private readonly ILogger<NewsController> _logger;
+
+        public NewsController(INewsService newsService, ILogger<NewsController> logger)
         {
             _newsService = newsService;
+            _logger = logger;
         }
 
         [HttpPost("CreateNews")]
-        public async Task<IActionResult> CreateEvent([FromBody] AddNewsDto newsDto)
+        public async Task<IActionResult> CreateNews([FromBody] AddNewsDto newsDto)
         {
+            _logger.LogInformation("create News  called at {time}", DateTime.Now);
+
             var creatednews = await _newsService.AddAsync(newsDto);
             return CreatedAtAction(nameof(GetNews), new { id = creatednews.NewsId }, creatednews);
         }
@@ -26,6 +31,8 @@ namespace Hospital.Controllers
         [HttpPost("GetNews")]
         public async Task<IActionResult> GetNews(GetNewsDto news)
         {
+            _logger.LogInformation("get News  called at {time}", DateTime.Now);
+
             var newsDto = await _newsService.GetAsync(news);
             if (newsDto == null)
                 return NotFound();
@@ -36,6 +43,8 @@ namespace Hospital.Controllers
         [HttpGet("GetAllNews")]
         public async Task<IActionResult> GetAllNews([FromQuery] int branchId)
         {
+            _logger.LogInformation("get all News  to specific branch called at {time}", DateTime.Now);
+
             var news = await _newsService.GetAllAsync(branchId);
             if (news == null || !news.Any())
                 return NotFound("No News found for this branch.");
@@ -46,6 +55,8 @@ namespace Hospital.Controllers
         [HttpPut("UpdateNews")]
         public async Task<IActionResult> UpdateEvent([FromBody] NewsDto news)
         {
+            _logger.LogInformation("update News  called at {time}", DateTime.Now);
+
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
@@ -59,6 +70,8 @@ namespace Hospital.Controllers
         [HttpDelete("DeleteNews")]
         public async Task<IActionResult> DeleteNews(GetNewsDto dto)
         {
+            _logger.LogInformation("delete News  called at {time}", DateTime.Now);
+
             var result = await _newsService.DeleteAsync(dto);
             if (result == 0)
                 return NotFound($"No news found with ID = {dto.NewsId}");
@@ -69,6 +82,8 @@ namespace Hospital.Controllers
         [HttpGet("GetAllNewsInSystem")]
         public async Task<IActionResult> GetAllNewsInSystem()
         {
+            _logger.LogInformation("get all News in system  called at {time}", DateTime.Now);
+
             var news = await _newsService.GetAllEventInSystemAsync();
             if (news == null || !news.Any())
                 return NotFound("No news found in the system.");
