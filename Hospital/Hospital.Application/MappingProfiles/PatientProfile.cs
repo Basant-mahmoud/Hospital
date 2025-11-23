@@ -28,7 +28,7 @@ namespace Hospital.Application.MappingProfiles
                 .ForMember(dest => dest.PhoneNumber,
                            opt => opt.MapFrom(src => src.User.PhoneNumber))
                 .ForMember(dest => dest.MedicalRecords,
-                           opt => opt.MapFrom(src => src.MedicalRecords)); // ⬅ مهم
+                           opt => opt.MapFrom(src => src.MedicalRecords));
 
             // -----------------------------------------
             // Mapping for updating patient

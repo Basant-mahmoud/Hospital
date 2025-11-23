@@ -38,7 +38,9 @@ namespace Hospital.Infrastructure.Repository
         public async Task<List<Patient>> GetAllAsync()
         {
             return await _dbContext.Patients.Include(p => p.User)
-                .AsNoTracking()
+                .Include(p => p.MedicalRecords)
+                    .ThenInclude(m => m.Doctor)
+                        .ThenInclude(d => d.User)
                 .ToListAsync();
         }
 
