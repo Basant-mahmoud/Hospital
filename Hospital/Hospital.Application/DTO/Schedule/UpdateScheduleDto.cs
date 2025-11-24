@@ -11,7 +11,7 @@ namespace Hospital.Application.DTO.Schedule
     public class UpdateScheduleDto
     {
         public int ScheduleId { get; set; }
-        public string? DayOfWeek { get; set; }
+        public DateOnly ScheduleDate { get; set; }
         public AppointmentShift? AppointmentShift { get; set; }
     }
 }

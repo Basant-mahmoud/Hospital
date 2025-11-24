@@ -17,6 +17,7 @@ namespace Hospital.Infrastructure.Services
         Task<IEnumerable<ScheduleDto>> GetDoctorsByDateAsync(string dayOfWeek);
         Task<IEnumerable<ScheduleDto>> GetDoctorsByDateAndShiftAsync(string dayOfWeek, Domain.Enum.AppointmentShift shift);
         Task<IEnumerable<ScheduleDto>> GetSchedulesByDoctorIdAsync(int doctorId);
+        Task<IEnumerable<ScheduleDto>> GetSchedulesByDateOnlyAsync(DateOnly date);
 
     }
 }
