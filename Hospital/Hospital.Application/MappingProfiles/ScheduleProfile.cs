@@ -29,5 +29,5 @@ namespace Hospital.Application.MappingProfiles
 
         }
     }
-    
+
 }

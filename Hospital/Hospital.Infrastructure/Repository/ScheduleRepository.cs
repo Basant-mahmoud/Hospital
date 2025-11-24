@@ -7,8 +7,8 @@ namespace Hospital.Infrastructure.Repository
 {
     public class ScheduleRepository : IScheduleRepository
     {
-        private readonly AppDbContext _context;
 
+        private readonly AppDbContext _context;
         public ScheduleRepository(AppDbContext context)
         {
             _context = context;
@@ -42,7 +42,7 @@ namespace Hospital.Infrastructure.Repository
         {
             return await _context.Schedules
                 .Include(s => s.Doctor)
-                    .ThenInclude(d => d.User)
+                 .ThenInclude(d => d.User)
                 .FirstOrDefaultAsync(s => s.ScheduleId == scheduleId);
         }
 
@@ -50,7 +50,7 @@ namespace Hospital.Infrastructure.Repository
         {
             return await _context.Schedules
                 .Include(s => s.Doctor)
-                    .ThenInclude(d => d.User)
+                 .ThenInclude(d => d.User)
                 .ToListAsync();
         }
 
@@ -59,22 +59,18 @@ namespace Hospital.Infrastructure.Repository
             return await _context.Schedules
                 .Where(s => s.DoctorId == doctorId)
                 .Include(s => s.Doctor)
-                    .ThenInclude(d => d.User)
+                 .ThenInclude(d => d.User)
                 .ToListAsync();
         }
 
-       
-
-        public async Task<IEnumerable<Schedule>> GetAllByDateAsync(DateOnly date)
+        public async Task<IEnumerable<Schedule>> GetAllByDayOfWeekAsync(string dayOfWeek)
         {
-            var startOfDay = date.ToDateTime(TimeOnly.MinValue);
-            var endOfDay = date.ToDateTime(TimeOnly.MaxValue);
-
             return await _context.Schedules
-                .Where(s => s.StartTime >= startOfDay && s.StartTime <= endOfDay)
+                .Where(s => s.DayOfWeek.ToLower() == dayOfWeek.ToLower())
                 .Include(s => s.Doctor)
-                    .ThenInclude(d => d.User)
+                 .ThenInclude(d => d.User)
                 .ToListAsync();
         }
+
     }
 }
