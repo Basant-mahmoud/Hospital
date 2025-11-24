@@ -32,10 +32,6 @@ namespace Clinic.Infrastructure.Persistence
                 d => d.ToDateTime(TimeOnly.MinValue),
                 dt => DateOnly.FromDateTime(DateTime.SpecifyKind(dt, DateTimeKind.Utc)));
 
-            //var timeOnlyConverter = new ValueConverter<TimeOnly, TimeSpan>(
-            //    t => t.ToTimeSpan(),
-            //    ts => TimeOnly.FromTimeSpan(ts));
-
             var genderConverter = new EnumToStringConverter<GenderType>();
             var apptStatusConverter = new EnumToStringConverter<AppointmentStatus>();
             var ticketStatusConverter = new EnumToStringConverter<TicketStatus>();
@@ -142,7 +138,7 @@ namespace Clinic.Infrastructure.Persistence
             {
                 e.ToTable("Appointments");
                 e.Property(p => p.Date).HasConversion(dateOnlyConverter);
-                e.Property(p => p.Time).HasColumnType("datetime2");
+                e.Property(p => p.Shift).HasConversion<string>().HasMaxLength(20).IsRequired();
                 e.Property(p => p.Status).HasConversion(apptStatusConverter).HasMaxLength(20);
                 e.Property(p => p.CreatedAt).HasDefaultValueSql("GETUTCDATE()");
                 e.Property(p => p.UpdatedAt).HasDefaultValueSql("GETUTCDATE()");

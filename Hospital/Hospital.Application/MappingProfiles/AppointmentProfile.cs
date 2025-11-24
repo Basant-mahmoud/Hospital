@@ -19,7 +19,9 @@ namespace Hospital.Application.MappingProfiles
                 .ForMember(dest => dest.Status,
                     opt => opt.MapFrom(src => src.Status.ToString()))
                 .ForMember(dest => dest.PaymentMethod,
-                    opt => opt.MapFrom(src => src.PaymentMethod.ToString())); // Enum → String
+                    opt => opt.MapFrom(src => src.PaymentMethod.ToString())) // Enum → String
+               .ForMember(dest => dest.Shift,  // Map Shift enum to string
+                    opt => opt.MapFrom(src => src.Shift.ToString()));
 
             // Branch → BranchShortDto
             CreateMap<Branch, BranchShortDto>();

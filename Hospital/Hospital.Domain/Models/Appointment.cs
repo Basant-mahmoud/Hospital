@@ -26,7 +26,7 @@ namespace Hospital.Domain.Models
         public DateOnly Date { get; set; }
 
         [Required]
-        public DateTime Time { get; set; }
+        public AppointmentShift Shift { get; set; }
 
         [Required]
         public AppointmentStatus Status { get; set; } = AppointmentStatus.Confirmed;
