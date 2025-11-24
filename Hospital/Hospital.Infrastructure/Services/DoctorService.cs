@@ -363,68 +363,56 @@ namespace Hospital.Infrastructure.Services
             return true;
         }
 
-        public async Task<int> CancelAppointmentsForDoctorbyDate(int id , DateOnly date)
+        public async Task<int> CancelAppointmentsForDoctorbyDate(int id, DateOnly date)
         {
             _logger.LogInformation("Cancelling appointments for doctor ID {DoctorId} on date {Date}", id, DateTime.UtcNow);
+
             var doctor = await _doctorRepo.GetAsync(id);
             if (doctor == null)
             {
                 _logger.LogWarning("Doctor with ID {DoctorId} does not exist", id);
                 throw new KeyNotFoundException($"Doctor with ID {id} does not exist.");
             }
+
             var appointments = await _doctorRepo.GetAppoimentsByDateForDoctorAsync(id, date);
             if (appointments == null || !appointments.Any())
             {
                 _logger.LogInformation("No appointments found for doctor ID {DoctorId} on date {Date}", id, DateTime.UtcNow);
                 return 0;
             }
-            int cancelledCount = 0;
-            foreach (var appointment in appointments)
+
+            // حددنا اللي محتاج يتلغى
+            var toCancel = appointments.Where(a => a.Status != AppointmentStatus.Cancelled).ToList();
+            foreach (var appointment in toCancel)
             {
-                if (appointment.Status != AppointmentStatus.Cancelled)
+                appointment.Status = AppointmentStatus.Cancelled;
+                appointment.UpdatedAt = DateTime.UtcNow;
+
+                // إرسال الإيميلات
+                var html = $@"
+        <p>Dear {appointment.Patient.User.FullName},</p>
+        <p>We regret to inform you that your appointment scheduled for <b>{appointment.Date}</b> with <b>Dr. {appointment.Doctor.User.FullName}</b> has been cancelled due to unforeseen circumstances.</p>
+        <p>We sincerely apologize for any inconvenience this may cause. Our team will be happy to assist you in booking another available time that best fits your schedule.</p>
+        <p>If you would like to reschedule or need additional support, please feel free to contact us at your convenience.</p>
+        <p>Kind regards,<br/>Hospital Support Team</p>";
+
+                try
                 {
-                    appointment.Status = AppointmentStatus.Cancelled;
-                    appointment.UpdatedAt = DateTime.UtcNow;
-                    var result = await _appointmentRepository.UpdateAsync(appointment);
-                    if (result == 0) {
-                        _logger.LogWarning(
-                            "Failed to update appointment {AppointmentId} for doctor ID {DoctorId} on date {AppointmentDate}",
-                            appointment.AppointmentId, id, date);
-                    }
-                    else
-                    {
-                        // send email to patient about cancellation
-                        // Email content
-                        var html = $@"
-                        <p>Dear {appointment.Patient.User.FullName},</p>
-
-                        <p>We regret to inform you that your appointment scheduled for <b>{appointment.Date}</b> with <b>Dr. {appointment.Doctor.User.FullName}</b> has been cancelled due to unforeseen circumstances.</p>
-
-                        <p>We sincerely apologize for any inconvenience this may cause. Our team will be happy to assist you in booking another available time that best fits your schedule.</p>
-
-                        <p>If you would like to reschedule or need additional support, please feel free to contact us at your convenience.</p>
-
-                        <p>Kind regards,<br/>
-                        Hospital Support Team</p>";
-
-
-
-                        try
-                        {
-                            await _emailService.SendEmailAsync(appointment.Patient.User.Email, "Appoinment Cancellation", html);
-                        }
-                        catch (Exception ex)
-                        {
-                            throw new InvalidOperationException($"Failed to send cancellation email: {ex.Message}");
-                        }
-                    }
-                    cancelledCount++;
+                    await _emailService.SendEmailAsync(appointment.Patient.User.Email, "Appointment Cancellation", html);
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Failed to send cancellation email for appointment {AppointmentId}", appointment.AppointmentId);
                 }
             }
-            _logger.LogInformation("Cancelled {CancelledCount} appointments for doctor ID {DoctorId} on date {Date}", cancelledCount, id, DateTime.UtcNow);
-            return cancelledCount;
 
+            // تحديث كل العناصر مرة واحدة
+            _appointmentRepository.UpdateRange(toCancel);
+
+            _logger.LogInformation("Cancelled {CancelledCount} appointments for doctor ID {DoctorId} on date {Date}", toCancel.Count, id, DateTime.UtcNow);
+            return toCancel.Count;
         }
+
 
     }
 }

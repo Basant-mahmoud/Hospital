@@ -79,6 +79,10 @@ namespace Hospital.Infrastructure.Repository
             _context.Appointments.Update(appointment);
             return await _context.SaveChangesAsync();
         }
-
+        public async Task<int> UpdateRangeAsync(IEnumerable<Appointment> appointments)
+        {
+            _context.Appointments.UpdateRange(appointments);
+            return await _context.SaveChangesAsync();
+        }
     }
 }
