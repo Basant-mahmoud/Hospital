@@ -1,4 +1,5 @@
-﻿using Hospital.Application.DTO.Auth;
+﻿using Hospital.API.Controllers;
+using Hospital.Application.DTO.Auth;
 using Hospital.Application.Helper;
 using Hospital.Application.Interfaces.Services;
 using Hospital.Domain.Models;
@@ -13,14 +14,19 @@ namespace Hospital.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IAuthService _authService;
-        public AuthController(IAuthService authService)
+        private readonly ILogger<AuthController> _logger;
+
+        public AuthController(IAuthService authService, ILogger<AuthController> logger)
         {
             _authService = authService;
+            _logger = logger;
         }
 
         [HttpPost("register")]
         public async Task<IActionResult> RegisterAsync([FromBody] RegisterModel model)
         {
+            _logger.LogInformation("Register called at {time}", DateTime.Now);
+
             if (!ValidationHelper.IsValidEmail(model.Email))
             {
                 ModelState.AddModelError("Email", "Invalid email format");
@@ -44,6 +50,8 @@ namespace Hospital.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> LoginAsync([FromBody] LoginModel model)
         {
+            _logger.LogInformation("Login called at {time}", DateTime.Now);
+
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
@@ -60,6 +68,8 @@ namespace Hospital.Controllers
         [Authorize]
         public async Task<IActionResult> AddRoleAsync([FromBody] AddRoleModel model)
         {
+            _logger.LogInformation("AddRole called at {time}", DateTime.Now);
+
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
@@ -75,6 +85,8 @@ namespace Hospital.Controllers
         [HttpPost("forgot-password")]
         public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordDto dto)
         {
+            _logger.LogInformation("ForgotPassword called at {time}", DateTime.Now);
+
             if (string.IsNullOrWhiteSpace(dto.Email) || !ValidationHelper.IsValidEmail(dto.Email))
             {
                 ModelState.AddModelError("Email", "Invalid email format.");
@@ -90,6 +102,9 @@ namespace Hospital.Controllers
         [HttpPost("Verify-Code")]
         public async Task<IActionResult> VerifyCode([FromBody] VerifyCodeDto dto)
         {
+            _logger.LogInformation("VerifyCode called at {time}", DateTime.Now);
+
+
             if (string.IsNullOrWhiteSpace(dto.Email) || !ValidationHelper.IsValidEmail(dto.Email))
             {
                 ModelState.AddModelError("Email", "Invalid email format.");
@@ -109,13 +124,13 @@ namespace Hospital.Controllers
         [HttpPost("reset-password")]
         public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDto dto)
         {
-            // Validate email
+            _logger.LogInformation("ResetPassword called at {time}", DateTime.Now);
+
             if (string.IsNullOrWhiteSpace(dto.Email) || !ValidationHelper.IsValidEmail(dto.Email))
             {
                 ModelState.AddModelError("Email", "Invalid email format.");
             }
 
-            // Validate password: not null and first letter capital
             if (string.IsNullOrWhiteSpace(dto.NewPassword) || !char.IsUpper(dto.NewPassword[0]))
             {
                 ModelState.AddModelError("NewPassword", "Password must start with an uppercase letter.");
@@ -124,7 +139,6 @@ namespace Hospital.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            // Call service
             var result = await _authService.ResetPasswordAsync(dto.Email, dto.NewPassword);
             if (!result)
                 return BadRequest("Reset password failed.");
@@ -136,13 +150,31 @@ namespace Hospital.Controllers
         [HttpPost("refresh-token")]
         public async Task<IActionResult> RefreshToken([FromBody] RefreshToken tokendto)
         {
+            _logger.LogInformation("RefreshToken called at {time}", DateTime.Now);
+
             var result = await _authService.RefreshTokenAsync(tokendto.Token);
             if (!result.IsAuthenticated)
                 return BadRequest(result.Message);
 
             return Ok(result);
         }
-       
+
+        [HttpGet("getAdminData")]
+        [Authorize(Roles ="Admin")]  
+        public IActionResult GetAdminData()
+        {
+            _logger.LogInformation("GetAdminData called at {time}", DateTime.Now);
+
+            var userId = User.FindFirst("uid")?.Value;
+
+            if (userId == null)
+                return Unauthorized("Invalid token or user ID not found.");
+
+            var userData = _authService.GetUserDetails(userId);
+
+            return Ok(userData.Result);
+        }
+
     }
 
 }

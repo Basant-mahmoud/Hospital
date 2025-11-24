@@ -11,6 +11,7 @@ namespace Hospital.Application.DTO.Doctor
         public int ScheduleId { get; set; }
         public string DayOfWeek { get; set; } = null!;
         public DateTime StartTime { get; set; }
+        public string Date { get; set; } = null!;
         public DateTime EndTime { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }

@@ -20,6 +20,10 @@ namespace Hospital.Application.Interfaces.Services
         Task<IEnumerable<DoctorDto>> GetDoctorsBySpecializationIdAsync(int specializationId);
         Task UpdatePersonalInfoAsync(DoctorSelfUpdateDto dto);
         Task<List<AppoinmentandPaientDetaliesDto>> GetTodayForDoctorAsync(int doctorId);
+
+        Task<List<AppoinmentandPaientDetaliesDto>> GetAppoinmentsForDoctorByDateAsync(int doctorId, DateOnly date);
         Task<bool> convertStatuesOFPaymentToPayied(int appoimentid);
+        Task<int> CancelAppointmentsForDoctorbyDate(int id, DateOnly date);
     }
+
 }

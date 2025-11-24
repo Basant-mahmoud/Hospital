@@ -1,4 +1,5 @@
-﻿using Hospital.Application.DTO.Auth;
+﻿using Hospital.Application.DTO.Admin;
+using Hospital.Application.DTO.Auth;
 using Hospital.Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,6 @@ namespace Hospital.Application.Interfaces.Services
         Task<AuthModel> RefreshTokenAsync(string token);
         Task<string?> GetUserIdByEmailAsync(string email);
         Task<bool> VerifyCodeAsync(string email, string code);
-
+        Task<AdminDto> GetUserDetails(string userId);
     }
 }

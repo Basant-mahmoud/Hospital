@@ -10,7 +10,6 @@ namespace Hospital.Domain.Models
 {
     public class Schedule
     {
-
         [Key]
         public int ScheduleId { get; set; }
 
@@ -18,17 +17,20 @@ namespace Hospital.Domain.Models
         public int DoctorId { get; set; }
         public Doctor Doctor { get; set; } = null!;
 
-        [Required, StringLength(20)]
-        public string DayOfWeek { get; set; } = null!;  // Example: "Monday"
+        [Required]
+        public DateOnly ScheduleDate { get; set; }
 
         [Required]
-        public AppointmentShift Shift { get; set; }     // Morning / Afternoon / Evening
+        public AppointmentShift Shift { get; set; }
 
-        public DateTime StartTime { get; set; }         
-        public DateTime EndTime { get; set; }           
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
 
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
+
+        // Helper property (optional) لإظهار اليوم مباشرة
+        public string DayOfWeek => ScheduleDate.DayOfWeek.ToString();
     }
 
 }

@@ -81,7 +81,7 @@ namespace Hospital.Infrastructure.Repos
                 .ToListAsync();
         }
        
-        public async Task<List<Appointment>> GetTodayCompletedForDoctorAsync(int doctorId, DateOnly date)
+        public async Task<List<Appointment>> GetAppoimentsByDateForDoctorAsync(int doctorId, DateOnly date)
         {
             return await _context.Appointments
                 .Include(a => a.Patient)             

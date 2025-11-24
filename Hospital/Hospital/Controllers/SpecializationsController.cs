@@ -11,14 +11,19 @@ namespace Hospital.Controllers
     public class SpecializationsController : ControllerBase
     {
         private readonly ISpecializationService _service;
-        public SpecializationsController(ISpecializationService service)
+        private readonly ILogger<SpecializationsController> _logger;
+
+        public SpecializationsController(ISpecializationService service, ILogger<SpecializationsController> logger)
         {
             _service = service;
+            _logger = logger;
         }
 
         [HttpPost("Create")]
         public async Task<ActionResult<SpecializationDTO>> Create([FromBody] CreateSpecialization dto)
         {
+            _logger.LogInformation("create Specialization called at {time}", DateTime.Now);
+
             var result = await _service.AddAsync(dto);
             return CreatedAtAction(nameof(Get), new { id = result.SpecializationId }, result);
         }
@@ -26,6 +31,8 @@ namespace Hospital.Controllers
         [HttpPost("add-from-excel")]
         public async Task<IActionResult> AddSpecializationsFromExcel(IFormFile file)
         {
+            _logger.LogInformation("add Specialization by excel sheet called at {time}", DateTime.Now);
+
             if (file == null || file.Length == 0)
                 return BadRequest("No file uploaded.");
 
@@ -97,6 +104,8 @@ namespace Hospital.Controllers
         [HttpGet("Get/{id}")]
         public async Task<ActionResult<SpecializationDTO>> Get(int id)
         {
+            _logger.LogInformation("get Specialization by id called at {time}", DateTime.Now);
+
             var result = await _service.GetAsync(id);
             return Ok(result);
         }
@@ -104,6 +113,8 @@ namespace Hospital.Controllers
         [HttpGet("GetAll")]
         public async Task<ActionResult<IEnumerable<SpecializationDTO>>> GetAll()
         {
+            _logger.LogInformation("get all Specialization called at {time}", DateTime.Now);
+
             var result = await _service.GetAllSpecializaionInSystemAsync();
             return Ok(result);
         }
@@ -111,6 +122,8 @@ namespace Hospital.Controllers
         [HttpPut("Update")]
         public async Task<ActionResult<SpecializationDTO>> Update([FromBody] UpdateSpecialization dto)
         {
+            _logger.LogInformation("update Specialization called at {time}", DateTime.Now);
+
             var updated = await _service.UpdateAsync(dto);
             return Ok("Updated Successfully");
         }
@@ -118,6 +131,8 @@ namespace Hospital.Controllers
         [HttpDelete("Delete")]
         public async Task<IActionResult> Delete([FromBody] GetSpecializationDto dto)
         {
+            _logger.LogInformation("delete Specialization called at {time}", DateTime.Now);
+
             var deletedRows = await _service.DeleteAsync(dto);
             if (deletedRows <= 0)
                 return NotFound("Specialization not found or not deleted.");
@@ -128,6 +143,8 @@ namespace Hospital.Controllers
         [HttpGet("Branch/{branchId}")]
         public async Task<ActionResult<IEnumerable<SpecializationDTO>>> GetAllByBranch(int branchId)
         {
+            _logger.LogInformation("get all Specialization by branch id called at {time}", DateTime.Now);
+
             var result = await _service.GetAllByBranchAsync(branchId);
             return Ok(result);
         }

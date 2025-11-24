@@ -12,8 +12,9 @@ namespace Hospital.Application.DTO.Schedule
     public class CreateScheduleDto
     {
         public int DoctorId { get; set; }
-        public string DayOfWeek { get; set; } = null!;
+        public DateOnly ScheduleDate { get; set; }
         public AppointmentShift AppointmentShift { get; set; }
+
     }
 
 }

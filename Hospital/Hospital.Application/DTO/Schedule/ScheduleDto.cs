@@ -13,11 +13,17 @@ namespace Hospital.Application.DTO.Schedule
         public int ScheduleId { get; set; }
         public int DoctorId { get; set; }
         public string DoctorName { get; set; } = null!;
-        public string DayOfWeek { get; set; } = null!;
         public AppointmentShift AppointmentShift { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
+        public DateOnly ScheduleDate { get; set; }
+
+        public string DayOfWeek => ScheduleDate.DayOfWeek.ToString();
+
+        public string Date => ScheduleDate.ToString("dd/MM/yyyy");
     }
+
+
 }

@@ -14,14 +14,19 @@ namespace Hospital.Controllers
     public class ServicesController : ControllerBase
     {
         private readonly IServiceService _serviceService;
-        public ServicesController(IServiceService serviceService)
+        private readonly ILogger<ServicesController> _logger;
+
+        public ServicesController(IServiceService serviceService, ILogger<ServicesController> logger)
         {
             _serviceService = serviceService;
+            _logger = logger;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
+            _logger.LogInformation("get all services called at {time}", DateTime.Now);
+
             var services = await _serviceService.GetAllAsync();
             return Ok(services);
         }
@@ -29,6 +34,8 @@ namespace Hospital.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
+            _logger.LogInformation("get service by id  called at {time}", DateTime.Now);
+
             var service = await _serviceService.GetByIdAsync(id);
             if (service == null)
                 return NotFound();
@@ -39,6 +46,8 @@ namespace Hospital.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateServiceDto dto)
         {
+            _logger.LogInformation("create services called at {time}", DateTime.Now);
+
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
@@ -49,6 +58,8 @@ namespace Hospital.Controllers
         [HttpPost("add-services-from-excel")]
         public async Task<IActionResult> AddServicesFromExcel(IFormFile file)
         {
+            _logger.LogInformation("all services by excel sheet services called at {time}", DateTime.Now);
+
             if (file == null || file.Length == 0)
                 return BadRequest("No file uploaded.");
 
@@ -121,6 +132,8 @@ namespace Hospital.Controllers
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] UpdateServiceDto dto)
         {
+            _logger.LogInformation("update services called at {time}", DateTime.Now);
+
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
@@ -131,6 +144,8 @@ namespace Hospital.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
+            _logger.LogInformation("delete services called at {time}", DateTime.Now);
+
             var deleted = await _serviceService.DeleteAsync(id);
             if (!deleted) return NotFound();
             return Ok("Deleted Successfully");
