@@ -34,20 +34,18 @@ namespace Hospital.Application.MappingProfiles
 
             // Schedule → DoctorScheduleDto   
             CreateMap<Schedule, DoctorSchuduleDto>()
-            .ForMember(dest => dest.ScheduleId, opt => opt.MapFrom(src => src.ScheduleId))
-            .ForMember(dest => dest.DayOfWeek, opt => opt.MapFrom(src => src.ScheduleDate.DayOfWeek.ToString()))
-            .ForMember(dest => dest.StartTime, opt => opt.MapFrom(src => src.StartTime))
-            .ForMember(dest => dest.EndTime, opt => opt.MapFrom(src => src.EndTime))
-            .ForMember(dest => dest.Date, opt => opt.MapFrom(src => src.ScheduleDate.ToString("dd/MM/yyyy")));
-
+                .ForMember(dest => dest.ScheduleId, opt => opt.MapFrom(src => src.ScheduleId))
+                .ForMember(dest => dest.DayOfWeek, opt => opt.MapFrom(src => src.DayOfWeek))
+                .ForMember(dest => dest.StartTime, opt => opt.MapFrom(src => src.StartTime))
+                .ForMember(dest => dest.EndTime, opt => opt.MapFrom(src => src.EndTime));
 
             // DoctorDto → Doctor
             CreateMap<DoctorDto, Doctor>()
-                .ForMember(dest => dest.DoctorId, opt => opt.Ignore()) 
-                .ForMember(dest => dest.UserId, opt => opt.Ignore())   
-                .ForMember(dest => dest.Branches, opt => opt.Ignore()) 
-                .ForMember(dest => dest.CreatedAt, opt => opt.Ignore()) 
-                .ForMember(dest => dest.UpdatedAt, opt => opt.Ignore()); 
+                .ForMember(dest => dest.DoctorId, opt => opt.Ignore())
+                .ForMember(dest => dest.UserId, opt => opt.Ignore())
+                .ForMember(dest => dest.Branches, opt => opt.Ignore())
+                .ForMember(dest => dest.CreatedAt, opt => opt.Ignore())
+                .ForMember(dest => dest.UpdatedAt, opt => opt.Ignore());
 
             CreateMap<DoctorSelfUpdateDto, Doctor>()
                 .ForMember(dest => dest.User, opt => opt.Ignore()) // Don't overwrite the User navigation automatically
@@ -63,7 +61,7 @@ namespace Hospital.Application.MappingProfiles
                 .ForMember(dest => dest.UserId, opt => opt.Ignore())
                 .ForMember(dest => dest.Branches, opt => opt.Ignore())
                 .ForMember(dest => dest.CreatedAt, opt => opt.Ignore())
-                .ForMember(dest => dest.UpdatedAt, opt => opt.Ignore());    
+                .ForMember(dest => dest.UpdatedAt, opt => opt.Ignore());
 
         }
     }
