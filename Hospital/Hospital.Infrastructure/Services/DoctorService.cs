@@ -2,16 +2,13 @@
 using Clinic.Infrastructure.Persistence;
 using Hospital.Application.DTO.Appointment;
 using Hospital.Application.DTO.Doctor;
-using Hospital.Application.Helper;
 using Hospital.Application.Interfaces.Payment;
 using Hospital.Application.Interfaces.Repos;
 using Hospital.Application.Interfaces.Services;
 using Hospital.Domain.Enum;
 using Hospital.Domain.Models;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using System.ComponentModel.DataAnnotations;
-using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
+
 
 namespace Hospital.Infrastructure.Services
 {
