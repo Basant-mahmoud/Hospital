@@ -1,4 +1,5 @@
 ﻿using Hospital.Application.DTO.Schedule;
+using Hospital.Domain.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +15,9 @@ namespace Hospital.Infrastructure.Services
         Task<bool> DeleteAsync(int scheduleId);
         Task<ScheduleDto?> GetByIdAsync(int scheduleId);
         Task<IEnumerable<ScheduleDto>> GetAllAsync();
-        Task<IEnumerable<ScheduleDto>> GetDoctorsByDateAsync(string dayOfWeek);
-        Task<IEnumerable<ScheduleDto>> GetDoctorsByDateAndShiftAsync(string dayOfWeek, Domain.Enum.AppointmentShift shift);
         Task<IEnumerable<ScheduleDto>> GetSchedulesByDoctorIdAsync(int doctorId);
         Task<IEnumerable<ScheduleDto>> GetSchedulesByDateOnlyAsync(DateOnly date);
+        Task<IEnumerable<ScheduleDto>> GetDoctorsByDateAndShiftAsync( DateOnly date,AppointmentShift shift);
 
     }
 }

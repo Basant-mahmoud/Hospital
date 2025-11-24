@@ -63,17 +63,7 @@ namespace Hospital.Infrastructure.Repository
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<Schedule>> GetAllByDayOfWeekAsync(string dayOfWeek)
-        {
-            if (!Enum.TryParse<DayOfWeek>(dayOfWeek, true, out DayOfWeek parsedDay))
-                return new List<Schedule>();
-
-            return await _context.Schedules
-                .Where(s => s.ScheduleDate.DayOfWeek == parsedDay)
-                .Include(s => s.Doctor)
-                    .ThenInclude(d => d.User)
-                .ToListAsync();
-        }
+       
 
         public async Task<IEnumerable<Schedule>> GetAllByDateAsync(DateOnly date)
         {

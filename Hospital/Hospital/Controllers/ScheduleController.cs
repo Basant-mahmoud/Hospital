@@ -85,15 +85,7 @@ namespace Hospital.Controllers
             return Ok(schedules);
         }
 
-        // Get schedules by day name (e.g., "Monday")
-        [HttpGet("day/{dayOfWeek}")]
-        public async Task<ActionResult<IEnumerable<ScheduleDto>>> GetDoctorsByDay(string dayOfWeek)
-        {
-            _logger.LogInformation("Get schedules by day called at {time}", DateTime.Now);
-            var result = await _service.GetDoctorsByDateAsync(dayOfWeek);
-            return Ok(result);
-        }
-
+        
         // Get schedules by exact date
         [HttpGet("date/{date}")]
         public async Task<ActionResult<IEnumerable<ScheduleDto>>> GetDoctorsByDate(DateOnly date)
@@ -107,27 +99,15 @@ namespace Hospital.Controllers
             return Ok(schedules);
         }
 
-        // Get schedules by day name and shift
-        [HttpGet("day/{dayOfWeek}/shift/{shift}")]
-        public async Task<ActionResult<IEnumerable<ScheduleDto>>> GetDoctorsByDayAndShift(string dayOfWeek, AppointmentShift shift)
-        {
-            _logger.LogInformation("Get schedules by day and shift called at {time}", DateTime.Now);
-            var result = await _service.GetDoctorsByDateAndShiftAsync(dayOfWeek, shift);
-            return Ok(result);
-        }
-
-        // Get schedules by date and shift
         [HttpGet("date/{date}/shift/{shift}")]
-        public async Task<ActionResult<IEnumerable<ScheduleDto>>> GetDoctorsByDateAndShift(DateOnly date, AppointmentShift shift)
+        public async Task<ActionResult<IEnumerable<ScheduleDto>>> GetDoctorsByDateAndShift( DateOnly date, AppointmentShift shift)
         {
-            _logger.LogInformation("Get schedules by date and shift called at {time}", DateTime.Now);
-
             if (date < DateOnly.FromDateTime(DateTime.Today))
                 return BadRequest("Cannot get schedules for a past date.");
 
-            var dayOfWeek = date.DayOfWeek.ToString();
-            var result = await _service.GetDoctorsByDateAndShiftAsync(dayOfWeek, shift);
+            var result = await _service.GetDoctorsByDateAndShiftAsync(date, shift);
             return Ok(result);
         }
+
     }
 }

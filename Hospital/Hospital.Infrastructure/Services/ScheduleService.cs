@@ -121,33 +121,7 @@ namespace Hospital.Infrastructure.Services
             return _mapper.Map<IEnumerable<ScheduleDto>>(schedules);
         }
 
-        public async Task<IEnumerable<ScheduleDto>> GetDoctorsByDateAsync(string dayOfWeek)
-        {
-            if (!Enum.TryParse<DayOfWeek>(dayOfWeek, true, out _))
-                throw new ArgumentException("Invalid day of the week.");
-
-            var schedules = await _repo.GetAllByDayOfWeekAsync(dayOfWeek);
-            return _mapper.Map<IEnumerable<ScheduleDto>>(schedules);
-        }
-
-        public async Task<IEnumerable<ScheduleDto>> GetDoctorsByDateAndShiftAsync(string dayOfWeek, AppointmentShift shift)
-        {
-            if (!Enum.IsDefined(typeof(AppointmentShift), shift))
-                throw new ArgumentException("Invalid appointment shift.");
-
-            if (!Enum.TryParse<DayOfWeek>(dayOfWeek, true, out _))
-                throw new ArgumentException("Invalid day of the week.");
-
-            var schedules = await _repo.GetAllByDayOfWeekAsync(dayOfWeek);
-            var range = ShiftTimeRanges.Shifts[shift];
-
-            var filtered = schedules
-                .Where(s => s.StartTime.TimeOfDay >= range.Start && s.EndTime.TimeOfDay <= range.End)
-                .ToList();
-
-            return _mapper.Map<IEnumerable<ScheduleDto>>(filtered);
-        }
-
+        
         public async Task<IEnumerable<ScheduleDto>> GetSchedulesByDoctorIdAsync(int doctorId)
         {
             var schedules = await _repo.GetAllByDoctorIdAsync(doctorId);
@@ -179,6 +153,36 @@ namespace Hospital.Infrastructure.Services
             var result = _mapper.Map<IEnumerable<ScheduleDto>>(schedules);
             return result;
         }
+
+        public async Task<IEnumerable<ScheduleDto>> GetDoctorsByDateAndShiftAsync(
+      DateOnly date,
+      AppointmentShift shift)
+        {
+            _logger.LogInformation(
+                "Fetching schedules for Date: {Date} and Shift: {Shift} at {Time}",
+                date, shift, DateTime.UtcNow
+            );
+
+            var schedules = await _repo.GetAllByDateAsync(date);
+
+            var filtered = schedules
+                .Where(s => s.Shift == shift)
+                .ToList();
+
+            if (!filtered.Any())
+            {
+                _logger.LogInformation(
+                    "No schedules found for Date: {Date} and Shift: {Shift}",
+                    date, shift
+                );
+
+                return new List<ScheduleDto>();
+            }
+
+            return _mapper.Map<IEnumerable<ScheduleDto>>(filtered);
+        }
+
+
 
     }
 }
