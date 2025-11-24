@@ -7,6 +7,7 @@ using Hospital.Domain.Models;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -48,7 +49,7 @@ namespace Hospital.Infrastructure.Services
             if (existingSchedules.Any(s => s.DoctorId == dto.DoctorId && s.Shift == dto.AppointmentShift))
             {
                 _logger.LogWarning("Duplicate schedule detected for DoctorId {DoctorId} on {DayOfWeek} shift {Shift}", dto.DoctorId, dto.DayOfWeek, dto.AppointmentShift);
-                throw new InvalidOperationException("Doctor already has a schedule for this day and shift.");
+                throw new ValidationException("Doctor already has a schedule for this day and shift.");
             }
 
             var schedule = _mapper.Map<Schedule>(dto);
@@ -76,10 +77,19 @@ namespace Hospital.Infrastructure.Services
                 throw new KeyNotFoundException("Schedule not found.");
             }
 
+            if (!Enum.TryParse<DayOfWeek>(dto.DayOfWeek, true, out _))
+            {
+                _logger.LogWarning("Invalid day of the week.");
+                throw new ArgumentException("Invalid day of the week.");
+            }
+
             if (dto.AppointmentShift.HasValue)
             {
                 if (!ShiftTimeRanges.Shifts.ContainsKey(dto.AppointmentShift.Value))
+                {
+                    _logger.LogWarning("Invalid appointment shift.");
                     throw new ArgumentException("Invalid appointment shift.");
+                }
 
                 var range = ShiftTimeRanges.Shifts[dto.AppointmentShift.Value];
                 schedule.StartTime = DateTime.Today.Add(range.Start);

@@ -19,12 +19,10 @@ namespace Hospital.Controllers
             _logger = logger;
         }
         [HttpGet("GetAll")]
-        [Authorize(Roles = "Patient")]
+       // [Authorize(Roles = "Patient")]
         public async Task<IActionResult> GetAll()
         {
             _logger.LogInformation("Get All Branch called at {time}", DateTime.Now);
-
-
             return Ok(await _branchService.GetAllAsync());
         }
 
