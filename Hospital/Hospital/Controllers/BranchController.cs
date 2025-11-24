@@ -46,6 +46,8 @@ namespace Hospital.Controllers
         }
 
         [HttpPut("Update")]
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> Update([FromBody] UpdateBranchDto dto)
         {
             _logger.LogInformation("Update Branch called at {time}", DateTime.Now);
@@ -55,6 +57,8 @@ namespace Hospital.Controllers
         }
 
         [HttpDelete("Delete/{id}")]
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> Delete(int id)
         {
             _logger.LogInformation("Delete Branch called at {time}", DateTime.Now);

@@ -1,5 +1,6 @@
 ﻿using Hospital.Application.DTO.Event;
 using Hospital.Application.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,6 +8,7 @@ namespace Hospital.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class EventController : ControllerBase
     {
         private readonly IEventService _eventService;
@@ -19,6 +21,8 @@ namespace Hospital.Controllers
         }
 
         [HttpPost("CreateEvent")]
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> CreateEvent([FromBody] AddEventDto eventDto)
         {
             _logger.LogInformation("create event  called at {time}", DateTime.Now);
@@ -28,6 +32,7 @@ namespace Hospital.Controllers
         }
 
         [HttpPost("GetEvent")]
+
         public async Task<IActionResult> GetEvent(GetEventDto @event)
         {
             _logger.LogInformation("Get event  called at {time}", DateTime.Now);
@@ -53,6 +58,8 @@ namespace Hospital.Controllers
         }
 
         [HttpPut("UpdateEvent")]
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> UpdateEvent([FromBody] EventDto eventDto)
         {
             _logger.LogInformation("update event  called at {time}", DateTime.Now);
@@ -68,6 +75,8 @@ namespace Hospital.Controllers
         }
 
         [HttpDelete("DeleteEvent")]
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> DeleteEvent(GetEventDto dto)
         {
             _logger.LogInformation("delete event  called at {time}", DateTime.Now);
@@ -80,6 +89,8 @@ namespace Hospital.Controllers
         }
 
         [HttpGet("GetAllEventsInSystem")]
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> GetAllEventsInSystem()
         {
             _logger.LogInformation("get all  event in system  called at {time}", DateTime.Now);

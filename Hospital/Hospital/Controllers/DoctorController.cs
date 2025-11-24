@@ -9,6 +9,7 @@ namespace Hospital.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class DoctorController : ControllerBase
     {
         private readonly IDoctorService _doctorService;
@@ -23,6 +24,8 @@ namespace Hospital.Controllers
 
         // ------------------- Add Doctor -------------------
         [HttpPost("add")]
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> AddDoctor([FromBody] AddDoctorDto dto)
         {
             _logger.LogInformation("add doctor called at {time}", DateTime.Now);
@@ -36,6 +39,8 @@ namespace Hospital.Controllers
 
         //  ------------ Add Doctor Using Excel Sheet--------
         [HttpPost("add-from-excel")]
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> AddDoctorsFromExcel(IFormFile file)
         {
             _logger.LogInformation("add doctor using excel called at {time}", DateTime.Now);
@@ -117,6 +122,8 @@ namespace Hospital.Controllers
 
         // ------------------- Update Doctor -------------------
         [HttpPut("update")]
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> UpdateDoctor([FromBody] UpdateDoctorDto dto)
         {
             _logger.LogInformation("Update doctor called at {time}", DateTime.Now);
@@ -133,6 +140,7 @@ namespace Hospital.Controllers
 
         // ------------------- Delete Doctor -------------------
         [HttpDelete("delete/{doctorId}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteDoctor(int doctorId)
         {
             _logger.LogInformation("Delete doctor called at {time}", DateTime.Now);
@@ -147,6 +155,7 @@ namespace Hospital.Controllers
 
         // ------------------- Get Single Doctor -------------------
         [HttpGet("{doctorId}")]
+        [Authorize(Roles = "Patient,Admin,Doctor")]
         public async Task<IActionResult> GetDoctor(int doctorId)
         {
             _logger.LogInformation("Get  doctor By Id called at {time}", DateTime.Now);
@@ -171,6 +180,7 @@ namespace Hospital.Controllers
 
         // ------------------- Get All Doctors in System -------------------
         [HttpGet("all")]
+
         public async Task<IActionResult> GetAll()
         {
             _logger.LogInformation("get all doctor in system called at {time}", DateTime.Now);
@@ -191,7 +201,8 @@ namespace Hospital.Controllers
 
         // ------------------- Update Doctor info ---------------------------------
         [HttpPut("self-update")]
-        //[Authorize(Roles = "Doctor")]
+        [Authorize(Roles = "Admin,Doctor")]
+
         public async Task<IActionResult> SelfUpdate(DoctorSelfUpdateDto dto)
         {
             _logger.LogInformation("SelfUpdate doctor called at {time}", DateTime.Now);
@@ -220,6 +231,8 @@ namespace Hospital.Controllers
 
         // ------------------- Get All Appointment to Doctor Today -------------------
         [HttpGet("{doctorId:int}/today")]
+        [Authorize(Roles = "Doctor")]
+
         public async Task<IActionResult> GetTodayAppointmentsForDoctor(int doctorId)
         {
             _logger.LogInformation("GetTodayAppointmentsForDoctor  called at {time}", DateTime.Now);
@@ -230,6 +243,8 @@ namespace Hospital.Controllers
 
         // ------------------- Get All appointment to Doctor in specific date -------------------
         [HttpGet("{doctorId:int}/date/{date:datetime}")]
+        [Authorize(Roles = "Doctor")]
+
         public async Task<IActionResult> GetAppointmentsForDoctor(int doctorId, DateTime date)
         {
             _logger.LogInformation("GetAppointmentsForDoctor called at {time}", DateTime.Now);
@@ -242,6 +257,8 @@ namespace Hospital.Controllers
 
         // ------------------- cancel All Appointments to specific Doctor in specific date -------------------
         [HttpPut("CancelAppointment/doctor/{doctorId:int}/date/{date:datetime}")]
+        [Authorize(Roles = "Doctor")]
+
         public async Task<IActionResult> CancelAppointmentsForDoctorbyDate(int doctorId, DateTime date)
         {
             _logger.LogInformation("GetAppointmentsForDoctor called at {time}", DateTime.Now);
@@ -261,6 +278,8 @@ namespace Hospital.Controllers
 
         // ------------------- convert status payment  -------------------
         [HttpPut("convertStatuesOFPaymentToPaied/{Appoimentid:int}")]
+        [Authorize(Roles = "Doctor")]
+
         public async Task<IActionResult> convertStatuesOFPaymentToPayied(int Appoimentid)
         {
             _logger.LogInformation("convertStatuesOFPaymentToPayied pay by cach  called at {time}", DateTime.Now);
