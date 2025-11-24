@@ -1,6 +1,7 @@
 ﻿using Hospital.Application.DTO.Appointment;
 using Hospital.Application.Interfaces.Services;
 using Hospital.Controllers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hospital.API.Controllers
@@ -20,6 +21,7 @@ namespace Hospital.API.Controllers
 
         // ---------------------- Add Appointment ----------------------
         [HttpPost]
+        [Authorize(Roles ="Patient")]
         public async Task<IActionResult> Add([FromBody] AddAppointmentDto dto)
         {
             _logger.LogInformation("Add Appointment called at {time}", DateTime.Now);
