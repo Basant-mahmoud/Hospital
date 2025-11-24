@@ -189,7 +189,7 @@ namespace Hospital.Controllers
             return Ok(result);
         }
 
-
+        // ------------------- Update Doctor info ---------------------------------
         [HttpPut("self-update")]
         //[Authorize(Roles = "Doctor")]
         public async Task<IActionResult> SelfUpdate(DoctorSelfUpdateDto dto)
@@ -218,6 +218,7 @@ namespace Hospital.Controllers
             }
         }
 
+        // ------------------- Get All Appointment to Doctor Today -------------------
         [HttpGet("{doctorId:int}/today")]
         public async Task<IActionResult> GetTodayAppointmentsForDoctor(int doctorId)
         {
@@ -227,6 +228,7 @@ namespace Hospital.Controllers
             return Ok(result);
         }
 
+        // ------------------- Get All appointment to Doctor in specific date -------------------
         [HttpGet("{doctorId:int}/date/{date:datetime}")]
         public async Task<IActionResult> GetAppointmentsForDoctor(int doctorId, DateTime date)
         {
@@ -238,6 +240,7 @@ namespace Hospital.Controllers
             return Ok(result);
         }
 
+        // ------------------- cancel All Appointments to specific Doctor in specific date -------------------
         [HttpPut("CancelAppointment/doctor/{doctorId:int}/date/{date:datetime}")]
         public async Task<IActionResult> CancelAppointmentsForDoctorbyDate(int doctorId, DateTime date)
         {
@@ -256,8 +259,8 @@ namespace Hospital.Controllers
 
         }
 
-
-        [HttpPut("convertStatuesOFPaymentToPayied/{Appoimentid:int}")]
+        // ------------------- convert status payment  -------------------
+        [HttpPut("convertStatuesOFPaymentToPaied/{Appoimentid:int}")]
         public async Task<IActionResult> convertStatuesOFPaymentToPayied(int Appoimentid)
         {
             _logger.LogInformation("convertStatuesOFPaymentToPayied pay by cach  called at {time}", DateTime.Now);
