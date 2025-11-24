@@ -1,12 +1,14 @@
 ﻿using Hospital.Application.DTO.Schedule;
 using Hospital.Application.Interfaces.Services;
 using Hospital.Infrastructure.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hospital.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ScheduleController : ControllerBase
     {
         private readonly IScheduleService _service;
@@ -20,6 +22,8 @@ namespace Hospital.Controllers
 
         // Create a new schedule
         [HttpPost]
+        [Authorize(Roles = "Admin")]
+
         public async Task<ActionResult<ScheduleDto>> Create([FromBody] CreateScheduleDto dto)
         {
             _logger.LogInformation("create schedule  called at {time}", DateTime.Now);
@@ -30,6 +34,8 @@ namespace Hospital.Controllers
 
         // Update existing schedule
         [HttpPut]
+        [Authorize(Roles = "Admin")]
+
         public async Task<ActionResult<ScheduleDto>> Update([FromBody] UpdateScheduleDto dto)
         {
             _logger.LogInformation("update schedule  called at {time}", DateTime.Now);
@@ -40,6 +46,8 @@ namespace Hospital.Controllers
 
         // Delete schedule
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
+
         public async Task<ActionResult> Delete(int id)
         {
             _logger.LogInformation("delete schedule  called at {time}", DateTime.Now);
@@ -50,6 +58,7 @@ namespace Hospital.Controllers
 
         // Get schedule by ID
         [HttpGet("{id}")]
+
         public async Task<ActionResult<ScheduleDto>> GetById(int id)
         {
             _logger.LogInformation("get schedule by id called at {time}", DateTime.Now);
@@ -60,6 +69,7 @@ namespace Hospital.Controllers
 
         // Get all schedules
         [HttpGet]
+
         public async Task<ActionResult<IEnumerable<ScheduleDto>>> GetAll()
         {
             _logger.LogInformation("get all schedule called at {time}", DateTime.Now);

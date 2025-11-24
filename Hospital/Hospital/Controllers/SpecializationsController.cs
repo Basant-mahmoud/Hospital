@@ -1,5 +1,6 @@
 ﻿using Hospital.Application.DTO.Specialization;
 using Hospital.Application.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OfficeOpenXml;
@@ -8,6 +9,7 @@ namespace Hospital.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class SpecializationsController : ControllerBase
     {
         private readonly ISpecializationService _service;
@@ -20,6 +22,8 @@ namespace Hospital.Controllers
         }
 
         [HttpPost("Create")]
+        [Authorize(Roles = "Admin")]
+
         public async Task<ActionResult<SpecializationDTO>> Create([FromBody] CreateSpecialization dto)
         {
             _logger.LogInformation("create Specialization called at {time}", DateTime.Now);
@@ -29,6 +33,8 @@ namespace Hospital.Controllers
         }
 
         [HttpPost("add-from-excel")]
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> AddSpecializationsFromExcel(IFormFile file)
         {
             _logger.LogInformation("add Specialization by excel sheet called at {time}", DateTime.Now);
@@ -120,6 +126,8 @@ namespace Hospital.Controllers
         }
 
         [HttpPut("Update")]
+        [Authorize(Roles = "Admin")]
+
         public async Task<ActionResult<SpecializationDTO>> Update([FromBody] UpdateSpecialization dto)
         {
             _logger.LogInformation("update Specialization called at {time}", DateTime.Now);
@@ -129,6 +137,8 @@ namespace Hospital.Controllers
         }
 
         [HttpDelete("Delete")]
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> Delete([FromBody] GetSpecializationDto dto)
         {
             _logger.LogInformation("delete Specialization called at {time}", DateTime.Now);

@@ -8,6 +8,7 @@ namespace Hospital.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class SupportTicketController : ControllerBase
     {
         private readonly ISupportTicketService _ticketService;
@@ -25,6 +26,8 @@ namespace Hospital.Controllers
         // Patient creates a ticket
         // -----------------------------
         [HttpPost("create")]
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> Create([FromBody] CreateSupportTicketDto dto)
         {
             _logger.LogInformation("create Support Ticket called at {time}", DateTime.Now);
@@ -55,7 +58,8 @@ namespace Hospital.Controllers
         // Admin gets all tickets
         // -----------------------------
         [HttpGet]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> GetAll()
         {
             _logger.LogInformation("get all Support Ticket called at {time}", DateTime.Now);
@@ -68,7 +72,8 @@ namespace Hospital.Controllers
         // Get a single ticket by id
         // -----------------------------
         [HttpGet("{ticketId}")]
-        //[Authorize] // both Admin and Patient can access, check authorization
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> GetById(int ticketId)
         {
             _logger.LogInformation("get  Support by id Ticket called at {time}", DateTime.Now);
@@ -86,6 +91,8 @@ namespace Hospital.Controllers
         }
 
         [HttpGet("patient/{patientId}")]
+        [Authorize(Roles = "Admin")]
+
         public async Task<ActionResult<IEnumerable<SupportTicketDto>>> GetAllByPatientId(int patientId)
         {
             _logger.LogInformation("get all Support Ticket  by patient id " +
@@ -105,7 +112,8 @@ namespace Hospital.Controllers
         // Admin updates ticket (response/status)
         // -----------------------------
         [HttpPut]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> Update([FromBody] UpdateSupportTicketDto dto)
         {
             _logger.LogInformation("update Support Ticket called at {time}", DateTime.Now);
@@ -118,7 +126,8 @@ namespace Hospital.Controllers
         // Admin deletes a ticket
         // -----------------------------
         [HttpDelete("{ticketId}")]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> Delete(int ticketId)
         {
             _logger.LogInformation("delete Support Ticket called at {time}", DateTime.Now);
