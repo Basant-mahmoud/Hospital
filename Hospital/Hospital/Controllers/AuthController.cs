@@ -126,13 +126,11 @@ namespace Hospital.Controllers
         {
             _logger.LogInformation("ResetPassword called at {time}", DateTime.Now);
 
-            // Validate email
             if (string.IsNullOrWhiteSpace(dto.Email) || !ValidationHelper.IsValidEmail(dto.Email))
             {
                 ModelState.AddModelError("Email", "Invalid email format.");
             }
 
-            // Validate password: not null and first letter capital
             if (string.IsNullOrWhiteSpace(dto.NewPassword) || !char.IsUpper(dto.NewPassword[0]))
             {
                 ModelState.AddModelError("NewPassword", "Password must start with an uppercase letter.");
@@ -141,7 +139,6 @@ namespace Hospital.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            // Call service
             var result = await _authService.ResetPasswordAsync(dto.Email, dto.NewPassword);
             if (!result)
                 return BadRequest("Reset password failed.");
@@ -163,21 +160,17 @@ namespace Hospital.Controllers
         }
 
         [HttpGet("getAdminData")]
-        [Authorize(Roles ="Admin")]  // Make sure the endpoint requires a token
+        [Authorize(Roles ="Admin")]  
         public IActionResult GetAdminData()
         {
             _logger.LogInformation("GetAdminData called at {time}", DateTime.Now);
 
-            // Get User ID from JWT claim "uid"
             var userId = User.FindFirst("uid")?.Value;
 
             if (userId == null)
                 return Unauthorized("Invalid token or user ID not found.");
 
-            // TODO: Call service/repository to get user data
             var userData = _authService.GetUserDetails(userId);
-
-
 
             return Ok(userData.Result);
         }
