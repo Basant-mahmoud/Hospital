@@ -75,6 +75,7 @@ namespace Hospital.API.Controllers
             var result = await _appointmentService.GetAllAsync();
             return Ok(result);
         }
+
         [HttpPut("MarkAsCompleted/{id:int}")]
         public async Task<IActionResult> MarkAsCompleted(int id)
         {

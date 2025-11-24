@@ -190,7 +190,7 @@ namespace Hospital.Controllers
         }
 
 
-        [HttpPut("doctor/self-update")]
+        [HttpPut("self-update")]
         //[Authorize(Roles = "Doctor")]
         public async Task<IActionResult> SelfUpdate(DoctorSelfUpdateDto dto)
         {
@@ -218,7 +218,7 @@ namespace Hospital.Controllers
             }
         }
 
-        [HttpGet("doctor/{doctorId:int}/today")]
+        [HttpGet("{doctorId:int}/today")]
         public async Task<IActionResult> GetTodayAppointmentsForDoctor(int doctorId)
         {
             _logger.LogInformation("GetTodayAppointmentsForDoctor  called at {time}", DateTime.Now);
@@ -227,7 +227,7 @@ namespace Hospital.Controllers
             return Ok(result);
         }
 
-        [HttpGet("doctor/{doctorId:int}/date/{date:datetime}")]
+        [HttpGet("{doctorId:int}/date/{date:datetime}")]
         public async Task<IActionResult> GetAppointmentsForDoctor(int doctorId, DateTime date)
         {
             _logger.LogInformation("GetAppointmentsForDoctor called at {time}", DateTime.Now);
@@ -238,7 +238,7 @@ namespace Hospital.Controllers
             return Ok(result);
         }
 
-        [HttpPut("doctor/{doctorId:int}/date/{date:datetime}")]
+        [HttpPut("CancelAppointment/doctor/{doctorId:int}/date/{date:datetime}")]
         public async Task<IActionResult> CancelAppointmentsForDoctorbyDate(int doctorId, DateTime date)
         {
             _logger.LogInformation("GetAppointmentsForDoctor called at {time}", DateTime.Now);
@@ -246,6 +246,12 @@ namespace Hospital.Controllers
             var dateOnly = DateOnly.FromDateTime(date);
 
             var result = await _doctorService.CancelAppointmentsForDoctorbyDate(doctorId, dateOnly);
+            if (result == 0)
+            {
+                _logger.LogInformation("No appointments found to cancel for doctorId: {doctorId} on date: {date}", doctorId, dateOnly);
+                return NotFound("No appointments found to cancel.");
+            }
+            _logger.LogInformation("{result} appointment(s) cancelled for doctorId: {doctorId} on date: {date}", result, doctorId, dateOnly);
             return Ok($"{result} appointment(s) were successfully cancelled.");
 
         }
@@ -255,7 +261,6 @@ namespace Hospital.Controllers
         public async Task<IActionResult> convertStatuesOFPaymentToPayied(int Appoimentid)
         {
             _logger.LogInformation("convertStatuesOFPaymentToPayied pay by cach  called at {time}", DateTime.Now);
-
             var result = await _doctorService.convertStatuesOFPaymentToPayied(Appoimentid);
             if(result==true)
                return Ok("Payment Paid successfully");
