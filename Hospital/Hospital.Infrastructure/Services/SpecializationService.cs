@@ -90,6 +90,12 @@ namespace Hospital.Infrastructure.Services
         public async Task<IEnumerable<SpecializationInfoDto>> GetAllByBranchAsync(int branchId)
         {
             _logger.LogInformation("Fetching all specializations for branch {BranchId}", branchId);
+            var existingBranch = await _branchRepo.GetByIdAsync(branchId);
+            if (existingBranch == null)
+            {
+                _logger.LogWarning("Branch with ID {BranchId} not found", branchId);
+                throw new KeyNotFoundException("Branch not found.");
+            }
             var specializations = await _specRepo.GetAllByBranchAsync(branchId);
             return _mapper.Map<IEnumerable<SpecializationInfoDto>>(specializations);
         }
@@ -108,7 +114,7 @@ namespace Hospital.Infrastructure.Services
             if (entity == null)
             {
                 _logger.LogWarning("Specialization with ID {SpecializationId} not found", id);
-                return null;
+                throw new KeyNotFoundException("Specialization Not Found.");
             }
             return _mapper.Map<SpecializationDTO>(entity);
         }

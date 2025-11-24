@@ -171,13 +171,10 @@ namespace Hospital.Infrastructure.Services
         {
             _logger.LogInformation("Updating personal info for doctor ID {DoctorId}", dto.DoctorId);
 
-            if (dto == null) throw new ArgumentNullException(nameof(dto));
-
-            var specialization = await _context.Specializations.FindAsync(dto.SpecializationId);
-            if (specialization == null)
+            if (dto == null)
             {
-                _logger.LogWarning("Specialization with ID {SpecializationId} not found", dto.SpecializationId);
-                throw new KeyNotFoundException($"Specialization with ID {dto.SpecializationId} does not exist.");
+                _logger.LogError("DoctorSelfUpdateDto is null");
+                throw new ArgumentNullException(nameof(dto));
             }
 
             var doctor = await _doctorRepo.GetAsync(dto.DoctorId);
@@ -194,12 +191,6 @@ namespace Hospital.Infrastructure.Services
                 doctor.User.FullName = dto.FullName ?? doctor.User.FullName;
                 if (!string.IsNullOrEmpty(dto.PhoneNumber))
                     doctor.User.PhoneNumber = dto.PhoneNumber;
-            }
-
-            if (dto.BranchIds != null && dto.BranchIds.Any())
-            {
-                var branches = await _branchRepo.GetByIdsAsync(dto.BranchIds.Distinct());
-                doctor.Branches = branches.ToList();
             }
 
             doctor.UpdatedAt = DateTime.UtcNow;
@@ -246,8 +237,17 @@ namespace Hospital.Infrastructure.Services
         public async Task<IEnumerable<DoctorDto>> GetAllAsync(int branchId)
         {
             _logger.LogInformation("Fetching all doctors for branch ID {BranchId}", branchId);
-
-            if (branchId <= 0) throw new ArgumentException("BranchId must be greater than zero.");
+            if (branchId <= 0)
+            {
+                _logger.LogWarning("Invalid BranchId: {BranchId}", branchId);
+                throw new ArgumentException("BranchId must be greater than zero.");
+            }
+            var branch = await _branchRepo.GetByIdAsync(branchId);
+            if (branch == null)
+            {
+                _logger.LogWarning("Branch with ID {BranchId} not found", branchId);
+                throw new KeyNotFoundException("Branch not found.");
+            }
 
             var doctors = await _doctorRepo.GetAllByBranchAsync(branchId);
             return _mapper.Map<IEnumerable<DoctorDto>>(doctors);
@@ -265,8 +265,16 @@ namespace Hospital.Infrastructure.Services
             _logger.LogInformation("Fetching doctors for specialization ID {SpecializationId}", specializationId);
 
             if (specializationId <= 0)
+            {
+                _logger.LogWarning("Invalid SpecializationId: {SpecializationId}", specializationId);
                 throw new ArgumentException("SpecializationId must be greater than zero.");
-
+            }
+            var specialization = await _context.Specializations.FindAsync(specializationId);
+            if (specialization == null)
+            {
+                 _logger.LogWarning("Specialization with ID {SpecializationId} not found", specializationId);
+                throw new KeyNotFoundException($"Specialization with ID {specializationId} does not exist.");
+            }
             var doctors = await _doctorRepo.GetDoctorsBySpecializationIdAsync(specializationId);
             if (doctors == null || !doctors.Any())
             {
@@ -281,7 +289,11 @@ namespace Hospital.Infrastructure.Services
         {
             _logger.LogInformation("Fetching today's appointments for doctor ID {DoctorId}", doctorId);
 
-            if (doctorId <= 0) throw new ArgumentException("Invalid doctor ID.");
+            if (doctorId <= 0)
+            {
+                _logger.LogWarning("Invalid DoctorId: {DoctorId}", doctorId);
+                throw new ArgumentException("Invalid doctor ID.");
+            }
 
             var doctor = await _doctorRepo.GetAsync(doctorId);
             if (doctor == null)

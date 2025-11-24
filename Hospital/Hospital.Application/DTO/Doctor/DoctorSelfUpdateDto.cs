@@ -16,7 +16,6 @@ namespace Hospital.Application.DTO.Doctor
         public decimal? ConsultationFees { get; set; }
         public bool? Available { get; set; }
         public string? PhoneNumber { get; set; }
-        public int SpecializationId { get; set; }
-        public List<int> BranchIds { get; set; } = new();
+
     }
 }
