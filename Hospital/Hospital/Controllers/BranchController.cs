@@ -8,6 +8,7 @@ namespace Hospital.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class BranchController : ControllerBase
     {
         private readonly IBranchService _branchService;
@@ -19,7 +20,6 @@ namespace Hospital.Controllers
             _logger = logger;
         }
         [HttpGet("GetAll")]
-       // [Authorize(Roles = "Patient")]
         public async Task<IActionResult> GetAll()
         {
             _logger.LogInformation("Get All Branch called at {time}", DateTime.Now);
@@ -35,6 +35,8 @@ namespace Hospital.Controllers
         }
 
         [HttpPost("Create")]
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> Create([FromBody] CreateBranchDto dto)
         {
             _logger.LogInformation("Create Branch called at {time}", DateTime.Now);

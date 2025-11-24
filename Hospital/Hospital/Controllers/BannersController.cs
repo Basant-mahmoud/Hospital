@@ -3,6 +3,7 @@ using Hospital.Application.DTO.Banner;
 using Hospital.Application.Interfaces.Repos;
 using Hospital.Application.Interfaces.Services;
 using Hospital.Domain.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hospital.Controllers
@@ -10,6 +11,7 @@ namespace Hospital.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class BannersController : ControllerBase
     {
         private readonly IBannerService _bannerService;
@@ -22,6 +24,7 @@ namespace Hospital.Controllers
         }
 
         [HttpGet]
+
         public async Task<IActionResult> GetAll() => Ok(await _bannerService.GetAllAsync());
 
         [HttpGet("{id}")]
@@ -32,6 +35,8 @@ namespace Hospital.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> Create([FromBody] CreateBannerDto dto)
         {
             if (!ModelState.IsValid)
@@ -42,6 +47,8 @@ namespace Hospital.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> Update([FromBody] UpdateBannerDto dto)
         {
             if (!ModelState.IsValid)
@@ -52,6 +59,8 @@ namespace Hospital.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> Delete(int id)
         {
             var deleted = await _bannerService.DeleteAsync(id);

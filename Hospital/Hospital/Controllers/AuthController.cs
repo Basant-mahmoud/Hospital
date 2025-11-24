@@ -23,6 +23,8 @@ namespace Hospital.Controllers
         }
 
         [HttpPost("register")]
+        [Authorize(Roles = "Patient,Admin")]
+
         public async Task<IActionResult> RegisterAsync([FromBody] RegisterModel model)
         {
             _logger.LogInformation("Register called at {time}", DateTime.Now);
@@ -48,6 +50,7 @@ namespace Hospital.Controllers
         }
 
         [HttpPost("login")]
+        [Authorize(Roles = "Patient,Admin,Doctor")]
         public async Task<IActionResult> LoginAsync([FromBody] LoginModel model)
         {
             _logger.LogInformation("Login called at {time}", DateTime.Now);
@@ -66,6 +69,8 @@ namespace Hospital.Controllers
 
         [HttpPost("addrole")]
         [Authorize]
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> AddRoleAsync([FromBody] AddRoleModel model)
         {
             _logger.LogInformation("AddRole called at {time}", DateTime.Now);
@@ -83,6 +88,7 @@ namespace Hospital.Controllers
 
 
         [HttpPost("forgot-password")]
+        [Authorize(Roles = "Patient,Admin,Doctor")]
         public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordDto dto)
         {
             _logger.LogInformation("ForgotPassword called at {time}", DateTime.Now);
@@ -100,6 +106,7 @@ namespace Hospital.Controllers
 
 
         [HttpPost("Verify-Code")]
+        [Authorize(Roles = "Patient,Admin,Doctor")]
         public async Task<IActionResult> VerifyCode([FromBody] VerifyCodeDto dto)
         {
             _logger.LogInformation("VerifyCode called at {time}", DateTime.Now);
@@ -122,6 +129,7 @@ namespace Hospital.Controllers
 
 
         [HttpPost("reset-password")]
+        [Authorize(Roles = "Patient,Admin,Doctor")]
         public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDto dto)
         {
             _logger.LogInformation("ResetPassword called at {time}", DateTime.Now);
@@ -148,6 +156,8 @@ namespace Hospital.Controllers
 
 
         [HttpPost("refresh-token")]
+        [Authorize(Roles = "Patient,Admin,Doctor")]
+
         public async Task<IActionResult> RefreshToken([FromBody] RefreshToken tokendto)
         {
             _logger.LogInformation("RefreshToken called at {time}", DateTime.Now);
