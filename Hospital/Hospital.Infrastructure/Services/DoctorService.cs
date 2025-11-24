@@ -26,10 +26,11 @@ namespace Hospital.Infrastructure.Services
         private readonly AppDbContext _context;
         private readonly IAppointmentRepository _appointmentRepository;
         private readonly IPaymentRepository _paymentRepository;
+        private readonly IAppointmentRepository _appointmentRepo;
 
         public DoctorService(IMapper mapper, IDoctorRepository doctorRepo, IBranchRepository branchRepo, IEmailService emailService,
             IAuthService authService, ILogger<DoctorService> logger, IAppointmentRepository appointmentRepository, IPaymentRepository paymentRepository,
-            AppDbContext context)
+            AppDbContext context, IAppointmentRepository appointmentRepo)
         {
             _mapper = mapper;
             _doctorRepo = doctorRepo;
@@ -40,6 +41,8 @@ namespace Hospital.Infrastructure.Services
             _context = context;
             _appointmentRepository = appointmentRepository;
             _paymentRepository = paymentRepository;
+            _appointmentRepo = appointmentRepository;
+            _appointmentRepo = appointmentRepo;
         }
 
         public async Task<DoctorDto> AddAsync(AddDoctorDto dto)
@@ -336,17 +339,26 @@ namespace Hospital.Infrastructure.Services
             _logger.LogInformation("Converting payment status to Paid for appointment ID {AppointmentId}", appointmentId);
 
             var payment = await _paymentRepository.GetPaymentByAppointmentIdAsync(appointmentId);
+            var appointment = await _appointmentRepo.GetAsync(appointmentId);
             if (payment == null)
             {
                 _logger.LogWarning("No payment found for appointment ID {AppointmentId}", appointmentId);
                 return false;
             }
-
+            if (appointment == null) { 
+                _logger.LogWarning("No appointment found with ID {AppointmentId}", appointmentId);
+                return false;
+            }
+            appointment!.Status = AppointmentStatus.Completed;
             payment.Status = PaymentStatus.Paid;
             payment.UpdatedAt = DateTime.UtcNow;
 
             await _paymentRepository.UpdatePaymentAsync(payment);
-            _logger.LogInformation("Payment status updated to Paid for appointment ID {AppointmentId}", appointmentId);
+            await  _appointmentRepo.UpdateAsync(appointment);
+
+
+            _logger.LogInformation("Payment status updated to Paid for appointment ID {AppointmentId} and appointment become confirmed", appointmentId);
+
 
             return true;
         }
