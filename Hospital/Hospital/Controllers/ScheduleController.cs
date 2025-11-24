@@ -1,7 +1,13 @@
 ﻿using Hospital.Application.DTO.Schedule;
 using Hospital.Application.Interfaces.Services;
+using Hospital.Domain.Enum;
 using Hospital.Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Hospital.Controllers
 {
@@ -22,8 +28,7 @@ namespace Hospital.Controllers
         [HttpPost]
         public async Task<ActionResult<ScheduleDto>> Create([FromBody] CreateScheduleDto dto)
         {
-            _logger.LogInformation("create schedule  called at {time}", DateTime.Now);
-
+            _logger.LogInformation("Create schedule called at {time}", DateTime.Now);
             var result = await _service.CreateAsync(dto);
             return Ok(result);
         }
@@ -32,8 +37,7 @@ namespace Hospital.Controllers
         [HttpPut]
         public async Task<ActionResult<ScheduleDto>> Update([FromBody] UpdateScheduleDto dto)
         {
-            _logger.LogInformation("update schedule  called at {time}", DateTime.Now);
-
+            _logger.LogInformation("Update schedule called at {time}", DateTime.Now);
             var result = await _service.UpdateAsync(dto);
             return Ok(result);
         }
@@ -42,18 +46,16 @@ namespace Hospital.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            _logger.LogInformation("delete schedule  called at {time}", DateTime.Now);
-
+            _logger.LogInformation("Delete schedule called at {time}", DateTime.Now);
             var deleted = await _service.DeleteAsync(id);
-            return deleted ? Ok("Deleted SuccessFully") : NotFound();
+            return deleted ? Ok("Deleted successfully") : NotFound();
         }
 
         // Get schedule by ID
         [HttpGet("{id}")]
         public async Task<ActionResult<ScheduleDto>> GetById(int id)
         {
-            _logger.LogInformation("get schedule by id called at {time}", DateTime.Now);
-
+            _logger.LogInformation("Get schedule by ID called at {time}", DateTime.Now);
             var result = await _service.GetByIdAsync(id);
             return result == null ? NotFound() : Ok(result);
         }
@@ -62,8 +64,7 @@ namespace Hospital.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ScheduleDto>>> GetAll()
         {
-            _logger.LogInformation("get all schedule called at {time}", DateTime.Now);
-
+            _logger.LogInformation("Get all schedules called at {time}", DateTime.Now);
             var result = await _service.GetAllAsync();
             return Ok(result);
         }
@@ -72,63 +73,41 @@ namespace Hospital.Controllers
         [HttpGet("doctor/{doctorId}")]
         public async Task<ActionResult<IEnumerable<ScheduleDto>>> GetByDoctorId(int doctorId)
         {
-            _logger.LogInformation("get schedule by doctor id called at {time}", DateTime.Now);
+            _logger.LogInformation("Get schedules by doctor ID called at {time}", DateTime.Now);
 
             if (doctorId <= 0)
                 return BadRequest("Invalid doctor ID.");
 
             var schedules = await _service.GetSchedulesByDoctorIdAsync(doctorId);
-
             if (schedules == null || !schedules.Any())
                 return NotFound($"No schedules found for doctor ID {doctorId}.");
 
             return Ok(schedules);
         }
 
-        // Get schedules by day name (e.g,"Monday")
-        [HttpGet("day/{dayOfWeek}")]
-        public async Task<ActionResult<IEnumerable<ScheduleDto>>> GetDoctorsByDay(string dayOfWeek)
-        {
-            _logger.LogInformation("get schedule to doctor by day called at {time}", DateTime.Now);
-
-            var result = await _service.GetDoctorsByDateAsync(dayOfWeek);
-            return Ok(result);
-        }
-
-        // Get schedules by date
+        
+        // Get schedules by exact date
         [HttpGet("date/{date}")]
         public async Task<ActionResult<IEnumerable<ScheduleDto>>> GetDoctorsByDate(DateOnly date)
         {
-            _logger.LogInformation("get schedule to doctor by date called at {time}", DateTime.Now);
+            _logger.LogInformation("Get schedules by date called at {time}", DateTime.Now);
 
             if (date < DateOnly.FromDateTime(DateTime.Today))
                 return BadRequest("Cannot get schedules for a past date.");
-            var dayOfWeek = date.DayOfWeek.ToString();
-            var result = await _service.GetDoctorsByDateAsync(dayOfWeek);
-            return Ok(result);
+
+            var schedules = await _service.GetSchedulesByDateOnlyAsync(date);
+            return Ok(schedules);
         }
 
-        // Get schedules by day name and shift
-        [HttpGet("day/{dayOfWeek}/shift/{shift}")]
-        public async Task<ActionResult<IEnumerable<ScheduleDto>>> GetDoctorsByDayAndShift(string dayOfWeek, Domain.Enum.AppointmentShift shift)
-        {
-            _logger.LogInformation("get schedule to doctor by shift called at {time}", DateTime.Now);
-
-            var result = await _service.GetDoctorsByDateAndShiftAsync(dayOfWeek, shift);
-            return Ok(result);
-        }
-
-        // Get schedules by date and shift
         [HttpGet("date/{date}/shift/{shift}")]
-        public async Task<ActionResult<IEnumerable<ScheduleDto>>> GetDoctorsByDateAndShift(DateOnly date, Domain.Enum.AppointmentShift shift)
+        public async Task<ActionResult<IEnumerable<ScheduleDto>>> GetDoctorsByDateAndShift( DateOnly date, AppointmentShift shift)
         {
-            _logger.LogInformation("get schedule to doctor by data and shift called at {time}", DateTime.Now);
-
             if (date < DateOnly.FromDateTime(DateTime.Today))
                 return BadRequest("Cannot get schedules for a past date.");
-            var dayOfWeek = date.DayOfWeek.ToString();
-            var result = await _service.GetDoctorsByDateAndShiftAsync(dayOfWeek, shift);
+
+            var result = await _service.GetDoctorsByDateAndShiftAsync(date, shift);
             return Ok(result);
         }
+
     }
 }
