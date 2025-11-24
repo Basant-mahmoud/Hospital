@@ -381,20 +381,18 @@ namespace Hospital.Infrastructure.Services
                 return 0;
             }
 
-            // حددنا اللي محتاج يتلغى
             var toCancel = appointments.Where(a => a.Status != AppointmentStatus.Cancelled).ToList();
             foreach (var appointment in toCancel)
             {
                 appointment.Status = AppointmentStatus.Cancelled;
                 appointment.UpdatedAt = DateTime.UtcNow;
 
-                // إرسال الإيميلات
                 var html = $@"
-        <p>Dear {appointment.Patient.User.FullName},</p>
-        <p>We regret to inform you that your appointment scheduled for <b>{appointment.Date}</b> with <b>Dr. {appointment.Doctor.User.FullName}</b> has been cancelled due to unforeseen circumstances.</p>
-        <p>We sincerely apologize for any inconvenience this may cause. Our team will be happy to assist you in booking another available time that best fits your schedule.</p>
-        <p>If you would like to reschedule or need additional support, please feel free to contact us at your convenience.</p>
-        <p>Kind regards,<br/>Hospital Support Team</p>";
+                <p>Dear {appointment.Patient.User.FullName},</p>
+                <p>We regret to inform you that your appointment scheduled for <b>{appointment.Date}</b> with <b>Dr. {appointment.Doctor.User.FullName}</b> has been cancelled due to unforeseen circumstances.</p>
+                <p>We sincerely apologize for any inconvenience this may cause. Our team will be happy to assist you in booking another available time that best fits your schedule.</p>
+                <p>If you would like to reschedule or need additional support, please feel free to contact us at your convenience.</p>
+                <p>Kind regards,<br/>Hospital Support Team</p>";
 
                 try
                 {
@@ -406,8 +404,7 @@ namespace Hospital.Infrastructure.Services
                 }
             }
 
-            // تحديث كل العناصر مرة واحدة
-            _appointmentRepository.UpdateRange(toCancel);
+            await _appointmentRepository.UpdateRangeAsync(toCancel);
 
             _logger.LogInformation("Cancelled {CancelledCount} appointments for doctor ID {DoctorId} on date {Date}", toCancel.Count, id, DateTime.UtcNow);
             return toCancel.Count;
