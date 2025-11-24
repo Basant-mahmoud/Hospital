@@ -530,14 +530,16 @@ namespace Hospital.Infrastructure.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETUTCDATE()");
 
+                    b.Property<string>("DayOfWeek")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
                     b.Property<int>("DoctorId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("EndTime")
                         .HasColumnType("datetime2");
-
-                    b.Property<DateOnly>("ScheduleDate")
-                        .HasColumnType("date");
 
                     b.Property<int>("Shift")
                         .HasColumnType("int");
