@@ -51,21 +51,21 @@ namespace Hospital.Infrastructure.Services
             if (doctor == null)
             {
                 _logger.LogWarning("Doctor with Id {DoctorId} not found", dto.DoctorId);
-                throw new Exception($"Doctor with Id {dto.DoctorId} not found");
+                throw new KeyNotFoundException($"Doctor with Id {dto.DoctorId} not found");
             }
 
             var patient = await _patientService.GetPatientByIdAsync(dto.PatientId);
             if (patient == null)
             {
                 _logger.LogWarning("Patient with Id {PatientId} not found", dto.PatientId);
-                throw new Exception($"Patient with Id {dto.PatientId} not found");
+                throw new KeyNotFoundException($"Patient with Id {dto.PatientId} not found");
             }
 
             var appointment = await _appointmentService.GetByIdAsync(dto.AppointmentId);
             if (appointment == null)
             {
                 _logger.LogWarning("Appointment with Id {AppointmentId} not found", dto.AppointmentId);
-                throw new Exception($"Appointment with Id {dto.AppointmentId} not found");
+                throw new KeyNotFoundException($"Appointment with Id {dto.AppointmentId} not found");
             }
 
             var medicalRecord = _mapper.Map<MedicalRecord>(dto);
@@ -89,7 +89,7 @@ namespace Hospital.Infrastructure.Services
             if (record == null)
             {
                 _logger.LogWarning("MedicalRecord with Id {RecordId} not found", id);
-                throw new Exception($"MedicalRecord with Id {id} not found");
+                throw new KeyNotFoundException($"MedicalRecord with Id {id} not found");
             }
 
             var result = await _medicalRecordRepo.DeleteAsync(record);
@@ -105,7 +105,7 @@ namespace Hospital.Infrastructure.Services
             if (record == null)
             {
                 _logger.LogWarning("MedicalRecord with Id {RecordId} not found", dto.MedicalRecordId);
-                return null;
+                throw new KeyNotFoundException($"MedicalRecord with Id {dto.MedicalRecordId} not found");
             }
 
             return _mapper.Map<MedicalRecordDto>(record);
@@ -119,28 +119,28 @@ namespace Hospital.Infrastructure.Services
             if (doctor == null)
             {
                 _logger.LogWarning("Doctor with Id {DoctorId} not found", dto.DoctorId);
-                throw new Exception($"Doctor with Id {dto.DoctorId} not found");
+                throw new KeyNotFoundException($"Doctor with Id {dto.DoctorId} not found");
             }
 
             var patient = await _patientService.GetPatientByIdAsync(dto.PatientId);
             if (patient == null)
             {
                 _logger.LogWarning("Patient with Id {PatientId} not found", dto.PatientId);
-                throw new Exception($"Patient with Id {dto.PatientId} not found");
+                throw new KeyNotFoundException($"Patient with Id {dto.PatientId} not found");
             }
 
             var appointment = await _appointmentService.GetByIdAsync(dto.AppointmentId);
             if (appointment == null)
             {
                 _logger.LogWarning("Appointment with Id {AppointmentId} not found", dto.AppointmentId);
-                throw new Exception($"Appointment with Id {dto.AppointmentId} not found");
+                throw new KeyNotFoundException($"Appointment with Id {dto.AppointmentId} not found");
             }
 
             var record = await _medicalRecordRepo.GetAsync(dto.RecordId);
             if (record == null)
             {
                 _logger.LogWarning("MedicalRecord with Id {RecordId} not found", dto.RecordId);
-                throw new Exception($"MedicalRecord with Id {dto.RecordId} not found");
+                throw new KeyNotFoundException($"MedicalRecord with Id {dto.RecordId} not found");
             }
 
             _mapper.Map(dto, record);
@@ -160,7 +160,7 @@ namespace Hospital.Infrastructure.Services
             if (doctor == null)
             {
                 _logger.LogWarning("Doctor with Id {DoctorId} not found", doctorId);
-                throw new Exception($"Doctor with Id {doctorId} not found");
+                throw new KeyNotFoundException($"Doctor with Id {doctorId} not found");
             }
 
             var records = await _medicalRecordRepo.GetByDoctorIdAsync(doctorId);
@@ -175,7 +175,7 @@ namespace Hospital.Infrastructure.Services
             if (patient == null)
             {
                 _logger.LogWarning("Patient with Id {PatientId} not found", patientId);
-                throw new Exception($"Patient with Id {patientId} not found");
+                throw new KeyNotFoundException($"Patient with Id {patientId} not found");
             }
 
             var records = await _medicalRecordRepo.GetByPatientIdAsync(patientId);
@@ -189,27 +189,27 @@ namespace Hospital.Infrastructure.Services
             if (doctorId == 0)
             {
                 _logger.LogWarning("Invalid DoctorId {DoctorId}", doctorId);
-                throw new Exception("Doctor Id Not Valid");
+                throw new ArgumentException("Doctor Id Not Valid");
             }
 
             var doctor = await _doctorRepoy.GetAsync(doctorId);
             if (doctor == null)
             {
                 _logger.LogWarning("Doctor with Id {DoctorId} not found", doctorId);
-                throw new Exception($"Doctor with Id {doctorId} not found");
+                throw new KeyNotFoundException($"Doctor with Id {doctorId} not found");
             }
 
             if (patientId == 0)
             {
                 _logger.LogWarning("Invalid PatientId {PatientId}", patientId);
-                throw new Exception("Patient Id Not Valid");
+                throw new ArgumentException("Patient Id Not Valid");
             }
 
             var patient = await _patientService.GetPatientByIdAsync(patientId);
             if (patient == null)
             {
                 _logger.LogWarning("Patient with Id {PatientId} not found", patientId);
-                throw new Exception($"Patient with Id {patientId} not found");
+                throw new KeyNotFoundException($"Patient with Id {patientId} not found");
             }
 
             var records = await _medicalRecordRepo.GetByDoctorAndPatientAsync(doctorId, patientId);

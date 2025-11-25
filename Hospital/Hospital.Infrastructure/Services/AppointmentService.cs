@@ -195,7 +195,7 @@ namespace Hospital.Infrastructure.Services
             if (record == null)
             {
                 _logger.LogWarning("Appointment with ID {AppointmentId} not found", id);
-                return null;
+                throw new KeyNotFoundException($"Appointment with ID {id} does not exist.");
             }
 
             return _mapper.Map<AppointmentDto>(record);

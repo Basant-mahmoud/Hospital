@@ -91,7 +91,7 @@ namespace Hospital.Infrastructure.Repos
                 .Where(a =>
                     a.DoctorId == doctorId &&
                     a.Date == date &&
-                    a.Status == AppointmentStatus.Confirmed)
+                    a.Status == AppointmentStatus.Confirmed || a.Status == AppointmentStatus.Completed)
                 .ToListAsync();
         }
 
