@@ -12,12 +12,14 @@ namespace Hospital.Controllers
     public class DoctorController : ControllerBase
     {
         private readonly IDoctorService _doctorService;
+        private readonly IAppointmentService _appointmentService;
         private readonly ILogger<DoctorController> _logger;
 
-        public DoctorController(IDoctorService doctorService, ILogger<DoctorController> logger)
+        public DoctorController(IDoctorService doctorService, ILogger<DoctorController> logger , IAppointmentService appointmentService)
         {
             _doctorService = doctorService;
             _logger = logger;
+            _appointmentService = appointmentService;
 
         }
 
@@ -265,8 +267,8 @@ namespace Hospital.Controllers
         {
             _logger.LogInformation("convertStatuesOFPaymentToPayied pay by cach  called at {time}", DateTime.Now);
             var result = await _doctorService.convertStatuesOFPaymentToPayied(Appoimentid);
-            if(result==true)
-               return Ok("Payment Paid successfully");
+            if (result==true )
+               return Ok("Payment Paid successfully and Appoiment updated ");
             return BadRequest("Payment Not Paid");
         }
 

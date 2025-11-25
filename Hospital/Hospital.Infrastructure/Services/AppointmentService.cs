@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Clinic.Infrastructure.Persistence;
 using Hospital.Application.DTO.Appointment;
+using Hospital.Application.Helper;
 using Hospital.Application.Interfaces.Payment;
 using Hospital.Application.Interfaces.Repos;
 using Hospital.Application.Interfaces.Services;
@@ -48,8 +49,9 @@ namespace Hospital.Infrastructure.Services
 
         public async Task<AppointmentDto> AddAsync(AddAppointmentDto dto)
         {
-            _logger.LogInformation("Creating appointment for PatientId: {PatientId}, DoctorId: {DoctorId}, Date: {Date}, Time: {Time}",
-                dto.PatientId, dto.DoctorId, dto.Date, dto.Time);
+            _logger.LogInformation(
+                 "Creating appointment for PatientId: {PatientId}, DoctorId: {DoctorId}, Date: {Date}, Shift: {Shift}",
+                 dto.PatientId, dto.DoctorId, dto.Date, dto.Shift);
 
             await using var transaction = await _dbContext.Database.BeginTransactionAsync();
             try
@@ -84,14 +86,26 @@ namespace Hospital.Infrastructure.Services
                 if (dto.Date < DateOnly.FromDateTime(DateTime.UtcNow.Date))
                     throw new ArgumentException("Appointment date cannot be in the past.");
 
-                if (dto.Time.Hour < 8 || dto.Time.Hour > 20)
-                    throw new ArgumentException("Appointment time must be between 08:00 and 20:00.");
+                // Get shift start/end as TimeSpan
+                var (shiftStartSpan, shiftEndSpan) = ShiftTimeRanges.GetShiftRange(dto.Shift);
 
-                var exists = await _appointmentRepo.ExistsAsync(dto.DoctorId, dto.Date, dto.Time);
-                if (exists)
+                // Convert shift TimeSpan → DateTime for comparison
+                var shiftStartUtc = dto.Date.ToDateTime(TimeOnly.FromTimeSpan(shiftStartSpan));
+                var shiftEndUtc = dto.Date.ToDateTime(TimeOnly.FromTimeSpan(shiftEndSpan));
+
+                var nowUtc = DateTime.UtcNow;
+
+                // Check if shift is in the past (even if date is today)
+                if (nowUtc > shiftEndUtc)
                 {
-                    _logger.LogWarning("Doctor {DoctorId} already has an appointment at {Date} {Time}", dto.DoctorId, dto.Date, dto.Time);
-                    throw new ArgumentException("Doctor already has an appointment at this time.");
+                    throw new ArgumentException(
+                        $"Cannot book appointment: the selected shift ({shiftStartUtc:HH:mm} - {shiftEndUtc:HH:mm}) has already passed.");
+                }
+
+                // Validate: patient already booked same doctor same shift
+                if (await _appointmentRepo.PatientBookedSameDoctorSameShiftAsync(dto.PatientId, dto.DoctorId, dto.Date, dto.Shift))
+                {
+                    throw new ArgumentException("Patient already has an appointment with this doctor in this shift.");
                 }
 
                 var appointment = _mapper.Map<Appointment>(dto);

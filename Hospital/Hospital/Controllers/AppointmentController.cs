@@ -83,6 +83,7 @@ namespace Hospital.API.Controllers
         {
             _logger.LogInformation("Mark Appointment as Completed called at {time}", DateTime.Now);
             var result = await _appointmentService.MarkAsCompletedAsync(id);
+            
             return Ok(result);
         }
 

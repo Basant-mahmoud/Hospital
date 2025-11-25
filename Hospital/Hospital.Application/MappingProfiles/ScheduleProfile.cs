@@ -1,11 +1,6 @@
 ﻿using AutoMapper;
 using Hospital.Application.DTO.Schedule;
 using Hospital.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hospital.Application.MappingProfiles
 {
@@ -25,9 +20,8 @@ namespace Hospital.Application.MappingProfiles
 
             CreateMap<Schedule, ScheduleDto>()
                 .ForMember(dest => dest.DoctorName, opt => opt.MapFrom(src => src.Doctor.User.FullName))
+                .ForMember(dest => dest.BranchName, opt => opt.MapFrom(src => src.Branch.BranchName))
                 .ForMember(dest => dest.AppointmentShift, opt => opt.MapFrom(src => src.Shift));
-
         }
     }
-    
 }
