@@ -184,6 +184,24 @@ namespace Hospital.Infrastructure.Services
             return _mapper.Map<List<AppointmentDto>>(records ?? new List<Appointment>());
         }
 
+        public async Task<List<AppointmentDto>> GetAllAppointmentCancelByDoctorId(int DoctorId)
+        {
+            _logger.LogInformation("Fetching appointments for DoctorId: {DoctorId}", DoctorId);
+
+            if (DoctorId <= 0)
+                throw new ArgumentException("Invalid doctor ID.");
+
+            var doctor = await _doctorRepository.GetAsync(DoctorId);
+            if (doctor == null)
+            {
+                _logger.LogWarning("Doctor with ID {DoctorId} not found", DoctorId);
+                throw new KeyNotFoundException($"Doctor with ID {DoctorId} does not exist.");
+            }
+
+            var records = await _appointmentRepo.GetCancelByDoctorIdAsync(DoctorId);
+            return _mapper.Map<List<AppointmentDto>>(records ?? new List<Appointment>());
+        }
+
         public async Task<AppointmentDto?> GetByIdAsync(int id)
         {
             _logger.LogInformation("Fetching appointment by ID: {AppointmentId}", id);

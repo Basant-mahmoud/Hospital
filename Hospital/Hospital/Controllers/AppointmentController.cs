@@ -76,6 +76,15 @@ namespace Hospital.API.Controllers
             return Ok(result);
         }
 
+        [HttpGet("CanceledByDoctor/{doctorId}")]
+        public async Task<IActionResult> GetAllAppointmentCancelByDoctorId(int doctorId)
+        {
+            _logger.LogInformation("Fetching canceled appointments for DoctorId: {DoctorId}", doctorId);
+            var appointments = await _appointmentService.GetAllAppointmentCancelByDoctorId(doctorId);
+
+            return Ok(appointments);
+        }
+
         [HttpPut("MarkAsCompleted/{id:int}")]
         public async Task<IActionResult> MarkAsCompleted(int id)
         {
