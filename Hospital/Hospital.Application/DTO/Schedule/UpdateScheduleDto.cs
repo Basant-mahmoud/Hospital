@@ -13,5 +13,7 @@ namespace Hospital.Application.DTO.Schedule
         public int ScheduleId { get; set; }
         public string? DayOfWeek { get; set; }
         public AppointmentShift? AppointmentShift { get; set; }
+
+        public int? BranchId { get; set; }
     }
 }

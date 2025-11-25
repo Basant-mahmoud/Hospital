@@ -14,6 +14,10 @@ namespace Hospital.Application.DTO.Schedule
         public int DoctorId { get; set; }
         public string DayOfWeek { get; set; } = null!;
         public AppointmentShift AppointmentShift { get; set; }
+
+        public int BranchId { get; set; }
+
+
     }
 
 }

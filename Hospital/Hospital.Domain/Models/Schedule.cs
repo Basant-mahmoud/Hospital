@@ -22,7 +22,12 @@ namespace Hospital.Domain.Models
         public string DayOfWeek { get; set; } = null!;  // Example: "Monday"
 
         [Required]
-        public AppointmentShift Shift { get; set; }     // Morning / Afternoon / Evening
+        public AppointmentShift Shift { get; set; }// Morning / Afternoon / Evening
+
+
+        [Required]
+        public int BranchId { get; set; }  
+        public Branch Branch { get; set; } = null!; // added branch for schedule
 
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }

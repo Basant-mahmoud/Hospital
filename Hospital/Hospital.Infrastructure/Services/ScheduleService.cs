@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Threading.Tasks;
 
 namespace Hospital.Infrastructure.Services
@@ -37,6 +38,14 @@ namespace Hospital.Infrastructure.Services
                 _logger.LogWarning("Doctor with ID {DoctorId} not found", dto.DoctorId);
                 throw new KeyNotFoundException("Doctor not found.");
             }
+
+            var isAssociated = doctor.Branches.Any(b => b.BranchId == dto.BranchId);
+            if (!isAssociated)
+            {
+                _logger.LogWarning("Doctor with ID {DoctorId} is not associated with BranchId {BranchId}", dto.DoctorId, dto.BranchId);
+                throw new InvalidOperationException("Doctor is not associated with the specified branch.");
+            }
+
 
             if (!Enum.TryParse<DayOfWeek>(dto.DayOfWeek, true, out _))
                 throw new ArgumentException("Invalid day of the week.");
@@ -92,6 +101,20 @@ namespace Hospital.Infrastructure.Services
                     _logger.LogWarning("Duplicate schedule conflict for DoctorId {DoctorId} on {DayOfWeek} shift {Shift}", schedule.DoctorId, schedule.DayOfWeek, schedule.Shift);
                     throw new InvalidOperationException("Doctor already has a schedule for this day and shift.");
                 }
+            }
+            var sechdule = await _repo.GetByIdAsync(dto.ScheduleId);
+            var doctor = await _doctorRepo.GetAsync(sechdule.DoctorId);
+            if ( doctor == null)
+            {
+                _logger.LogWarning("Doctor with ID {DoctorId} not found", doctor.DoctorId);
+                throw new KeyNotFoundException("Doctor not found.");
+            }
+
+            var isAssociated = doctor.Branches.Any(b => b.BranchId == dto.BranchId);
+            if (!isAssociated)
+            {
+                _logger.LogWarning("Doctor with ID {DoctorId} is not associated with BranchId {BranchId}", doctor.DoctorId, dto.BranchId);
+                throw new InvalidOperationException("Doctor is not associated with the specified branch.");
             }
 
             _mapper.Map(dto, schedule);
