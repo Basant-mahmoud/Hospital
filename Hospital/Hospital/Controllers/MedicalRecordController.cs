@@ -1,5 +1,6 @@
 ﻿using Hospital.Application.DTO.MedicalRecord;
 using Hospital.Application.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,6 +8,7 @@ namespace Hospital.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class MedicalRecordController : ControllerBase
     {
         private readonly IMedicalRecordService _medicalRecordService;
@@ -19,6 +21,8 @@ namespace Hospital.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Doctor")]
+
         public async Task<ActionResult<PatientMedicalRecordDto>> Add([FromBody] AddMedicalRecordDto dto)
         {
             _logger.LogInformation("add medical record  called at {time}", DateTime.Now);
@@ -28,6 +32,8 @@ namespace Hospital.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "Doctor")]
+
         public async Task<ActionResult<int>> Update([FromBody] UpdateMedicalRecordDto dto)
         {
             _logger.LogInformation("update medical record  called at {time}", DateTime.Now);
@@ -42,6 +48,8 @@ namespace Hospital.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Doctor")]
+
         public async Task<ActionResult<int>> Delete(int id)
         {
             _logger.LogInformation("delete medical record  called at {time}", DateTime.Now);
@@ -54,6 +62,8 @@ namespace Hospital.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "Patient,Doctor")]
+
         public async Task<ActionResult<PatientMedicalRecordDto?>> GetById(int id)
         {
             _logger.LogInformation("get medical  record by id called at {time}", DateTime.Now);
@@ -65,6 +75,8 @@ namespace Hospital.Controllers
         }
 
         [HttpGet("by-doctor/{doctorId}")]
+        [Authorize(Roles = "Patient,Doctor")]
+
         public async Task<ActionResult<List<PatientMedicalRecordDto>>> GetByDoctor(int doctorId)
         {
             _logger.LogInformation("get medical record by doctor id   called at {time}", DateTime.Now);
@@ -74,6 +86,8 @@ namespace Hospital.Controllers
         }
 
         [HttpGet("by-patient/{patientId}")]
+        [Authorize(Roles = "Patient,Doctor")]
+
         public async Task<ActionResult<List<PatientMedicalRecordDto>>> GetByPatient(int patientId)
         {
             _logger.LogInformation("get medical record by patient id called at {time}", DateTime.Now);
@@ -83,6 +97,8 @@ namespace Hospital.Controllers
         }
 
         [HttpGet("records/doctor/{doctorId}/patient/{patientId}")]
+        [Authorize(Roles = "Patient,Doctor")]
+
         public async Task<IActionResult> GetHistory(int doctorId, int patientId)
         {
             _logger.LogInformation("get medical record history by doctor id and patient id   called at {time}", DateTime.Now);

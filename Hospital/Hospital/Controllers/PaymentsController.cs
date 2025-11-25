@@ -15,6 +15,7 @@ namespace Hospital.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class PaymentController : ControllerBase
     {
         private readonly IPaymentService _paymentService;
@@ -88,11 +89,11 @@ namespace Hospital.Controllers
                 var amountCents = obj.GetProperty("amount_cents").GetInt32();
                 var currency = obj.GetProperty("currency").GetString();
 
-                //var hmac = rawCallback.GetProperty("hmac").GetString();
-                //if (!VerifyHmacSignature(obj, hmac))
-                //{
-                //    return Unauthorized(new { success = false, message = "Invalid HMAC signature" });
-                //}
+                var hmac = rawCallback.GetProperty("hmac").GetString();
+                if (!VerifyHmacSignature(obj, hmac))
+                {
+                    return Unauthorized(new { success = false, message = "Invalid HMAC signature" });
+                }
 
                 var dto = new PaymobCallbackDto
                 {
@@ -118,68 +119,68 @@ namespace Hospital.Controllers
             }
         }
 
-        //private bool VerifyHmacSignature(JsonElement obj, string receivedHmac)
-        //{
-        //    try
-        //    {
-        //            _logger.LogInformation("Verify Hmac Signature called at {time}", DateTime.Now);
+        private bool VerifyHmacSignature(JsonElement obj, string receivedHmac)
+        {
+            try
+            {
+                _logger.LogInformation("Verify Hmac Signature called at {time}", DateTime.Now);
 
-        //        var amountCents = obj.GetProperty("amount_cents").GetInt32().ToString();
-        //        var createdAt = obj.GetProperty("created_at").GetString();
-        //        var currency = obj.GetProperty("currency").GetString();
-        //        var errorOccurred = obj.GetProperty("error_occured").GetBoolean().ToString().ToLower();
-        //        var hasParentTransaction = obj.GetProperty("has_parent_transaction").GetBoolean().ToString().ToLower();
-        //        var id = obj.GetProperty("id").ToString();
-        //        var integrationId = obj.GetProperty("integration_id").GetInt32().ToString();
-        //        var isAuth = obj.GetProperty("is_auth").GetBoolean().ToString().ToLower();
-        //        var is3dSecure = obj.GetProperty("is_3d_secure").GetBoolean().ToString().ToLower();
-        //        var isCapture = obj.GetProperty("is_capture").GetBoolean().ToString().ToLower();
-        //        var isRefunded = obj.GetProperty("is_refunded").GetBoolean().ToString().ToLower();
-        //        var isStandalonePayment = obj.GetProperty("is_standalone_payment").GetBoolean().ToString().ToLower();
-        //        var isVoided = obj.GetProperty("is_voided").GetBoolean().ToString().ToLower();
-        //        var orderId = obj.GetProperty("order").GetProperty("id").GetInt32().ToString();
-        //        var owner = obj.GetProperty("owner").GetInt32().ToString();
-        //        var pending = obj.GetProperty("pending").GetBoolean().ToString().ToLower();
-        //        var sourceDataPan = obj.GetProperty("source_data").GetProperty("pan").GetString();
-        //        var sourceDataSubType = obj.GetProperty("source_data").GetProperty("sub_type").GetString();
-        //        var sourceDataType = obj.GetProperty("source_data").GetProperty("type").GetString();
-        //        var success = obj.GetProperty("success").GetBoolean().ToString().ToLower();
+                var amountCents = obj.GetProperty("amount_cents").GetInt32().ToString();
+                var createdAt = obj.GetProperty("created_at").GetString();
+                var currency = obj.GetProperty("currency").GetString();
+                var errorOccurred = obj.GetProperty("error_occured").GetBoolean().ToString().ToLower();
+                var hasParentTransaction = obj.GetProperty("has_parent_transaction").GetBoolean().ToString().ToLower();
+                var id = obj.GetProperty("id").ToString();
+                var integrationId = obj.GetProperty("integration_id").GetInt32().ToString();
+                var isAuth = obj.GetProperty("is_auth").GetBoolean().ToString().ToLower();
+                var is3dSecure = obj.GetProperty("is_3d_secure").GetBoolean().ToString().ToLower();
+                var isCapture = obj.GetProperty("is_capture").GetBoolean().ToString().ToLower();
+                var isRefunded = obj.GetProperty("is_refunded").GetBoolean().ToString().ToLower();
+                var isStandalonePayment = obj.GetProperty("is_standalone_payment").GetBoolean().ToString().ToLower();
+                var isVoided = obj.GetProperty("is_voided").GetBoolean().ToString().ToLower();
+                var orderId = obj.GetProperty("order").GetProperty("id").GetInt32().ToString();
+                var owner = obj.GetProperty("owner").GetInt32().ToString();
+                var pending = obj.GetProperty("pending").GetBoolean().ToString().ToLower();
+                var sourceDataPan = obj.GetProperty("source_data").GetProperty("pan").GetString();
+                var sourceDataSubType = obj.GetProperty("source_data").GetProperty("sub_type").GetString();
+                var sourceDataType = obj.GetProperty("source_data").GetProperty("type").GetString();
+                var success = obj.GetProperty("success").GetBoolean().ToString().ToLower();
 
-        //        var concatenated = string.Concat(
-        //            amountCents,
-        //            createdAt,
-        //            currency,
-        //            errorOccurred,
-        //            hasParentTransaction,
-        //            id,
-        //            integrationId,
-        //            isAuth,
-        //            isCapture,
-        //            isRefunded,
-        //            isStandalonePayment,
-        //            is3dSecure,
-        //            isVoided,
-        //            orderId,
-        //            owner,
-        //            pending,
-        //            sourceDataPan,
-        //            sourceDataSubType,
-        //            sourceDataType,
-        //            success
-        //        );
+                var concatenated = string.Concat(
+                    amountCents,
+                    createdAt,
+                    currency,
+                    errorOccurred,
+                    hasParentTransaction,
+                    id,
+                    integrationId,
+                    isAuth,
+                    isCapture,
+                    isRefunded,
+                    isStandalonePayment,
+                    is3dSecure,
+                    isVoided,
+                    orderId,
+                    owner,
+                    pending,
+                    sourceDataPan,
+                    sourceDataSubType,
+                    sourceDataType,
+                    success
+                );
 
-        //        using var hmac = new HMACSHA512(Encoding.UTF8.GetBytes(_paymobOptions.HmacSecret));
-        //        var hash = hmac.ComputeHash(Encoding.UTF8.GetBytes(concatenated));
-        //        var calculatedHmac = BitConverter.ToString(hash).Replace("-", "").ToLower();
+                using var hmac = new HMACSHA512(Encoding.UTF8.GetBytes(_paymobOptions.HmacSecret));
+                var hash = hmac.ComputeHash(Encoding.UTF8.GetBytes(concatenated));
+                var calculatedHmac = BitConverter.ToString(hash).Replace("-", "").ToLower();
 
-        //        return calculatedHmac == receivedHmac?.ToLower();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine($"HMAC Verification Error: {ex.Message}");
-        //        return false;
-        //    }
-        //}
+                return calculatedHmac == receivedHmac?.ToLower();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"HMAC Verification Error: {ex.Message}");
+                return false;
+            }
+        }
     }
 
     public class CreatePaymentRequest

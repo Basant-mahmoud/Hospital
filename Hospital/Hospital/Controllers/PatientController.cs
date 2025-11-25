@@ -1,6 +1,7 @@
 ﻿using Hospital.Application.DTO.Patient;
 using Hospital.Application.Interfaces.Services;
 using Hospital.Infrastructure.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,6 +9,7 @@ namespace Hospital.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class PatientController : ControllerBase
     {
         private readonly IPatientService _patientService;
@@ -20,6 +22,7 @@ namespace Hospital.Controllers
         }
 
         [HttpGet("{id}")]
+
         public async Task<IActionResult> GetPatientById(int id)
         {
             _logger.LogInformation("get patient by id called at {time}", DateTime.Now);
@@ -29,6 +32,8 @@ namespace Hospital.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Patient,Doctor")]
+
         public async Task<IActionResult> GetAllPatients()
         {
             _logger.LogInformation("get all patient  called at {time}", DateTime.Now);
@@ -38,6 +43,8 @@ namespace Hospital.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> UpdatePatient(UpdatePatientDto dto)
         {
             _logger.LogInformation("update patient  called at {time}", DateTime.Now);

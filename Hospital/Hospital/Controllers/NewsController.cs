@@ -1,6 +1,7 @@
 ﻿using Hospital.Application.DTO.Event;
 using Hospital.Application.DTO.News;
 using Hospital.Application.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,6 +9,7 @@ namespace Hospital.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class NewsController : ControllerBase
     {
         private readonly INewsService _newsService;
@@ -20,6 +22,8 @@ namespace Hospital.Controllers
         }
 
         [HttpPost("CreateNews")]
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> CreateNews([FromBody] AddNewsDto newsDto)
         {
             _logger.LogInformation("create News  called at {time}", DateTime.Now);
@@ -29,6 +33,7 @@ namespace Hospital.Controllers
         }
 
         [HttpPost("GetNews")]
+
         public async Task<IActionResult> GetNews(GetNewsDto news)
         {
             _logger.LogInformation("get News  called at {time}", DateTime.Now);
@@ -53,6 +58,8 @@ namespace Hospital.Controllers
         }
 
         [HttpPut("UpdateNews")]
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> UpdateEvent([FromBody] NewsDto news)
         {
             _logger.LogInformation("update News  called at {time}", DateTime.Now);
@@ -68,6 +75,8 @@ namespace Hospital.Controllers
         }
 
         [HttpDelete("DeleteNews")]
+        [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> DeleteNews(GetNewsDto dto)
         {
             _logger.LogInformation("delete News  called at {time}", DateTime.Now);
