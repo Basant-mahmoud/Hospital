@@ -45,6 +45,7 @@ namespace Hospital.Infrastructure.Repos
                 .Include(d => d.Specialization)
                 .Include(d => d.Branches)
                  .Include(d => d.Schedules)
+                 .Include(d => d.Branches)
                 .FirstOrDefaultAsync(d => d.DoctorId == doctorId);
         }
 
