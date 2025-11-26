@@ -12,6 +12,8 @@ namespace Hospital.Application.DTO.Specialization
     {
         [Required, StringLength(120)] public string Name { get; set; } 
         public string? Description { get; set; }
+        [Url, StringLength(300)] public string? ImageURL { get; set; }
+
         public List<int> BranchIds { get; set; } = new List<int>();
     }
 }
