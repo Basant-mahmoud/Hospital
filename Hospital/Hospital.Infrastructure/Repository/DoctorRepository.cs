@@ -82,18 +82,21 @@ namespace Hospital.Infrastructure.Repos
                 .ToListAsync();
         }
        
-        public async Task<List<Appointment>> GetAppoimentsByDateForDoctorAsync(int doctorId, DateOnly date)
-        {
-            return await _context.Appointments
-                .Include(a => a.Patient)             
-                    .ThenInclude(p => p.User)         
-                .Include(a => a.Branch)               
-                .Where(a =>
-                    a.DoctorId == doctorId &&
-                    a.Date == date &&
-                    a.Status == AppointmentStatus.Confirmed || a.Status == AppointmentStatus.Completed)
-                .ToListAsync();
-        }
+       public async Task<List<Appointment>> GetAppoimentsByDateForDoctorAsync(int doctorId, DateOnly date)
+{
+    return await _context.Appointments
+        .Include(a => a.Patient)
+            .ThenInclude(p => p.User)
+        .Include(a => a.Branch)
+        .Where(a =>
+            a.DoctorId == doctorId &&
+            a.Date.Day == date.Day &&
+            a.Date.Month == date.Month &&
+            a.Date.Year == date.Year &&
+            (a.Status == AppointmentStatus.Confirmed ||
+             a.Status == AppointmentStatus.Completed))
+        .ToListAsync();
+}
 
 
     }
