@@ -67,6 +67,7 @@ namespace Hospital.Infrastructure.Repos
                 .Include(d => d.Specialization)
                 .Include(d => d.Branches)
                 .Include(d => d.Schedules)
+                .ThenInclude(s => s.Branch)
                 .ToListAsync();
         }
 
@@ -77,6 +78,7 @@ namespace Hospital.Infrastructure.Repos
                 .Include(d => d.Branches)
                     .ThenInclude(b => b.Specializations)
                 .Include(d => d.Schedules)
+                .ThenInclude(s => s.Branch)
                 .Where(d => d.Branches
                     .Any(b => b.Specializations
                         .Any(s => s.SpecializationId == specializationId)))

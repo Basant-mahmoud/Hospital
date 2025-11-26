@@ -13884,3 +13884,9 @@ ORDER BY [t].[DoctorId], [t].[Id], [t].[SpecializationId0], [t0].[BranchesBranch
 2025-11-26 22:09:26.936 +02:00 [DBG] Disposing connection to database 'HospitalDB' on server '.'.
 2025-11-26 22:09:26.938 +02:00 [DBG] Disposed connection to database '' on server '' (1ms).
 2025-11-26 22:09:26.939 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7217/api/Doctor/1 - 200 null application/json; charset=utf-8 1868.5387ms
+2025-11-26 22:11:38.362 +02:00 [DBG] Connection id "0HNHD4UL33LP9" is closing.
+2025-11-26 22:11:38.368 +02:00 [DBG] Connection id "0HNHD4UL33LP9" is closed. The last processed stream ID was 9.
+2025-11-26 22:11:38.370 +02:00 [DBG] Connection id "0HNHD4UL33LP9" received FIN.
+2025-11-26 22:11:38.371 +02:00 [DBG] The connection queue processing loop for 0HNHD4UL33LP9 completed.
+2025-11-26 22:11:38.372 +02:00 [DBG] Connection id "0HNHD4UL33LP9" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-11-26 22:11:38.376 +02:00 [DBG] Connection id "0HNHD4UL33LP9" stopped.
