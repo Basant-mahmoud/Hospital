@@ -302,7 +302,7 @@ namespace Hospital.Infrastructure.Services
                 throw new KeyNotFoundException($"Doctor with ID {doctorId} does not exist.");
             }
 
-            var today = DateOnly.FromDateTime(DateTime.UtcNow);
+            var today = DateOnly.FromDateTime(DateTime.Now);
             var appointments = await _doctorRepo.GetAppoimentsByDateForDoctorAsync(doctorId, today);
 
             if (appointments == null || !appointments.Any())
