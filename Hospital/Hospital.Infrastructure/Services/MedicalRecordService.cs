@@ -111,7 +111,7 @@ namespace Hospital.Infrastructure.Services
             return _mapper.Map<MedicalRecordDto>(record);
         }
 
-        public async Task<int> UpdateAsync(UpdateMedicalRecordDto dto)
+        public async Task<MedicalRecordDto> UpdateAsync(UpdateMedicalRecordDto dto)
         {
             _logger.LogInformation("Updating medical record with RecordId {RecordId}", dto.RecordId);
 
@@ -149,7 +149,7 @@ namespace Hospital.Infrastructure.Services
             var result = await _medicalRecordRepo.UpdateAsync(record);
             _logger.LogInformation("MedicalRecord with RecordId {RecordId} updated successfully", dto.RecordId);
 
-            return result;
+            return _mapper.Map<MedicalRecordDto>(result);
         }
 
         public async Task<List<MedicalRecordDto>> GetByDoctorId(int doctorId)

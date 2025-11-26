@@ -26,10 +26,11 @@ namespace Hospital.Infrastructure.Repository
             return medical;
         }
 
-        public async Task<int> UpdateAsync(MedicalRecord medical)
+        public async Task<MedicalRecord> UpdateAsync(MedicalRecord medical)
         {
             _dbContext.MedicalRecords.Update(medical);
-            return await _dbContext.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync();
+            return medical;
         }
 
         public async Task<int> DeleteAsync(MedicalRecord medical)
