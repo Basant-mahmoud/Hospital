@@ -18,7 +18,7 @@ namespace Hospital.Controllers
             _logger = logger;
         }
 
-        [HttpPost]
+        [HttpPost("Create")]
         public async Task<ActionResult<PatientMedicalRecordDto>> Add([FromBody] AddMedicalRecordDto dto)
         {
             _logger.LogInformation("add medical record  called at {time}", DateTime.Now);
@@ -27,18 +27,16 @@ namespace Hospital.Controllers
             return Ok(result);
         }
 
-        [HttpPut]
-        public async Task<ActionResult<int>> Update([FromBody] UpdateMedicalRecordDto dto)
+        [HttpPut("Update")]
+        public async Task<ActionResult> Update([FromBody] UpdateMedicalRecordDto dto)
         {
-            _logger.LogInformation("update medical record  called at {time}", DateTime.Now);
+            _logger.LogInformation("Updating medical record with ID {RecordId}", dto.RecordId);
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var result = await _medicalRecordService.UpdateAsync(dto);
-            if (result == 0)
-                return BadRequest($" failed to update");
-            else
-            return Ok("Updated Successfully");
+
+            var updatedDto = await _medicalRecordService.UpdateAsync(dto);
+            return Ok(updatedDto);
         }
 
         [HttpDelete("{id}")]

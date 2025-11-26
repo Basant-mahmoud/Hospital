@@ -16,6 +16,8 @@ namespace Hospital.Application.DTO.MedicalRecord
         public string? TreatmentPlan { get; set; }
         public string? Notes { get; set; }
         public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
+
         public DoctorMedicalDto Doctor { get; set; }
         public PatientMedicalRecordDto Patient { get; set; }
         public AppointmentDto Appointment { get; set; }

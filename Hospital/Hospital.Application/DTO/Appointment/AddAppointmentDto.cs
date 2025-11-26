@@ -16,7 +16,7 @@ namespace Hospital.Application.DTO.Appointment
         [Required] public int BranchId { get; set; }
         [Required] public DateOnly Date { get; set; }
         [Required] public AppointmentShift Shift { get; set; }
-        [Required] public AppointmentStatus Status { get; set; } = AppointmentStatus.Confirmed;
+        [Required] public AppointmentStatus Status { get; set; } = AppointmentStatus.Pending;
         [Required] public PaymentMethod PaymentMethod { get; set; }
         public string? Notes { get; set; }
     }
