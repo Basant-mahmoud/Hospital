@@ -8,6 +8,7 @@ using Hospital.Application.Interfaces.Services;
 using Hospital.Domain.Enum;
 using Hospital.Domain.Models;
 using Microsoft.Extensions.Logging;
+using System.ComponentModel.DataAnnotations;
 
 
 namespace Hospital.Infrastructure.Services
@@ -380,7 +381,11 @@ namespace Hospital.Infrastructure.Services
         public async Task<int> CancelAppointmentsForDoctorbyDate(int id, DateOnly date)
         {
             _logger.LogInformation("Cancelling appointments for doctor ID {DoctorId} on date {Date}", id, DateTime.UtcNow);
-
+            var today = DateOnly.FromDateTime(DateTime.Now);
+            if (date == today)
+            {
+                throw new ValidationException("You Cant Cancel Appointments Today .");
+            }
             var doctor = await _doctorRepo.GetAsync(id);
             if (doctor == null)
             {
@@ -394,6 +399,7 @@ namespace Hospital.Infrastructure.Services
                 _logger.LogInformation("No appointments found for doctor ID {DoctorId} on date {Date}", id, DateTime.UtcNow);
                 return 0;
             }
+           
 
             var toCancel = appointments.Where(a => a.Status != AppointmentStatus.Cancelled).ToList();
             foreach (var appointment in toCancel)
