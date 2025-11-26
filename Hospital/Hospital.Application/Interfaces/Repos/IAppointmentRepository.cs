@@ -20,5 +20,6 @@ namespace Hospital.Application.Interfaces.Repos
         Task<int> UpdateAsync(Appointment appointment);
         Task<int> UpdateRangeAsync(IEnumerable<Appointment> appointments);
         Task<bool> PatientBookedSameDoctorSameShiftAsync(int patientId, int doctorId, DateOnly date, AppointmentShift shift);
+        Task<IEnumerable<Appointment>> GetCancelByDoctorIdAsync(int doctorId);
     }
 }

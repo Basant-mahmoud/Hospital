@@ -41,16 +41,16 @@ namespace Hospital.Infrastructure.Repository
         public async Task<MedicalRecord?> GetAsync(int id)
         {
             return await _dbContext.MedicalRecords
-                .Include(m => m.Doctor)
-                .Include(m => m.Patient)
+                .Include(m => m.Doctor).ThenInclude(p => p.User)
+                .Include(m => m.Patient).ThenInclude(p => p.User)
                 .Include(m => m.Appointment)
                 .FirstOrDefaultAsync(m => m.RecordId == id);
         }
         public async Task<IEnumerable<MedicalRecord>> GetByDoctorIdAsync(int doctorId)
         {
             return await _dbContext.MedicalRecords
-                .Include(m => m.Patient)
-                .Include(m => m.Doctor)  
+                .Include(m => m.Patient).ThenInclude(p => p.User)
+                .Include(m => m.Doctor).ThenInclude(p => p.User)
                 .Include(m => m.Appointment)
                 .Where(m => m.DoctorId == doctorId)
                 .ToListAsync();
@@ -59,8 +59,8 @@ namespace Hospital.Infrastructure.Repository
         public async Task<IEnumerable<MedicalRecord>> GetByPatientIdAsync(int patientId)
         {
             return await _dbContext.MedicalRecords
-                .Include(m => m.Patient)
-                .Include(m => m.Doctor)
+                .Include(m => m.Patient).ThenInclude(p => p.User)
+                .Include(m => m.Doctor).ThenInclude(p => p.User)
                 .Include(m => m.Appointment)
                 .Where(m => m.PatientId == patientId)
                 .ToListAsync();

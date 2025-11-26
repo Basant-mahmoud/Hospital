@@ -29,7 +29,7 @@ namespace Hospital.Domain.Models
         public AppointmentShift Shift { get; set; }
 
         [Required]
-        public AppointmentStatus Status { get; set; } = AppointmentStatus.Confirmed;
+        public AppointmentStatus Status { get; set; } = AppointmentStatus.Pending;
 
         [Required]  
         public PaymentMethod PaymentMethod { get; set; }

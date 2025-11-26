@@ -65,7 +65,7 @@ namespace Hospital.Infrastructure.Repos
                 .Include(d => d.User)
                 .Include(d => d.Specialization)
                 .Include(d => d.Branches)
-                 .Include(d => d.Schedules)
+                .Include(d => d.Schedules)
                 .ToListAsync();
         }
 
@@ -75,6 +75,7 @@ namespace Hospital.Infrastructure.Repos
                 .Include(d => d.User)
                 .Include(d => d.Branches)
                     .ThenInclude(b => b.Specializations)
+                .Include(d => d.Schedules)
                 .Where(d => d.Branches
                     .Any(b => b.Specializations
                         .Any(s => s.SpecializationId == specializationId)))
@@ -90,7 +91,7 @@ namespace Hospital.Infrastructure.Repos
                 .Where(a =>
                     a.DoctorId == doctorId &&
                     a.Date == date &&
-                    a.Status == AppointmentStatus.Confirmed)
+                    a.Status == AppointmentStatus.Confirmed || a.Status == AppointmentStatus.Completed)
                 .ToListAsync();
         }
 
