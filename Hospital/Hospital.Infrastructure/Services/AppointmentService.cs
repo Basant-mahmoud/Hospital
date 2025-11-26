@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Hospital.Infrastructure.Services
 {
@@ -252,6 +253,11 @@ namespace Hospital.Infrastructure.Services
                 _logger.LogWarning("Appointment with ID {AppointmentId} not found", id);
                 throw new KeyNotFoundException($"Appointment with ID {id} not found.");
             }
+            var today = DateOnly.FromDateTime(DateTime.Now);
+            if (appointment.Date != today)
+            {
+                throw new InvalidOperationException("You can only complete today's appointments.");
+            } 
             appointment.Status = AppointmentStatus.Completed;
             appointment.UpdatedAt = DateTime.UtcNow;
             var result = await _appointmentRepo.UpdateAsync(appointment);

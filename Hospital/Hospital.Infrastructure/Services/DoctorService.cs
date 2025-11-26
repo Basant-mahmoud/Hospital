@@ -358,6 +358,11 @@ namespace Hospital.Infrastructure.Services
                 _logger.LogWarning("No appointment found with ID {AppointmentId}", appointmentId);
                 return false;
             }
+            var today = DateOnly.FromDateTime(DateTime.Now);
+            if (appointment.Date != today)
+            {
+                throw new InvalidOperationException("You Cant Take Cach From Patient In The Future.");
+            }
             appointment!.Status = AppointmentStatus.Completed;
             payment.Status = PaymentStatus.Paid;
             payment.UpdatedAt = DateTime.UtcNow;
