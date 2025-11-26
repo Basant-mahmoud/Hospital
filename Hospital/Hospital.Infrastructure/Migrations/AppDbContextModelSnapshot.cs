@@ -202,6 +202,12 @@ namespace Hospital.Infrastructure.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
+                    b.Property<double?>("Latitude")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("Longitude")
+                        .HasColumnType("float");
+
                     b.Property<string>("Phone")
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
