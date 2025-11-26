@@ -18,7 +18,7 @@ namespace Hospital.Controllers
             _logger = logger;
         }
 
-        [HttpPost]
+        [HttpPost("Create")]
         public async Task<ActionResult<PatientMedicalRecordDto>> Add([FromBody] AddMedicalRecordDto dto)
         {
             _logger.LogInformation("add medical record  called at {time}", DateTime.Now);
@@ -27,7 +27,7 @@ namespace Hospital.Controllers
             return Ok(result);
         }
 
-        [HttpPut]
+        [HttpPut("Update")]
         public async Task<ActionResult<int>> Update([FromBody] UpdateMedicalRecordDto dto)
         {
             _logger.LogInformation("update medical record  called at {time}", DateTime.Now);
