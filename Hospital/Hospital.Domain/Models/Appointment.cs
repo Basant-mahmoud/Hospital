@@ -35,7 +35,6 @@ namespace Hospital.Domain.Models
         public PaymentMethod PaymentMethod { get; set; }
         public string? CreatedBy { get; set; }
         public User? Creator { get; set; }
-        public string? Notes { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
         public ICollection<MedicalRecord> MedicalRecords { get; set; } = new List<MedicalRecord>();
