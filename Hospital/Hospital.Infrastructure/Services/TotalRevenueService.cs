@@ -1,4 +1,5 @@
 ﻿using Hospital.Application.Interfaces.Repos;
+using Hospital.Application.Interfaces.Services;
 using Hospital.Domain.Enum;
 using System;
 using System.Collections.Generic;
@@ -8,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace Hospital.Infrastructure.Services
 {
-    public class TotalRevenueServices
+    public class TotalRevenueService : ITotalRevenueService
     {
         private readonly IDoctorRepository _doctorRepository;
         private readonly IAppointmentRepository _appointmentRepository;
         private readonly IBranchRepository _branchRepository;
 
-        public TotalRevenueServices(
+        public TotalRevenueService(
             IAppointmentRepository appointmentRepository,
             IDoctorRepository doctorRepository,
             IBranchRepository branchRepository)
@@ -76,6 +77,8 @@ namespace Hospital.Infrastructure.Services
         public async Task<decimal> GetTotalRevenueInSpecificBranchAllBranchAsync(int branchId)
         {
             if (branchId < 1) throw new KeyNotFoundException("Branch id not found");
+            var branch = await _branchRepository.GetByIdAsync(branchId);
+            if (branch == null) throw new KeyNotFoundException("Branch not found");
 
             var appointments = (await _appointmentRepository.GetAllAsync())
                 .Where(a => a.BranchId == branchId && a.Status == AppointmentStatus.Completed);

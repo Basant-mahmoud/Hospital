@@ -1,4 +1,5 @@
-﻿using Hospital.Infrastructure.Services;
+﻿using Hospital.Application.Interfaces.Services;
+using Hospital.Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hospital.Controllers
@@ -7,9 +8,9 @@ namespace Hospital.Controllers
     [ApiController]
     public class TotalRevenueController : ControllerBase
     {
-        private readonly TotalRevenueServices _revenueService;
+        private readonly ITotalRevenueService _revenueService;
 
-        public TotalRevenueController(TotalRevenueServices revenueService)
+        public TotalRevenueController(ITotalRevenueService revenueService)
         {
             _revenueService = revenueService;
         }
@@ -17,29 +18,15 @@ namespace Hospital.Controllers
         [HttpGet("doctor/{doctorId}/branch/{branchId}")]
         public async Task<ActionResult<decimal>> GetDoctorRevenueInSpecificBranch(int doctorId, int branchId)
         {
-            try
-            {
-                var revenue = await _revenueService.GetTotalRevenueByDoctorIdInSpecificBranchAsync(doctorId, branchId);
-                return Ok(revenue);
-            }
-            catch (KeyNotFoundException ex)
-            {
-                return NotFound(ex.Message);
-            }
+            var revenue = await _revenueService.GetTotalRevenueByDoctorIdInSpecificBranchAsync(doctorId, branchId);
+            return Ok(revenue);
         }
 
         [HttpGet("doctor/{doctorId}/all-branches")]
         public async Task<ActionResult<decimal>> GetDoctorRevenueInAllBranches(int doctorId)
         {
-            try
-            {
-                var revenue = await _revenueService.GetTotalRevenueByDoctorIdInAllBranchAsync(doctorId);
-                return Ok(revenue);
-            }
-            catch (KeyNotFoundException ex)
-            {
-                return NotFound(ex.Message);
-            }
+            var revenue = await _revenueService.GetTotalRevenueByDoctorIdInAllBranchAsync(doctorId);
+            return Ok(revenue);
         }
 
         [HttpGet("all-branches")]
@@ -52,15 +39,8 @@ namespace Hospital.Controllers
         [HttpGet("branch/{branchId}")]
         public async Task<ActionResult<decimal>> GetTotalRevenueInSpecificBranch(int branchId)
         {
-            try
-            {
-                var revenue = await _revenueService.GetTotalRevenueInSpecificBranchAllBranchAsync(branchId);
-                return Ok(revenue);
-            }
-            catch (KeyNotFoundException ex)
-            {
-                return NotFound(ex.Message);
-            }
+            var revenue = await _revenueService.GetTotalRevenueInSpecificBranchAllBranchAsync(branchId);
+            return Ok(revenue);
         }
     }
 }
