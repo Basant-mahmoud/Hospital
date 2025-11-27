@@ -245,6 +245,13 @@ namespace Hospital.Infrastructure.Services
             return _mapper.Map<List<AppointmentDto>>(records ?? new List<Appointment>());
         }
 
+        public async Task<List<AppointmentDto>> GetAllCompletedAsync()
+        {
+            _logger.LogInformation("Fetching All Completed Appointments");
+            var records = await _appointmentRepo.GetCompletedAppointmentAsync();
+            return _mapper.Map<List<AppointmentDto>>(records ?? new List<Appointment>());
+        }
+
         public async Task<string> MarkAsCompletedAsync(int id)
         {
             var appointment = await _appointmentRepo.GetAsync(id);
