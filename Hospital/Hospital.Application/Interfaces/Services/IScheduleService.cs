@@ -1,4 +1,5 @@
 ﻿using Hospital.Application.DTO.Schedule;
+using Hospital.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,8 @@ namespace Hospital.Infrastructure.Services
         Task<IEnumerable<ScheduleDto>> GetDoctorsByDateAsync(string dayOfWeek);
         Task<IEnumerable<ScheduleDto>> GetDoctorsByDateAndShiftAsync(string dayOfWeek, Domain.Enum.AppointmentShift shift);
         Task<IEnumerable<ScheduleDto>> GetSchedulesByDoctorIdAsync(int doctorId);
+
+
 
     }
 }
