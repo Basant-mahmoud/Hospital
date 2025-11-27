@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hospital.Application.DTO.Branch;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,5 +15,6 @@ namespace Hospital.Application.DTO.Doctor
         public DateTime EndTime { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
+        public BranchDto Branch { get; set; }   
     }
 }
