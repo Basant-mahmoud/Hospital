@@ -304,7 +304,7 @@ namespace Hospital.Infrastructure.Services
             }
 
             var today = DateOnly.FromDateTime(DateTime.Now);
-            var appointments = await _doctorRepo.GetAppoimentsByDateForDoctorAsync(doctorId, today);
+            var appointments = await _doctorRepo.GetAppoimentsByDateTodayForDoctorAsync(doctorId, today);
 
             if (appointments == null || !appointments.Any())
             {
