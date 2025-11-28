@@ -1,4 +1,5 @@
-﻿using Hospital.Domain.Models;
+﻿using Hospital.Application.DTO.Branch;
+using Hospital.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,6 @@ namespace Hospital.Application.DTO.ServiceDTOS
         public string Name { get; set; } = null!;
         public string? Description { get; set; }
         public string? ImageURL { get; set; }
-        public ICollection<BranchIdDTO>? BranchesID { get; set; } = new List<BranchIdDTO>();
+        public ICollection<BranchDto>? Branchs { get; set; } = new List<BranchDto>();
     }
 }

@@ -29,13 +29,12 @@ namespace Hospital.Domain.Models
         public AppointmentShift Shift { get; set; }
 
         [Required]
-        public AppointmentStatus Status { get; set; } = AppointmentStatus.Confirmed;
+        public AppointmentStatus Status { get; set; } = AppointmentStatus.Pending;
 
         [Required]  
         public PaymentMethod PaymentMethod { get; set; }
         public string? CreatedBy { get; set; }
         public User? Creator { get; set; }
-        public string? Notes { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
         public ICollection<MedicalRecord> MedicalRecords { get; set; } = new List<MedicalRecord>();

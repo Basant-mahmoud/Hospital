@@ -48,10 +48,29 @@ namespace Hospital.Infrastructure.Repository
                 .ToListAsync();
         }
 
+        public async Task<IEnumerable<Appointment>> GetCompletedAppointmentAsync()
+        {
+            return await _context.Appointments
+                .Include(a => a.Patient)
+                .Include(a => a.Doctor)
+                .Include(a => a.Branch)
+                .Where(a => a.Status == AppointmentStatus.Completed)
+                .ToListAsync();
+        }
+
         public async Task<IEnumerable<Appointment>> GetByDoctorIdAsync(int doctorId)
         {
             return await _context.Appointments
                 .Where(a => a.DoctorId == doctorId)
+                .Include(a => a.Patient)
+                .Include(a => a.Branch)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Appointment>> GetCancelByDoctorIdAsync(int doctorId)
+        {
+            return await _context.Appointments
+                .Where(a => a.DoctorId == doctorId && a.Status == AppointmentStatus.Cancelled)
                 .Include(a => a.Patient)
                 .Include(a => a.Branch)
                 .ToListAsync();

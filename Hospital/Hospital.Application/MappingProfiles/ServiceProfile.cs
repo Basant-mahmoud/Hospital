@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Hospital.Application.DTO.Branch;
 using Hospital.Application.DTO.ServiceDTOS;
 using Hospital.Domain.Models;
 using System;
@@ -18,12 +19,13 @@ namespace Hospital.Application.MappingProfiles
 
             CreateMap<UpdateServiceDto, Service>()
                 .ForMember(dest => dest.Branches, opt => opt.Ignore());
-
             CreateMap<Service, ServiceDto>()
-                .ForMember(dest => dest.BranchesID, opt =>
-                    opt.MapFrom(src => src.Branches
-                        .Select(b => new BranchIdDTO { BranchId = b.BranchId })
-                    ));
+                .ForMember(dest => dest.Branchs, opt =>
+                    opt.MapFrom(src => src.Branches)
+                );
+            CreateMap<Branch, BranchDto>();
+
+
         }
     }
 }

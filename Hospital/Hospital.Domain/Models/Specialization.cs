@@ -15,6 +15,7 @@ namespace Hospital.Domain.Models
         public string? Description { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
+        [Url, StringLength(300)] public string? ImageURL { get; set; }
         public ICollection<Doctor> Doctors { get; set; } = new List<Doctor>();
         public ICollection<Branch> Branches { get; set; } = new List<Branch>();
 

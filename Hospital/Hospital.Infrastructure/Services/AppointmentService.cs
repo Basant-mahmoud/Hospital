@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Hospital.Infrastructure.Services
 {
@@ -184,6 +185,24 @@ namespace Hospital.Infrastructure.Services
             return _mapper.Map<List<AppointmentDto>>(records ?? new List<Appointment>());
         }
 
+        public async Task<List<AppointmentDto>> GetAllAppointmentCancelByDoctorId(int DoctorId)
+        {
+            _logger.LogInformation("Fetching appointments for DoctorId: {DoctorId}", DoctorId);
+
+            if (DoctorId <= 0)
+                throw new ArgumentException("Invalid doctor ID.");
+
+            var doctor = await _doctorRepository.GetAsync(DoctorId);
+            if (doctor == null)
+            {
+                _logger.LogWarning("Doctor with ID {DoctorId} not found", DoctorId);
+                throw new KeyNotFoundException($"Doctor with ID {DoctorId} does not exist.");
+            }
+
+            var records = await _appointmentRepo.GetCancelByDoctorIdAsync(DoctorId);
+            return _mapper.Map<List<AppointmentDto>>(records ?? new List<Appointment>());
+        }
+
         public async Task<AppointmentDto?> GetByIdAsync(int id)
         {
             _logger.LogInformation("Fetching appointment by ID: {AppointmentId}", id);
@@ -195,7 +214,7 @@ namespace Hospital.Infrastructure.Services
             if (record == null)
             {
                 _logger.LogWarning("Appointment with ID {AppointmentId} not found", id);
-                return null;
+                throw new KeyNotFoundException($"Appointment with ID {id} does not exist.");
             }
 
             return _mapper.Map<AppointmentDto>(record);
@@ -226,6 +245,13 @@ namespace Hospital.Infrastructure.Services
             return _mapper.Map<List<AppointmentDto>>(records ?? new List<Appointment>());
         }
 
+        public async Task<List<AppointmentDto>> GetAllCompletedAsync()
+        {
+            _logger.LogInformation("Fetching All Completed Appointments");
+            var records = await _appointmentRepo.GetCompletedAppointmentAsync();
+            return _mapper.Map<List<AppointmentDto>>(records ?? new List<Appointment>());
+        }
+
         public async Task<string> MarkAsCompletedAsync(int id)
         {
             var appointment = await _appointmentRepo.GetAsync(id);
@@ -234,6 +260,11 @@ namespace Hospital.Infrastructure.Services
                 _logger.LogWarning("Appointment with ID {AppointmentId} not found", id);
                 throw new KeyNotFoundException($"Appointment with ID {id} not found.");
             }
+            var today = DateOnly.FromDateTime(DateTime.Now);
+            if (appointment.Date != today)
+            {
+                throw new InvalidOperationException("You can only complete today's appointments.");
+            } 
             appointment.Status = AppointmentStatus.Completed;
             appointment.UpdatedAt = DateTime.UtcNow;
             var result = await _appointmentRepo.UpdateAsync(appointment);

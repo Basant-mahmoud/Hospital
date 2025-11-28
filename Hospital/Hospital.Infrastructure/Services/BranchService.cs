@@ -35,6 +35,7 @@ namespace Hospital.Infrastructure.Services
                 throw new ValidationException("Request body cannot be null.");
             }
 
+            // Check if branch with same name already exists
             var existingBranches = await _repository.GetAllAsync();
             if (existingBranches.Any(b => b.BranchName.Equals(dto.BranchName, StringComparison.OrdinalIgnoreCase)))
             {
@@ -42,6 +43,24 @@ namespace Hospital.Infrastructure.Services
                 throw new ValidationException($"Branch with name '{dto.BranchName}' already exists.");
             }
 
+            // Validate Latitude and Longitude
+            if ((dto.Latitude.HasValue && !dto.Longitude.HasValue) || (!dto.Latitude.HasValue && dto.Longitude.HasValue))
+            {
+                _logger.LogWarning("Failed to create branch: Both latitude and longitude must be provided together.");
+                throw new ValidationException("Both latitude and longitude must be provided together.");
+            }
+
+            if (dto.Latitude.HasValue && (dto.Latitude < -90 || dto.Latitude > 90))
+            {
+                throw new ValidationException("Latitude must be between -90 and 90.");
+            }
+
+            if (dto.Longitude.HasValue && (dto.Longitude < -180 || dto.Longitude > 180))
+            {
+                throw new ValidationException("Longitude must be between -180 and 180.");
+            }
+
+            // Map DTO to entity
             var branch = _mapper.Map<Branch>(dto);
             branch.CreatedAt = DateTime.UtcNow;
             branch.UpdatedAt = DateTime.UtcNow;
@@ -120,11 +139,30 @@ namespace Hospital.Infrastructure.Services
                 throw new ValidationException($"Branch with name '{dto.BranchName}' already exists.");
             }
 
+            // Validate Latitude and Longitude
+            if ((dto.Latitude.HasValue && !dto.Longitude.HasValue) || (!dto.Latitude.HasValue && dto.Longitude.HasValue))
+            {
+                _logger.LogWarning("Failed to update branch: Both latitude and longitude must be provided together.");
+                throw new ValidationException("Both latitude and longitude must be provided together.");
+            }
+
+            if (dto.Latitude.HasValue && (dto.Latitude < -90 || dto.Latitude > 90))
+            {
+                throw new ValidationException("Latitude must be between -90 and 90.");
+            }
+
+            if (dto.Longitude.HasValue && (dto.Longitude < -180 || dto.Longitude > 180))
+            {
+                throw new ValidationException("Longitude must be between -180 and 180.");
+            }
+
+            // Map DTO to entity
             _mapper.Map(dto, existingBranch);
             existingBranch.UpdatedAt = DateTime.UtcNow;
 
             await _repository.UpdateAsync(existingBranch);
             _logger.LogInformation("Branch with ID {BranchId} updated successfully", dto.BranchId);
         }
+
     }
 }
