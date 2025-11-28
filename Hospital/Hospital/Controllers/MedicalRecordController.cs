@@ -20,10 +20,8 @@ namespace Hospital.Controllers
             _logger = logger;
         }
 
-        [HttpPost]
-        [Authorize(Roles = "Doctor")]
-
         [HttpPost("Create")]
+        [Authorize(Roles = "Doctor")]
         public async Task<ActionResult<PatientMedicalRecordDto>> Add([FromBody] AddMedicalRecordDto dto)
         {
             _logger.LogInformation("add medical record  called at {time}", DateTime.Now);
@@ -32,11 +30,8 @@ namespace Hospital.Controllers
             return Ok(result);
         }
 
-        [HttpPut]
-        [Authorize(Roles = "Doctor")]
-
-        public async Task<ActionResult<int>> Update([FromBody] UpdateMedicalRecordDto dto)
         [HttpPut("Update")]
+        [Authorize(Roles = "Doctor")]
         public async Task<ActionResult> Update([FromBody] UpdateMedicalRecordDto dto)
         {
             _logger.LogInformation("Updating medical record with ID {RecordId}", dto.RecordId);
