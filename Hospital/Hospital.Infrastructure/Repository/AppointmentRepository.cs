@@ -48,6 +48,16 @@ namespace Hospital.Infrastructure.Repository
                 .ToListAsync();
         }
 
+        public async Task<IEnumerable<Appointment>> GetCompletedAppointmentAsync()
+        {
+            return await _context.Appointments
+                .Include(a => a.Patient)
+                .Include(a => a.Doctor)
+                .Include(a => a.Branch)
+                .Where(a => a.Status == AppointmentStatus.Completed)
+                .ToListAsync();
+        }
+
         public async Task<IEnumerable<Appointment>> GetByDoctorIdAsync(int doctorId)
         {
             return await _context.Appointments
