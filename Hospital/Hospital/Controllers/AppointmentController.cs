@@ -87,6 +87,7 @@ namespace Hospital.API.Controllers
         }
 
         [HttpGet("GetAllCompleted")]
+        [Authorize(Roles = "Admin,Doctor")]
         public async Task<IActionResult> GetCompletedAppointment()
         {
             _logger.LogInformation("Get All Completed Appointments called at {time}", DateTime.Now);
