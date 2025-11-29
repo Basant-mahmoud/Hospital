@@ -220,6 +220,22 @@ namespace Hospital.Infrastructure.Services
             return _mapper.Map<AppointmentDto>(record);
         }
 
+        public async Task<AppoinmentandPaientDoctorDetaliesDto?> GetByIdwithdetailsofpatientanddoctorAsync(int id)
+        {
+            _logger.LogInformation("Fetching appointment by ID: {AppointmentId}", id);
+
+            if (id <= 0)
+                throw new ArgumentException("Invalid appointment ID.");
+
+            var record = await _appointmentRepo.GetAsync(id);
+            if (record == null)
+            {
+                _logger.LogWarning("Appointment with ID {AppointmentId} not found", id);
+                throw new KeyNotFoundException($"Appointment with ID {id} does not exist.");
+            }
+
+            return _mapper.Map<AppoinmentandPaientDoctorDetaliesDto>(record);
+        }
         public async Task<List<AppointmentDto>> GetByPatientId(int PatientId)
         {
             _logger.LogInformation("Fetching appointments for PatientId: {PatientId}", PatientId);

@@ -39,6 +39,7 @@ namespace Hospital.Infrastructure.Repository
                 .Include(a => a.Branch)
                 .FirstOrDefaultAsync(a => a.AppointmentId == id);
         }
+      
         public async Task<IEnumerable<Appointment>> GetAllAsync()
         {
             return await _context.Appointments

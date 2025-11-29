@@ -37,6 +37,15 @@ namespace Hospital.Application.MappingProfiles
             CreateMap<Appointment, AppoinmentandPaientDetaliesDto>()
                 .ForMember(dest => dest.appointmentDetails, opt => opt.MapFrom(src => src))
                 .ForMember(dest => dest.patientInfo, opt => opt.MapFrom(src => src.Patient));
+            // Doctor → appointmentDoctorDto
+            CreateMap<Doctor, appointmentDoctorDto>()
+                .ForMember(dest => dest.SpecializationId, opt => opt.MapFrom(src => src.SpecializationId));
+
+            // Appointment → AppoinmentandPaientDoctorDetaliesDto
+            CreateMap<Appointment, AppoinmentandPaientDoctorDetaliesDto>()
+                .ForMember(dest => dest.appointmentDetails, opt => opt.MapFrom(src => src))
+                .ForMember(dest => dest.patientInfo, opt => opt.MapFrom(src => src.Patient))
+                .ForMember(dest => dest.doctorinfo, opt => opt.MapFrom(src => src.Doctor));
 
         }
     }
