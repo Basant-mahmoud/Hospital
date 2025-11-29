@@ -37,6 +37,7 @@ namespace Hospital.Infrastructure.Repository
                 .Include(a => a.Patient)
                 .Include(a => a.Doctor)
                 .Include(a => a.Branch)
+                .Include(a => a.Payment)
                 .FirstOrDefaultAsync(a => a.AppointmentId == id);
         }
       
