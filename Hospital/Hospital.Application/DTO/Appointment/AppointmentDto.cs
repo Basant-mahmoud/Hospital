@@ -14,9 +14,9 @@ namespace Hospital.Application.DTO.Appointment
         public DateOnly Date { get; set; }
         public AppointmentShift Shift { get; set; }
         public string Status { get; set; }
-        public string? Notes { get; set; }
         public BranchShortDto Branch { get; set; }
         public PaymentMethod PaymentMethod { get; set; }
+        public PaymentDto Payment { get; set; }
 
     }
     public class BranchShortDto

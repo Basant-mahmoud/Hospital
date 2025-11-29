@@ -61,11 +61,21 @@ namespace Hospital.Infrastructure.Services
                 throw new KeyNotFoundException($"Patient with Id {dto.PatientId} not found");
             }
 
-            var appointment = await _appointmentService.GetByIdAsync(dto.AppointmentId);
+            var appointment = await _appointmentService.GetByIdwithdetailsofpatientanddoctorAsync(dto.AppointmentId);
             if (appointment == null)
             {
                 _logger.LogWarning("Appointment with Id {AppointmentId} not found", dto.AppointmentId);
                 throw new KeyNotFoundException($"Appointment with Id {dto.AppointmentId} not found");
+            }
+            if (dto.PatientId != appointment.patientInfo.PatientId)
+            {
+                _logger.LogWarning("patient with Id {PatientId} not found", dto.PatientId);
+                throw new KeyNotFoundException($"patient with Id {{PatientId}} not found\", dto.PatientId");
+            }
+            if (dto.DoctorId!=appointment.doctorinfo.DoctorId)
+            {
+                _logger.LogWarning("Doctor with Id {DoctorId} not found", dto.DoctorId);
+                throw new KeyNotFoundException($"Doctor with Id {{DoctorId}} not found\", dto.DoctorId");
             }
 
             var medicalRecord = _mapper.Map<MedicalRecord>(dto);

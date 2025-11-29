@@ -17,6 +17,5 @@ namespace Hospital.Application.DTO.Appointment
         [Required] public DateOnly Date { get; set; }
         [Required] public AppointmentShift Shift { get; set; }
         [Required] public PaymentMethod PaymentMethod { get; set; }
-        public string? Notes { get; set; }
     }
 }
