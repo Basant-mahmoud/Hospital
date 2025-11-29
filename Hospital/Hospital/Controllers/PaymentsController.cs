@@ -29,7 +29,8 @@ namespace Hospital.Controllers
         }
 
         [HttpPost("create")]
-        [Authorize(Roles = "Patient")]
+        //[Authorize(Roles = "Patient")]
+        [Authorize]
         public async Task<IActionResult> CreatePayment([FromBody] CreatePaymentRequest request,CancellationToken ct)
         {
             _logger.LogInformation("create payment by credite card called at {time}", DateTime.Now);
