@@ -261,7 +261,7 @@ namespace Hospital.Infrastructure.Services
             return _mapper.Map<List<AppointmentDto>>(records ?? new List<Appointment>());
         }
 
-        public async Task<List<AppoinmentandPaientDetaliesDto>> GetAllCompletedForDoctorAsync(int doctorid)
+        public async Task<List<AppointmentDto>> GetAllCompletedForDoctorAsync(int doctorid)
         {
             _logger.LogInformation("Fetching All Completed Appointments");
             if(doctorid <= 0)
@@ -271,15 +271,15 @@ namespace Hospital.Infrastructure.Services
                 throw new ArgumentException("Invalid Doctor ID.");
 
             var records = await _appointmentRepo.GetCompletedForDoctorAppointmentAsync(doctorid);
-            return _mapper.Map<List<AppoinmentandPaientDetaliesDto>>(records ?? new List<Appointment>());
+            return _mapper.Map<List<AppointmentDto>>(records ?? new List<Appointment>());
         }
-        public async Task<List<AppointmentDto>> GetAllCompletedAsync()
+        public async Task<List<AppoinmentandPaientDetaliesDto>> GetAllCompletedAsync()
         {
             _logger.LogInformation("Fetching All Completed Appointments");
          
 
             var records = await _appointmentRepo.GetCompletedAppointmentAsync();
-            return _mapper.Map<List<AppointmentDto>>(records ?? new List<Appointment>());
+            return _mapper.Map<List<AppoinmentandPaientDetaliesDto>>(records ?? new List<Appointment>());
         }
 
         public async Task<string> MarkAsCompletedAsync(int id)
