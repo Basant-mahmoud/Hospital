@@ -49,7 +49,16 @@ namespace Hospital.Infrastructure.Repository
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<Appointment>> GetCompletedAppointmentAsync(int doctorid)
+        public async Task<IEnumerable<Appointment>> GetCompletedForDoctorAppointmentAsync(int doctorid)
+        {
+            return await _context.Appointments
+                .Include(a => a.Patient)
+                .Include(a => a.Doctor)
+                .Include(a => a.Branch)
+                .Where(a => a.Status == AppointmentStatus.Completed && a.DoctorId==doctorid)
+                .ToListAsync();
+        }
+        public async Task<IEnumerable<Appointment>> GetCompletedAppointmentAsync()
         {
             return await _context.Appointments
                 .Include(a => a.Patient)
@@ -58,7 +67,6 @@ namespace Hospital.Infrastructure.Repository
                 .Where(a => a.Status == AppointmentStatus.Completed)
                 .ToListAsync();
         }
-
         public async Task<IEnumerable<Appointment>> GetByDoctorIdAsync(int doctorId)
         {
             return await _context.Appointments
@@ -109,5 +117,6 @@ namespace Hospital.Infrastructure.Repository
                 );
         }
 
+       
     }
 }
