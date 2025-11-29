@@ -94,6 +94,13 @@ namespace Hospital.API.Controllers
             var result = await _appointmentService.GetAllCompletedAsync();
             return Ok(result);
         }
+        [HttpGet("GetAllCompletedByDoctorId/{doctorid}")]
+        public async Task<IActionResult> GetAllCompletedByDoctorId(int doctorid)
+        {
+            _logger.LogInformation("Get All Completed Appointments called at {time}", DateTime.Now);
+            var result = await _appointmentService.GetAllCompletedForDoctorAsync(doctorid);
+            return Ok(result);
+        }
 
         [HttpGet("CanceledByDoctor/{doctorId}")]
         public async Task<IActionResult> GetAllAppointmentCancelByDoctorId(int doctorId)

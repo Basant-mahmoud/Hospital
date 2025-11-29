@@ -18,6 +18,7 @@ namespace Hospital.Application.Interfaces.Repos
         Task<IEnumerable<Appointment>> GetByPatientIdAsync(int patientId);
         Task<IEnumerable<Appointment>> GetAllAsync();
         Task<IEnumerable<Appointment>> GetCompletedAppointmentAsync();
+        Task<IEnumerable<Appointment>> GetCompletedForDoctorAppointmentAsync(int doctorid);
         Task<int> UpdateAsync(Appointment appointment);
         Task<int> UpdateRangeAsync(IEnumerable<Appointment> appointments);
         Task<bool> PatientBookedSameDoctorSameShiftAsync(int patientId, int doctorId, DateOnly date, AppointmentShift shift);
