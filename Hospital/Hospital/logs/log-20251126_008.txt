@@ -1,0 +1,74 @@
+2025-11-26 21:30:37.435 +02:00 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2025-11-26 21:30:37.526 +02:00 [DBG] Hosting starting
+2025-11-26 21:30:37.535 +02:00 [INF] User profile is available. Using 'C:\Users\yossr\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-11-26 21:30:37.542 +02:00 [DBG] Reading data from file 'C:\Users\yossr\AppData\Local\ASP.NET\DataProtection-Keys\key-69bbab29-81b6-4865-ac9a-ae2b6fa39013.xml'.
+2025-11-26 21:30:37.546 +02:00 [DBG] Reading data from file 'C:\Users\yossr\AppData\Local\ASP.NET\DataProtection-Keys\key-80d0efac-0f9c-4630-990a-b52d8a5ce829.xml'.
+2025-11-26 21:30:37.547 +02:00 [DBG] Reading data from file 'C:\Users\yossr\AppData\Local\ASP.NET\DataProtection-Keys\key-c9eadb9e-fd70-4dbd-a2e4-2439a22a723f.xml'.
+2025-11-26 21:30:37.548 +02:00 [DBG] Reading data from file 'C:\Users\yossr\AppData\Local\ASP.NET\DataProtection-Keys\key-e6a4e949-cc09-4772-b903-b3c0844fb846.xml'.
+2025-11-26 21:30:37.551 +02:00 [DBG] Found key {69bbab29-81b6-4865-ac9a-ae2b6fa39013}.
+2025-11-26 21:30:37.553 +02:00 [DBG] Found key {80d0efac-0f9c-4630-990a-b52d8a5ce829}.
+2025-11-26 21:30:37.554 +02:00 [DBG] Found key {c9eadb9e-fd70-4dbd-a2e4-2439a22a723f}.
+2025-11-26 21:30:37.554 +02:00 [DBG] Found key {e6a4e949-cc09-4772-b903-b3c0844fb846}.
+2025-11-26 21:30:37.558 +02:00 [DBG] Considering key {69bbab29-81b6-4865-ac9a-ae2b6fa39013} with expiration date 2026-01-04 04:20:00Z as default key.
+2025-11-26 21:30:37.560 +02:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2025-11-26 21:30:37.562 +02:00 [DBG] Decrypting secret element using Windows DPAPI.
+2025-11-26 21:30:37.564 +02:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2025-11-26 21:30:37.568 +02:00 [DBG] Opening CNG algorithm 'AES' from provider 'null' with chaining mode CBC.
+2025-11-26 21:30:37.569 +02:00 [DBG] Opening CNG algorithm 'SHA256' from provider 'null' with HMAC.
+2025-11-26 21:30:37.571 +02:00 [DBG] Using key {69bbab29-81b6-4865-ac9a-ae2b6fa39013} as the default key.
+2025-11-26 21:30:37.572 +02:00 [DBG] Key ring with default key {69bbab29-81b6-4865-ac9a-ae2b6fa39013} was loaded during application startup.
+2025-11-26 21:30:37.575 +02:00 [DBG] Middleware loaded
+2025-11-26 21:30:37.577 +02:00 [DBG] Middleware loaded. Script /_framework/aspnetcore-browser-refresh.js (16500 B).
+2025-11-26 21:30:37.578 +02:00 [DBG] Middleware loaded. Script /_framework/blazor-hotreload.js (799 B).
+2025-11-26 21:30:37.604 +02:00 [DBG] Middleware loaded: DOTNET_MODIFIABLE_ASSEMBLIES=debug, __ASPNETCORE_BROWSER_TOOLS=true
+2025-11-26 21:30:37.637 +02:00 [INF] Now listening on: https://localhost:7217
+2025-11-26 21:30:37.639 +02:00 [INF] Now listening on: http://localhost:5163
+2025-11-26 21:30:37.639 +02:00 [DBG] Loaded hosting startup assembly Hospital
+2025-11-26 21:30:37.640 +02:00 [DBG] Loaded hosting startup assembly Microsoft.WebTools.ApiEndpointDiscovery
+2025-11-26 21:30:37.641 +02:00 [DBG] Loaded hosting startup assembly Microsoft.AspNetCore.Watch.BrowserRefresh
+2025-11-26 21:30:37.641 +02:00 [DBG] Loaded hosting startup assembly Microsoft.WebTools.BrowserLink.Net
+2025-11-26 21:30:37.702 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-26 21:30:37.703 +02:00 [INF] Hosting environment: Development
+2025-11-26 21:30:37.704 +02:00 [INF] Content root path: D:\Hospital\Hospital\Hospital
+2025-11-26 21:30:37.705 +02:00 [DBG] Hosting started
+2025-11-26 21:30:37.731 +02:00 [DBG] Connection id "0HNHD493GOI11" accepted.
+2025-11-26 21:30:37.731 +02:00 [DBG] Connection id "0HNHD493GOI12" accepted.
+2025-11-26 21:30:37.733 +02:00 [DBG] Connection id "0HNHD493GOI11" started.
+2025-11-26 21:30:37.734 +02:00 [DBG] Connection id "0HNHD493GOI12" started.
+2025-11-26 21:30:37.737 +02:00 [DBG] Connection id "0HNHD493GOI12" received FIN.
+2025-11-26 21:30:37.737 +02:00 [DBG] Connection id "0HNHD493GOI11" received FIN.
+2025-11-26 21:30:37.742 +02:00 [DBG] Connection id "0HNHD493GOI13" accepted.
+2025-11-26 21:30:37.742 +02:00 [DBG] Failed to authenticate HTTPS connection.
+System.IO.IOException: Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.ReceiveHandshakeFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+2025-11-26 21:30:37.742 +02:00 [DBG] Failed to authenticate HTTPS connection.
+System.IO.IOException: Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.ReceiveHandshakeFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+2025-11-26 21:30:37.743 +02:00 [DBG] Connection id "0HNHD493GOI13" started.
+2025-11-26 21:30:37.754 +02:00 [DBG] Connection id "0HNHD493GOI12" stopped.
+2025-11-26 21:30:37.754 +02:00 [DBG] Connection id "0HNHD493GOI11" stopped.
+2025-11-26 21:30:37.756 +02:00 [DBG] Connection id "0HNHD493GOI12" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-11-26 21:30:37.756 +02:00 [DBG] Connection id "0HNHD493GOI11" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-11-26 21:30:37.770 +02:00 [DBG] Connection 0HNHD493GOI13 established using the following protocol: "Tls13"
+2025-11-26 21:30:37.797 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7217/swagger/index.html - null null
+2025-11-26 21:30:37.844 +02:00 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2025-11-26 21:30:37.860 +02:00 [DBG] No candidates found for the request path '/swagger/index.html'
+2025-11-26 21:30:37.862 +02:00 [DBG] Request did not match any endpoints
+2025-11-26 21:30:37.898 +02:00 [DBG] Response markup is scheduled to include Browser Link script injection.
+2025-11-26 21:30:37.900 +02:00 [DBG] Response markup is scheduled to include browser refresh script injection.
+2025-11-26 21:30:37.910 +02:00 [DBG] Response markup was updated to include Browser Link script injection.
+2025-11-26 21:30:37.911 +02:00 [DBG] Response markup was updated to include browser refresh script injection.
+2025-11-26 21:30:37.913 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7217/swagger/index.html - 200 null text/html;charset=utf-8 117.0937ms
+2025-11-26 21:30:37.919 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7217/_vs/browserLink - null null
+2025-11-26 21:30:37.920 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7217/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-26 21:30:37.926 +02:00 [DBG] Script injected: /_framework/aspnetcore-browser-refresh.js
+2025-11-26 21:30:37.927 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7217/_framework/aspnetcore-browser-refresh.js - 200 16500 application/javascript; charset=utf-8 7.1158ms
+2025-11-26 21:30:37.940 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7217/_vs/browserLink - 200 null text/javascript; charset=UTF-8 20.8853ms
+2025-11-26 21:30:37.978 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7217/swagger/v1/swagger.json - null null
+2025-11-26 21:30:37.982 +02:00 [DBG] No candidates found for the request path '/swagger/v1/swagger.json'
+2025-11-26 21:30:37.983 +02:00 [DBG] Request did not match any endpoints
+2025-11-26 21:30:38.010 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7217/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 31.4989ms

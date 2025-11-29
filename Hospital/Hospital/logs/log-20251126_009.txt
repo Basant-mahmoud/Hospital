@@ -1,0 +1,67 @@
+2025-11-26 21:30:40.134 +02:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2025-11-26 21:30:40.490 +02:00 [DBG] The index {'BranchesBranchId'} was not created on entity type 'BranchDoctor (Dictionary<string, object>)' as the properties are already covered by the index {'BranchesBranchId', 'DoctorsDoctorId'}.
+2025-11-26 21:30:40.491 +02:00 [DBG] The index {'BranchId'} was not created on entity type 'BranchService (Dictionary<string, object>)' as the properties are already covered by the index {'BranchId', 'ServiceId'}.
+2025-11-26 21:30:40.491 +02:00 [DBG] The index {'BranchId'} was not created on entity type 'BranchSpecialization (Dictionary<string, object>)' as the properties are already covered by the index {'BranchId', 'SpecializationId'}.
+2025-11-26 21:30:40.491 +02:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserRole<string>' as the properties are already covered by the index {'UserId', 'RoleId'}.
+2025-11-26 21:30:40.491 +02:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserToken<string>' as the properties are already covered by the index {'UserId', 'LoginProvider', 'Name'}.
+2025-11-26 21:30:40.582 +02:00 [DBG] The property 'BranchDoctor (Dictionary<string, object>).BranchesBranchId' was created in shadow state because there are no eligible CLR members with a matching name.
+2025-11-26 21:30:40.582 +02:00 [DBG] The property 'BranchDoctor (Dictionary<string, object>).DoctorsDoctorId' was created in shadow state because there are no eligible CLR members with a matching name.
+2025-11-26 21:30:40.698 +02:00 [DBG] Entity Framework Core 8.0.21 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.21' with options: None
+2025-11-26 21:30:40.701 +02:00 [DBG] Creating DbConnection.
+2025-11-26 21:30:40.725 +02:00 [DBG] Created DbConnection. (23ms).
+2025-11-26 21:30:40.730 +02:00 [DBG] Opening connection to database 'HospitalDB' on server '.\SQLEXPRESS'.
+2025-11-26 21:30:40.856 +02:00 [DBG] Opened connection to database 'HospitalDB' on server '.\SQLEXPRESS'.
+2025-11-26 21:30:40.860 +02:00 [DBG] Creating DbCommand for 'ExecuteNonQuery'.
+2025-11-26 21:30:40.864 +02:00 [DBG] Created DbCommand for 'ExecuteNonQuery' (3ms).
+2025-11-26 21:30:40.866 +02:00 [DBG] Initialized DbCommand for 'ExecuteNonQuery' (7ms).
+2025-11-26 21:30:40.870 +02:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-11-26 21:30:40.886 +02:00 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-11-26 21:30:40.887 +02:00 [DBG] Closing connection to database 'HospitalDB' on server '.\SQLEXPRESS'.
+2025-11-26 21:30:40.891 +02:00 [DBG] Closed connection to database 'HospitalDB' on server '.\SQLEXPRESS' (2ms).
+2025-11-26 21:30:40.904 +02:00 [DBG] Creating DbConnection.
+2025-11-26 21:30:40.904 +02:00 [DBG] Created DbConnection. (0ms).
+2025-11-26 21:30:40.904 +02:00 [DBG] Opening connection to database 'master' on server '.\SQLEXPRESS'.
+2025-11-26 21:30:40.906 +02:00 [DBG] Opened connection to database 'master' on server '.\SQLEXPRESS'.
+2025-11-26 21:30:40.907 +02:00 [DBG] Creating DbCommand for 'ExecuteNonQuery'.
+2025-11-26 21:30:40.907 +02:00 [DBG] Created DbCommand for 'ExecuteNonQuery' (0ms).
+2025-11-26 21:30:40.907 +02:00 [DBG] Initialized DbCommand for 'ExecuteNonQuery' (0ms).
+2025-11-26 21:30:40.907 +02:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [HospitalDB] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+END;
+2025-11-26 21:30:40.913 +02:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [HospitalDB] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+END;
+2025-11-26 21:30:40.913 +02:00 [DBG] Creating DbCommand for 'ExecuteNonQuery'.
+2025-11-26 21:30:40.913 +02:00 [DBG] Created DbCommand for 'ExecuteNonQuery' (0ms).
+2025-11-26 21:30:40.914 +02:00 [DBG] Initialized DbCommand for 'ExecuteNonQuery' (0ms).
+2025-11-26 21:30:40.914 +02:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+DROP DATABASE [HospitalDB];
+2025-11-26 21:30:40.931 +02:00 [INF] Executed DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+DROP DATABASE [HospitalDB];
+2025-11-26 21:30:40.931 +02:00 [DBG] Closing connection to database 'master' on server '.\SQLEXPRESS'.
+2025-11-26 21:30:40.931 +02:00 [DBG] Closed connection to database 'master' on server '.\SQLEXPRESS' (0ms).
+2025-11-26 21:30:40.932 +02:00 [DBG] Disposing connection to database 'master' on server '.\SQLEXPRESS'.
+2025-11-26 21:30:40.932 +02:00 [DBG] Disposed connection to database '' on server '' (0ms).
+2025-11-26 21:30:40.933 +02:00 [DBG] 'AppDbContext' disposed.
+2025-11-26 21:30:40.934 +02:00 [DBG] Disposing connection to database 'HospitalDB' on server '.\SQLEXPRESS'.
+2025-11-26 21:30:40.934 +02:00 [DBG] Disposed connection to database '' on server '' (0ms).
+2025-11-26 21:31:11.214 +02:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2025-11-26 21:31:11.596 +02:00 [DBG] The index {'BranchesBranchId'} was not created on entity type 'BranchDoctor (Dictionary<string, object>)' as the properties are already covered by the index {'BranchesBranchId', 'DoctorsDoctorId'}.
+2025-11-26 21:31:11.598 +02:00 [DBG] The index {'BranchId'} was not created on entity type 'BranchService (Dictionary<string, object>)' as the properties are already covered by the index {'BranchId', 'ServiceId'}.
+2025-11-26 21:31:11.598 +02:00 [DBG] The index {'BranchId'} was not created on entity type 'BranchSpecialization (Dictionary<string, object>)' as the properties are already covered by the index {'BranchId', 'SpecializationId'}.
+2025-11-26 21:31:11.598 +02:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserRole<string>' as the properties are already covered by the index {'UserId', 'RoleId'}.
+2025-11-26 21:31:11.598 +02:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserToken<string>' as the properties are already covered by the index {'UserId', 'LoginProvider', 'Name'}.
+2025-11-26 21:31:11.687 +02:00 [DBG] The property 'BranchDoctor (Dictionary<string, object>).BranchesBranchId' was created in shadow state because there are no eligible CLR members with a matching name.
+2025-11-26 21:31:11.687 +02:00 [DBG] The property 'BranchDoctor (Dictionary<string, object>).DoctorsDoctorId' was created in shadow state because there are no eligible CLR members with a matching name.
+2025-11-26 21:31:11.817 +02:00 [DBG] Entity Framework Core 8.0.21 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.21' with options: None
+2025-11-26 21:31:11.820 +02:00 [DBG] Creating DbConnection.
+2025-11-26 21:31:11.841 +02:00 [DBG] Created DbConnection. (19ms).
+2025-11-26 21:31:11.844 +02:00 [DBG] 'AppDbContext' disposed.
+2025-11-26 21:31:11.847 +02:00 [DBG] Disposing connection to database 'HospitalDB' on server '.\SQLEXPRESS'.
+2025-11-26 21:31:11.850 +02:00 [DBG] Disposed connection to database '' on server '' (0ms).
