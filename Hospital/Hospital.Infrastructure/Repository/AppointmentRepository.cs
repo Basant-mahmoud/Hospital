@@ -49,7 +49,7 @@ namespace Hospital.Infrastructure.Repository
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<Appointment>> GetCompletedAppointmentAsync()
+        public async Task<IEnumerable<Appointment>> GetCompletedAppointmentAsync(int doctorid)
         {
             return await _context.Appointments
                 .Include(a => a.Patient)

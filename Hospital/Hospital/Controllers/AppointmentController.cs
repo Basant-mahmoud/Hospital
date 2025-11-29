@@ -76,11 +76,11 @@ namespace Hospital.API.Controllers
             return Ok(result);
         }
 
-        [HttpGet("GetAllCompleted")]
-        public async Task<IActionResult> GetCompletedAppointment()
+        [HttpGet("GetAllCompleted/{doctorid}")]
+        public async Task<IActionResult> GetCompletedAppointment(int doctorid)
         {
             _logger.LogInformation("Get All Completed Appointments called at {time}", DateTime.Now);
-            var result = await _appointmentService.GetAllCompletedAsync();
+            var result = await _appointmentService.GetAllCompletedAsync(doctorid);
             return Ok(result);
         }
 

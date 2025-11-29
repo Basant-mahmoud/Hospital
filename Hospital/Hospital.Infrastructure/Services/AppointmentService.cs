@@ -261,10 +261,16 @@ namespace Hospital.Infrastructure.Services
             return _mapper.Map<List<AppointmentDto>>(records ?? new List<Appointment>());
         }
 
-        public async Task<List<AppointmentDto>> GetAllCompletedAsync()
+        public async Task<List<AppointmentDto>> GetAllCompletedAsync(int doctorid)
         {
             _logger.LogInformation("Fetching All Completed Appointments");
-            var records = await _appointmentRepo.GetCompletedAppointmentAsync();
+            if(doctorid <= 0)
+                throw new ArgumentException("Invalid Doctor ID.");
+            var existingdoctor= await _doctorRepository.GetAsync(doctorid);
+            if (doctorid ==null)
+                throw new ArgumentException("Invalid Doctor ID.");
+
+            var records = await _appointmentRepo.GetCompletedAppointmentAsync(doctorid);
             return _mapper.Map<List<AppointmentDto>>(records ?? new List<Appointment>());
         }
 
