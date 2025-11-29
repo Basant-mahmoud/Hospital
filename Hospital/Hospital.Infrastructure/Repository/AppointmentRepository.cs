@@ -47,6 +47,7 @@ namespace Hospital.Infrastructure.Repository
                 .Include(a => a.Patient)
                 .Include(a => a.Doctor)
                 .Include(a => a.Branch)
+                .Include(a=>a.Payment)
                 .ToListAsync();
         }
 
@@ -74,6 +75,7 @@ namespace Hospital.Infrastructure.Repository
                 .Where(a => a.DoctorId == doctorId)
                 .Include(a => a.Patient)
                 .Include(a => a.Branch)
+                .Include(a => a.Payment)
                 .ToListAsync();
         }
 
@@ -83,6 +85,7 @@ namespace Hospital.Infrastructure.Repository
                 .Where(a => a.DoctorId == doctorId && a.Status == AppointmentStatus.Cancelled)
                 .Include(a => a.Patient)
                 .Include(a => a.Branch)
+                .Include(a=>a.Payment)
                 .ToListAsync();
         }
 
@@ -92,6 +95,7 @@ namespace Hospital.Infrastructure.Repository
                 .Where(a => a.PatientId == patientId)
                 .Include(a => a.Doctor)
                 .Include(a => a.Branch)
+                .Include (a => a.Payment)
                 .ToListAsync();
         }
 
