@@ -20,6 +20,6 @@ namespace Hospital.Application.Interfaces.Services
         Task<List<AppointmentDto>> GetAllAppointmentCancelByDoctorId(int DoctorId);
         Task<AppoinmentandPaientDoctorDetaliesDto?> GetByIdwithdetailsofpatientanddoctorAsync(int id);
         Task<List<AppoinmentandPaientDetaliesDto>> GetAllCompletedAsync();
-        Task<List<AppointmentDto>> GetAllCompletedForDoctorAsync(int doctorid);
+        Task<List<AppoinmentandPaientDetaliesDto>> GetAllCompletedForDoctorAsync(int doctorid);
     }
 }

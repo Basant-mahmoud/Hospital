@@ -6160,3 +6160,1117 @@ WHERE [a].[Status] = N'Completed' AND [a].[DoctorId] = @__doctorid_0
 2025-11-30 01:05:19.196 +02:00 [DBG] Disposing connection to database 'HospitalDB' on server '.'.
 2025-11-30 01:05:19.197 +02:00 [DBG] Disposed connection to database '' on server '' (1ms).
 2025-11-30 01:05:19.197 +02:00 [INF] Request finished HTTP/1.1 GET https://localhost:7217/api/Appointment/GetAllCompletedByDoctorId/1 - 200 null application/json; charset=utf-8 102.4679ms
+2025-11-30 01:15:30.769 +02:00 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2025-11-30 01:15:30.872 +02:00 [DBG] Hosting starting
+2025-11-30 01:15:30.894 +02:00 [INF] User profile is available. Using 'C:\Users\E-Mad\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-11-30 01:15:30.903 +02:00 [DBG] Reading data from file 'C:\Users\E-Mad\AppData\Local\ASP.NET\DataProtection-Keys\key-b85f0939-0825-4b2b-b21a-67409aec9db0.xml'.
+2025-11-30 01:15:30.909 +02:00 [DBG] Found key {b85f0939-0825-4b2b-b21a-67409aec9db0}.
+2025-11-30 01:15:30.915 +02:00 [DBG] Considering key {b85f0939-0825-4b2b-b21a-67409aec9db0} with expiration date 2026-02-09 12:52:20Z as default key.
+2025-11-30 01:15:30.917 +02:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2025-11-30 01:15:30.919 +02:00 [DBG] Decrypting secret element using Windows DPAPI.
+2025-11-30 01:15:30.920 +02:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2025-11-30 01:15:30.924 +02:00 [DBG] Opening CNG algorithm 'AES' from provider 'null' with chaining mode CBC.
+2025-11-30 01:15:30.926 +02:00 [DBG] Opening CNG algorithm 'SHA256' from provider 'null' with HMAC.
+2025-11-30 01:15:30.927 +02:00 [DBG] Using key {b85f0939-0825-4b2b-b21a-67409aec9db0} as the default key.
+2025-11-30 01:15:30.928 +02:00 [DBG] Key ring with default key {b85f0939-0825-4b2b-b21a-67409aec9db0} was loaded during application startup.
+2025-11-30 01:15:30.932 +02:00 [DBG] Middleware loaded
+2025-11-30 01:15:30.933 +02:00 [DBG] Middleware loaded. Script /_framework/aspnetcore-browser-refresh.js (16501 B).
+2025-11-30 01:15:30.934 +02:00 [DBG] Middleware loaded. Script /_framework/blazor-hotreload.js (799 B).
+2025-11-30 01:15:30.998 +02:00 [DBG] Middleware loaded: DOTNET_MODIFIABLE_ASSEMBLIES=debug, __ASPNETCORE_BROWSER_TOOLS=true
+2025-11-30 01:15:31.065 +02:00 [INF] Now listening on: https://localhost:7217
+2025-11-30 01:15:31.068 +02:00 [INF] Now listening on: http://localhost:5163
+2025-11-30 01:15:31.069 +02:00 [DBG] Loaded hosting startup assembly Hospital
+2025-11-30 01:15:31.069 +02:00 [DBG] Loaded hosting startup assembly Microsoft.WebTools.ApiEndpointDiscovery
+2025-11-30 01:15:31.069 +02:00 [DBG] Loaded hosting startup assembly Microsoft.AspNetCore.Watch.BrowserRefresh
+2025-11-30 01:15:31.070 +02:00 [DBG] Loaded hosting startup assembly Microsoft.WebTools.BrowserLink.Net
+2025-11-30 01:15:31.135 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-30 01:15:31.136 +02:00 [INF] Hosting environment: Development
+2025-11-30 01:15:31.136 +02:00 [INF] Content root path: D:\Walaa\GP\Hospital\Hospital
+2025-11-30 01:15:31.137 +02:00 [DBG] Hosting started
+2025-11-30 01:15:31.302 +02:00 [DBG] Connection id "0HNHFJKOHA0G3" accepted.
+2025-11-30 01:15:31.302 +02:00 [DBG] Connection id "0HNHFJKOHA0G2" accepted.
+2025-11-30 01:15:31.303 +02:00 [DBG] Connection id "0HNHFJKOHA0G3" started.
+2025-11-30 01:15:31.303 +02:00 [DBG] Connection id "0HNHFJKOHA0G2" started.
+2025-11-30 01:15:31.315 +02:00 [DBG] Connection id "0HNHFJKOHA0G3" received FIN.
+2025-11-30 01:15:31.315 +02:00 [DBG] Connection id "0HNHFJKOHA0G2" received FIN.
+2025-11-30 01:15:31.325 +02:00 [DBG] Failed to authenticate HTTPS connection.
+System.IO.IOException: Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.ReceiveHandshakeFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ProcessAuthenticationWithTelemetryAsync(Boolean isAsync, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+2025-11-30 01:15:31.326 +02:00 [DBG] Failed to authenticate HTTPS connection.
+System.IO.IOException: Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.ReceiveHandshakeFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ProcessAuthenticationWithTelemetryAsync(Boolean isAsync, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+2025-11-30 01:15:31.351 +02:00 [DBG] Connection id "0HNHFJKOHA0G3" stopped.
+2025-11-30 01:15:31.351 +02:00 [DBG] Connection id "0HNHFJKOHA0G2" stopped.
+2025-11-30 01:15:31.353 +02:00 [DBG] Connection id "0HNHFJKOHA0G2" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-11-30 01:15:31.353 +02:00 [DBG] Connection id "0HNHFJKOHA0G3" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-11-30 01:15:31.470 +02:00 [DBG] Connection id "0HNHFJKOHA0G4" accepted.
+2025-11-30 01:15:31.472 +02:00 [DBG] Connection id "0HNHFJKOHA0G4" started.
+2025-11-30 01:15:31.517 +02:00 [DBG] Connection 0HNHFJKOHA0G4 established using the following protocol: "Tls12"
+2025-11-30 01:15:31.572 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7217/swagger/index.html - null null
+2025-11-30 01:15:31.650 +02:00 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2025-11-30 01:15:31.671 +02:00 [DBG] No candidates found for the request path '/swagger/index.html'
+2025-11-30 01:15:31.672 +02:00 [DBG] Request did not match any endpoints
+2025-11-30 01:15:31.711 +02:00 [DBG] Response markup is scheduled to include Browser Link script injection.
+2025-11-30 01:15:31.714 +02:00 [DBG] Response markup is scheduled to include browser refresh script injection.
+2025-11-30 01:15:31.724 +02:00 [DBG] Response markup was updated to include Browser Link script injection.
+2025-11-30 01:15:31.725 +02:00 [DBG] Response markup was updated to include browser refresh script injection.
+2025-11-30 01:15:31.728 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7217/swagger/index.html - 200 null text/html;charset=utf-8 166.2699ms
+2025-11-30 01:15:31.736 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7217/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-30 01:15:31.736 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7217/_vs/browserLink - null null
+2025-11-30 01:15:31.741 +02:00 [DBG] Script injected: /_framework/aspnetcore-browser-refresh.js
+2025-11-30 01:15:31.742 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7217/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 6.2645ms
+2025-11-30 01:15:31.764 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7217/_vs/browserLink - 200 null text/javascript; charset=UTF-8 28.7482ms
+2025-11-30 01:15:31.803 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7217/swagger/v1/swagger.json - null null
+2025-11-30 01:15:31.805 +02:00 [DBG] No candidates found for the request path '/swagger/v1/swagger.json'
+2025-11-30 01:15:31.806 +02:00 [DBG] Request did not match any endpoints
+2025-11-30 01:15:31.841 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7217/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 38.9ms
+2025-11-30 01:15:41.904 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7217/api/Appointment/GetAllCompleted - null null
+2025-11-30 01:15:41.910 +02:00 [DBG] 1 candidate(s) found for the request path '/api/Appointment/GetAllCompleted'
+2025-11-30 01:15:41.915 +02:00 [DBG] Endpoint 'Hospital.API.Controllers.AppointmentController.GetCompletedAppointment (Hospital)' with route pattern 'api/Appointment/GetAllCompleted' is valid for the request path '/api/Appointment/GetAllCompleted'
+2025-11-30 01:15:41.918 +02:00 [DBG] Request matched endpoint 'Hospital.API.Controllers.AppointmentController.GetCompletedAppointment (Hospital)'
+2025-11-30 01:15:41.923 +02:00 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-11-30 01:15:41.949 +02:00 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-11-30 01:15:41.951 +02:00 [INF] Executing endpoint 'Hospital.API.Controllers.AppointmentController.GetCompletedAppointment (Hospital)'
+2025-11-30 01:15:41.968 +02:00 [INF] Route matched with {action = "GetCompletedAppointment", controller = "Appointment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCompletedAppointment() on controller Hospital.API.Controllers.AppointmentController (Hospital).
+2025-11-30 01:15:41.971 +02:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-11-30 01:15:41.971 +02:00 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2025-11-30 01:15:41.974 +02:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-11-30 01:15:41.975 +02:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-11-30 01:15:41.976 +02:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-11-30 01:15:41.981 +02:00 [DBG] Executing controller factory for controller Hospital.API.Controllers.AppointmentController (Hospital)
+2025-11-30 01:15:42.074 +02:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2025-11-30 01:15:42.324 +02:00 [DBG] Executed controller factory for controller Hospital.API.Controllers.AppointmentController (Hospital)
+2025-11-30 01:15:42.326 +02:00 [INF] Get All Completed Appointments called at "2025-11-30T01:15:42.3267100+02:00"
+2025-11-30 01:15:42.329 +02:00 [INF] Fetching All Completed Appointments
+2025-11-30 01:15:42.906 +02:00 [DBG] The index {'BranchesBranchId'} was not created on entity type 'BranchDoctor (Dictionary<string, object>)' as the properties are already covered by the index {'BranchesBranchId', 'DoctorsDoctorId'}.
+2025-11-30 01:15:42.908 +02:00 [DBG] The index {'BranchId'} was not created on entity type 'BranchService (Dictionary<string, object>)' as the properties are already covered by the index {'BranchId', 'ServiceId'}.
+2025-11-30 01:15:42.910 +02:00 [DBG] The index {'BranchId'} was not created on entity type 'BranchSpecialization (Dictionary<string, object>)' as the properties are already covered by the index {'BranchId', 'SpecializationId'}.
+2025-11-30 01:15:42.912 +02:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserRole<string>' as the properties are already covered by the index {'UserId', 'RoleId'}.
+2025-11-30 01:15:42.913 +02:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserToken<string>' as the properties are already covered by the index {'UserId', 'LoginProvider', 'Name'}.
+2025-11-30 01:15:43.019 +02:00 [DBG] The property 'BranchDoctor (Dictionary<string, object>).BranchesBranchId' was created in shadow state because there are no eligible CLR members with a matching name.
+2025-11-30 01:15:43.020 +02:00 [DBG] The property 'BranchDoctor (Dictionary<string, object>).DoctorsDoctorId' was created in shadow state because there are no eligible CLR members with a matching name.
+2025-11-30 01:15:43.172 +02:00 [DBG] Entity Framework Core 8.0.21 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.21' with options: None
+2025-11-30 01:15:43.218 +02:00 [DBG] Compiling query expression: 
+'DbSet<Appointment>()
+    .Include(a => a.Patient)
+    .ThenInclude(a => a.User)
+    .Include(a => a.Doctor)
+    .Include(a => a.Branch)
+    .Where(a => (int)a.Status == 3)'
+2025-11-30 01:15:43.282 +02:00 [DBG] Including navigation: 'Appointment.Patient'.
+2025-11-30 01:15:43.284 +02:00 [DBG] Including navigation: 'Patient.User'.
+2025-11-30 01:15:43.285 +02:00 [DBG] Including navigation: 'Appointment.Doctor'.
+2025-11-30 01:15:43.286 +02:00 [DBG] Including navigation: 'Appointment.Branch'.
+2025-11-30 01:15:43.457 +02:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<Appointment>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.QueryExpression(
+        Client Projections:
+            0 -> Dictionary<IProperty, int> { [Property: Appointment.AppointmentId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Appointment.BranchId (int) Required FK Index, 1], [Property: Appointment.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 2], [Property: Appointment.CreatedBy (string) FK Index, 3], [Property: Appointment.Date (DateOnly) Required, 4], [Property: Appointment.DoctorId (int) Required FK Index, 5], [Property: Appointment.PatientId (int) Required FK Index, 6], [Property: Appointment.PaymentMethod (PaymentMethod) Required, 7], [Property: Appointment.Shift (AppointmentShift) Required MaxLength(20), 8], [Property: Appointment.Status (AppointmentStatus) Required MaxLength(20), 9], [Property: Appointment.UpdatedAt (DateTime) Required ValueGenerated.OnAdd, 10] }
+            1 -> Dictionary<IProperty, int> { [Property: Patient.PatientId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 11], [Property: Patient.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 12], [Property: Patient.EmergencyContact (string) MaxLength(150), 13], [Property: Patient.UpdatedAt (DateTime) Required ValueGenerated.OnAdd, 14], [Property: Patient.UserId (string) Required FK Index, 15] }
+            2 -> Dictionary<IProperty, int> { [Property: User.Id (string) Required PK AfterSave:Throw, 16], [Property: User.AccessFailedCount (int) Required, 17], [Property: User.ConcurrencyStamp (string) Concurrency, 18], [Property: User.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 19], [Property: User.DateOfBirth (DateOnly?), 20], [Property: User.Email (string) Index MaxLength(256), 21], [Property: User.EmailConfirmed (bool) Required, 22], [Property: User.FullName (string) Required MaxLength(150), 23], [Property: User.Gender (GenderType?) MaxLength(10), 24], [Property: User.LockoutEnabled (bool) Required, 25], [Property: User.LockoutEnd (DateTimeOffset?), 26], [Property: User.NormalizedEmail (string) Index MaxLength(256), 27], [Property: User.NormalizedUserName (string) Index MaxLength(256), 28], [Property: User.PasswordHash (string), 29], [Property: User.PhoneNumber (string), 30], [Property: User.PhoneNumberConfirmed (bool) Required, 31], [Property: User.RefreshToken (string), 32], [Property: User.RefreshTokenExpiryTime (DateTime) Required, 33], [Property: User.Role (string) Required MaxLength(50), 34], [Property: User.SecurityStamp (string), 35], [Property: User.TwoFactorEnabled (bool) Required, 36], [Property: User.UpdatedAt (DateTime) Required ValueGenerated.OnAdd, 37], [Property: User.UserName (string) MaxLength(256), 38] }
+            3 -> Dictionary<IProperty, int> { [Property: Doctor.DoctorId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 39], [Property: Doctor.Available (bool?), 40], [Property: Doctor.Biography (string), 41], [Property: Doctor.ConsultationFees (decimal) Required, 42], [Property: Doctor.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 43], [Property: Doctor.ExperienceYears (int?), 44], [Property: Doctor.ImageURL (string) MaxLength(300), 45], [Property: Doctor.SpecializationId (int) Required FK Index, 46], [Property: Doctor.UpdatedAt (DateTime) Required ValueGenerated.OnAdd, 47], [Property: Doctor.UserId (string) Required FK Index, 48] }
+            4 -> Dictionary<IProperty, int> { [Property: Branch.BranchId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 49], [Property: Branch.Address (string) MaxLength(250), 50], [Property: Branch.BranchName (string) Required MaxLength(150), 51], [Property: Branch.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 52], [Property: Branch.Description (string), 53], [Property: Branch.Email (string) MaxLength(200), 54], [Property: Branch.ImageURL (string) MaxLength(300), 55], [Property: Branch.Latitude (double?), 56], [Property: Branch.Longitude (double?), 57], [Property: Branch.Phone (string) MaxLength(25), 58], [Property: Branch.UpdatedAt (DateTime) Required ValueGenerated.OnAdd, 59] }
+        SELECT a.AppointmentId, a.BranchId, a.CreatedAt, a.CreatedBy, a.Date, a.DoctorId, a.PatientId, a.PaymentMethod, a.Shift, a.Status, a.UpdatedAt, p.PatientId, p.CreatedAt, p.EmergencyContact, p.UpdatedAt, p.UserId, u.Id, u.AccessFailedCount, u.ConcurrencyStamp, u.CreatedAt, u.DateOfBirth, u.Email, u.EmailConfirmed, u.FullName, u.Gender, u.LockoutEnabled, u.LockoutEnd, u.NormalizedEmail, u.NormalizedUserName, u.PasswordHash, u.PhoneNumber, u.PhoneNumberConfirmed, u.RefreshToken, u.RefreshTokenExpiryTime, u.Role, u.SecurityStamp, u.TwoFactorEnabled, u.UpdatedAt, u.UserName, d.DoctorId, d.Available, d.Biography, d.ConsultationFees, d.CreatedAt, d.ExperienceYears, d.ImageURL, d.SpecializationId, d.UpdatedAt, d.UserId, b.BranchId, b.Address, b.BranchName, b.CreatedAt, b.Description, b.Email, b.ImageURL, b.Latitude, b.Longitude, b.Phone, b.UpdatedAt
+        FROM Appointments AS a
+        INNER JOIN Patients AS p ON a.PatientId == p.PatientId
+        INNER JOIN Users AS u ON p.UserId == u.Id
+        INNER JOIN Doctors AS d ON a.DoctorId == d.DoctorId
+        INNER JOIN Branches AS b ON a.BranchId == b.BranchId
+        WHERE a.Status == N'Completed'), 
+    null, 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Appointment>, 
+    Clinic.Infrastructure.Persistence.AppDbContext, 
+    False, 
+    False, 
+    True
+)'
+2025-11-30 01:15:43.491 +02:00 [DBG] Creating DbConnection.
+2025-11-30 01:15:43.506 +02:00 [DBG] Created DbConnection. (14ms).
+2025-11-30 01:15:43.510 +02:00 [DBG] Opening connection to database 'HospitalDB' on server '.'.
+2025-11-30 01:15:43.712 +02:00 [DBG] Opened connection to database 'HospitalDB' on server '.'.
+2025-11-30 01:15:43.716 +02:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-11-30 01:15:43.722 +02:00 [DBG] Created DbCommand for 'ExecuteReader' (3ms).
+2025-11-30 01:15:43.724 +02:00 [DBG] Initialized DbCommand for 'ExecuteReader' (7ms).
+2025-11-30 01:15:43.731 +02:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[AppointmentId], [a].[BranchId], [a].[CreatedAt], [a].[CreatedBy], [a].[Date], [a].[DoctorId], [a].[PatientId], [a].[PaymentMethod], [a].[Shift], [a].[Status], [a].[UpdatedAt], [p].[PatientId], [p].[CreatedAt], [p].[EmergencyContact], [p].[UpdatedAt], [p].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName], [d].[DoctorId], [d].[Available], [d].[Biography], [d].[ConsultationFees], [d].[CreatedAt], [d].[ExperienceYears], [d].[ImageURL], [d].[SpecializationId], [d].[UpdatedAt], [d].[UserId], [b].[BranchId], [b].[Address], [b].[BranchName], [b].[CreatedAt], [b].[Description], [b].[Email], [b].[ImageURL], [b].[Latitude], [b].[Longitude], [b].[Phone], [b].[UpdatedAt]
+FROM [Appointments] AS [a]
+INNER JOIN [Patients] AS [p] ON [a].[PatientId] = [p].[PatientId]
+INNER JOIN [Users] AS [u] ON [p].[UserId] = [u].[Id]
+INNER JOIN [Doctors] AS [d] ON [a].[DoctorId] = [d].[DoctorId]
+INNER JOIN [Branches] AS [b] ON [a].[BranchId] = [b].[BranchId]
+WHERE [a].[Status] = N'Completed'
+2025-11-30 01:15:43.773 +02:00 [INF] Executed DbCommand (43ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[AppointmentId], [a].[BranchId], [a].[CreatedAt], [a].[CreatedBy], [a].[Date], [a].[DoctorId], [a].[PatientId], [a].[PaymentMethod], [a].[Shift], [a].[Status], [a].[UpdatedAt], [p].[PatientId], [p].[CreatedAt], [p].[EmergencyContact], [p].[UpdatedAt], [p].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName], [d].[DoctorId], [d].[Available], [d].[Biography], [d].[ConsultationFees], [d].[CreatedAt], [d].[ExperienceYears], [d].[ImageURL], [d].[SpecializationId], [d].[UpdatedAt], [d].[UserId], [b].[BranchId], [b].[Address], [b].[BranchName], [b].[CreatedAt], [b].[Description], [b].[Email], [b].[ImageURL], [b].[Latitude], [b].[Longitude], [b].[Phone], [b].[UpdatedAt]
+FROM [Appointments] AS [a]
+INNER JOIN [Patients] AS [p] ON [a].[PatientId] = [p].[PatientId]
+INNER JOIN [Users] AS [u] ON [p].[UserId] = [u].[Id]
+INNER JOIN [Doctors] AS [d] ON [a].[DoctorId] = [d].[DoctorId]
+INNER JOIN [Branches] AS [b] ON [a].[BranchId] = [b].[BranchId]
+WHERE [a].[Status] = N'Completed'
+2025-11-30 01:15:43.822 +02:00 [DBG] Context 'AppDbContext' started tracking 'Appointment' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:15:43.860 +02:00 [DBG] The navigation 'Appointment.Patient' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:15:43.877 +02:00 [DBG] Context 'AppDbContext' started tracking 'Patient' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:15:43.899 +02:00 [DBG] The navigation 'Patient.User' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:15:43.901 +02:00 [DBG] Context 'AppDbContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:15:43.940 +02:00 [DBG] The navigation 'Appointment.Doctor' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:15:43.946 +02:00 [DBG] Context 'AppDbContext' started tracking 'Doctor' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:15:43.971 +02:00 [DBG] The navigation 'Appointment.Branch' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:15:43.973 +02:00 [DBG] Context 'AppDbContext' started tracking 'Branch' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:15:43.994 +02:00 [DBG] The navigation 'Appointment.Doctor' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:15:43.996 +02:00 [DBG] Context 'AppDbContext' started tracking 'Appointment' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:15:43.998 +02:00 [DBG] The navigation 'Appointment.Patient' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:15:43.999 +02:00 [DBG] Context 'AppDbContext' started tracking 'Patient' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:15:44.000 +02:00 [DBG] The navigation 'Patient.User' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:15:44.001 +02:00 [DBG] Context 'AppDbContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:15:44.005 +02:00 [DBG] Closing data reader to 'HospitalDB' on server '.'.
+2025-11-30 01:15:44.010 +02:00 [DBG] A data reader for 'HospitalDB' on server '.' is being disposed after spending 230ms reading results.
+2025-11-30 01:15:44.014 +02:00 [DBG] Closing connection to database 'HospitalDB' on server '.'.
+2025-11-30 01:15:44.019 +02:00 [DBG] Closed connection to database 'HospitalDB' on server '.' (5ms).
+2025-11-30 01:15:44.040 +02:00 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2025-11-30 01:15:44.043 +02:00 [DBG] No information found on request to perform content negotiation.
+2025-11-30 01:15:44.043 +02:00 [DBG] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2025-11-30 01:15:44.044 +02:00 [DBG] Attempting to select the first formatter in the output formatters list which can write the result.
+2025-11-30 01:15:44.045 +02:00 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2025-11-30 01:15:44.045 +02:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Hospital.Application.DTO.Appointment.AppoinmentandPaientDetaliesDto, Hospital.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-30 01:15:44.074 +02:00 [INF] Executed action Hospital.API.Controllers.AppointmentController.GetCompletedAppointment (Hospital) in 2091.8412ms
+2025-11-30 01:15:44.076 +02:00 [INF] Executed endpoint 'Hospital.API.Controllers.AppointmentController.GetCompletedAppointment (Hospital)'
+2025-11-30 01:15:44.079 +02:00 [DBG] 'AppDbContext' disposed.
+2025-11-30 01:15:44.083 +02:00 [DBG] Disposing connection to database 'HospitalDB' on server '.'.
+2025-11-30 01:15:44.085 +02:00 [DBG] Disposed connection to database '' on server '' (2ms).
+2025-11-30 01:15:44.087 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7217/api/Appointment/GetAllCompleted - 200 null application/json; charset=utf-8 2183.9514ms
+2025-11-30 01:15:55.378 +02:00 [DBG] Connection id "0HNHFJKOHA0G5" received FIN.
+2025-11-30 01:15:55.378 +02:00 [DBG] Connection id "0HNHFJKOHA0G5" accepted.
+2025-11-30 01:15:55.379 +02:00 [DBG] Connection id "0HNHFJKOHA0G5" started.
+2025-11-30 01:15:55.380 +02:00 [DBG] Connection id "0HNHFJKOHA0G6" accepted.
+2025-11-30 01:15:55.381 +02:00 [DBG] Connection id "0HNHFJKOHA0G6" started.
+2025-11-30 01:15:55.381 +02:00 [DBG] Failed to authenticate HTTPS connection.
+System.IO.IOException: Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.ReceiveHandshakeFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ProcessAuthenticationWithTelemetryAsync(Boolean isAsync, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+2025-11-30 01:15:55.385 +02:00 [DBG] Connection id "0HNHFJKOHA0G5" stopped.
+2025-11-30 01:15:55.386 +02:00 [DBG] Connection id "0HNHFJKOHA0G5" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-11-30 01:15:55.386 +02:00 [DBG] Connection 0HNHFJKOHA0G6 established using the following protocol: "Tls12"
+2025-11-30 01:15:55.390 +02:00 [INF] Request starting HTTP/1.1 GET https://localhost:7217/api/Appointment/GetAllCompleted - null null
+2025-11-30 01:15:55.394 +02:00 [DBG] 1 candidate(s) found for the request path '/api/Appointment/GetAllCompleted'
+2025-11-30 01:15:55.394 +02:00 [DBG] Endpoint 'Hospital.API.Controllers.AppointmentController.GetCompletedAppointment (Hospital)' with route pattern 'api/Appointment/GetAllCompleted' is valid for the request path '/api/Appointment/GetAllCompleted'
+2025-11-30 01:15:55.396 +02:00 [DBG] Request matched endpoint 'Hospital.API.Controllers.AppointmentController.GetCompletedAppointment (Hospital)'
+2025-11-30 01:15:55.397 +02:00 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-11-30 01:15:55.398 +02:00 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-11-30 01:15:55.399 +02:00 [INF] Executing endpoint 'Hospital.API.Controllers.AppointmentController.GetCompletedAppointment (Hospital)'
+2025-11-30 01:15:55.399 +02:00 [INF] Route matched with {action = "GetCompletedAppointment", controller = "Appointment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCompletedAppointment() on controller Hospital.API.Controllers.AppointmentController (Hospital).
+2025-11-30 01:15:55.401 +02:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-11-30 01:15:55.402 +02:00 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2025-11-30 01:15:55.402 +02:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-11-30 01:15:55.404 +02:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-11-30 01:15:55.405 +02:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-11-30 01:15:55.405 +02:00 [DBG] Executing controller factory for controller Hospital.API.Controllers.AppointmentController (Hospital)
+2025-11-30 01:15:55.407 +02:00 [DBG] Executed controller factory for controller Hospital.API.Controllers.AppointmentController (Hospital)
+2025-11-30 01:15:55.408 +02:00 [INF] Get All Completed Appointments called at "2025-11-30T01:15:55.4079927+02:00"
+2025-11-30 01:15:55.408 +02:00 [INF] Fetching All Completed Appointments
+2025-11-30 01:15:55.441 +02:00 [DBG] Entity Framework Core 8.0.21 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.21' with options: None
+2025-11-30 01:15:55.445 +02:00 [DBG] Creating DbConnection.
+2025-11-30 01:15:55.447 +02:00 [DBG] Created DbConnection. (1ms).
+2025-11-30 01:15:55.448 +02:00 [DBG] Opening connection to database 'HospitalDB' on server '.'.
+2025-11-30 01:15:55.449 +02:00 [DBG] Opened connection to database 'HospitalDB' on server '.'.
+2025-11-30 01:15:55.450 +02:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-11-30 01:15:55.451 +02:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-11-30 01:15:55.452 +02:00 [DBG] Initialized DbCommand for 'ExecuteReader' (1ms).
+2025-11-30 01:15:55.453 +02:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[AppointmentId], [a].[BranchId], [a].[CreatedAt], [a].[CreatedBy], [a].[Date], [a].[DoctorId], [a].[PatientId], [a].[PaymentMethod], [a].[Shift], [a].[Status], [a].[UpdatedAt], [p].[PatientId], [p].[CreatedAt], [p].[EmergencyContact], [p].[UpdatedAt], [p].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName], [d].[DoctorId], [d].[Available], [d].[Biography], [d].[ConsultationFees], [d].[CreatedAt], [d].[ExperienceYears], [d].[ImageURL], [d].[SpecializationId], [d].[UpdatedAt], [d].[UserId], [b].[BranchId], [b].[Address], [b].[BranchName], [b].[CreatedAt], [b].[Description], [b].[Email], [b].[ImageURL], [b].[Latitude], [b].[Longitude], [b].[Phone], [b].[UpdatedAt]
+FROM [Appointments] AS [a]
+INNER JOIN [Patients] AS [p] ON [a].[PatientId] = [p].[PatientId]
+INNER JOIN [Users] AS [u] ON [p].[UserId] = [u].[Id]
+INNER JOIN [Doctors] AS [d] ON [a].[DoctorId] = [d].[DoctorId]
+INNER JOIN [Branches] AS [b] ON [a].[BranchId] = [b].[BranchId]
+WHERE [a].[Status] = N'Completed'
+2025-11-30 01:15:55.459 +02:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[AppointmentId], [a].[BranchId], [a].[CreatedAt], [a].[CreatedBy], [a].[Date], [a].[DoctorId], [a].[PatientId], [a].[PaymentMethod], [a].[Shift], [a].[Status], [a].[UpdatedAt], [p].[PatientId], [p].[CreatedAt], [p].[EmergencyContact], [p].[UpdatedAt], [p].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName], [d].[DoctorId], [d].[Available], [d].[Biography], [d].[ConsultationFees], [d].[CreatedAt], [d].[ExperienceYears], [d].[ImageURL], [d].[SpecializationId], [d].[UpdatedAt], [d].[UserId], [b].[BranchId], [b].[Address], [b].[BranchName], [b].[CreatedAt], [b].[Description], [b].[Email], [b].[ImageURL], [b].[Latitude], [b].[Longitude], [b].[Phone], [b].[UpdatedAt]
+FROM [Appointments] AS [a]
+INNER JOIN [Patients] AS [p] ON [a].[PatientId] = [p].[PatientId]
+INNER JOIN [Users] AS [u] ON [p].[UserId] = [u].[Id]
+INNER JOIN [Doctors] AS [d] ON [a].[DoctorId] = [d].[DoctorId]
+INNER JOIN [Branches] AS [b] ON [a].[BranchId] = [b].[BranchId]
+WHERE [a].[Status] = N'Completed'
+2025-11-30 01:15:55.461 +02:00 [DBG] Context 'AppDbContext' started tracking 'Appointment' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:15:55.463 +02:00 [DBG] The navigation 'Appointment.Patient' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:15:55.464 +02:00 [DBG] Context 'AppDbContext' started tracking 'Patient' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:15:55.465 +02:00 [DBG] The navigation 'Patient.User' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:15:55.465 +02:00 [DBG] Context 'AppDbContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:15:55.466 +02:00 [DBG] The navigation 'Appointment.Doctor' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:15:55.467 +02:00 [DBG] Context 'AppDbContext' started tracking 'Doctor' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:15:55.468 +02:00 [DBG] The navigation 'Appointment.Branch' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:15:55.469 +02:00 [DBG] Context 'AppDbContext' started tracking 'Branch' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:15:55.470 +02:00 [DBG] The navigation 'Appointment.Doctor' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:15:55.470 +02:00 [DBG] Context 'AppDbContext' started tracking 'Appointment' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:15:55.471 +02:00 [DBG] The navigation 'Appointment.Patient' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:15:55.472 +02:00 [DBG] Context 'AppDbContext' started tracking 'Patient' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:15:55.472 +02:00 [DBG] The navigation 'Patient.User' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:15:55.474 +02:00 [DBG] Context 'AppDbContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:15:55.474 +02:00 [DBG] Closing data reader to 'HospitalDB' on server '.'.
+2025-11-30 01:15:55.475 +02:00 [DBG] A data reader for 'HospitalDB' on server '.' is being disposed after spending 14ms reading results.
+2025-11-30 01:15:55.476 +02:00 [DBG] Closing connection to database 'HospitalDB' on server '.'.
+2025-11-30 01:15:55.476 +02:00 [DBG] Closed connection to database 'HospitalDB' on server '.' (0ms).
+2025-11-30 01:15:55.478 +02:00 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2025-11-30 01:15:55.479 +02:00 [DBG] No information found on request to perform content negotiation.
+2025-11-30 01:15:55.480 +02:00 [DBG] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2025-11-30 01:15:55.480 +02:00 [DBG] Attempting to select the first formatter in the output formatters list which can write the result.
+2025-11-30 01:15:55.481 +02:00 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2025-11-30 01:15:55.481 +02:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Hospital.Application.DTO.Appointment.AppoinmentandPaientDetaliesDto, Hospital.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-30 01:15:55.490 +02:00 [INF] Executed action Hospital.API.Controllers.AppointmentController.GetCompletedAppointment (Hospital) in 84.3578ms
+2025-11-30 01:15:55.492 +02:00 [INF] Executed endpoint 'Hospital.API.Controllers.AppointmentController.GetCompletedAppointment (Hospital)'
+2025-11-30 01:15:55.493 +02:00 [DBG] Connection id "0HNHFJKOHA0G6" completed keep alive response.
+2025-11-30 01:15:55.494 +02:00 [DBG] 'AppDbContext' disposed.
+2025-11-30 01:15:55.494 +02:00 [DBG] Disposing connection to database 'HospitalDB' on server '.'.
+2025-11-30 01:15:55.495 +02:00 [DBG] Disposed connection to database '' on server '' (0ms).
+2025-11-30 01:15:55.495 +02:00 [INF] Request finished HTTP/1.1 GET https://localhost:7217/api/Appointment/GetAllCompleted - 200 null application/json; charset=utf-8 104.9883ms
+2025-11-30 01:21:15.492 +02:00 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2025-11-30 01:21:15.584 +02:00 [DBG] Hosting starting
+2025-11-30 01:21:15.605 +02:00 [INF] User profile is available. Using 'C:\Users\E-Mad\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-11-30 01:21:15.613 +02:00 [DBG] Reading data from file 'C:\Users\E-Mad\AppData\Local\ASP.NET\DataProtection-Keys\key-b85f0939-0825-4b2b-b21a-67409aec9db0.xml'.
+2025-11-30 01:21:15.618 +02:00 [DBG] Found key {b85f0939-0825-4b2b-b21a-67409aec9db0}.
+2025-11-30 01:21:15.624 +02:00 [DBG] Considering key {b85f0939-0825-4b2b-b21a-67409aec9db0} with expiration date 2026-02-09 12:52:20Z as default key.
+2025-11-30 01:21:15.627 +02:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2025-11-30 01:21:15.629 +02:00 [DBG] Decrypting secret element using Windows DPAPI.
+2025-11-30 01:21:15.630 +02:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2025-11-30 01:21:15.634 +02:00 [DBG] Opening CNG algorithm 'AES' from provider 'null' with chaining mode CBC.
+2025-11-30 01:21:15.635 +02:00 [DBG] Opening CNG algorithm 'SHA256' from provider 'null' with HMAC.
+2025-11-30 01:21:15.636 +02:00 [DBG] Using key {b85f0939-0825-4b2b-b21a-67409aec9db0} as the default key.
+2025-11-30 01:21:15.637 +02:00 [DBG] Key ring with default key {b85f0939-0825-4b2b-b21a-67409aec9db0} was loaded during application startup.
+2025-11-30 01:21:15.641 +02:00 [DBG] Middleware loaded
+2025-11-30 01:21:15.643 +02:00 [DBG] Middleware loaded. Script /_framework/aspnetcore-browser-refresh.js (16501 B).
+2025-11-30 01:21:15.645 +02:00 [DBG] Middleware loaded. Script /_framework/blazor-hotreload.js (799 B).
+2025-11-30 01:21:15.708 +02:00 [DBG] Middleware loaded: DOTNET_MODIFIABLE_ASSEMBLIES=debug, __ASPNETCORE_BROWSER_TOOLS=true
+2025-11-30 01:21:15.769 +02:00 [INF] Now listening on: https://localhost:7217
+2025-11-30 01:21:15.770 +02:00 [INF] Now listening on: http://localhost:5163
+2025-11-30 01:21:15.771 +02:00 [DBG] Loaded hosting startup assembly Hospital
+2025-11-30 01:21:15.771 +02:00 [DBG] Loaded hosting startup assembly Microsoft.WebTools.ApiEndpointDiscovery
+2025-11-30 01:21:15.771 +02:00 [DBG] Loaded hosting startup assembly Microsoft.AspNetCore.Watch.BrowserRefresh
+2025-11-30 01:21:15.772 +02:00 [DBG] Loaded hosting startup assembly Microsoft.WebTools.BrowserLink.Net
+2025-11-30 01:21:15.838 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-30 01:21:15.839 +02:00 [INF] Hosting environment: Development
+2025-11-30 01:21:15.839 +02:00 [INF] Content root path: D:\Walaa\GP\Hospital\Hospital
+2025-11-30 01:21:15.840 +02:00 [DBG] Hosting started
+2025-11-30 01:21:16.001 +02:00 [DBG] Connection id "0HNHFJNV8JSA0" accepted.
+2025-11-30 01:21:16.003 +02:00 [DBG] Connection id "0HNHFJNV8JSA0" started.
+2025-11-30 01:21:16.012 +02:00 [DBG] Connection id "0HNHFJNV8JSA1" received FIN.
+2025-11-30 01:21:16.012 +02:00 [DBG] Connection id "0HNHFJNV8JSA0" received FIN.
+2025-11-30 01:21:16.015 +02:00 [DBG] Connection id "0HNHFJNV8JSA1" accepted.
+2025-11-30 01:21:16.017 +02:00 [DBG] Connection id "0HNHFJNV8JSA1" started.
+2025-11-30 01:21:16.021 +02:00 [DBG] Failed to authenticate HTTPS connection.
+System.IO.IOException: Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.ReceiveHandshakeFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ProcessAuthenticationWithTelemetryAsync(Boolean isAsync, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+2025-11-30 01:21:16.021 +02:00 [DBG] Failed to authenticate HTTPS connection.
+System.IO.IOException: Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.ReceiveHandshakeFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ProcessAuthenticationWithTelemetryAsync(Boolean isAsync, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+2025-11-30 01:21:16.050 +02:00 [DBG] Connection id "0HNHFJNV8JSA0" stopped.
+2025-11-30 01:21:16.050 +02:00 [DBG] Connection id "0HNHFJNV8JSA1" stopped.
+2025-11-30 01:21:16.053 +02:00 [DBG] Connection id "0HNHFJNV8JSA0" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-11-30 01:21:16.053 +02:00 [DBG] Connection id "0HNHFJNV8JSA1" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-11-30 01:21:16.183 +02:00 [DBG] Connection id "0HNHFJNV8JSA2" accepted.
+2025-11-30 01:21:16.185 +02:00 [DBG] Connection id "0HNHFJNV8JSA2" started.
+2025-11-30 01:21:16.235 +02:00 [DBG] Connection 0HNHFJNV8JSA2 established using the following protocol: "Tls12"
+2025-11-30 01:21:16.284 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7217/swagger/index.html - null null
+2025-11-30 01:21:16.349 +02:00 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2025-11-30 01:21:16.371 +02:00 [DBG] No candidates found for the request path '/swagger/index.html'
+2025-11-30 01:21:16.372 +02:00 [DBG] Request did not match any endpoints
+2025-11-30 01:21:16.410 +02:00 [DBG] Response markup is scheduled to include Browser Link script injection.
+2025-11-30 01:21:16.413 +02:00 [DBG] Response markup is scheduled to include browser refresh script injection.
+2025-11-30 01:21:16.425 +02:00 [DBG] Response markup was updated to include Browser Link script injection.
+2025-11-30 01:21:16.425 +02:00 [DBG] Response markup was updated to include browser refresh script injection.
+2025-11-30 01:21:16.428 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7217/swagger/index.html - 200 null text/html;charset=utf-8 150.1744ms
+2025-11-30 01:21:16.435 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7217/_vs/browserLink - null null
+2025-11-30 01:21:16.435 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7217/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-30 01:21:16.444 +02:00 [DBG] Script injected: /_framework/aspnetcore-browser-refresh.js
+2025-11-30 01:21:16.449 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7217/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 14.0058ms
+2025-11-30 01:21:16.466 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7217/_vs/browserLink - 200 null text/javascript; charset=UTF-8 30.7914ms
+2025-11-30 01:21:16.504 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7217/swagger/v1/swagger.json - null null
+2025-11-30 01:21:16.507 +02:00 [DBG] No candidates found for the request path '/swagger/v1/swagger.json'
+2025-11-30 01:21:16.507 +02:00 [DBG] Request did not match any endpoints
+2025-11-30 01:21:16.541 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7217/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 36.4847ms
+2025-11-30 01:21:24.246 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7217/api/Appointment/GetAllCompletedByDoctorId/1 - null null
+2025-11-30 01:21:24.252 +02:00 [DBG] 1 candidate(s) found for the request path '/api/Appointment/GetAllCompletedByDoctorId/1'
+2025-11-30 01:21:24.257 +02:00 [DBG] Endpoint 'Hospital.API.Controllers.AppointmentController.GetAllCompletedByDoctorId (Hospital)' with route pattern 'api/Appointment/GetAllCompletedByDoctorId/{doctorid}' is valid for the request path '/api/Appointment/GetAllCompletedByDoctorId/1'
+2025-11-30 01:21:24.259 +02:00 [DBG] Request matched endpoint 'Hospital.API.Controllers.AppointmentController.GetAllCompletedByDoctorId (Hospital)'
+2025-11-30 01:21:24.264 +02:00 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-11-30 01:21:24.293 +02:00 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-11-30 01:21:24.295 +02:00 [INF] Executing endpoint 'Hospital.API.Controllers.AppointmentController.GetAllCompletedByDoctorId (Hospital)'
+2025-11-30 01:21:24.313 +02:00 [INF] Route matched with {action = "GetAllCompletedByDoctorId", controller = "Appointment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllCompletedByDoctorId(Int32) on controller Hospital.API.Controllers.AppointmentController (Hospital).
+2025-11-30 01:21:24.317 +02:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-11-30 01:21:24.318 +02:00 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2025-11-30 01:21:24.320 +02:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-11-30 01:21:24.321 +02:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-11-30 01:21:24.322 +02:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-11-30 01:21:24.325 +02:00 [DBG] Executing controller factory for controller Hospital.API.Controllers.AppointmentController (Hospital)
+2025-11-30 01:21:24.417 +02:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2025-11-30 01:21:24.610 +02:00 [DBG] Executed controller factory for controller Hospital.API.Controllers.AppointmentController (Hospital)
+2025-11-30 01:21:24.620 +02:00 [DBG] Attempting to bind parameter 'doctorid' of type 'System.Int32' ...
+2025-11-30 01:21:24.623 +02:00 [DBG] Attempting to bind parameter 'doctorid' of type 'System.Int32' using the name 'doctorid' in request data ...
+2025-11-30 01:21:24.625 +02:00 [DBG] Done attempting to bind parameter 'doctorid' of type 'System.Int32'.
+2025-11-30 01:21:24.625 +02:00 [DBG] Done attempting to bind parameter 'doctorid' of type 'System.Int32'.
+2025-11-30 01:21:24.626 +02:00 [DBG] Attempting to validate the bound parameter 'doctorid' of type 'System.Int32' ...
+2025-11-30 01:21:24.629 +02:00 [DBG] Done attempting to validate the bound parameter 'doctorid' of type 'System.Int32'.
+2025-11-30 01:21:24.632 +02:00 [INF] Get All Completed Appointments called at "2025-11-30T01:21:24.6321344+02:00"
+2025-11-30 01:21:24.634 +02:00 [INF] Fetching All Completed Appointments
+2025-11-30 01:21:25.123 +02:00 [DBG] The index {'BranchesBranchId'} was not created on entity type 'BranchDoctor (Dictionary<string, object>)' as the properties are already covered by the index {'BranchesBranchId', 'DoctorsDoctorId'}.
+2025-11-30 01:21:25.125 +02:00 [DBG] The index {'BranchId'} was not created on entity type 'BranchService (Dictionary<string, object>)' as the properties are already covered by the index {'BranchId', 'ServiceId'}.
+2025-11-30 01:21:25.126 +02:00 [DBG] The index {'BranchId'} was not created on entity type 'BranchSpecialization (Dictionary<string, object>)' as the properties are already covered by the index {'BranchId', 'SpecializationId'}.
+2025-11-30 01:21:25.127 +02:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserRole<string>' as the properties are already covered by the index {'UserId', 'RoleId'}.
+2025-11-30 01:21:25.128 +02:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserToken<string>' as the properties are already covered by the index {'UserId', 'LoginProvider', 'Name'}.
+2025-11-30 01:21:25.247 +02:00 [DBG] The property 'BranchDoctor (Dictionary<string, object>).BranchesBranchId' was created in shadow state because there are no eligible CLR members with a matching name.
+2025-11-30 01:21:25.248 +02:00 [DBG] The property 'BranchDoctor (Dictionary<string, object>).DoctorsDoctorId' was created in shadow state because there are no eligible CLR members with a matching name.
+2025-11-30 01:21:25.411 +02:00 [DBG] Entity Framework Core 8.0.21 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.21' with options: None
+2025-11-30 01:21:25.473 +02:00 [DBG] Compiling query expression: 
+'DbSet<Doctor>()
+    .Include(d => d.User)
+    .Include(d => d.Specialization)
+    .Include(d => d.Branches)
+    .Include(d => d.Schedules)
+    .Include(d => d.Branches)
+    .FirstOrDefault(d => d.DoctorId == __doctorId_0)'
+2025-11-30 01:21:25.522 +02:00 [DBG] Including navigation: 'Doctor.User'.
+2025-11-30 01:21:25.525 +02:00 [DBG] Including navigation: 'Doctor.Specialization'.
+2025-11-30 01:21:25.528 +02:00 [DBG] Including navigation: 'Doctor.Branches'.
+2025-11-30 01:21:25.531 +02:00 [DBG] Including navigation: 'Doctor.Schedules'.
+2025-11-30 01:21:25.749 +02:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2025-11-30 01:21:25.771 +02:00 [DBG] Generated query execution expression: 
+'queryContext => ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync<Doctor>(
+    asyncEnumerable: new SingleQueryingEnumerable<Doctor>(
+        (RelationalQueryContext)queryContext, 
+        RelationalCommandCache.QueryExpression(
+            Client Projections:
+                0 -> Dictionary<IProperty, int> { [Property: Doctor.DoctorId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Doctor.Available (bool?), 1], [Property: Doctor.Biography (string), 2], [Property: Doctor.ConsultationFees (decimal) Required, 3], [Property: Doctor.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 4], [Property: Doctor.ExperienceYears (int?), 5], [Property: Doctor.ImageURL (string) MaxLength(300), 6], [Property: Doctor.SpecializationId (int) Required FK Index, 7], [Property: Doctor.UpdatedAt (DateTime) Required ValueGenerated.OnAdd, 8], [Property: Doctor.UserId (string) Required FK Index, 9] }
+                1 -> Dictionary<IProperty, int> { [Property: User.Id (string) Required PK AfterSave:Throw, 10], [Property: User.AccessFailedCount (int) Required, 11], [Property: User.ConcurrencyStamp (string) Concurrency, 12], [Property: User.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 13], [Property: User.DateOfBirth (DateOnly?), 14], [Property: User.Email (string) Index MaxLength(256), 15], [Property: User.EmailConfirmed (bool) Required, 16], [Property: User.FullName (string) Required MaxLength(150), 17], [Property: User.Gender (GenderType?) MaxLength(10), 18], [Property: User.LockoutEnabled (bool) Required, 19], [Property: User.LockoutEnd (DateTimeOffset?), 20], [Property: User.NormalizedEmail (string) Index MaxLength(256), 21], [Property: User.NormalizedUserName (string) Index MaxLength(256), 22], [Property: User.PasswordHash (string), 23], [Property: User.PhoneNumber (string), 24], [Property: User.PhoneNumberConfirmed (bool) Required, 25], [Property: User.RefreshToken (string), 26], [Property: User.RefreshTokenExpiryTime (DateTime) Required, 27], [Property: User.Role (string) Required MaxLength(50), 28], [Property: User.SecurityStamp (string), 29], [Property: User.TwoFactorEnabled (bool) Required, 30], [Property: User.UpdatedAt (DateTime) Required ValueGenerated.OnAdd, 31], [Property: User.UserName (string) MaxLength(256), 32] }
+                2 -> Dictionary<IProperty, int> { [Property: Specialization.SpecializationId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 33], [Property: Specialization.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 34], [Property: Specialization.Description (string), 35], [Property: Specialization.ImageURL (string) MaxLength(300), 36], [Property: Specialization.Name (string) Required MaxLength(120), 37], [Property: Specialization.UpdatedAt (DateTime) Required ValueGenerated.OnAdd, 38] }
+                3 -> 0
+                4 -> 10
+                5 -> 33
+                6 -> Dictionary<IProperty, int> { [Property: BranchDoctor (Dictionary<string, object>).BranchesBranchId (no field, int) Indexer Required PK FK AfterSave:Throw, 39], [Property: BranchDoctor (Dictionary<string, object>).DoctorsDoctorId (no field, int) Indexer Required PK FK Index AfterSave:Throw, 40] }
+                7 -> Dictionary<IProperty, int> { [Property: Branch.BranchId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 41], [Property: Branch.Address (string) MaxLength(250), 42], [Property: Branch.BranchName (string) Required MaxLength(150), 43], [Property: Branch.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 44], [Property: Branch.Description (string), 45], [Property: Branch.Email (string) MaxLength(200), 46], [Property: Branch.ImageURL (string) MaxLength(300), 47], [Property: Branch.Latitude (double?), 48], [Property: Branch.Longitude (double?), 49], [Property: Branch.Phone (string) MaxLength(25), 50], [Property: Branch.UpdatedAt (DateTime) Required ValueGenerated.OnAdd, 51] }
+                8 -> 39
+                9 -> 40
+                10 -> 41
+                11 -> Dictionary<IProperty, int> { [Property: Schedule.ScheduleId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 52], [Property: Schedule.BranchId (int) Required FK Index, 53], [Property: Schedule.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 54], [Property: Schedule.DayOfWeek (string) Required MaxLength(20), 55], [Property: Schedule.DoctorId (int) Required FK Index, 56], [Property: Schedule.EndTime (DateTime) Required, 57], [Property: Schedule.Shift (AppointmentShift) Required, 58], [Property: Schedule.StartTime (DateTime) Required, 59], [Property: Schedule.UpdatedAt (DateTime) Required ValueGenerated.OnAdd, 60] }
+                12 -> 52
+            SELECT t.DoctorId, t.Available, t.Biography, t.ConsultationFees, t.CreatedAt, t.ExperienceYears, t.ImageURL, t.SpecializationId, t.UpdatedAt, t.UserId, t.Id, t.AccessFailedCount, t.ConcurrencyStamp, t.CreatedAt0, t.DateOfBirth, t.Email, t.EmailConfirmed, t.FullName, t.Gender, t.LockoutEnabled, t.LockoutEnd, t.NormalizedEmail, t.NormalizedUserName, t.PasswordHash, t.PhoneNumber, t.PhoneNumberConfirmed, t.RefreshToken, t.RefreshTokenExpiryTime, t.Role, t.SecurityStamp, t.TwoFactorEnabled, t.UpdatedAt0, t.UserName, t.SpecializationId0, t.CreatedAt1, t.Description, t.ImageURL0, t.Name, t.UpdatedAt1, t0.BranchesBranchId, t0.DoctorsDoctorId, t0.BranchId, t0.Address, t0.BranchName, t0.CreatedAt, t0.Description, t0.Email, t0.ImageURL, t0.Latitude, t0.Longitude, t0.Phone, t0.UpdatedAt, s0.ScheduleId, s0.BranchId, s0.CreatedAt, s0.DayOfWeek, s0.DoctorId, s0.EndTime, s0.Shift, s0.StartTime, s0.UpdatedAt
+            FROM 
+            (
+                SELECT TOP(1) d.DoctorId, d.Available, d.Biography, d.ConsultationFees, d.CreatedAt, d.ExperienceYears, d.ImageURL, d.SpecializationId, d.UpdatedAt, d.UserId, u.Id, u.AccessFailedCount, u.ConcurrencyStamp, u.CreatedAt AS CreatedAt0, u.DateOfBirth, u.Email, u.EmailConfirmed, u.FullName, u.Gender, u.LockoutEnabled, u.LockoutEnd, u.NormalizedEmail, u.NormalizedUserName, u.PasswordHash, u.PhoneNumber, u.PhoneNumberConfirmed, u.RefreshToken, u.RefreshTokenExpiryTime, u.Role, u.SecurityStamp, u.TwoFactorEnabled, u.UpdatedAt AS UpdatedAt0, u.UserName, s.SpecializationId AS SpecializationId0, s.CreatedAt AS CreatedAt1, s.Description, s.ImageURL AS ImageURL0, s.Name, s.UpdatedAt AS UpdatedAt1
+                FROM Doctors AS d
+                INNER JOIN Users AS u ON d.UserId == u.Id
+                INNER JOIN Specializations AS s ON d.SpecializationId == s.SpecializationId
+                WHERE d.DoctorId == @__doctorId_0
+            ) AS t
+            LEFT JOIN 
+            (
+                SELECT d0.BranchesBranchId, d0.DoctorsDoctorId, b.BranchId, b.Address, b.BranchName, b.CreatedAt, b.Description, b.Email, b.ImageURL, b.Latitude, b.Longitude, b.Phone, b.UpdatedAt
+                FROM DoctorBranches AS d0
+                INNER JOIN Branches AS b ON d0.BranchesBranchId == b.BranchId
+            ) AS t0 ON t.DoctorId == t0.DoctorsDoctorId
+            LEFT JOIN Schedules AS s0 ON t.DoctorId == s0.DoctorId
+            ORDER BY t.DoctorId ASC, t.Id ASC, t.SpecializationId0 ASC, t0.BranchesBranchId ASC, t0.DoctorsDoctorId ASC, t0.BranchId ASC), 
+        null, 
+        Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Doctor>, 
+        Clinic.Infrastructure.Persistence.AppDbContext, 
+        False, 
+        False, 
+        True
+    ), 
+    cancellationToken: queryContext.CancellationToken)'
+2025-11-30 01:21:25.809 +02:00 [DBG] Creating DbConnection.
+2025-11-30 01:21:25.831 +02:00 [DBG] Created DbConnection. (19ms).
+2025-11-30 01:21:25.834 +02:00 [DBG] Opening connection to database 'HospitalDB' on server '.'.
+2025-11-30 01:21:26.036 +02:00 [DBG] Opened connection to database 'HospitalDB' on server '.'.
+2025-11-30 01:21:26.041 +02:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-11-30 01:21:26.050 +02:00 [DBG] Created DbCommand for 'ExecuteReader' (4ms).
+2025-11-30 01:21:26.056 +02:00 [DBG] Initialized DbCommand for 'ExecuteReader' (15ms).
+2025-11-30 01:21:26.064 +02:00 [DBG] Executing DbCommand [Parameters=[@__doctorId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[DoctorId], [t].[Available], [t].[Biography], [t].[ConsultationFees], [t].[CreatedAt], [t].[ExperienceYears], [t].[ImageURL], [t].[SpecializationId], [t].[UpdatedAt], [t].[UserId], [t].[Id], [t].[AccessFailedCount], [t].[ConcurrencyStamp], [t].[CreatedAt0], [t].[DateOfBirth], [t].[Email], [t].[EmailConfirmed], [t].[FullName], [t].[Gender], [t].[LockoutEnabled], [t].[LockoutEnd], [t].[NormalizedEmail], [t].[NormalizedUserName], [t].[PasswordHash], [t].[PhoneNumber], [t].[PhoneNumberConfirmed], [t].[RefreshToken], [t].[RefreshTokenExpiryTime], [t].[Role], [t].[SecurityStamp], [t].[TwoFactorEnabled], [t].[UpdatedAt0], [t].[UserName], [t].[SpecializationId0], [t].[CreatedAt1], [t].[Description], [t].[ImageURL0], [t].[Name], [t].[UpdatedAt1], [t0].[BranchesBranchId], [t0].[DoctorsDoctorId], [t0].[BranchId], [t0].[Address], [t0].[BranchName], [t0].[CreatedAt], [t0].[Description], [t0].[Email], [t0].[ImageURL], [t0].[Latitude], [t0].[Longitude], [t0].[Phone], [t0].[UpdatedAt], [s0].[ScheduleId], [s0].[BranchId], [s0].[CreatedAt], [s0].[DayOfWeek], [s0].[DoctorId], [s0].[EndTime], [s0].[Shift], [s0].[StartTime], [s0].[UpdatedAt]
+FROM (
+    SELECT TOP(1) [d].[DoctorId], [d].[Available], [d].[Biography], [d].[ConsultationFees], [d].[CreatedAt], [d].[ExperienceYears], [d].[ImageURL], [d].[SpecializationId], [d].[UpdatedAt], [d].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt] AS [CreatedAt0], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt] AS [UpdatedAt0], [u].[UserName], [s].[SpecializationId] AS [SpecializationId0], [s].[CreatedAt] AS [CreatedAt1], [s].[Description], [s].[ImageURL] AS [ImageURL0], [s].[Name], [s].[UpdatedAt] AS [UpdatedAt1]
+    FROM [Doctors] AS [d]
+    INNER JOIN [Users] AS [u] ON [d].[UserId] = [u].[Id]
+    INNER JOIN [Specializations] AS [s] ON [d].[SpecializationId] = [s].[SpecializationId]
+    WHERE [d].[DoctorId] = @__doctorId_0
+) AS [t]
+LEFT JOIN (
+    SELECT [d0].[BranchesBranchId], [d0].[DoctorsDoctorId], [b].[BranchId], [b].[Address], [b].[BranchName], [b].[CreatedAt], [b].[Description], [b].[Email], [b].[ImageURL], [b].[Latitude], [b].[Longitude], [b].[Phone], [b].[UpdatedAt]
+    FROM [DoctorBranches] AS [d0]
+    INNER JOIN [Branches] AS [b] ON [d0].[BranchesBranchId] = [b].[BranchId]
+) AS [t0] ON [t].[DoctorId] = [t0].[DoctorsDoctorId]
+LEFT JOIN [Schedules] AS [s0] ON [t].[DoctorId] = [s0].[DoctorId]
+ORDER BY [t].[DoctorId], [t].[Id], [t].[SpecializationId0], [t0].[BranchesBranchId], [t0].[DoctorsDoctorId], [t0].[BranchId]
+2025-11-30 01:21:26.126 +02:00 [INF] Executed DbCommand (62ms) [Parameters=[@__doctorId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[DoctorId], [t].[Available], [t].[Biography], [t].[ConsultationFees], [t].[CreatedAt], [t].[ExperienceYears], [t].[ImageURL], [t].[SpecializationId], [t].[UpdatedAt], [t].[UserId], [t].[Id], [t].[AccessFailedCount], [t].[ConcurrencyStamp], [t].[CreatedAt0], [t].[DateOfBirth], [t].[Email], [t].[EmailConfirmed], [t].[FullName], [t].[Gender], [t].[LockoutEnabled], [t].[LockoutEnd], [t].[NormalizedEmail], [t].[NormalizedUserName], [t].[PasswordHash], [t].[PhoneNumber], [t].[PhoneNumberConfirmed], [t].[RefreshToken], [t].[RefreshTokenExpiryTime], [t].[Role], [t].[SecurityStamp], [t].[TwoFactorEnabled], [t].[UpdatedAt0], [t].[UserName], [t].[SpecializationId0], [t].[CreatedAt1], [t].[Description], [t].[ImageURL0], [t].[Name], [t].[UpdatedAt1], [t0].[BranchesBranchId], [t0].[DoctorsDoctorId], [t0].[BranchId], [t0].[Address], [t0].[BranchName], [t0].[CreatedAt], [t0].[Description], [t0].[Email], [t0].[ImageURL], [t0].[Latitude], [t0].[Longitude], [t0].[Phone], [t0].[UpdatedAt], [s0].[ScheduleId], [s0].[BranchId], [s0].[CreatedAt], [s0].[DayOfWeek], [s0].[DoctorId], [s0].[EndTime], [s0].[Shift], [s0].[StartTime], [s0].[UpdatedAt]
+FROM (
+    SELECT TOP(1) [d].[DoctorId], [d].[Available], [d].[Biography], [d].[ConsultationFees], [d].[CreatedAt], [d].[ExperienceYears], [d].[ImageURL], [d].[SpecializationId], [d].[UpdatedAt], [d].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt] AS [CreatedAt0], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt] AS [UpdatedAt0], [u].[UserName], [s].[SpecializationId] AS [SpecializationId0], [s].[CreatedAt] AS [CreatedAt1], [s].[Description], [s].[ImageURL] AS [ImageURL0], [s].[Name], [s].[UpdatedAt] AS [UpdatedAt1]
+    FROM [Doctors] AS [d]
+    INNER JOIN [Users] AS [u] ON [d].[UserId] = [u].[Id]
+    INNER JOIN [Specializations] AS [s] ON [d].[SpecializationId] = [s].[SpecializationId]
+    WHERE [d].[DoctorId] = @__doctorId_0
+) AS [t]
+LEFT JOIN (
+    SELECT [d0].[BranchesBranchId], [d0].[DoctorsDoctorId], [b].[BranchId], [b].[Address], [b].[BranchName], [b].[CreatedAt], [b].[Description], [b].[Email], [b].[ImageURL], [b].[Latitude], [b].[Longitude], [b].[Phone], [b].[UpdatedAt]
+    FROM [DoctorBranches] AS [d0]
+    INNER JOIN [Branches] AS [b] ON [d0].[BranchesBranchId] = [b].[BranchId]
+) AS [t0] ON [t].[DoctorId] = [t0].[DoctorsDoctorId]
+LEFT JOIN [Schedules] AS [s0] ON [t].[DoctorId] = [s0].[DoctorId]
+ORDER BY [t].[DoctorId], [t].[Id], [t].[SpecializationId0], [t0].[BranchesBranchId], [t0].[DoctorsDoctorId], [t0].[BranchId]
+2025-11-30 01:21:26.183 +02:00 [DBG] Context 'AppDbContext' started tracking 'Doctor' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:21:26.234 +02:00 [DBG] The navigation 'Doctor.User' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:21:26.236 +02:00 [DBG] Context 'AppDbContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:21:26.269 +02:00 [DBG] The navigation 'Doctor.Specialization' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:21:26.273 +02:00 [DBG] Context 'AppDbContext' started tracking 'Specialization' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:21:26.296 +02:00 [DBG] Context 'AppDbContext' started tracking 'BranchDoctor' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:21:26.310 +02:00 [DBG] Context 'AppDbContext' started tracking 'Branch' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:21:26.325 +02:00 [DBG] The navigation 'Schedule.Doctor' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:21:26.326 +02:00 [DBG] Context 'AppDbContext' started tracking 'Schedule' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:21:26.341 +02:00 [DBG] Closing data reader to 'HospitalDB' on server '.'.
+2025-11-30 01:21:26.348 +02:00 [DBG] A data reader for 'HospitalDB' on server '.' is being disposed after spending 213ms reading results.
+2025-11-30 01:21:26.351 +02:00 [DBG] Closing connection to database 'HospitalDB' on server '.'.
+2025-11-30 01:21:26.357 +02:00 [DBG] Closed connection to database 'HospitalDB' on server '.' (5ms).
+2025-11-30 01:21:26.364 +02:00 [DBG] Compiling query expression: 
+'DbSet<Appointment>()
+    .Include(a => a.Patient)
+    .Include(a => a.Doctor)
+    .Include(a => a.Branch)
+    .Where(a => (int)a.Status == 3 && a.DoctorId == __doctorid_0)'
+2025-11-30 01:21:26.365 +02:00 [DBG] Including navigation: 'Appointment.Patient'.
+2025-11-30 01:21:26.366 +02:00 [DBG] Including navigation: 'Appointment.Doctor'.
+2025-11-30 01:21:26.368 +02:00 [DBG] Including navigation: 'Appointment.Branch'.
+2025-11-30 01:21:26.384 +02:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<Appointment>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.QueryExpression(
+        Client Projections:
+            0 -> Dictionary<IProperty, int> { [Property: Appointment.AppointmentId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Appointment.BranchId (int) Required FK Index, 1], [Property: Appointment.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 2], [Property: Appointment.CreatedBy (string) FK Index, 3], [Property: Appointment.Date (DateOnly) Required, 4], [Property: Appointment.DoctorId (int) Required FK Index, 5], [Property: Appointment.PatientId (int) Required FK Index, 6], [Property: Appointment.PaymentMethod (PaymentMethod) Required, 7], [Property: Appointment.Shift (AppointmentShift) Required MaxLength(20), 8], [Property: Appointment.Status (AppointmentStatus) Required MaxLength(20), 9], [Property: Appointment.UpdatedAt (DateTime) Required ValueGenerated.OnAdd, 10] }
+            1 -> Dictionary<IProperty, int> { [Property: Patient.PatientId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 11], [Property: Patient.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 12], [Property: Patient.EmergencyContact (string) MaxLength(150), 13], [Property: Patient.UpdatedAt (DateTime) Required ValueGenerated.OnAdd, 14], [Property: Patient.UserId (string) Required FK Index, 15] }
+            2 -> Dictionary<IProperty, int> { [Property: Doctor.DoctorId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 16], [Property: Doctor.Available (bool?), 17], [Property: Doctor.Biography (string), 18], [Property: Doctor.ConsultationFees (decimal) Required, 19], [Property: Doctor.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 20], [Property: Doctor.ExperienceYears (int?), 21], [Property: Doctor.ImageURL (string) MaxLength(300), 22], [Property: Doctor.SpecializationId (int) Required FK Index, 23], [Property: Doctor.UpdatedAt (DateTime) Required ValueGenerated.OnAdd, 24], [Property: Doctor.UserId (string) Required FK Index, 25] }
+            3 -> Dictionary<IProperty, int> { [Property: Branch.BranchId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 26], [Property: Branch.Address (string) MaxLength(250), 27], [Property: Branch.BranchName (string) Required MaxLength(150), 28], [Property: Branch.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 29], [Property: Branch.Description (string), 30], [Property: Branch.Email (string) MaxLength(200), 31], [Property: Branch.ImageURL (string) MaxLength(300), 32], [Property: Branch.Latitude (double?), 33], [Property: Branch.Longitude (double?), 34], [Property: Branch.Phone (string) MaxLength(25), 35], [Property: Branch.UpdatedAt (DateTime) Required ValueGenerated.OnAdd, 36] }
+        SELECT a.AppointmentId, a.BranchId, a.CreatedAt, a.CreatedBy, a.Date, a.DoctorId, a.PatientId, a.PaymentMethod, a.Shift, a.Status, a.UpdatedAt, p.PatientId, p.CreatedAt, p.EmergencyContact, p.UpdatedAt, p.UserId, d.DoctorId, d.Available, d.Biography, d.ConsultationFees, d.CreatedAt, d.ExperienceYears, d.ImageURL, d.SpecializationId, d.UpdatedAt, d.UserId, b.BranchId, b.Address, b.BranchName, b.CreatedAt, b.Description, b.Email, b.ImageURL, b.Latitude, b.Longitude, b.Phone, b.UpdatedAt
+        FROM Appointments AS a
+        INNER JOIN Patients AS p ON a.PatientId == p.PatientId
+        INNER JOIN Doctors AS d ON a.DoctorId == d.DoctorId
+        INNER JOIN Branches AS b ON a.BranchId == b.BranchId
+        WHERE (a.Status == N'Completed') && (a.DoctorId == @__doctorid_0)), 
+    null, 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Appointment>, 
+    Clinic.Infrastructure.Persistence.AppDbContext, 
+    False, 
+    False, 
+    True
+)'
+2025-11-30 01:21:26.391 +02:00 [DBG] Opening connection to database 'HospitalDB' on server '.'.
+2025-11-30 01:21:26.392 +02:00 [DBG] Opened connection to database 'HospitalDB' on server '.'.
+2025-11-30 01:21:26.393 +02:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-11-30 01:21:26.393 +02:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-11-30 01:21:26.394 +02:00 [DBG] Initialized DbCommand for 'ExecuteReader' (1ms).
+2025-11-30 01:21:26.395 +02:00 [DBG] Executing DbCommand [Parameters=[@__doctorid_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[AppointmentId], [a].[BranchId], [a].[CreatedAt], [a].[CreatedBy], [a].[Date], [a].[DoctorId], [a].[PatientId], [a].[PaymentMethod], [a].[Shift], [a].[Status], [a].[UpdatedAt], [p].[PatientId], [p].[CreatedAt], [p].[EmergencyContact], [p].[UpdatedAt], [p].[UserId], [d].[DoctorId], [d].[Available], [d].[Biography], [d].[ConsultationFees], [d].[CreatedAt], [d].[ExperienceYears], [d].[ImageURL], [d].[SpecializationId], [d].[UpdatedAt], [d].[UserId], [b].[BranchId], [b].[Address], [b].[BranchName], [b].[CreatedAt], [b].[Description], [b].[Email], [b].[ImageURL], [b].[Latitude], [b].[Longitude], [b].[Phone], [b].[UpdatedAt]
+FROM [Appointments] AS [a]
+INNER JOIN [Patients] AS [p] ON [a].[PatientId] = [p].[PatientId]
+INNER JOIN [Doctors] AS [d] ON [a].[DoctorId] = [d].[DoctorId]
+INNER JOIN [Branches] AS [b] ON [a].[BranchId] = [b].[BranchId]
+WHERE [a].[Status] = N'Completed' AND [a].[DoctorId] = @__doctorid_0
+2025-11-30 01:21:26.404 +02:00 [INF] Executed DbCommand (8ms) [Parameters=[@__doctorid_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[AppointmentId], [a].[BranchId], [a].[CreatedAt], [a].[CreatedBy], [a].[Date], [a].[DoctorId], [a].[PatientId], [a].[PaymentMethod], [a].[Shift], [a].[Status], [a].[UpdatedAt], [p].[PatientId], [p].[CreatedAt], [p].[EmergencyContact], [p].[UpdatedAt], [p].[UserId], [d].[DoctorId], [d].[Available], [d].[Biography], [d].[ConsultationFees], [d].[CreatedAt], [d].[ExperienceYears], [d].[ImageURL], [d].[SpecializationId], [d].[UpdatedAt], [d].[UserId], [b].[BranchId], [b].[Address], [b].[BranchName], [b].[CreatedAt], [b].[Description], [b].[Email], [b].[ImageURL], [b].[Latitude], [b].[Longitude], [b].[Phone], [b].[UpdatedAt]
+FROM [Appointments] AS [a]
+INNER JOIN [Patients] AS [p] ON [a].[PatientId] = [p].[PatientId]
+INNER JOIN [Doctors] AS [d] ON [a].[DoctorId] = [d].[DoctorId]
+INNER JOIN [Branches] AS [b] ON [a].[BranchId] = [b].[BranchId]
+WHERE [a].[Status] = N'Completed' AND [a].[DoctorId] = @__doctorid_0
+2025-11-30 01:21:26.414 +02:00 [DBG] The navigation 'Appointment.Doctor' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:21:26.414 +02:00 [DBG] Context 'AppDbContext' started tracking 'Appointment' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:21:26.428 +02:00 [DBG] The navigation 'Appointment.Patient' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:21:26.432 +02:00 [DBG] Context 'AppDbContext' started tracking 'Patient' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:21:26.438 +02:00 [DBG] The navigation 'Appointment.Doctor' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:21:26.439 +02:00 [DBG] Context 'AppDbContext' started tracking 'Appointment' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:21:26.440 +02:00 [DBG] The navigation 'Appointment.Patient' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:21:26.440 +02:00 [DBG] Context 'AppDbContext' started tracking 'Patient' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:21:26.441 +02:00 [DBG] Closing data reader to 'HospitalDB' on server '.'.
+2025-11-30 01:21:26.442 +02:00 [DBG] A data reader for 'HospitalDB' on server '.' is being disposed after spending 37ms reading results.
+2025-11-30 01:21:26.444 +02:00 [DBG] Closing connection to database 'HospitalDB' on server '.'.
+2025-11-30 01:21:26.445 +02:00 [DBG] Closed connection to database 'HospitalDB' on server '.' (0ms).
+2025-11-30 01:21:26.458 +02:00 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2025-11-30 01:21:26.462 +02:00 [DBG] No information found on request to perform content negotiation.
+2025-11-30 01:21:26.463 +02:00 [DBG] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2025-11-30 01:21:26.464 +02:00 [DBG] Attempting to select the first formatter in the output formatters list which can write the result.
+2025-11-30 01:21:26.465 +02:00 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2025-11-30 01:21:26.466 +02:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Hospital.Application.DTO.Appointment.AppoinmentandPaientDetaliesDto, Hospital.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-30 01:21:26.494 +02:00 [INF] Executed action Hospital.API.Controllers.AppointmentController.GetAllCompletedByDoctorId (Hospital) in 2167.039ms
+2025-11-30 01:21:26.496 +02:00 [INF] Executed endpoint 'Hospital.API.Controllers.AppointmentController.GetAllCompletedByDoctorId (Hospital)'
+2025-11-30 01:21:26.499 +02:00 [DBG] 'AppDbContext' disposed.
+2025-11-30 01:21:26.503 +02:00 [DBG] Disposing connection to database 'HospitalDB' on server '.'.
+2025-11-30 01:21:26.504 +02:00 [DBG] Disposed connection to database '' on server '' (1ms).
+2025-11-30 01:21:26.506 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7217/api/Appointment/GetAllCompletedByDoctorId/1 - 200 null application/json; charset=utf-8 2259.8969ms
+2025-11-30 01:21:42.450 +02:00 [DBG] Connection id "0HNHFJNV8JSA3" accepted.
+2025-11-30 01:21:42.450 +02:00 [DBG] Connection id "0HNHFJNV8JSA3" received FIN.
+2025-11-30 01:21:42.451 +02:00 [DBG] Connection id "0HNHFJNV8JSA3" started.
+2025-11-30 01:21:42.452 +02:00 [DBG] Connection id "0HNHFJNV8JSA4" accepted.
+2025-11-30 01:21:42.454 +02:00 [DBG] Failed to authenticate HTTPS connection.
+System.IO.IOException: Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.ReceiveHandshakeFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ProcessAuthenticationWithTelemetryAsync(Boolean isAsync, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+2025-11-30 01:21:42.454 +02:00 [DBG] Connection id "0HNHFJNV8JSA4" started.
+2025-11-30 01:21:42.458 +02:00 [DBG] Connection id "0HNHFJNV8JSA3" stopped.
+2025-11-30 01:21:42.460 +02:00 [DBG] Connection id "0HNHFJNV8JSA3" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-11-30 01:21:42.465 +02:00 [DBG] Connection 0HNHFJNV8JSA4 established using the following protocol: "Tls12"
+2025-11-30 01:21:42.470 +02:00 [INF] Request starting HTTP/1.1 GET https://localhost:7217/api/Appointment/GetAllCompleted - null null
+2025-11-30 01:21:42.473 +02:00 [DBG] 1 candidate(s) found for the request path '/api/Appointment/GetAllCompleted'
+2025-11-30 01:21:42.474 +02:00 [DBG] Endpoint 'Hospital.API.Controllers.AppointmentController.GetCompletedAppointment (Hospital)' with route pattern 'api/Appointment/GetAllCompleted' is valid for the request path '/api/Appointment/GetAllCompleted'
+2025-11-30 01:21:42.475 +02:00 [DBG] Request matched endpoint 'Hospital.API.Controllers.AppointmentController.GetCompletedAppointment (Hospital)'
+2025-11-30 01:21:42.476 +02:00 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-11-30 01:21:42.477 +02:00 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-11-30 01:21:42.479 +02:00 [INF] Executing endpoint 'Hospital.API.Controllers.AppointmentController.GetCompletedAppointment (Hospital)'
+2025-11-30 01:21:42.482 +02:00 [INF] Route matched with {action = "GetCompletedAppointment", controller = "Appointment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCompletedAppointment() on controller Hospital.API.Controllers.AppointmentController (Hospital).
+2025-11-30 01:21:42.484 +02:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-11-30 01:21:42.485 +02:00 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2025-11-30 01:21:42.486 +02:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-11-30 01:21:42.487 +02:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-11-30 01:21:42.487 +02:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-11-30 01:21:42.488 +02:00 [DBG] Executing controller factory for controller Hospital.API.Controllers.AppointmentController (Hospital)
+2025-11-30 01:21:42.491 +02:00 [DBG] Executed controller factory for controller Hospital.API.Controllers.AppointmentController (Hospital)
+2025-11-30 01:21:42.492 +02:00 [INF] Get All Completed Appointments called at "2025-11-30T01:21:42.4926673+02:00"
+2025-11-30 01:21:42.493 +02:00 [INF] Fetching All Completed Appointments
+2025-11-30 01:21:42.529 +02:00 [DBG] Entity Framework Core 8.0.21 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.21' with options: None
+2025-11-30 01:21:42.534 +02:00 [DBG] Compiling query expression: 
+'DbSet<Appointment>()
+    .Include(a => a.Patient)
+    .ThenInclude(a => a.User)
+    .Include(a => a.Doctor)
+    .Include(a => a.Branch)
+    .Where(a => (int)a.Status == 3)'
+2025-11-30 01:21:42.536 +02:00 [DBG] Including navigation: 'Appointment.Patient'.
+2025-11-30 01:21:42.537 +02:00 [DBG] Including navigation: 'Patient.User'.
+2025-11-30 01:21:42.538 +02:00 [DBG] Including navigation: 'Appointment.Doctor'.
+2025-11-30 01:21:42.539 +02:00 [DBG] Including navigation: 'Appointment.Branch'.
+2025-11-30 01:21:42.554 +02:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<Appointment>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.QueryExpression(
+        Client Projections:
+            0 -> Dictionary<IProperty, int> { [Property: Appointment.AppointmentId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Appointment.BranchId (int) Required FK Index, 1], [Property: Appointment.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 2], [Property: Appointment.CreatedBy (string) FK Index, 3], [Property: Appointment.Date (DateOnly) Required, 4], [Property: Appointment.DoctorId (int) Required FK Index, 5], [Property: Appointment.PatientId (int) Required FK Index, 6], [Property: Appointment.PaymentMethod (PaymentMethod) Required, 7], [Property: Appointment.Shift (AppointmentShift) Required MaxLength(20), 8], [Property: Appointment.Status (AppointmentStatus) Required MaxLength(20), 9], [Property: Appointment.UpdatedAt (DateTime) Required ValueGenerated.OnAdd, 10] }
+            1 -> Dictionary<IProperty, int> { [Property: Patient.PatientId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 11], [Property: Patient.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 12], [Property: Patient.EmergencyContact (string) MaxLength(150), 13], [Property: Patient.UpdatedAt (DateTime) Required ValueGenerated.OnAdd, 14], [Property: Patient.UserId (string) Required FK Index, 15] }
+            2 -> Dictionary<IProperty, int> { [Property: User.Id (string) Required PK AfterSave:Throw, 16], [Property: User.AccessFailedCount (int) Required, 17], [Property: User.ConcurrencyStamp (string) Concurrency, 18], [Property: User.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 19], [Property: User.DateOfBirth (DateOnly?), 20], [Property: User.Email (string) Index MaxLength(256), 21], [Property: User.EmailConfirmed (bool) Required, 22], [Property: User.FullName (string) Required MaxLength(150), 23], [Property: User.Gender (GenderType?) MaxLength(10), 24], [Property: User.LockoutEnabled (bool) Required, 25], [Property: User.LockoutEnd (DateTimeOffset?), 26], [Property: User.NormalizedEmail (string) Index MaxLength(256), 27], [Property: User.NormalizedUserName (string) Index MaxLength(256), 28], [Property: User.PasswordHash (string), 29], [Property: User.PhoneNumber (string), 30], [Property: User.PhoneNumberConfirmed (bool) Required, 31], [Property: User.RefreshToken (string), 32], [Property: User.RefreshTokenExpiryTime (DateTime) Required, 33], [Property: User.Role (string) Required MaxLength(50), 34], [Property: User.SecurityStamp (string), 35], [Property: User.TwoFactorEnabled (bool) Required, 36], [Property: User.UpdatedAt (DateTime) Required ValueGenerated.OnAdd, 37], [Property: User.UserName (string) MaxLength(256), 38] }
+            3 -> Dictionary<IProperty, int> { [Property: Doctor.DoctorId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 39], [Property: Doctor.Available (bool?), 40], [Property: Doctor.Biography (string), 41], [Property: Doctor.ConsultationFees (decimal) Required, 42], [Property: Doctor.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 43], [Property: Doctor.ExperienceYears (int?), 44], [Property: Doctor.ImageURL (string) MaxLength(300), 45], [Property: Doctor.SpecializationId (int) Required FK Index, 46], [Property: Doctor.UpdatedAt (DateTime) Required ValueGenerated.OnAdd, 47], [Property: Doctor.UserId (string) Required FK Index, 48] }
+            4 -> Dictionary<IProperty, int> { [Property: Branch.BranchId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 49], [Property: Branch.Address (string) MaxLength(250), 50], [Property: Branch.BranchName (string) Required MaxLength(150), 51], [Property: Branch.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 52], [Property: Branch.Description (string), 53], [Property: Branch.Email (string) MaxLength(200), 54], [Property: Branch.ImageURL (string) MaxLength(300), 55], [Property: Branch.Latitude (double?), 56], [Property: Branch.Longitude (double?), 57], [Property: Branch.Phone (string) MaxLength(25), 58], [Property: Branch.UpdatedAt (DateTime) Required ValueGenerated.OnAdd, 59] }
+        SELECT a.AppointmentId, a.BranchId, a.CreatedAt, a.CreatedBy, a.Date, a.DoctorId, a.PatientId, a.PaymentMethod, a.Shift, a.Status, a.UpdatedAt, p.PatientId, p.CreatedAt, p.EmergencyContact, p.UpdatedAt, p.UserId, u.Id, u.AccessFailedCount, u.ConcurrencyStamp, u.CreatedAt, u.DateOfBirth, u.Email, u.EmailConfirmed, u.FullName, u.Gender, u.LockoutEnabled, u.LockoutEnd, u.NormalizedEmail, u.NormalizedUserName, u.PasswordHash, u.PhoneNumber, u.PhoneNumberConfirmed, u.RefreshToken, u.RefreshTokenExpiryTime, u.Role, u.SecurityStamp, u.TwoFactorEnabled, u.UpdatedAt, u.UserName, d.DoctorId, d.Available, d.Biography, d.ConsultationFees, d.CreatedAt, d.ExperienceYears, d.ImageURL, d.SpecializationId, d.UpdatedAt, d.UserId, b.BranchId, b.Address, b.BranchName, b.CreatedAt, b.Description, b.Email, b.ImageURL, b.Latitude, b.Longitude, b.Phone, b.UpdatedAt
+        FROM Appointments AS a
+        INNER JOIN Patients AS p ON a.PatientId == p.PatientId
+        INNER JOIN Users AS u ON p.UserId == u.Id
+        INNER JOIN Doctors AS d ON a.DoctorId == d.DoctorId
+        INNER JOIN Branches AS b ON a.BranchId == b.BranchId
+        WHERE a.Status == N'Completed'), 
+    null, 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Appointment>, 
+    Clinic.Infrastructure.Persistence.AppDbContext, 
+    False, 
+    False, 
+    True
+)'
+2025-11-30 01:21:42.559 +02:00 [DBG] Creating DbConnection.
+2025-11-30 01:21:42.560 +02:00 [DBG] Created DbConnection. (0ms).
+2025-11-30 01:21:42.560 +02:00 [DBG] Opening connection to database 'HospitalDB' on server '.'.
+2025-11-30 01:21:42.562 +02:00 [DBG] Opened connection to database 'HospitalDB' on server '.'.
+2025-11-30 01:21:42.562 +02:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-11-30 01:21:42.563 +02:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-11-30 01:21:42.564 +02:00 [DBG] Initialized DbCommand for 'ExecuteReader' (1ms).
+2025-11-30 01:21:42.565 +02:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[AppointmentId], [a].[BranchId], [a].[CreatedAt], [a].[CreatedBy], [a].[Date], [a].[DoctorId], [a].[PatientId], [a].[PaymentMethod], [a].[Shift], [a].[Status], [a].[UpdatedAt], [p].[PatientId], [p].[CreatedAt], [p].[EmergencyContact], [p].[UpdatedAt], [p].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName], [d].[DoctorId], [d].[Available], [d].[Biography], [d].[ConsultationFees], [d].[CreatedAt], [d].[ExperienceYears], [d].[ImageURL], [d].[SpecializationId], [d].[UpdatedAt], [d].[UserId], [b].[BranchId], [b].[Address], [b].[BranchName], [b].[CreatedAt], [b].[Description], [b].[Email], [b].[ImageURL], [b].[Latitude], [b].[Longitude], [b].[Phone], [b].[UpdatedAt]
+FROM [Appointments] AS [a]
+INNER JOIN [Patients] AS [p] ON [a].[PatientId] = [p].[PatientId]
+INNER JOIN [Users] AS [u] ON [p].[UserId] = [u].[Id]
+INNER JOIN [Doctors] AS [d] ON [a].[DoctorId] = [d].[DoctorId]
+INNER JOIN [Branches] AS [b] ON [a].[BranchId] = [b].[BranchId]
+WHERE [a].[Status] = N'Completed'
+2025-11-30 01:21:42.574 +02:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[AppointmentId], [a].[BranchId], [a].[CreatedAt], [a].[CreatedBy], [a].[Date], [a].[DoctorId], [a].[PatientId], [a].[PaymentMethod], [a].[Shift], [a].[Status], [a].[UpdatedAt], [p].[PatientId], [p].[CreatedAt], [p].[EmergencyContact], [p].[UpdatedAt], [p].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName], [d].[DoctorId], [d].[Available], [d].[Biography], [d].[ConsultationFees], [d].[CreatedAt], [d].[ExperienceYears], [d].[ImageURL], [d].[SpecializationId], [d].[UpdatedAt], [d].[UserId], [b].[BranchId], [b].[Address], [b].[BranchName], [b].[CreatedAt], [b].[Description], [b].[Email], [b].[ImageURL], [b].[Latitude], [b].[Longitude], [b].[Phone], [b].[UpdatedAt]
+FROM [Appointments] AS [a]
+INNER JOIN [Patients] AS [p] ON [a].[PatientId] = [p].[PatientId]
+INNER JOIN [Users] AS [u] ON [p].[UserId] = [u].[Id]
+INNER JOIN [Doctors] AS [d] ON [a].[DoctorId] = [d].[DoctorId]
+INNER JOIN [Branches] AS [b] ON [a].[BranchId] = [b].[BranchId]
+WHERE [a].[Status] = N'Completed'
+2025-11-30 01:21:42.577 +02:00 [DBG] Context 'AppDbContext' started tracking 'Appointment' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:21:42.579 +02:00 [DBG] The navigation 'Appointment.Patient' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:21:42.579 +02:00 [DBG] Context 'AppDbContext' started tracking 'Patient' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:21:42.582 +02:00 [DBG] The navigation 'Patient.User' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:21:42.583 +02:00 [DBG] Context 'AppDbContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:21:42.584 +02:00 [DBG] The navigation 'Appointment.Doctor' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:21:42.584 +02:00 [DBG] Context 'AppDbContext' started tracking 'Doctor' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:21:42.585 +02:00 [DBG] The navigation 'Appointment.Branch' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:21:42.586 +02:00 [DBG] Context 'AppDbContext' started tracking 'Branch' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:21:42.586 +02:00 [DBG] The navigation 'Appointment.Doctor' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:21:42.587 +02:00 [DBG] Context 'AppDbContext' started tracking 'Appointment' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:21:42.588 +02:00 [DBG] The navigation 'Appointment.Patient' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:21:42.589 +02:00 [DBG] Context 'AppDbContext' started tracking 'Patient' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:21:42.590 +02:00 [DBG] The navigation 'Patient.User' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:21:42.590 +02:00 [DBG] Context 'AppDbContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:21:42.591 +02:00 [DBG] Closing data reader to 'HospitalDB' on server '.'.
+2025-11-30 01:21:42.592 +02:00 [DBG] A data reader for 'HospitalDB' on server '.' is being disposed after spending 15ms reading results.
+2025-11-30 01:21:42.593 +02:00 [DBG] Closing connection to database 'HospitalDB' on server '.'.
+2025-11-30 01:21:42.595 +02:00 [DBG] Closed connection to database 'HospitalDB' on server '.' (1ms).
+2025-11-30 01:21:42.597 +02:00 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2025-11-30 01:21:42.598 +02:00 [DBG] No information found on request to perform content negotiation.
+2025-11-30 01:21:42.599 +02:00 [DBG] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2025-11-30 01:21:42.599 +02:00 [DBG] Attempting to select the first formatter in the output formatters list which can write the result.
+2025-11-30 01:21:42.600 +02:00 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2025-11-30 01:21:42.601 +02:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Hospital.Application.DTO.Appointment.AppoinmentandPaientDetaliesDto, Hospital.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-30 01:21:42.603 +02:00 [INF] Executed action Hospital.API.Controllers.AppointmentController.GetCompletedAppointment (Hospital) in 114.6042ms
+2025-11-30 01:21:42.604 +02:00 [INF] Executed endpoint 'Hospital.API.Controllers.AppointmentController.GetCompletedAppointment (Hospital)'
+2025-11-30 01:21:42.604 +02:00 [DBG] Connection id "0HNHFJNV8JSA4" completed keep alive response.
+2025-11-30 01:21:42.605 +02:00 [DBG] 'AppDbContext' disposed.
+2025-11-30 01:21:42.605 +02:00 [DBG] Disposing connection to database 'HospitalDB' on server '.'.
+2025-11-30 01:21:42.606 +02:00 [DBG] Disposed connection to database '' on server '' (0ms).
+2025-11-30 01:21:42.607 +02:00 [INF] Request finished HTTP/1.1 GET https://localhost:7217/api/Appointment/GetAllCompleted - 200 null application/json; charset=utf-8 137.5795ms
+2025-11-30 01:22:12.382 +02:00 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2025-11-30 01:22:12.475 +02:00 [DBG] Hosting starting
+2025-11-30 01:22:12.497 +02:00 [INF] User profile is available. Using 'C:\Users\E-Mad\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-11-30 01:22:12.504 +02:00 [DBG] Reading data from file 'C:\Users\E-Mad\AppData\Local\ASP.NET\DataProtection-Keys\key-b85f0939-0825-4b2b-b21a-67409aec9db0.xml'.
+2025-11-30 01:22:12.511 +02:00 [DBG] Found key {b85f0939-0825-4b2b-b21a-67409aec9db0}.
+2025-11-30 01:22:12.518 +02:00 [DBG] Considering key {b85f0939-0825-4b2b-b21a-67409aec9db0} with expiration date 2026-02-09 12:52:20Z as default key.
+2025-11-30 01:22:12.522 +02:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2025-11-30 01:22:12.524 +02:00 [DBG] Decrypting secret element using Windows DPAPI.
+2025-11-30 01:22:12.526 +02:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2025-11-30 01:22:12.531 +02:00 [DBG] Opening CNG algorithm 'AES' from provider 'null' with chaining mode CBC.
+2025-11-30 01:22:12.532 +02:00 [DBG] Opening CNG algorithm 'SHA256' from provider 'null' with HMAC.
+2025-11-30 01:22:12.533 +02:00 [DBG] Using key {b85f0939-0825-4b2b-b21a-67409aec9db0} as the default key.
+2025-11-30 01:22:12.534 +02:00 [DBG] Key ring with default key {b85f0939-0825-4b2b-b21a-67409aec9db0} was loaded during application startup.
+2025-11-30 01:22:12.538 +02:00 [DBG] Middleware loaded
+2025-11-30 01:22:12.540 +02:00 [DBG] Middleware loaded. Script /_framework/aspnetcore-browser-refresh.js (16501 B).
+2025-11-30 01:22:12.541 +02:00 [DBG] Middleware loaded. Script /_framework/blazor-hotreload.js (799 B).
+2025-11-30 01:22:12.607 +02:00 [DBG] Middleware loaded: DOTNET_MODIFIABLE_ASSEMBLIES=debug, __ASPNETCORE_BROWSER_TOOLS=true
+2025-11-30 01:22:12.677 +02:00 [INF] Now listening on: https://localhost:7217
+2025-11-30 01:22:12.678 +02:00 [INF] Now listening on: http://localhost:5163
+2025-11-30 01:22:12.679 +02:00 [DBG] Loaded hosting startup assembly Hospital
+2025-11-30 01:22:12.679 +02:00 [DBG] Loaded hosting startup assembly Microsoft.WebTools.ApiEndpointDiscovery
+2025-11-30 01:22:12.680 +02:00 [DBG] Loaded hosting startup assembly Microsoft.AspNetCore.Watch.BrowserRefresh
+2025-11-30 01:22:12.681 +02:00 [DBG] Loaded hosting startup assembly Microsoft.WebTools.BrowserLink.Net
+2025-11-30 01:22:12.731 +02:00 [DBG] Connection id "0HNHFJOG5KI82" accepted.
+2025-11-30 01:22:12.733 +02:00 [DBG] Connection id "0HNHFJOG5KI82" started.
+2025-11-30 01:22:12.740 +02:00 [DBG] Connection id "0HNHFJOG5KI83" accepted.
+2025-11-30 01:22:12.740 +02:00 [DBG] Connection id "0HNHFJOG5KI83" started.
+2025-11-30 01:22:12.756 +02:00 [DBG] Connection id "0HNHFJOG5KI83" received FIN.
+2025-11-30 01:22:12.756 +02:00 [DBG] Connection id "0HNHFJOG5KI82" received FIN.
+2025-11-30 01:22:12.757 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-30 01:22:12.764 +02:00 [INF] Hosting environment: Development
+2025-11-30 01:22:12.764 +02:00 [INF] Content root path: D:\Walaa\GP\Hospital\Hospital
+2025-11-30 01:22:12.765 +02:00 [DBG] Hosting started
+2025-11-30 01:22:12.769 +02:00 [DBG] Failed to authenticate HTTPS connection.
+System.IO.IOException: Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.ReceiveHandshakeFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ProcessAuthenticationWithTelemetryAsync(Boolean isAsync, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+2025-11-30 01:22:12.769 +02:00 [DBG] Failed to authenticate HTTPS connection.
+System.IO.IOException: Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.ReceiveHandshakeFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ProcessAuthenticationWithTelemetryAsync(Boolean isAsync, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+2025-11-30 01:22:12.798 +02:00 [DBG] Connection id "0HNHFJOG5KI83" stopped.
+2025-11-30 01:22:12.799 +02:00 [DBG] Connection id "0HNHFJOG5KI82" stopped.
+2025-11-30 01:22:12.802 +02:00 [DBG] Connection id "0HNHFJOG5KI83" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-11-30 01:22:12.802 +02:00 [DBG] Connection id "0HNHFJOG5KI82" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-11-30 01:22:12.899 +02:00 [DBG] Connection id "0HNHFJOG5KI84" accepted.
+2025-11-30 01:22:12.900 +02:00 [DBG] Connection id "0HNHFJOG5KI84" started.
+2025-11-30 01:22:12.949 +02:00 [DBG] Connection 0HNHFJOG5KI84 established using the following protocol: "Tls12"
+2025-11-30 01:22:12.998 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7217/swagger/index.html - null null
+2025-11-30 01:22:13.059 +02:00 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2025-11-30 01:22:13.082 +02:00 [DBG] No candidates found for the request path '/swagger/index.html'
+2025-11-30 01:22:13.084 +02:00 [DBG] Request did not match any endpoints
+2025-11-30 01:22:13.121 +02:00 [DBG] Response markup is scheduled to include Browser Link script injection.
+2025-11-30 01:22:13.124 +02:00 [DBG] Response markup is scheduled to include browser refresh script injection.
+2025-11-30 01:22:13.135 +02:00 [DBG] Response markup was updated to include Browser Link script injection.
+2025-11-30 01:22:13.135 +02:00 [DBG] Response markup was updated to include browser refresh script injection.
+2025-11-30 01:22:13.137 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7217/swagger/index.html - 200 null text/html;charset=utf-8 145.6882ms
+2025-11-30 01:22:13.153 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7217/_vs/browserLink - null null
+2025-11-30 01:22:13.153 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7217/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-30 01:22:13.167 +02:00 [DBG] Script injected: /_framework/aspnetcore-browser-refresh.js
+2025-11-30 01:22:13.168 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7217/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 15.3101ms
+2025-11-30 01:22:13.194 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7217/_vs/browserLink - 200 null text/javascript; charset=UTF-8 40.9762ms
+2025-11-30 01:22:13.248 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7217/swagger/v1/swagger.json - null null
+2025-11-30 01:22:13.250 +02:00 [DBG] No candidates found for the request path '/swagger/v1/swagger.json'
+2025-11-30 01:22:13.251 +02:00 [DBG] Request did not match any endpoints
+2025-11-30 01:22:13.280 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7217/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 31.5579ms
+2025-11-30 01:22:20.262 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7217/api/Appointment/GetAllCompletedByDoctorId/1 - null null
+2025-11-30 01:22:20.270 +02:00 [DBG] 1 candidate(s) found for the request path '/api/Appointment/GetAllCompletedByDoctorId/1'
+2025-11-30 01:22:20.275 +02:00 [DBG] Endpoint 'Hospital.API.Controllers.AppointmentController.GetAllCompletedByDoctorId (Hospital)' with route pattern 'api/Appointment/GetAllCompletedByDoctorId/{doctorid}' is valid for the request path '/api/Appointment/GetAllCompletedByDoctorId/1'
+2025-11-30 01:22:20.279 +02:00 [DBG] Request matched endpoint 'Hospital.API.Controllers.AppointmentController.GetAllCompletedByDoctorId (Hospital)'
+2025-11-30 01:22:20.282 +02:00 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-11-30 01:22:20.313 +02:00 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-11-30 01:22:20.315 +02:00 [INF] Executing endpoint 'Hospital.API.Controllers.AppointmentController.GetAllCompletedByDoctorId (Hospital)'
+2025-11-30 01:22:20.339 +02:00 [INF] Route matched with {action = "GetAllCompletedByDoctorId", controller = "Appointment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllCompletedByDoctorId(Int32) on controller Hospital.API.Controllers.AppointmentController (Hospital).
+2025-11-30 01:22:20.342 +02:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-11-30 01:22:20.343 +02:00 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2025-11-30 01:22:20.345 +02:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-11-30 01:22:20.347 +02:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-11-30 01:22:20.347 +02:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-11-30 01:22:20.350 +02:00 [DBG] Executing controller factory for controller Hospital.API.Controllers.AppointmentController (Hospital)
+2025-11-30 01:22:20.460 +02:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2025-11-30 01:22:20.705 +02:00 [DBG] Executed controller factory for controller Hospital.API.Controllers.AppointmentController (Hospital)
+2025-11-30 01:22:20.715 +02:00 [DBG] Attempting to bind parameter 'doctorid' of type 'System.Int32' ...
+2025-11-30 01:22:20.718 +02:00 [DBG] Attempting to bind parameter 'doctorid' of type 'System.Int32' using the name 'doctorid' in request data ...
+2025-11-30 01:22:20.719 +02:00 [DBG] Done attempting to bind parameter 'doctorid' of type 'System.Int32'.
+2025-11-30 01:22:20.720 +02:00 [DBG] Done attempting to bind parameter 'doctorid' of type 'System.Int32'.
+2025-11-30 01:22:20.721 +02:00 [DBG] Attempting to validate the bound parameter 'doctorid' of type 'System.Int32' ...
+2025-11-30 01:22:20.724 +02:00 [DBG] Done attempting to validate the bound parameter 'doctorid' of type 'System.Int32'.
+2025-11-30 01:22:20.728 +02:00 [INF] Get All Completed Appointments called at "2025-11-30T01:22:20.7282251+02:00"
+2025-11-30 01:22:20.731 +02:00 [INF] Fetching All Completed Appointments
+2025-11-30 01:22:21.276 +02:00 [DBG] The index {'BranchesBranchId'} was not created on entity type 'BranchDoctor (Dictionary<string, object>)' as the properties are already covered by the index {'BranchesBranchId', 'DoctorsDoctorId'}.
+2025-11-30 01:22:21.278 +02:00 [DBG] The index {'BranchId'} was not created on entity type 'BranchService (Dictionary<string, object>)' as the properties are already covered by the index {'BranchId', 'ServiceId'}.
+2025-11-30 01:22:21.279 +02:00 [DBG] The index {'BranchId'} was not created on entity type 'BranchSpecialization (Dictionary<string, object>)' as the properties are already covered by the index {'BranchId', 'SpecializationId'}.
+2025-11-30 01:22:21.281 +02:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserRole<string>' as the properties are already covered by the index {'UserId', 'RoleId'}.
+2025-11-30 01:22:21.282 +02:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserToken<string>' as the properties are already covered by the index {'UserId', 'LoginProvider', 'Name'}.
+2025-11-30 01:22:21.401 +02:00 [DBG] The property 'BranchDoctor (Dictionary<string, object>).BranchesBranchId' was created in shadow state because there are no eligible CLR members with a matching name.
+2025-11-30 01:22:21.404 +02:00 [DBG] The property 'BranchDoctor (Dictionary<string, object>).DoctorsDoctorId' was created in shadow state because there are no eligible CLR members with a matching name.
+2025-11-30 01:22:21.572 +02:00 [DBG] Entity Framework Core 8.0.21 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.21' with options: None
+2025-11-30 01:22:21.633 +02:00 [DBG] Compiling query expression: 
+'DbSet<Doctor>()
+    .Include(d => d.User)
+    .Include(d => d.Specialization)
+    .Include(d => d.Branches)
+    .Include(d => d.Schedules)
+    .Include(d => d.Branches)
+    .FirstOrDefault(d => d.DoctorId == __doctorId_0)'
+2025-11-30 01:22:21.690 +02:00 [DBG] Including navigation: 'Doctor.User'.
+2025-11-30 01:22:21.694 +02:00 [DBG] Including navigation: 'Doctor.Specialization'.
+2025-11-30 01:22:21.697 +02:00 [DBG] Including navigation: 'Doctor.Branches'.
+2025-11-30 01:22:21.699 +02:00 [DBG] Including navigation: 'Doctor.Schedules'.
+2025-11-30 01:22:21.874 +02:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2025-11-30 01:22:21.896 +02:00 [DBG] Generated query execution expression: 
+'queryContext => ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync<Doctor>(
+    asyncEnumerable: new SingleQueryingEnumerable<Doctor>(
+        (RelationalQueryContext)queryContext, 
+        RelationalCommandCache.QueryExpression(
+            Client Projections:
+                0 -> Dictionary<IProperty, int> { [Property: Doctor.DoctorId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Doctor.Available (bool?), 1], [Property: Doctor.Biography (string), 2], [Property: Doctor.ConsultationFees (decimal) Required, 3], [Property: Doctor.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 4], [Property: Doctor.ExperienceYears (int?), 5], [Property: Doctor.ImageURL (string) MaxLength(300), 6], [Property: Doctor.SpecializationId (int) Required FK Index, 7], [Property: Doctor.UpdatedAt (DateTime) Required ValueGenerated.OnAdd, 8], [Property: Doctor.UserId (string) Required FK Index, 9] }
+                1 -> Dictionary<IProperty, int> { [Property: User.Id (string) Required PK AfterSave:Throw, 10], [Property: User.AccessFailedCount (int) Required, 11], [Property: User.ConcurrencyStamp (string) Concurrency, 12], [Property: User.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 13], [Property: User.DateOfBirth (DateOnly?), 14], [Property: User.Email (string) Index MaxLength(256), 15], [Property: User.EmailConfirmed (bool) Required, 16], [Property: User.FullName (string) Required MaxLength(150), 17], [Property: User.Gender (GenderType?) MaxLength(10), 18], [Property: User.LockoutEnabled (bool) Required, 19], [Property: User.LockoutEnd (DateTimeOffset?), 20], [Property: User.NormalizedEmail (string) Index MaxLength(256), 21], [Property: User.NormalizedUserName (string) Index MaxLength(256), 22], [Property: User.PasswordHash (string), 23], [Property: User.PhoneNumber (string), 24], [Property: User.PhoneNumberConfirmed (bool) Required, 25], [Property: User.RefreshToken (string), 26], [Property: User.RefreshTokenExpiryTime (DateTime) Required, 27], [Property: User.Role (string) Required MaxLength(50), 28], [Property: User.SecurityStamp (string), 29], [Property: User.TwoFactorEnabled (bool) Required, 30], [Property: User.UpdatedAt (DateTime) Required ValueGenerated.OnAdd, 31], [Property: User.UserName (string) MaxLength(256), 32] }
+                2 -> Dictionary<IProperty, int> { [Property: Specialization.SpecializationId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 33], [Property: Specialization.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 34], [Property: Specialization.Description (string), 35], [Property: Specialization.ImageURL (string) MaxLength(300), 36], [Property: Specialization.Name (string) Required MaxLength(120), 37], [Property: Specialization.UpdatedAt (DateTime) Required ValueGenerated.OnAdd, 38] }
+                3 -> 0
+                4 -> 10
+                5 -> 33
+                6 -> Dictionary<IProperty, int> { [Property: BranchDoctor (Dictionary<string, object>).BranchesBranchId (no field, int) Indexer Required PK FK AfterSave:Throw, 39], [Property: BranchDoctor (Dictionary<string, object>).DoctorsDoctorId (no field, int) Indexer Required PK FK Index AfterSave:Throw, 40] }
+                7 -> Dictionary<IProperty, int> { [Property: Branch.BranchId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 41], [Property: Branch.Address (string) MaxLength(250), 42], [Property: Branch.BranchName (string) Required MaxLength(150), 43], [Property: Branch.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 44], [Property: Branch.Description (string), 45], [Property: Branch.Email (string) MaxLength(200), 46], [Property: Branch.ImageURL (string) MaxLength(300), 47], [Property: Branch.Latitude (double?), 48], [Property: Branch.Longitude (double?), 49], [Property: Branch.Phone (string) MaxLength(25), 50], [Property: Branch.UpdatedAt (DateTime) Required ValueGenerated.OnAdd, 51] }
+                8 -> 39
+                9 -> 40
+                10 -> 41
+                11 -> Dictionary<IProperty, int> { [Property: Schedule.ScheduleId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 52], [Property: Schedule.BranchId (int) Required FK Index, 53], [Property: Schedule.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 54], [Property: Schedule.DayOfWeek (string) Required MaxLength(20), 55], [Property: Schedule.DoctorId (int) Required FK Index, 56], [Property: Schedule.EndTime (DateTime) Required, 57], [Property: Schedule.Shift (AppointmentShift) Required, 58], [Property: Schedule.StartTime (DateTime) Required, 59], [Property: Schedule.UpdatedAt (DateTime) Required ValueGenerated.OnAdd, 60] }
+                12 -> 52
+            SELECT t.DoctorId, t.Available, t.Biography, t.ConsultationFees, t.CreatedAt, t.ExperienceYears, t.ImageURL, t.SpecializationId, t.UpdatedAt, t.UserId, t.Id, t.AccessFailedCount, t.ConcurrencyStamp, t.CreatedAt0, t.DateOfBirth, t.Email, t.EmailConfirmed, t.FullName, t.Gender, t.LockoutEnabled, t.LockoutEnd, t.NormalizedEmail, t.NormalizedUserName, t.PasswordHash, t.PhoneNumber, t.PhoneNumberConfirmed, t.RefreshToken, t.RefreshTokenExpiryTime, t.Role, t.SecurityStamp, t.TwoFactorEnabled, t.UpdatedAt0, t.UserName, t.SpecializationId0, t.CreatedAt1, t.Description, t.ImageURL0, t.Name, t.UpdatedAt1, t0.BranchesBranchId, t0.DoctorsDoctorId, t0.BranchId, t0.Address, t0.BranchName, t0.CreatedAt, t0.Description, t0.Email, t0.ImageURL, t0.Latitude, t0.Longitude, t0.Phone, t0.UpdatedAt, s0.ScheduleId, s0.BranchId, s0.CreatedAt, s0.DayOfWeek, s0.DoctorId, s0.EndTime, s0.Shift, s0.StartTime, s0.UpdatedAt
+            FROM 
+            (
+                SELECT TOP(1) d.DoctorId, d.Available, d.Biography, d.ConsultationFees, d.CreatedAt, d.ExperienceYears, d.ImageURL, d.SpecializationId, d.UpdatedAt, d.UserId, u.Id, u.AccessFailedCount, u.ConcurrencyStamp, u.CreatedAt AS CreatedAt0, u.DateOfBirth, u.Email, u.EmailConfirmed, u.FullName, u.Gender, u.LockoutEnabled, u.LockoutEnd, u.NormalizedEmail, u.NormalizedUserName, u.PasswordHash, u.PhoneNumber, u.PhoneNumberConfirmed, u.RefreshToken, u.RefreshTokenExpiryTime, u.Role, u.SecurityStamp, u.TwoFactorEnabled, u.UpdatedAt AS UpdatedAt0, u.UserName, s.SpecializationId AS SpecializationId0, s.CreatedAt AS CreatedAt1, s.Description, s.ImageURL AS ImageURL0, s.Name, s.UpdatedAt AS UpdatedAt1
+                FROM Doctors AS d
+                INNER JOIN Users AS u ON d.UserId == u.Id
+                INNER JOIN Specializations AS s ON d.SpecializationId == s.SpecializationId
+                WHERE d.DoctorId == @__doctorId_0
+            ) AS t
+            LEFT JOIN 
+            (
+                SELECT d0.BranchesBranchId, d0.DoctorsDoctorId, b.BranchId, b.Address, b.BranchName, b.CreatedAt, b.Description, b.Email, b.ImageURL, b.Latitude, b.Longitude, b.Phone, b.UpdatedAt
+                FROM DoctorBranches AS d0
+                INNER JOIN Branches AS b ON d0.BranchesBranchId == b.BranchId
+            ) AS t0 ON t.DoctorId == t0.DoctorsDoctorId
+            LEFT JOIN Schedules AS s0 ON t.DoctorId == s0.DoctorId
+            ORDER BY t.DoctorId ASC, t.Id ASC, t.SpecializationId0 ASC, t0.BranchesBranchId ASC, t0.DoctorsDoctorId ASC, t0.BranchId ASC), 
+        null, 
+        Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Doctor>, 
+        Clinic.Infrastructure.Persistence.AppDbContext, 
+        False, 
+        False, 
+        True
+    ), 
+    cancellationToken: queryContext.CancellationToken)'
+2025-11-30 01:22:21.936 +02:00 [DBG] Creating DbConnection.
+2025-11-30 01:22:21.957 +02:00 [DBG] Created DbConnection. (18ms).
+2025-11-30 01:22:21.962 +02:00 [DBG] Opening connection to database 'HospitalDB' on server '.'.
+2025-11-30 01:22:22.158 +02:00 [DBG] Opened connection to database 'HospitalDB' on server '.'.
+2025-11-30 01:22:22.163 +02:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-11-30 01:22:22.169 +02:00 [DBG] Created DbCommand for 'ExecuteReader' (3ms).
+2025-11-30 01:22:22.174 +02:00 [DBG] Initialized DbCommand for 'ExecuteReader' (11ms).
+2025-11-30 01:22:22.183 +02:00 [DBG] Executing DbCommand [Parameters=[@__doctorId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[DoctorId], [t].[Available], [t].[Biography], [t].[ConsultationFees], [t].[CreatedAt], [t].[ExperienceYears], [t].[ImageURL], [t].[SpecializationId], [t].[UpdatedAt], [t].[UserId], [t].[Id], [t].[AccessFailedCount], [t].[ConcurrencyStamp], [t].[CreatedAt0], [t].[DateOfBirth], [t].[Email], [t].[EmailConfirmed], [t].[FullName], [t].[Gender], [t].[LockoutEnabled], [t].[LockoutEnd], [t].[NormalizedEmail], [t].[NormalizedUserName], [t].[PasswordHash], [t].[PhoneNumber], [t].[PhoneNumberConfirmed], [t].[RefreshToken], [t].[RefreshTokenExpiryTime], [t].[Role], [t].[SecurityStamp], [t].[TwoFactorEnabled], [t].[UpdatedAt0], [t].[UserName], [t].[SpecializationId0], [t].[CreatedAt1], [t].[Description], [t].[ImageURL0], [t].[Name], [t].[UpdatedAt1], [t0].[BranchesBranchId], [t0].[DoctorsDoctorId], [t0].[BranchId], [t0].[Address], [t0].[BranchName], [t0].[CreatedAt], [t0].[Description], [t0].[Email], [t0].[ImageURL], [t0].[Latitude], [t0].[Longitude], [t0].[Phone], [t0].[UpdatedAt], [s0].[ScheduleId], [s0].[BranchId], [s0].[CreatedAt], [s0].[DayOfWeek], [s0].[DoctorId], [s0].[EndTime], [s0].[Shift], [s0].[StartTime], [s0].[UpdatedAt]
+FROM (
+    SELECT TOP(1) [d].[DoctorId], [d].[Available], [d].[Biography], [d].[ConsultationFees], [d].[CreatedAt], [d].[ExperienceYears], [d].[ImageURL], [d].[SpecializationId], [d].[UpdatedAt], [d].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt] AS [CreatedAt0], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt] AS [UpdatedAt0], [u].[UserName], [s].[SpecializationId] AS [SpecializationId0], [s].[CreatedAt] AS [CreatedAt1], [s].[Description], [s].[ImageURL] AS [ImageURL0], [s].[Name], [s].[UpdatedAt] AS [UpdatedAt1]
+    FROM [Doctors] AS [d]
+    INNER JOIN [Users] AS [u] ON [d].[UserId] = [u].[Id]
+    INNER JOIN [Specializations] AS [s] ON [d].[SpecializationId] = [s].[SpecializationId]
+    WHERE [d].[DoctorId] = @__doctorId_0
+) AS [t]
+LEFT JOIN (
+    SELECT [d0].[BranchesBranchId], [d0].[DoctorsDoctorId], [b].[BranchId], [b].[Address], [b].[BranchName], [b].[CreatedAt], [b].[Description], [b].[Email], [b].[ImageURL], [b].[Latitude], [b].[Longitude], [b].[Phone], [b].[UpdatedAt]
+    FROM [DoctorBranches] AS [d0]
+    INNER JOIN [Branches] AS [b] ON [d0].[BranchesBranchId] = [b].[BranchId]
+) AS [t0] ON [t].[DoctorId] = [t0].[DoctorsDoctorId]
+LEFT JOIN [Schedules] AS [s0] ON [t].[DoctorId] = [s0].[DoctorId]
+ORDER BY [t].[DoctorId], [t].[Id], [t].[SpecializationId0], [t0].[BranchesBranchId], [t0].[DoctorsDoctorId], [t0].[BranchId]
+2025-11-30 01:22:22.250 +02:00 [INF] Executed DbCommand (61ms) [Parameters=[@__doctorId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[DoctorId], [t].[Available], [t].[Biography], [t].[ConsultationFees], [t].[CreatedAt], [t].[ExperienceYears], [t].[ImageURL], [t].[SpecializationId], [t].[UpdatedAt], [t].[UserId], [t].[Id], [t].[AccessFailedCount], [t].[ConcurrencyStamp], [t].[CreatedAt0], [t].[DateOfBirth], [t].[Email], [t].[EmailConfirmed], [t].[FullName], [t].[Gender], [t].[LockoutEnabled], [t].[LockoutEnd], [t].[NormalizedEmail], [t].[NormalizedUserName], [t].[PasswordHash], [t].[PhoneNumber], [t].[PhoneNumberConfirmed], [t].[RefreshToken], [t].[RefreshTokenExpiryTime], [t].[Role], [t].[SecurityStamp], [t].[TwoFactorEnabled], [t].[UpdatedAt0], [t].[UserName], [t].[SpecializationId0], [t].[CreatedAt1], [t].[Description], [t].[ImageURL0], [t].[Name], [t].[UpdatedAt1], [t0].[BranchesBranchId], [t0].[DoctorsDoctorId], [t0].[BranchId], [t0].[Address], [t0].[BranchName], [t0].[CreatedAt], [t0].[Description], [t0].[Email], [t0].[ImageURL], [t0].[Latitude], [t0].[Longitude], [t0].[Phone], [t0].[UpdatedAt], [s0].[ScheduleId], [s0].[BranchId], [s0].[CreatedAt], [s0].[DayOfWeek], [s0].[DoctorId], [s0].[EndTime], [s0].[Shift], [s0].[StartTime], [s0].[UpdatedAt]
+FROM (
+    SELECT TOP(1) [d].[DoctorId], [d].[Available], [d].[Biography], [d].[ConsultationFees], [d].[CreatedAt], [d].[ExperienceYears], [d].[ImageURL], [d].[SpecializationId], [d].[UpdatedAt], [d].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt] AS [CreatedAt0], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt] AS [UpdatedAt0], [u].[UserName], [s].[SpecializationId] AS [SpecializationId0], [s].[CreatedAt] AS [CreatedAt1], [s].[Description], [s].[ImageURL] AS [ImageURL0], [s].[Name], [s].[UpdatedAt] AS [UpdatedAt1]
+    FROM [Doctors] AS [d]
+    INNER JOIN [Users] AS [u] ON [d].[UserId] = [u].[Id]
+    INNER JOIN [Specializations] AS [s] ON [d].[SpecializationId] = [s].[SpecializationId]
+    WHERE [d].[DoctorId] = @__doctorId_0
+) AS [t]
+LEFT JOIN (
+    SELECT [d0].[BranchesBranchId], [d0].[DoctorsDoctorId], [b].[BranchId], [b].[Address], [b].[BranchName], [b].[CreatedAt], [b].[Description], [b].[Email], [b].[ImageURL], [b].[Latitude], [b].[Longitude], [b].[Phone], [b].[UpdatedAt]
+    FROM [DoctorBranches] AS [d0]
+    INNER JOIN [Branches] AS [b] ON [d0].[BranchesBranchId] = [b].[BranchId]
+) AS [t0] ON [t].[DoctorId] = [t0].[DoctorsDoctorId]
+LEFT JOIN [Schedules] AS [s0] ON [t].[DoctorId] = [s0].[DoctorId]
+ORDER BY [t].[DoctorId], [t].[Id], [t].[SpecializationId0], [t0].[BranchesBranchId], [t0].[DoctorsDoctorId], [t0].[BranchId]
+2025-11-30 01:22:22.296 +02:00 [DBG] Context 'AppDbContext' started tracking 'Doctor' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:22:22.339 +02:00 [DBG] The navigation 'Doctor.User' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:22:22.342 +02:00 [DBG] Context 'AppDbContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:22:22.376 +02:00 [DBG] The navigation 'Doctor.Specialization' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:22:22.380 +02:00 [DBG] Context 'AppDbContext' started tracking 'Specialization' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:22:22.398 +02:00 [DBG] Context 'AppDbContext' started tracking 'BranchDoctor' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:22:22.413 +02:00 [DBG] Context 'AppDbContext' started tracking 'Branch' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:22:22.436 +02:00 [DBG] The navigation 'Schedule.Doctor' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:22:22.438 +02:00 [DBG] Context 'AppDbContext' started tracking 'Schedule' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:22:22.453 +02:00 [DBG] Closing data reader to 'HospitalDB' on server '.'.
+2025-11-30 01:22:22.459 +02:00 [DBG] A data reader for 'HospitalDB' on server '.' is being disposed after spending 201ms reading results.
+2025-11-30 01:22:22.465 +02:00 [DBG] Closing connection to database 'HospitalDB' on server '.'.
+2025-11-30 01:22:22.470 +02:00 [DBG] Closed connection to database 'HospitalDB' on server '.' (5ms).
+2025-11-30 01:22:22.476 +02:00 [DBG] Compiling query expression: 
+'DbSet<Appointment>()
+    .Include(a => a.Patient)
+    .ThenInclude(a => a.User)
+    .Include(a => a.Doctor)
+    .Include(a => a.Branch)
+    .Where(a => (int)a.Status == 3 && a.DoctorId == __doctorid_0)'
+2025-11-30 01:22:22.480 +02:00 [DBG] Including navigation: 'Appointment.Patient'.
+2025-11-30 01:22:22.482 +02:00 [DBG] Including navigation: 'Patient.User'.
+2025-11-30 01:22:22.483 +02:00 [DBG] Including navigation: 'Appointment.Doctor'.
+2025-11-30 01:22:22.485 +02:00 [DBG] Including navigation: 'Appointment.Branch'.
+2025-11-30 01:22:22.507 +02:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<Appointment>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.QueryExpression(
+        Client Projections:
+            0 -> Dictionary<IProperty, int> { [Property: Appointment.AppointmentId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Appointment.BranchId (int) Required FK Index, 1], [Property: Appointment.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 2], [Property: Appointment.CreatedBy (string) FK Index, 3], [Property: Appointment.Date (DateOnly) Required, 4], [Property: Appointment.DoctorId (int) Required FK Index, 5], [Property: Appointment.PatientId (int) Required FK Index, 6], [Property: Appointment.PaymentMethod (PaymentMethod) Required, 7], [Property: Appointment.Shift (AppointmentShift) Required MaxLength(20), 8], [Property: Appointment.Status (AppointmentStatus) Required MaxLength(20), 9], [Property: Appointment.UpdatedAt (DateTime) Required ValueGenerated.OnAdd, 10] }
+            1 -> Dictionary<IProperty, int> { [Property: Patient.PatientId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 11], [Property: Patient.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 12], [Property: Patient.EmergencyContact (string) MaxLength(150), 13], [Property: Patient.UpdatedAt (DateTime) Required ValueGenerated.OnAdd, 14], [Property: Patient.UserId (string) Required FK Index, 15] }
+            2 -> Dictionary<IProperty, int> { [Property: User.Id (string) Required PK AfterSave:Throw, 16], [Property: User.AccessFailedCount (int) Required, 17], [Property: User.ConcurrencyStamp (string) Concurrency, 18], [Property: User.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 19], [Property: User.DateOfBirth (DateOnly?), 20], [Property: User.Email (string) Index MaxLength(256), 21], [Property: User.EmailConfirmed (bool) Required, 22], [Property: User.FullName (string) Required MaxLength(150), 23], [Property: User.Gender (GenderType?) MaxLength(10), 24], [Property: User.LockoutEnabled (bool) Required, 25], [Property: User.LockoutEnd (DateTimeOffset?), 26], [Property: User.NormalizedEmail (string) Index MaxLength(256), 27], [Property: User.NormalizedUserName (string) Index MaxLength(256), 28], [Property: User.PasswordHash (string), 29], [Property: User.PhoneNumber (string), 30], [Property: User.PhoneNumberConfirmed (bool) Required, 31], [Property: User.RefreshToken (string), 32], [Property: User.RefreshTokenExpiryTime (DateTime) Required, 33], [Property: User.Role (string) Required MaxLength(50), 34], [Property: User.SecurityStamp (string), 35], [Property: User.TwoFactorEnabled (bool) Required, 36], [Property: User.UpdatedAt (DateTime) Required ValueGenerated.OnAdd, 37], [Property: User.UserName (string) MaxLength(256), 38] }
+            3 -> Dictionary<IProperty, int> { [Property: Doctor.DoctorId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 39], [Property: Doctor.Available (bool?), 40], [Property: Doctor.Biography (string), 41], [Property: Doctor.ConsultationFees (decimal) Required, 42], [Property: Doctor.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 43], [Property: Doctor.ExperienceYears (int?), 44], [Property: Doctor.ImageURL (string) MaxLength(300), 45], [Property: Doctor.SpecializationId (int) Required FK Index, 46], [Property: Doctor.UpdatedAt (DateTime) Required ValueGenerated.OnAdd, 47], [Property: Doctor.UserId (string) Required FK Index, 48] }
+            4 -> Dictionary<IProperty, int> { [Property: Branch.BranchId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 49], [Property: Branch.Address (string) MaxLength(250), 50], [Property: Branch.BranchName (string) Required MaxLength(150), 51], [Property: Branch.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 52], [Property: Branch.Description (string), 53], [Property: Branch.Email (string) MaxLength(200), 54], [Property: Branch.ImageURL (string) MaxLength(300), 55], [Property: Branch.Latitude (double?), 56], [Property: Branch.Longitude (double?), 57], [Property: Branch.Phone (string) MaxLength(25), 58], [Property: Branch.UpdatedAt (DateTime) Required ValueGenerated.OnAdd, 59] }
+        SELECT a.AppointmentId, a.BranchId, a.CreatedAt, a.CreatedBy, a.Date, a.DoctorId, a.PatientId, a.PaymentMethod, a.Shift, a.Status, a.UpdatedAt, p.PatientId, p.CreatedAt, p.EmergencyContact, p.UpdatedAt, p.UserId, u.Id, u.AccessFailedCount, u.ConcurrencyStamp, u.CreatedAt, u.DateOfBirth, u.Email, u.EmailConfirmed, u.FullName, u.Gender, u.LockoutEnabled, u.LockoutEnd, u.NormalizedEmail, u.NormalizedUserName, u.PasswordHash, u.PhoneNumber, u.PhoneNumberConfirmed, u.RefreshToken, u.RefreshTokenExpiryTime, u.Role, u.SecurityStamp, u.TwoFactorEnabled, u.UpdatedAt, u.UserName, d.DoctorId, d.Available, d.Biography, d.ConsultationFees, d.CreatedAt, d.ExperienceYears, d.ImageURL, d.SpecializationId, d.UpdatedAt, d.UserId, b.BranchId, b.Address, b.BranchName, b.CreatedAt, b.Description, b.Email, b.ImageURL, b.Latitude, b.Longitude, b.Phone, b.UpdatedAt
+        FROM Appointments AS a
+        INNER JOIN Patients AS p ON a.PatientId == p.PatientId
+        INNER JOIN Users AS u ON p.UserId == u.Id
+        INNER JOIN Doctors AS d ON a.DoctorId == d.DoctorId
+        INNER JOIN Branches AS b ON a.BranchId == b.BranchId
+        WHERE (a.Status == N'Completed') && (a.DoctorId == @__doctorid_0)), 
+    null, 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Appointment>, 
+    Clinic.Infrastructure.Persistence.AppDbContext, 
+    False, 
+    False, 
+    True
+)'
+2025-11-30 01:22:22.513 +02:00 [DBG] Opening connection to database 'HospitalDB' on server '.'.
+2025-11-30 01:22:22.515 +02:00 [DBG] Opened connection to database 'HospitalDB' on server '.'.
+2025-11-30 01:22:22.516 +02:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-11-30 01:22:22.516 +02:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-11-30 01:22:22.517 +02:00 [DBG] Initialized DbCommand for 'ExecuteReader' (1ms).
+2025-11-30 01:22:22.518 +02:00 [DBG] Executing DbCommand [Parameters=[@__doctorid_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[AppointmentId], [a].[BranchId], [a].[CreatedAt], [a].[CreatedBy], [a].[Date], [a].[DoctorId], [a].[PatientId], [a].[PaymentMethod], [a].[Shift], [a].[Status], [a].[UpdatedAt], [p].[PatientId], [p].[CreatedAt], [p].[EmergencyContact], [p].[UpdatedAt], [p].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName], [d].[DoctorId], [d].[Available], [d].[Biography], [d].[ConsultationFees], [d].[CreatedAt], [d].[ExperienceYears], [d].[ImageURL], [d].[SpecializationId], [d].[UpdatedAt], [d].[UserId], [b].[BranchId], [b].[Address], [b].[BranchName], [b].[CreatedAt], [b].[Description], [b].[Email], [b].[ImageURL], [b].[Latitude], [b].[Longitude], [b].[Phone], [b].[UpdatedAt]
+FROM [Appointments] AS [a]
+INNER JOIN [Patients] AS [p] ON [a].[PatientId] = [p].[PatientId]
+INNER JOIN [Users] AS [u] ON [p].[UserId] = [u].[Id]
+INNER JOIN [Doctors] AS [d] ON [a].[DoctorId] = [d].[DoctorId]
+INNER JOIN [Branches] AS [b] ON [a].[BranchId] = [b].[BranchId]
+WHERE [a].[Status] = N'Completed' AND [a].[DoctorId] = @__doctorid_0
+2025-11-30 01:22:22.528 +02:00 [INF] Executed DbCommand (10ms) [Parameters=[@__doctorid_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[AppointmentId], [a].[BranchId], [a].[CreatedAt], [a].[CreatedBy], [a].[Date], [a].[DoctorId], [a].[PatientId], [a].[PaymentMethod], [a].[Shift], [a].[Status], [a].[UpdatedAt], [p].[PatientId], [p].[CreatedAt], [p].[EmergencyContact], [p].[UpdatedAt], [p].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName], [d].[DoctorId], [d].[Available], [d].[Biography], [d].[ConsultationFees], [d].[CreatedAt], [d].[ExperienceYears], [d].[ImageURL], [d].[SpecializationId], [d].[UpdatedAt], [d].[UserId], [b].[BranchId], [b].[Address], [b].[BranchName], [b].[CreatedAt], [b].[Description], [b].[Email], [b].[ImageURL], [b].[Latitude], [b].[Longitude], [b].[Phone], [b].[UpdatedAt]
+FROM [Appointments] AS [a]
+INNER JOIN [Patients] AS [p] ON [a].[PatientId] = [p].[PatientId]
+INNER JOIN [Users] AS [u] ON [p].[UserId] = [u].[Id]
+INNER JOIN [Doctors] AS [d] ON [a].[DoctorId] = [d].[DoctorId]
+INNER JOIN [Branches] AS [b] ON [a].[BranchId] = [b].[BranchId]
+WHERE [a].[Status] = N'Completed' AND [a].[DoctorId] = @__doctorid_0
+2025-11-30 01:22:22.540 +02:00 [DBG] The navigation 'Appointment.Doctor' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:22:22.541 +02:00 [DBG] Context 'AppDbContext' started tracking 'Appointment' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:22:22.552 +02:00 [DBG] The navigation 'Appointment.Patient' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:22:22.554 +02:00 [DBG] Context 'AppDbContext' started tracking 'Patient' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:22:22.559 +02:00 [DBG] The navigation 'Patient.User' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:22:22.560 +02:00 [DBG] Context 'AppDbContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:22:22.562 +02:00 [DBG] The navigation 'Appointment.Doctor' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:22:22.563 +02:00 [DBG] Context 'AppDbContext' started tracking 'Appointment' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:22:22.564 +02:00 [DBG] The navigation 'Appointment.Patient' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:22:22.565 +02:00 [DBG] Context 'AppDbContext' started tracking 'Patient' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:22:22.566 +02:00 [DBG] The navigation 'Patient.User' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:22:22.567 +02:00 [DBG] Context 'AppDbContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:22:22.567 +02:00 [DBG] Closing data reader to 'HospitalDB' on server '.'.
+2025-11-30 01:22:22.568 +02:00 [DBG] A data reader for 'HospitalDB' on server '.' is being disposed after spending 38ms reading results.
+2025-11-30 01:22:22.569 +02:00 [DBG] Closing connection to database 'HospitalDB' on server '.'.
+2025-11-30 01:22:22.570 +02:00 [DBG] Closed connection to database 'HospitalDB' on server '.' (1ms).
+2025-11-30 01:22:22.587 +02:00 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2025-11-30 01:22:22.589 +02:00 [DBG] No information found on request to perform content negotiation.
+2025-11-30 01:22:22.589 +02:00 [DBG] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2025-11-30 01:22:22.589 +02:00 [DBG] Attempting to select the first formatter in the output formatters list which can write the result.
+2025-11-30 01:22:22.590 +02:00 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2025-11-30 01:22:22.591 +02:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Hospital.Application.DTO.Appointment.AppoinmentandPaientDetaliesDto, Hospital.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-30 01:22:22.623 +02:00 [INF] Executed action Hospital.API.Controllers.AppointmentController.GetAllCompletedByDoctorId (Hospital) in 2271.4368ms
+2025-11-30 01:22:22.625 +02:00 [INF] Executed endpoint 'Hospital.API.Controllers.AppointmentController.GetAllCompletedByDoctorId (Hospital)'
+2025-11-30 01:22:22.628 +02:00 [DBG] 'AppDbContext' disposed.
+2025-11-30 01:22:22.632 +02:00 [DBG] Disposing connection to database 'HospitalDB' on server '.'.
+2025-11-30 01:22:22.633 +02:00 [DBG] Disposed connection to database '' on server '' (1ms).
+2025-11-30 01:22:22.634 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7217/api/Appointment/GetAllCompletedByDoctorId/1 - 200 null application/json; charset=utf-8 2372.7371ms
+2025-11-30 01:23:02.385 +02:00 [DBG] Connection id "0HNHFJOG5KI85" received FIN.
+2025-11-30 01:23:02.390 +02:00 [DBG] Connection id "0HNHFJOG5KI85" accepted.
+2025-11-30 01:23:02.391 +02:00 [DBG] Connection id "0HNHFJOG5KI85" started.
+2025-11-30 01:23:02.397 +02:00 [DBG] Connection id "0HNHFJOG5KI86" accepted.
+2025-11-30 01:23:02.398 +02:00 [DBG] Connection id "0HNHFJOG5KI86" started.
+2025-11-30 01:23:02.398 +02:00 [DBG] Failed to authenticate HTTPS connection.
+System.IO.IOException: Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.ReceiveHandshakeFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ProcessAuthenticationWithTelemetryAsync(Boolean isAsync, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+2025-11-30 01:23:02.402 +02:00 [DBG] Connection id "0HNHFJOG5KI85" stopped.
+2025-11-30 01:23:02.402 +02:00 [DBG] Connection id "0HNHFJOG5KI85" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-11-30 01:23:02.405 +02:00 [DBG] Connection 0HNHFJOG5KI86 established using the following protocol: "Tls12"
+2025-11-30 01:23:02.410 +02:00 [INF] Request starting HTTP/1.1 GET https://localhost:7217/api/Appointment/GetAllCompletedByDoctorId/1 - null null
+2025-11-30 01:23:02.415 +02:00 [DBG] 1 candidate(s) found for the request path '/api/Appointment/GetAllCompletedByDoctorId/1'
+2025-11-30 01:23:02.416 +02:00 [DBG] Endpoint 'Hospital.API.Controllers.AppointmentController.GetAllCompletedByDoctorId (Hospital)' with route pattern 'api/Appointment/GetAllCompletedByDoctorId/{doctorid}' is valid for the request path '/api/Appointment/GetAllCompletedByDoctorId/1'
+2025-11-30 01:23:02.417 +02:00 [DBG] Request matched endpoint 'Hospital.API.Controllers.AppointmentController.GetAllCompletedByDoctorId (Hospital)'
+2025-11-30 01:23:02.418 +02:00 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-11-30 01:23:02.420 +02:00 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-11-30 01:23:02.421 +02:00 [INF] Executing endpoint 'Hospital.API.Controllers.AppointmentController.GetAllCompletedByDoctorId (Hospital)'
+2025-11-30 01:23:02.422 +02:00 [INF] Route matched with {action = "GetAllCompletedByDoctorId", controller = "Appointment"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllCompletedByDoctorId(Int32) on controller Hospital.API.Controllers.AppointmentController (Hospital).
+2025-11-30 01:23:02.424 +02:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-11-30 01:23:02.425 +02:00 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2025-11-30 01:23:02.426 +02:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-11-30 01:23:02.428 +02:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-11-30 01:23:02.429 +02:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-11-30 01:23:02.430 +02:00 [DBG] Executing controller factory for controller Hospital.API.Controllers.AppointmentController (Hospital)
+2025-11-30 01:23:02.432 +02:00 [DBG] Executed controller factory for controller Hospital.API.Controllers.AppointmentController (Hospital)
+2025-11-30 01:23:02.433 +02:00 [DBG] Attempting to bind parameter 'doctorid' of type 'System.Int32' ...
+2025-11-30 01:23:02.435 +02:00 [DBG] Attempting to bind parameter 'doctorid' of type 'System.Int32' using the name 'doctorid' in request data ...
+2025-11-30 01:23:02.435 +02:00 [DBG] Done attempting to bind parameter 'doctorid' of type 'System.Int32'.
+2025-11-30 01:23:02.436 +02:00 [DBG] Done attempting to bind parameter 'doctorid' of type 'System.Int32'.
+2025-11-30 01:23:02.437 +02:00 [DBG] Attempting to validate the bound parameter 'doctorid' of type 'System.Int32' ...
+2025-11-30 01:23:02.438 +02:00 [DBG] Done attempting to validate the bound parameter 'doctorid' of type 'System.Int32'.
+2025-11-30 01:23:02.440 +02:00 [INF] Get All Completed Appointments called at "2025-11-30T01:23:02.4407476+02:00"
+2025-11-30 01:23:02.442 +02:00 [INF] Fetching All Completed Appointments
+2025-11-30 01:23:02.488 +02:00 [DBG] Entity Framework Core 8.0.21 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.21' with options: None
+2025-11-30 01:23:02.494 +02:00 [DBG] Creating DbConnection.
+2025-11-30 01:23:02.495 +02:00 [DBG] Created DbConnection. (1ms).
+2025-11-30 01:23:02.497 +02:00 [DBG] Opening connection to database 'HospitalDB' on server '.'.
+2025-11-30 01:23:02.498 +02:00 [DBG] Opened connection to database 'HospitalDB' on server '.'.
+2025-11-30 01:23:02.500 +02:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-11-30 01:23:02.501 +02:00 [DBG] Created DbCommand for 'ExecuteReader' (1ms).
+2025-11-30 01:23:02.502 +02:00 [DBG] Initialized DbCommand for 'ExecuteReader' (1ms).
+2025-11-30 01:23:02.503 +02:00 [DBG] Executing DbCommand [Parameters=[@__doctorId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[DoctorId], [t].[Available], [t].[Biography], [t].[ConsultationFees], [t].[CreatedAt], [t].[ExperienceYears], [t].[ImageURL], [t].[SpecializationId], [t].[UpdatedAt], [t].[UserId], [t].[Id], [t].[AccessFailedCount], [t].[ConcurrencyStamp], [t].[CreatedAt0], [t].[DateOfBirth], [t].[Email], [t].[EmailConfirmed], [t].[FullName], [t].[Gender], [t].[LockoutEnabled], [t].[LockoutEnd], [t].[NormalizedEmail], [t].[NormalizedUserName], [t].[PasswordHash], [t].[PhoneNumber], [t].[PhoneNumberConfirmed], [t].[RefreshToken], [t].[RefreshTokenExpiryTime], [t].[Role], [t].[SecurityStamp], [t].[TwoFactorEnabled], [t].[UpdatedAt0], [t].[UserName], [t].[SpecializationId0], [t].[CreatedAt1], [t].[Description], [t].[ImageURL0], [t].[Name], [t].[UpdatedAt1], [t0].[BranchesBranchId], [t0].[DoctorsDoctorId], [t0].[BranchId], [t0].[Address], [t0].[BranchName], [t0].[CreatedAt], [t0].[Description], [t0].[Email], [t0].[ImageURL], [t0].[Latitude], [t0].[Longitude], [t0].[Phone], [t0].[UpdatedAt], [s0].[ScheduleId], [s0].[BranchId], [s0].[CreatedAt], [s0].[DayOfWeek], [s0].[DoctorId], [s0].[EndTime], [s0].[Shift], [s0].[StartTime], [s0].[UpdatedAt]
+FROM (
+    SELECT TOP(1) [d].[DoctorId], [d].[Available], [d].[Biography], [d].[ConsultationFees], [d].[CreatedAt], [d].[ExperienceYears], [d].[ImageURL], [d].[SpecializationId], [d].[UpdatedAt], [d].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt] AS [CreatedAt0], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt] AS [UpdatedAt0], [u].[UserName], [s].[SpecializationId] AS [SpecializationId0], [s].[CreatedAt] AS [CreatedAt1], [s].[Description], [s].[ImageURL] AS [ImageURL0], [s].[Name], [s].[UpdatedAt] AS [UpdatedAt1]
+    FROM [Doctors] AS [d]
+    INNER JOIN [Users] AS [u] ON [d].[UserId] = [u].[Id]
+    INNER JOIN [Specializations] AS [s] ON [d].[SpecializationId] = [s].[SpecializationId]
+    WHERE [d].[DoctorId] = @__doctorId_0
+) AS [t]
+LEFT JOIN (
+    SELECT [d0].[BranchesBranchId], [d0].[DoctorsDoctorId], [b].[BranchId], [b].[Address], [b].[BranchName], [b].[CreatedAt], [b].[Description], [b].[Email], [b].[ImageURL], [b].[Latitude], [b].[Longitude], [b].[Phone], [b].[UpdatedAt]
+    FROM [DoctorBranches] AS [d0]
+    INNER JOIN [Branches] AS [b] ON [d0].[BranchesBranchId] = [b].[BranchId]
+) AS [t0] ON [t].[DoctorId] = [t0].[DoctorsDoctorId]
+LEFT JOIN [Schedules] AS [s0] ON [t].[DoctorId] = [s0].[DoctorId]
+ORDER BY [t].[DoctorId], [t].[Id], [t].[SpecializationId0], [t0].[BranchesBranchId], [t0].[DoctorsDoctorId], [t0].[BranchId]
+2025-11-30 01:23:02.516 +02:00 [INF] Executed DbCommand (14ms) [Parameters=[@__doctorId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[DoctorId], [t].[Available], [t].[Biography], [t].[ConsultationFees], [t].[CreatedAt], [t].[ExperienceYears], [t].[ImageURL], [t].[SpecializationId], [t].[UpdatedAt], [t].[UserId], [t].[Id], [t].[AccessFailedCount], [t].[ConcurrencyStamp], [t].[CreatedAt0], [t].[DateOfBirth], [t].[Email], [t].[EmailConfirmed], [t].[FullName], [t].[Gender], [t].[LockoutEnabled], [t].[LockoutEnd], [t].[NormalizedEmail], [t].[NormalizedUserName], [t].[PasswordHash], [t].[PhoneNumber], [t].[PhoneNumberConfirmed], [t].[RefreshToken], [t].[RefreshTokenExpiryTime], [t].[Role], [t].[SecurityStamp], [t].[TwoFactorEnabled], [t].[UpdatedAt0], [t].[UserName], [t].[SpecializationId0], [t].[CreatedAt1], [t].[Description], [t].[ImageURL0], [t].[Name], [t].[UpdatedAt1], [t0].[BranchesBranchId], [t0].[DoctorsDoctorId], [t0].[BranchId], [t0].[Address], [t0].[BranchName], [t0].[CreatedAt], [t0].[Description], [t0].[Email], [t0].[ImageURL], [t0].[Latitude], [t0].[Longitude], [t0].[Phone], [t0].[UpdatedAt], [s0].[ScheduleId], [s0].[BranchId], [s0].[CreatedAt], [s0].[DayOfWeek], [s0].[DoctorId], [s0].[EndTime], [s0].[Shift], [s0].[StartTime], [s0].[UpdatedAt]
+FROM (
+    SELECT TOP(1) [d].[DoctorId], [d].[Available], [d].[Biography], [d].[ConsultationFees], [d].[CreatedAt], [d].[ExperienceYears], [d].[ImageURL], [d].[SpecializationId], [d].[UpdatedAt], [d].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt] AS [CreatedAt0], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt] AS [UpdatedAt0], [u].[UserName], [s].[SpecializationId] AS [SpecializationId0], [s].[CreatedAt] AS [CreatedAt1], [s].[Description], [s].[ImageURL] AS [ImageURL0], [s].[Name], [s].[UpdatedAt] AS [UpdatedAt1]
+    FROM [Doctors] AS [d]
+    INNER JOIN [Users] AS [u] ON [d].[UserId] = [u].[Id]
+    INNER JOIN [Specializations] AS [s] ON [d].[SpecializationId] = [s].[SpecializationId]
+    WHERE [d].[DoctorId] = @__doctorId_0
+) AS [t]
+LEFT JOIN (
+    SELECT [d0].[BranchesBranchId], [d0].[DoctorsDoctorId], [b].[BranchId], [b].[Address], [b].[BranchName], [b].[CreatedAt], [b].[Description], [b].[Email], [b].[ImageURL], [b].[Latitude], [b].[Longitude], [b].[Phone], [b].[UpdatedAt]
+    FROM [DoctorBranches] AS [d0]
+    INNER JOIN [Branches] AS [b] ON [d0].[BranchesBranchId] = [b].[BranchId]
+) AS [t0] ON [t].[DoctorId] = [t0].[DoctorsDoctorId]
+LEFT JOIN [Schedules] AS [s0] ON [t].[DoctorId] = [s0].[DoctorId]
+ORDER BY [t].[DoctorId], [t].[Id], [t].[SpecializationId0], [t0].[BranchesBranchId], [t0].[DoctorsDoctorId], [t0].[BranchId]
+2025-11-30 01:23:02.520 +02:00 [DBG] Context 'AppDbContext' started tracking 'Doctor' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:23:02.521 +02:00 [DBG] The navigation 'Doctor.User' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:23:02.522 +02:00 [DBG] Context 'AppDbContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:23:02.523 +02:00 [DBG] The navigation 'Doctor.Specialization' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:23:02.525 +02:00 [DBG] Context 'AppDbContext' started tracking 'Specialization' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:23:02.526 +02:00 [DBG] Context 'AppDbContext' started tracking 'BranchDoctor' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:23:02.527 +02:00 [DBG] Context 'AppDbContext' started tracking 'Branch' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:23:02.528 +02:00 [DBG] The navigation 'Schedule.Doctor' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:23:02.529 +02:00 [DBG] Context 'AppDbContext' started tracking 'Schedule' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:23:02.530 +02:00 [DBG] Closing data reader to 'HospitalDB' on server '.'.
+2025-11-30 01:23:02.532 +02:00 [DBG] A data reader for 'HospitalDB' on server '.' is being disposed after spending 12ms reading results.
+2025-11-30 01:23:02.533 +02:00 [DBG] Closing connection to database 'HospitalDB' on server '.'.
+2025-11-30 01:23:02.534 +02:00 [DBG] Closed connection to database 'HospitalDB' on server '.' (0ms).
+2025-11-30 01:23:02.536 +02:00 [DBG] Opening connection to database 'HospitalDB' on server '.'.
+2025-11-30 01:23:02.537 +02:00 [DBG] Opened connection to database 'HospitalDB' on server '.'.
+2025-11-30 01:23:02.538 +02:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-11-30 01:23:02.538 +02:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-11-30 01:23:02.539 +02:00 [DBG] Initialized DbCommand for 'ExecuteReader' (1ms).
+2025-11-30 01:23:02.540 +02:00 [DBG] Executing DbCommand [Parameters=[@__doctorid_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[AppointmentId], [a].[BranchId], [a].[CreatedAt], [a].[CreatedBy], [a].[Date], [a].[DoctorId], [a].[PatientId], [a].[PaymentMethod], [a].[Shift], [a].[Status], [a].[UpdatedAt], [p].[PatientId], [p].[CreatedAt], [p].[EmergencyContact], [p].[UpdatedAt], [p].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName], [d].[DoctorId], [d].[Available], [d].[Biography], [d].[ConsultationFees], [d].[CreatedAt], [d].[ExperienceYears], [d].[ImageURL], [d].[SpecializationId], [d].[UpdatedAt], [d].[UserId], [b].[BranchId], [b].[Address], [b].[BranchName], [b].[CreatedAt], [b].[Description], [b].[Email], [b].[ImageURL], [b].[Latitude], [b].[Longitude], [b].[Phone], [b].[UpdatedAt]
+FROM [Appointments] AS [a]
+INNER JOIN [Patients] AS [p] ON [a].[PatientId] = [p].[PatientId]
+INNER JOIN [Users] AS [u] ON [p].[UserId] = [u].[Id]
+INNER JOIN [Doctors] AS [d] ON [a].[DoctorId] = [d].[DoctorId]
+INNER JOIN [Branches] AS [b] ON [a].[BranchId] = [b].[BranchId]
+WHERE [a].[Status] = N'Completed' AND [a].[DoctorId] = @__doctorid_0
+2025-11-30 01:23:02.550 +02:00 [INF] Executed DbCommand (9ms) [Parameters=[@__doctorid_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[AppointmentId], [a].[BranchId], [a].[CreatedAt], [a].[CreatedBy], [a].[Date], [a].[DoctorId], [a].[PatientId], [a].[PaymentMethod], [a].[Shift], [a].[Status], [a].[UpdatedAt], [p].[PatientId], [p].[CreatedAt], [p].[EmergencyContact], [p].[UpdatedAt], [p].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName], [d].[DoctorId], [d].[Available], [d].[Biography], [d].[ConsultationFees], [d].[CreatedAt], [d].[ExperienceYears], [d].[ImageURL], [d].[SpecializationId], [d].[UpdatedAt], [d].[UserId], [b].[BranchId], [b].[Address], [b].[BranchName], [b].[CreatedAt], [b].[Description], [b].[Email], [b].[ImageURL], [b].[Latitude], [b].[Longitude], [b].[Phone], [b].[UpdatedAt]
+FROM [Appointments] AS [a]
+INNER JOIN [Patients] AS [p] ON [a].[PatientId] = [p].[PatientId]
+INNER JOIN [Users] AS [u] ON [p].[UserId] = [u].[Id]
+INNER JOIN [Doctors] AS [d] ON [a].[DoctorId] = [d].[DoctorId]
+INNER JOIN [Branches] AS [b] ON [a].[BranchId] = [b].[BranchId]
+WHERE [a].[Status] = N'Completed' AND [a].[DoctorId] = @__doctorid_0
+2025-11-30 01:23:02.553 +02:00 [DBG] The navigation 'Appointment.Doctor' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:23:02.555 +02:00 [DBG] Context 'AppDbContext' started tracking 'Appointment' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:23:02.556 +02:00 [DBG] The navigation 'Appointment.Patient' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:23:02.558 +02:00 [DBG] Context 'AppDbContext' started tracking 'Patient' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:23:02.560 +02:00 [DBG] The navigation 'Patient.User' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:23:02.561 +02:00 [DBG] Context 'AppDbContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:23:02.562 +02:00 [DBG] The navigation 'Appointment.Doctor' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:23:02.563 +02:00 [DBG] Context 'AppDbContext' started tracking 'Appointment' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:23:02.564 +02:00 [DBG] The navigation 'Appointment.Patient' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:23:02.566 +02:00 [DBG] Context 'AppDbContext' started tracking 'Patient' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:23:02.567 +02:00 [DBG] The navigation 'Patient.User' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:23:02.568 +02:00 [DBG] Context 'AppDbContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-11-30 01:23:02.569 +02:00 [DBG] Closing data reader to 'HospitalDB' on server '.'.
+2025-11-30 01:23:02.569 +02:00 [DBG] A data reader for 'HospitalDB' on server '.' is being disposed after spending 16ms reading results.
+2025-11-30 01:23:02.570 +02:00 [DBG] Closing connection to database 'HospitalDB' on server '.'.
+2025-11-30 01:23:02.571 +02:00 [DBG] Closed connection to database 'HospitalDB' on server '.' (0ms).
+2025-11-30 01:23:02.573 +02:00 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2025-11-30 01:23:02.575 +02:00 [DBG] No information found on request to perform content negotiation.
+2025-11-30 01:23:02.575 +02:00 [DBG] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2025-11-30 01:23:02.575 +02:00 [DBG] Attempting to select the first formatter in the output formatters list which can write the result.
+2025-11-30 01:23:02.576 +02:00 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2025-11-30 01:23:02.576 +02:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Hospital.Application.DTO.Appointment.AppoinmentandPaientDetaliesDto, Hospital.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-30 01:23:02.579 +02:00 [INF] Executed action Hospital.API.Controllers.AppointmentController.GetAllCompletedByDoctorId (Hospital) in 149.607ms
+2025-11-30 01:23:02.580 +02:00 [INF] Executed endpoint 'Hospital.API.Controllers.AppointmentController.GetAllCompletedByDoctorId (Hospital)'
+2025-11-30 01:23:02.582 +02:00 [DBG] Connection id "0HNHFJOG5KI86" completed keep alive response.
+2025-11-30 01:23:02.582 +02:00 [DBG] 'AppDbContext' disposed.
+2025-11-30 01:23:02.583 +02:00 [DBG] Disposing connection to database 'HospitalDB' on server '.'.
+2025-11-30 01:23:02.584 +02:00 [DBG] Disposed connection to database '' on server '' (0ms).
+2025-11-30 01:23:02.585 +02:00 [INF] Request finished HTTP/1.1 GET https://localhost:7217/api/Appointment/GetAllCompletedByDoctorId/1 - 200 null application/json; charset=utf-8 175.1389ms

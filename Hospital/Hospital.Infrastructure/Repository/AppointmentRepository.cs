@@ -55,6 +55,7 @@ namespace Hospital.Infrastructure.Repository
         {
             return await _context.Appointments
                 .Include(a => a.Patient)
+                     .ThenInclude(a => a.User)
                 .Include(a => a.Doctor)
                 .Include(a => a.Branch)
                 .Where(a => a.Status == AppointmentStatus.Completed && a.DoctorId==doctorid)
