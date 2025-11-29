@@ -54,7 +54,8 @@ namespace Hospital.Infrastructure.Repository
         public async Task<IEnumerable<Appointment>> GetCompletedForDoctorAppointmentAsync(int doctorid)
         {
             return await _context.Appointments
-                .Include(a => a.Patient)
+                 .Include(a => a.Patient)
+                    .ThenInclude(p => p.User)
                 .Include(a => a.Doctor)
                 .Include(a => a.Branch)
                 .Where(a => a.Status == AppointmentStatus.Completed && a.DoctorId==doctorid)
