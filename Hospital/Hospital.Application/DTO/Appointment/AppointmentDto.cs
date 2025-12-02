@@ -17,6 +17,8 @@ namespace Hospital.Application.DTO.Appointment
         public BranchShortDto Branch { get; set; }
         public PaymentMethod PaymentMethod { get; set; }
         public PaymentDto Payment { get; set; }
+        public DoctorShortDto Doctor { get; set; }
+
 
     }
     public class BranchShortDto
