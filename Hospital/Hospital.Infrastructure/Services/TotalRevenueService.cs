@@ -92,6 +92,48 @@ namespace Hospital.Infrastructure.Services
 
             return totalRevenue;
         }
+        public async Task<decimal> GetTotalRevenueInSpecificMonthAsync(int year, int month)
+        {
+            if (year < 1) throw new ArgumentException("Invalid year");
+            if (month < 1 || month > 12) throw new ArgumentException("Invalid month");
+
+            var appointments = (await _appointmentRepository.GetAllAsync())
+                .Where(a =>
+                    a.Status == AppointmentStatus.Completed &&
+                    a.Date.Year == year &&
+                    a.Date.Month == month
+                );
+
+            decimal totalRevenue = 0;
+            foreach (var appointment in appointments)
+            {
+                if (appointment.Doctor != null)
+                    totalRevenue += appointment.Doctor.ConsultationFees;
+            }
+
+            return totalRevenue;
+        }
+        public async Task<decimal> GetTotalRevenueInSpecificYearAsync(int year)
+        {
+            if (year < 1) throw new ArgumentException("Invalid year");
+
+            var appointments = (await _appointmentRepository.GetAllAsync())
+                .Where(a =>
+                    a.Status == AppointmentStatus.Completed &&
+                    a.Date.Year == year
+                );
+
+            decimal totalRevenue = 0;
+            foreach (var appointment in appointments)
+            {
+                if (appointment.Doctor != null)
+                    totalRevenue += appointment.Doctor.ConsultationFees;
+            }
+
+            return totalRevenue;
+        }
+
+
     }
 
 }

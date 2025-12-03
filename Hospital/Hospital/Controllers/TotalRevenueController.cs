@@ -16,31 +16,46 @@ namespace Hospital.Controllers
         }
 
         [HttpGet("doctor/{doctorId}/branch/{branchId}")]
-        public async Task<ActionResult<decimal>> GetDoctorRevenueInSpecificBranch(int doctorId, int branchId)
+        public async Task<ActionResult<object>> GetDoctorRevenueInSpecificBranch(int doctorId, int branchId)
         {
             var revenue = await _revenueService.GetTotalRevenueByDoctorIdInSpecificBranchAsync(doctorId, branchId);
-            return Ok(revenue);
+            return Ok(new { totalRevenue = revenue }); 
         }
+
 
         [HttpGet("doctor/{doctorId}/all-branches")]
         public async Task<ActionResult<decimal>> GetDoctorRevenueInAllBranches(int doctorId)
         {
             var revenue = await _revenueService.GetTotalRevenueByDoctorIdInAllBranchAsync(doctorId);
-            return Ok(revenue);
+            return Ok(new { totalRevenue = revenue });
         }
 
         [HttpGet("all-branches")]
         public async Task<ActionResult<decimal>> GetTotalRevenueInAllBranches()
         {
             var revenue = await _revenueService.GetTotalRevenueInAllBranchAsync();
-            return Ok(revenue);
+            return Ok(new { totalRevenue = revenue });
         }
 
         [HttpGet("branch/{branchId}")]
         public async Task<ActionResult<decimal>> GetTotalRevenueInSpecificBranch(int branchId)
         {
             var revenue = await _revenueService.GetTotalRevenueInSpecificBranchAllBranchAsync(branchId);
-            return Ok(revenue);
+            return Ok(new { totalRevenue = revenue });
         }
+        [HttpGet("month")]
+        public async Task<ActionResult<object>> GetRevenueInSpecificMonth(int year, int month)
+        {
+            var revenue = await _revenueService.GetTotalRevenueInSpecificMonthAsync(year, month);
+            return Ok(new { totalRevenue = revenue });
+        }
+        [HttpGet("year/{year}")]
+        public async Task<ActionResult<object>> GetRevenueInSpecificYear(int year)
+        {
+            var revenue = await _revenueService.GetTotalRevenueInSpecificYearAsync(year);
+            return Ok(new { totalRevenue = revenue });
+        }
+
+
     }
 }
