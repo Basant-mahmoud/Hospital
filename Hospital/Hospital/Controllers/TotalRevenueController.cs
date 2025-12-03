@@ -1,4 +1,5 @@
 ﻿using Hospital.Application.Interfaces.Services;
+using Hospital.Domain.Models;
 using Hospital.Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -54,6 +55,20 @@ namespace Hospital.Controllers
         {
             var revenue = await _revenueService.GetTotalRevenueInSpecificYearAsync(year);
             return Ok(new { totalRevenue = revenue });
+        }
+
+        [HttpGet("monthly-trend")]
+        public async Task<IActionResult> GetMonthlyTrend(int year)
+        {
+            var data = await _revenueService.GetMonthlyRevenue(year);
+            return Ok(new { data });
+        }
+
+        [HttpGet("branch-revenue")]
+        public async Task<IActionResult> GetBranchRevenue()
+        {
+            var data = await _revenueService.GetRevenueByBranch();
+            return Ok(new { data });
         }
 
 
