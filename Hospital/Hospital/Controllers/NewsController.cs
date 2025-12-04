@@ -9,7 +9,6 @@ namespace Hospital.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class NewsController : ControllerBase
     {
         private readonly INewsService _newsService;
