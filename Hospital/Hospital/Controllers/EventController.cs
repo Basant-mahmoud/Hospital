@@ -89,7 +89,7 @@ namespace Hospital.Controllers
         }
 
         [HttpGet("GetAllEventsInSystem")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Patient")]
 
         public async Task<IActionResult> GetAllEventsInSystem()
         {
