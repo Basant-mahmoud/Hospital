@@ -14,7 +14,7 @@ namespace Hospital.Application.Interfaces.Repos
         Task<int> DeleteAsync(News news);
         Task<News?> GetAsync(int id);
         Task<IEnumerable<News>> GetAllAsync(int branchId);
-        Task<IEnumerable<News>> GetAllEventInSystemAsync();
+        Task<IEnumerable<News>> GetAllNewsInSystemAsync();
 
     }
 }

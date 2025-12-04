@@ -116,10 +116,10 @@ namespace Hospital.Infrastructure.Services
             return _mapper.Map<IEnumerable<NewsDto>>(newsList);
         }
 
-        public async Task<IEnumerable<NewsDto>> GetAllEventInSystemAsync()
+        public async Task<IEnumerable<NewsDto>> GetAllNewsInSystemAsync()
         {
             _logger.LogInformation("Retrieving all news in the system");
-            var newsList = await _newsRepository.GetAllEventInSystemAsync();
+            var newsList = await _newsRepository.GetAllNewsInSystemAsync();
 
             if (newsList == null || !newsList.Any())
             {

@@ -59,7 +59,7 @@ namespace Hospital.Controllers
         [HttpPut("UpdateNews")]
         [Authorize(Roles = "Admin")]
 
-        public async Task<IActionResult> UpdateEvent([FromBody] NewsDto news)
+        public async Task<IActionResult> UpdateNews([FromBody] NewsDto news)
         {
             _logger.LogInformation("update News  called at {time}", DateTime.Now);
 
@@ -88,11 +88,12 @@ namespace Hospital.Controllers
         }
 
         [HttpGet("GetAllNewsInSystem")]
+        [Authorize(Roles = "Admin, Patient")]
         public async Task<IActionResult> GetAllNewsInSystem()
         {
             _logger.LogInformation("get all News in system  called at {time}", DateTime.Now);
 
-            var news = await _newsService.GetAllEventInSystemAsync();
+            var news = await _newsService.GetAllNewsInSystemAsync();    
             if (news == null || !news.Any())
                 return NotFound("No news found in the system.");
             return Ok(news);

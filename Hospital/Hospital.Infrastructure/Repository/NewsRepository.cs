@@ -40,7 +40,7 @@ namespace Hospital.Infrastructure.Repository
                 .Where(n => n.BranchId == branchId).ToListAsync();
         }
 
-        public async Task<IEnumerable<News>> GetAllEventInSystemAsync()
+        public async Task<IEnumerable<News>> GetAllNewsInSystemAsync()
         {
             return await _dbContext.News
                 .AsNoTracking()
