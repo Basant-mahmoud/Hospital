@@ -185,7 +185,7 @@ namespace Hospital.Infrastructure.Services
             return _mapper.Map<List<AppointmentDto>>(records ?? new List<Appointment>());
         }
 
-        public async Task<List<AppointmentDto>> GetAllAppointmentCancelByDoctorId(int DoctorId)
+        public async Task<List<GetAllAppointmentCancelDto>> GetAllAppointmentCancelByDoctorId(int DoctorId)
         {
             _logger.LogInformation("Fetching appointments for DoctorId: {DoctorId}", DoctorId);
 
@@ -200,7 +200,7 @@ namespace Hospital.Infrastructure.Services
             }
 
             var records = await _appointmentRepo.GetCancelByDoctorIdAsync(DoctorId);
-            return _mapper.Map<List<AppointmentDto>>(records ?? new List<Appointment>());
+            return _mapper.Map<List<GetAllAppointmentCancelDto>>(records ?? new List<Appointment>());
         }
 
         public async Task<AppointmentDto?> GetByIdAsync(int id)
