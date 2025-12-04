@@ -19,6 +19,11 @@ namespace Hospital.Domain.Models
         public string? Description { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
+        [Range(-90, 90, ErrorMessage = "Latitude must be between -90 and 90.")]
+        public double? Latitude { get; set; }
+
+        [Range(-180, 180, ErrorMessage = "Longitude must be between -180 and 180.")]
+        public double? Longitude { get; set; }
         public ICollection<Doctor> Doctors { get; set; } = new List<Doctor>();
         public ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
         public ICollection<Service> Services { get; set; } = new List<Service>();

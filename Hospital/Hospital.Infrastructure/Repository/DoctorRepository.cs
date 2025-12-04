@@ -45,6 +45,7 @@ namespace Hospital.Infrastructure.Repos
                 .Include(d => d.Specialization)
                 .Include(d => d.Branches)
                  .Include(d => d.Schedules)
+                 .Include(d => d.Branches)
                 .FirstOrDefaultAsync(d => d.DoctorId == doctorId);
         }
 
@@ -66,6 +67,7 @@ namespace Hospital.Infrastructure.Repos
                 .Include(d => d.Specialization)
                 .Include(d => d.Branches)
                 .Include(d => d.Schedules)
+                .ThenInclude(s => s.Branch)
                 .ToListAsync();
         }
 
@@ -76,13 +78,14 @@ namespace Hospital.Infrastructure.Repos
                 .Include(d => d.Branches)
                     .ThenInclude(b => b.Specializations)
                 .Include(d => d.Schedules)
+                .ThenInclude(s => s.Branch)
                 .Where(d => d.Branches
                     .Any(b => b.Specializations
                         .Any(s => s.SpecializationId == specializationId)))
                 .ToListAsync();
         }
        
-        public async Task<List<Appointment>> GetAppoimentsByDateForDoctorAsync(int doctorId, DateOnly date)
+        public async Task<List<Appointment>> GetAppoimentsByDateTodayForDoctorAsync(int doctorId, DateOnly date)
         {
             return await _context.Appointments
                 .Include(a => a.Patient)             
@@ -91,7 +94,20 @@ namespace Hospital.Infrastructure.Repos
                 .Where(a =>
                     a.DoctorId == doctorId &&
                     a.Date == date &&
-                    a.Status == AppointmentStatus.Confirmed || a.Status == AppointmentStatus.Completed)
+                    a.Status == AppointmentStatus.Confirmed )
+                .ToListAsync();
+        }
+
+        public async Task<List<Appointment>> GetAppoimentsByDateForDoctorAsync(int doctorId, DateOnly date)
+        {
+            return await _context.Appointments
+                .Include(a => a.Patient)
+                    .ThenInclude(p => p.User)
+                .Include(a => a.Branch)
+                .Where(a =>
+                    a.DoctorId == doctorId &&
+                    a.Date == date &&
+                    a.Status == AppointmentStatus.Confirmed)
                 .ToListAsync();
         }
 

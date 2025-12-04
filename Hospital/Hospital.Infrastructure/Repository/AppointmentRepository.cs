@@ -36,24 +36,54 @@ namespace Hospital.Infrastructure.Repository
             return await _context.Appointments
                 .Include(a => a.Patient)
                 .Include(a => a.Doctor)
+                .ThenInclude(a=>a.User)
+                .Include(a => a.Doctor)
+            .ThenInclude(d => d.Specialization)
                 .Include(a => a.Branch)
+                .Include(a => a.Payment)
                 .FirstOrDefaultAsync(a => a.AppointmentId == id);
         }
+      
         public async Task<IEnumerable<Appointment>> GetAllAsync()
         {
             return await _context.Appointments
                 .Include(a => a.Patient)
                 .Include(a => a.Doctor)
+                .ThenInclude(a => a.User)
+                .Include(a => a.Doctor)
+            .ThenInclude(d => d.Specialization)
                 .Include(a => a.Branch)
+                .Include(a=>a.Payment)
                 .ToListAsync();
         }
 
+        public async Task<IEnumerable<Appointment>> GetCompletedForDoctorAppointmentAsync(int doctorid)
+        {
+            return await _context.Appointments
+                .Include(a => a.Patient)
+                     .ThenInclude(a => a.User)
+                .Include(a => a.Doctor)
+                .Include(a => a.Branch)
+                .Where(a => a.Status == AppointmentStatus.Completed && a.DoctorId==doctorid)
+                .ToListAsync();
+        }
+        public async Task<IEnumerable<Appointment>> GetCompletedAppointmentAsync()
+        {
+            return await _context.Appointments
+                .Include(a => a.Patient)
+                    .ThenInclude(a => a.User)
+                .Include(a => a.Doctor)
+                .Include(a => a.Branch)
+                .Where(a => a.Status == AppointmentStatus.Completed)
+                .ToListAsync();
+        }
         public async Task<IEnumerable<Appointment>> GetByDoctorIdAsync(int doctorId)
         {
             return await _context.Appointments
                 .Where(a => a.DoctorId == doctorId)
                 .Include(a => a.Patient)
                 .Include(a => a.Branch)
+                .Include(a => a.Payment)
                 .ToListAsync();
         }
 
@@ -63,6 +93,7 @@ namespace Hospital.Infrastructure.Repository
                 .Where(a => a.DoctorId == doctorId && a.Status == AppointmentStatus.Cancelled)
                 .Include(a => a.Patient)
                 .Include(a => a.Branch)
+                .Include(a=>a.Payment)
                 .ToListAsync();
         }
 
@@ -71,7 +102,11 @@ namespace Hospital.Infrastructure.Repository
             return await _context.Appointments
                 .Where(a => a.PatientId == patientId)
                 .Include(a => a.Doctor)
+                .ThenInclude(a=>a.User)
+                .Include(a => a.Doctor)
+                .ThenInclude(a=>a.Specialization)
                 .Include(a => a.Branch)
+                .Include (a => a.Payment)
                 .ToListAsync();
         }
 
@@ -98,5 +133,6 @@ namespace Hospital.Infrastructure.Repository
                 );
         }
 
+       
     }
 }

@@ -14,14 +14,19 @@ namespace Hospital.Application.MappingProfiles
                 .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(_ => DateTime.UtcNow))
                 .ForMember(dest => dest.UpdatedAt, opt => opt.MapFrom(_ => DateTime.UtcNow));
 
-            // Appointment → AppointmentDto
+            // Payment → PaymentDto
+            CreateMap<Payment, PaymentDto>();
+
+            // Appointment → AppointmentDto 
             CreateMap<Appointment, AppointmentDto>()
                 .ForMember(dest => dest.Status,
                     opt => opt.MapFrom(src => src.Status.ToString()))
                 .ForMember(dest => dest.PaymentMethod,
-                    opt => opt.MapFrom(src => src.PaymentMethod.ToString())) // Enum → String
-               .ForMember(dest => dest.Shift,  // Map Shift enum to string
-                    opt => opt.MapFrom(src => src.Shift.ToString()));
+                    opt => opt.MapFrom(src => src.PaymentMethod.ToString()))
+                .ForMember(dest => dest.Shift,
+                    opt => opt.MapFrom(src => src.Shift.ToString()))
+                .ForMember(dest => dest.Payment,         // <<< رجّع البايمنت
+                    opt => opt.MapFrom(src => src.Payment));
 
             // Branch → BranchShortDto
             CreateMap<Branch, BranchShortDto>();
@@ -37,6 +42,23 @@ namespace Hospital.Application.MappingProfiles
             CreateMap<Appointment, AppoinmentandPaientDetaliesDto>()
                 .ForMember(dest => dest.appointmentDetails, opt => opt.MapFrom(src => src))
                 .ForMember(dest => dest.patientInfo, opt => opt.MapFrom(src => src.Patient));
+
+            // Doctor → appointmentDoctorDto
+            CreateMap<Doctor, appointmentDoctorDto>()
+                .ForMember(dest => dest.SpecializationId, opt => opt.MapFrom(src => src.SpecializationId));
+
+            // Appointment → AppoinmentandPaientDoctorDetaliesDto
+            CreateMap<Appointment, AppoinmentandPaientDoctorDetaliesDto>()
+                .ForMember(dest => dest.appointmentDetails, opt => opt.MapFrom(src => src))
+                .ForMember(dest => dest.patientInfo, opt => opt.MapFrom(src => src.Patient))
+                .ForMember(dest => dest.doctorinfo, opt => opt.MapFrom(src => src.Doctor));
+
+            CreateMap<Doctor, DoctorShortDto>()
+    .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => src.User.FullName))
+    .ForMember(dest => dest.Specialization, opt => opt.MapFrom(src => src.Specialization));
+
+            CreateMap<Specialization, SpecializationDto>();
+            CreateMap<Appointment, AppointmentDto>();
 
         }
     }

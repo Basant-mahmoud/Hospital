@@ -18,13 +18,14 @@ namespace Hospital.Infrastructure.Services
         private readonly IPatientRepository _patientRepository;
         private readonly IMapper _mapper;
         private readonly ILogger<SupportTicketService> _logger;
-
-        public SupportTicketService(ISupportTicketRepository repo, IMapper mapper, IPatientRepository patientRepository, ILogger<SupportTicketService> logger)
+        private readonly IEmailService _emailService;
+        public SupportTicketService(ISupportTicketRepository repo, IMapper mapper, IPatientRepository patientRepository, ILogger<SupportTicketService> logger, IEmailService emailService)
         {
             _repo = repo;
             _mapper = mapper;
             _patientRepository = patientRepository;
             _logger = logger;
+            _emailService = emailService;
         }
 
         public async Task<SupportTicketDto> CreateAsync(CreateSupportTicketDto dto)
@@ -90,7 +91,18 @@ namespace Hospital.Infrastructure.Services
 
             await _repo.UpdateAsync(ticket);
             _logger.LogInformation("Ticket {TicketId} updated successfully", dto.TicketId);
+            if (!string.IsNullOrEmpty(ticket.User.Email))
+            {
+                var subject = $"Update on your support ticket #{ticket.TicketId}";
+                var body = $"Hello {ticket.User.FullName},\n\n" +
+                           $"Your support ticket has been updated by the admin.\n" +
+                           $"Status: {ticket.Status}\n" +
+                           $"Updated At: {ticket.UpdatedAt:yyyy-MM-dd HH:mm} UTC\n\n" +
+                           $"Best regards,\nSupport Team";
 
+                await _emailService.SendEmailAsync(ticket.User.Email, subject, body);
+                _logger.LogInformation("Update email sent to {Email}", ticket.User.Email);
+            }
             return _mapper.Map<SupportTicketDto>(ticket);
         }
 

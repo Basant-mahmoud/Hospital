@@ -13,7 +13,7 @@ namespace Hospital.Application.Interfaces.Services
     public interface IMedicalRecordService
     {
         Task<MedicalRecordDto> AddAsync(AddMedicalRecordDto medicalRecord);
-        Task<int> UpdateAsync(UpdateMedicalRecordDto medicalRecord);
+        Task<MedicalRecordDto> UpdateAsync(UpdateMedicalRecordDto medicalRecord);
         Task<int> DeleteAsync(int id);
         Task<MedicalRecordDto?> GetByMedicalRecordIdAsync(GetMedicalRecordDto dto);
         Task<List<MedicalRecordDto>> GetByDoctorId(int DoctorId);

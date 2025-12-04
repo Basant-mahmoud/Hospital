@@ -183,5 +183,7 @@ namespace Hospital.Infrastructure.Services
             var schedules = await _repo.GetAllByDoctorIdAsync(doctorId);
             return _mapper.Map<IEnumerable<ScheduleDto>>(schedules);
         }
+
+
     }
 }

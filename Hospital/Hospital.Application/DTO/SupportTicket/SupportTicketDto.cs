@@ -12,6 +12,7 @@ namespace Hospital.Application.DTO.SupportTicket
         public int TicketId { get; set; }
         public string PatientId { get; set; } = null!;
         public string PatientName { get; set; } = null!;
+        public string PatientEmail { get; set; } = null!;  
         public string Subject { get; set; } = null!;
         public string Message { get; set; } = null!;
         public string? Response { get; set; }
