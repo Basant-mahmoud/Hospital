@@ -261,6 +261,13 @@ namespace Hospital.Infrastructure.Services
             return _mapper.Map<IEnumerable<DoctorDto>>(doctors);
         }
 
+        public async Task<IEnumerable<DoctorDto>> GetallActiveDoctorInSystemAsync()
+        {
+            _logger.LogInformation("Fetching all doctors in the system");
+            var doctors = await _doctorRepo.GetallActiveDoctorInSystemAsync();
+            return _mapper.Map<IEnumerable<DoctorDto>>(doctors);
+        }
+
         public async Task<IEnumerable<DoctorDto>> GetDoctorsBySpecializationIdAsync(int specializationId)
         {
             _logger.LogInformation("Fetching doctors for specialization ID {SpecializationId}", specializationId);

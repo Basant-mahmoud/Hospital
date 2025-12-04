@@ -93,12 +93,27 @@ namespace Hospital.Infrastructure.Services
             _logger.LogInformation("Ticket {TicketId} updated successfully", dto.TicketId);
             if (!string.IsNullOrEmpty(ticket.User.Email))
             {
-                var subject = $"Update on your support ticket #{ticket.TicketId}";
-                var body = $"Hello {ticket.User.FullName},\n\n" +
-                           $"Your support ticket has been updated by the admin.\n" +
-                           $"Status: {ticket.Status}\n" +
-                           $"Updated At: {ticket.UpdatedAt:yyyy-MM-dd HH:mm} UTC\n\n" +
-                           $"Best regards,\nSupport Team";
+                var subject = $"Update on Your Support Ticket #{ticket.TicketId}";
+
+                  var body = $@"
+                    Hello {ticket.User.FullName},
+
+                    We wanted to inform you that your support ticket has been updated by our team.
+
+                    ------------------------------------
+                    Ticket Details
+                    ------------------------------------
+                    • Ticket ID: {ticket.TicketId}
+                    • Current Status: {ticket.Status}
+                    • Last Updated: {ticket.UpdatedAt:yyyy-MM-dd HH:mm} UTC
+                    ------------------------------------
+
+                    If you have any additional questions or need further assistance, feel free to reply to this email.
+
+                    Best regards,
+                    Support Team
+                    ";
+
 
                 await _emailService.SendEmailAsync(ticket.User.Email, subject, body);
                 _logger.LogInformation("Update email sent to {Email}", ticket.User.Email);
