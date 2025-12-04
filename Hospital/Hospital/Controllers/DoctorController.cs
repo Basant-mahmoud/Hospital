@@ -189,6 +189,15 @@ namespace Hospital.Controllers
             var doctors = await _doctorService.GetAllDoctorInSystemAsync();
             return Ok(doctors);
         }
+        // ------------------- Get All Doctors in System -------------------
+        [HttpGet("GetallActiveDoctor")]
+        public async Task<IActionResult> GetallActiveDoctor()
+        {
+            _logger.LogInformation("get all doctor in system called at {time}", DateTime.Now);
+
+            var doctors = await _doctorService.GetallActiveDoctorInSystemAsync();
+            return Ok(doctors);
+        }
 
         // ------------------- Get All Doctors in Specialization -------------------
         [HttpGet("BySpecialization/{specializationId}")]

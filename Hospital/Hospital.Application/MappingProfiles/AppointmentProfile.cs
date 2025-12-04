@@ -59,6 +59,23 @@ namespace Hospital.Application.MappingProfiles
 
             CreateMap<Specialization, SpecializationDto>();
             CreateMap<Appointment, AppointmentDto>();
+            // Appointment → GetAllAppointmentCancelDto
+            CreateMap<Appointment, GetAllAppointmentCancelDto>()
+                .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToString()))
+                .ForMember(dest => dest.Shift, opt => opt.MapFrom(src => src.Shift.ToString()))
+                .ForMember(dest => dest.PaymentMethod, opt => opt.MapFrom(src => src.PaymentMethod))
+                .ForMember(dest => dest.Branch, opt => opt.MapFrom(src => src.Branch))
+                .ForMember(dest => dest.Payment, opt => opt.MapFrom(src => src.Payment))
+                .ForMember(dest => dest.Doctor, opt => opt.MapFrom(src => src.Doctor))
+                .ForMember(dest => dest.Patient, opt => opt.MapFrom(src => src.Patient));
+
+            // Patient → PatientAppointmentDto
+            CreateMap<Patient, PatientAppointmentDto>()
+                .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => src.User.FullName))
+                .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.User.Email))
+                .ForMember(dest => dest.PhoneNumber, opt => opt.MapFrom(src => src.User.PhoneNumber))
+                .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId));
+
 
         }
     }

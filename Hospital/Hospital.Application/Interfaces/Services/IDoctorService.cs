@@ -24,6 +24,8 @@ namespace Hospital.Application.Interfaces.Services
         Task<List<AppoinmentandPaientDetaliesDto>> GetAppoinmentsForDoctorByDateAsync(int doctorId, DateOnly date);
         Task<bool> convertStatuesOFPaymentToPayied(int appoimentid);
         Task<int> CancelAppointmentsForDoctorbyDate(int id, DateOnly date);
+        Task<IEnumerable<DoctorDto>> GetallActiveDoctorInSystemAsync();
     }
+
 
 }
