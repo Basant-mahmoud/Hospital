@@ -88,7 +88,7 @@ namespace Hospital.Controllers
         }
 
         [HttpGet("patient/{patientId}")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,Patient")]
         public async Task<ActionResult<IEnumerable<SupportTicketDto>>> GetAllByPatientId(int patientId)
         {
             _logger.LogInformation("get all Support Ticket  by patient id " +
