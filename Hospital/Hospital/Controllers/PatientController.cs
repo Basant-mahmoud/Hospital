@@ -22,6 +22,7 @@ namespace Hospital.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "Patient, Doctor")]
 
         public async Task<IActionResult> GetPatientById(int id)
         {
