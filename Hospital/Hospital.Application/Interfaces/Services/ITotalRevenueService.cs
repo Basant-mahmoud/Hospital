@@ -12,5 +12,9 @@ namespace Hospital.Application.Interfaces.Services
         Task<decimal> GetTotalRevenueByDoctorIdInAllBranchAsync(int doctorId);
         Task<decimal> GetTotalRevenueInAllBranchAsync();
         Task<decimal> GetTotalRevenueInSpecificBranchAllBranchAsync(int branchId);
+        Task<decimal> GetTotalRevenueInSpecificYearAsync(int year);
+        Task<decimal> GetTotalRevenueInSpecificMonthAsync(int year, int month);
+        Task<List<object>> GetRevenueByBranch();
+        Task<List<object>> GetMonthlyRevenue(int year);
     }
 }

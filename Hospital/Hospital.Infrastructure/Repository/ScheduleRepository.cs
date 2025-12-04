@@ -2,13 +2,17 @@
 using Hospital.Application.Interfaces.Repos;
 using Hospital.Domain.Models;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Hospital.Infrastructure.Repository
 {
     public class ScheduleRepository : IScheduleRepository
     {
-
         private readonly AppDbContext _context;
+
         public ScheduleRepository(AppDbContext context)
         {
             _context = context;
@@ -42,7 +46,10 @@ namespace Hospital.Infrastructure.Repository
         {
             return await _context.Schedules
                 .Include(s => s.Doctor)
-                 .ThenInclude(d => d.User)
+                    .ThenInclude(d => d.User)
+                .Include(s => s.Doctor)
+                    .ThenInclude(d => d.Specialization)
+                .Include(s => s.Branch)
                 .FirstOrDefaultAsync(s => s.ScheduleId == scheduleId);
         }
 
@@ -50,7 +57,10 @@ namespace Hospital.Infrastructure.Repository
         {
             return await _context.Schedules
                 .Include(s => s.Doctor)
-                 .ThenInclude(d => d.User)
+                    .ThenInclude(d => d.User)
+                .Include(s => s.Doctor)
+                    .ThenInclude(d => d.Specialization)
+                .Include(s => s.Branch)
                 .ToListAsync();
         }
 
@@ -59,7 +69,10 @@ namespace Hospital.Infrastructure.Repository
             return await _context.Schedules
                 .Where(s => s.DoctorId == doctorId)
                 .Include(s => s.Doctor)
-                 .ThenInclude(d => d.User)
+                    .ThenInclude(d => d.User)
+                .Include(s => s.Doctor)
+                    .ThenInclude(d => d.Specialization)
+                .Include(s => s.Branch)
                 .ToListAsync();
         }
 
@@ -68,9 +81,50 @@ namespace Hospital.Infrastructure.Repository
             return await _context.Schedules
                 .Where(s => s.DayOfWeek.ToLower() == dayOfWeek.ToLower())
                 .Include(s => s.Doctor)
-                 .ThenInclude(d => d.User)
+                    .ThenInclude(d => d.User)
+                .Include(s => s.Doctor)
+                    .ThenInclude(d => d.Specialization)
+                .Include(s => s.Branch)
                 .ToListAsync();
         }
 
+        // Bonus: Get schedules by BranchId
+        public async Task<IEnumerable<Schedule>> GetAllByBranchIdAsync(int branchId)
+        {
+            return await _context.Schedules
+                .Where(s => s.BranchId == branchId)
+                .Include(s => s.Doctor)
+                    .ThenInclude(d => d.User)
+                .Include(s => s.Doctor)
+                    .ThenInclude(d => d.Specialization)
+                .Include(s => s.Branch)
+                .ToListAsync();
+        }
+
+        // Bonus: Get schedules by DoctorId and DayOfWeek
+        public async Task<IEnumerable<Schedule>> GetByDoctorAndDayAsync(int doctorId, string dayOfWeek)
+        {
+            return await _context.Schedules
+                .Where(s => s.DoctorId == doctorId && s.DayOfWeek.ToLower() == dayOfWeek.ToLower())
+                .Include(s => s.Doctor)
+                    .ThenInclude(d => d.User)
+                .Include(s => s.Doctor)
+                    .ThenInclude(d => d.Specialization)
+                .Include(s => s.Branch)
+                .ToListAsync();
+        }
+
+        // Bonus: Get schedules by SpecializationId (useful for finding all cardiologists' schedules)
+        public async Task<IEnumerable<Schedule>> GetBySpecializationIdAsync(int specializationId)
+        {
+            return await _context.Schedules
+                .Where(s => s.Doctor.SpecializationId == specializationId)
+                .Include(s => s.Doctor)
+                    .ThenInclude(d => d.User)
+                .Include(s => s.Doctor)
+                    .ThenInclude(d => d.Specialization)
+                .Include(s => s.Branch)
+                .ToListAsync();
+        }
     }
 }

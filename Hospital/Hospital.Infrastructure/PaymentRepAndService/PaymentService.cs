@@ -2,6 +2,7 @@
 using Hospital.Application.Interfaces.Payment;
 using Hospital.Domain.Enum;
 using Hospital.Domain.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using System;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace Hospital.Infrastructure.Payment
             _options = options.Value;
         }
 
+        [HttpPost("create")]
         public async Task<string> CreatePaymobPaymentForAppointmentAsync(
             int appointmentId,
             string currentUserId,
@@ -38,56 +40,96 @@ namespace Hospital.Infrastructure.Payment
             if (appointment.Patient.UserId != currentUserId)
                 throw new UnauthorizedAccessException("You can only pay for your own appointments.");
 
-            // Check if already paid
+            // ✅ Check if already paid
             if (appointment.Payment != null && appointment.Payment.Status == PaymentStatus.Paid)
                 throw new InvalidOperationException("This appointment has already been paid for.");
 
-            // Get consultation fee
-            var amount = appointment.Doctor.ConsultationFees;
+            // ✅ NEW: If payment exists and is pending, update it instead of creating new
+            string paymentToken;
 
-            // Step 1: Authenticate with Paymob
-            var authResponse = await _paymobClient.AuthenticateAsync(ct);
-            var authToken = authResponse;
-
-            // Step 2: Create Paymob order
-            var merchantOrderId = $"APT-{appointmentId}-{DateTime.UtcNow.Ticks}";
-            var orderResponse = await _paymobClient.CreateOrderAsync(
-                authToken.token,
-                amount,
-                "EGP",
-                merchantOrderId,
-                ct);
-
-            // Step 3: Generate payment key
-            var paymentKeyResponse = await _paymobClient.GeneratePaymentKeyAsync(
-                authToken.token,
-                orderResponse.id,
-                amount,
-                "EGP",
-                appointment.Patient.User.Email,
-                $"{appointment.Patient.User.FullName}",
-                appointment.Patient.User.PhoneNumber,
-                redirectUrl: null, // You can add your frontend callback URL here
-                ct);
-
-            // Step 4: Create Payment record in DB
-            var payment = new Hospital.Domain.Models.Payment
+            if (appointment.Payment != null && appointment.Payment.Status == PaymentStatus.Pending)
             {
-                AppointmentId = appointmentId,
-                Amount = amount,
-                Currency = "EGP",
-                PaymobOrderId = orderResponse.id,
-                PaymobMerchantOrderId = merchantOrderId,
-                Status = PaymentStatus.Pending,
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow
-            };
+                // Re-generate payment for existing pending payment
+                var amount = appointment.Doctor.ConsultationFees;
 
-            await _paymentRepository.AddPaymentAsync(payment, ct);
+                var authResponse = await _paymobClient.AuthenticateAsync(ct);
+                var authToken = authResponse;
 
-            // Return payment token for frontend
-            return paymentKeyResponse.token;
+                var merchantOrderId = $"APT-{appointmentId}-{DateTime.UtcNow.Ticks}";
+                var orderResponse = await _paymobClient.CreateOrderAsync(
+                    authToken.token,
+                    amount,
+                    "EGP",
+                    merchantOrderId,
+                    ct);
+
+                var paymentKeyResponse = await _paymobClient.GeneratePaymentKeyAsync(
+                    authToken.token,
+                    orderResponse.id,
+                    amount,
+                    "EGP",
+                    appointment.Patient.User.Email,
+                    $"{appointment.Patient.User.FullName}",
+                    appointment.Patient.User.PhoneNumber,
+                    redirectUrl: null,
+                    ct);
+
+                // Update existing payment record
+                appointment.Payment.PaymobOrderId = orderResponse.id;
+                appointment.Payment.PaymobMerchantOrderId = merchantOrderId;
+                appointment.Payment.UpdatedAt = DateTime.UtcNow;
+
+                await _paymentRepository.UpdatePaymentAsync(appointment.Payment, ct);
+
+                paymentToken = paymentKeyResponse.token;
+            }
+            else
+            {
+                // Create new payment
+                var amount = appointment.Doctor.ConsultationFees;
+
+                var authResponse = await _paymobClient.AuthenticateAsync(ct);
+                var authToken = authResponse;
+
+                var merchantOrderId = $"APT-{appointmentId}-{DateTime.UtcNow.Ticks}";
+                var orderResponse = await _paymobClient.CreateOrderAsync(
+                    authToken.token,
+                    amount,
+                    "EGP",
+                    merchantOrderId,
+                    ct);
+
+                var paymentKeyResponse = await _paymobClient.GeneratePaymentKeyAsync(
+                    authToken.token,
+                    orderResponse.id,
+                    amount,
+                    "EGP",
+                    appointment.Patient.User.Email,
+                    $"{appointment.Patient.User.FullName}",
+                    appointment.Patient.User.PhoneNumber,
+                    redirectUrl: null,
+                    ct);
+
+                var payment = new Hospital.Domain.Models.Payment
+                {
+                    AppointmentId = appointmentId,
+                    Amount = amount,
+                    Currency = "EGP",
+                    PaymobOrderId = orderResponse.id,
+                    PaymobMerchantOrderId = merchantOrderId,
+                    Status = PaymentStatus.Pending,
+                    CreatedAt = DateTime.UtcNow,
+                    UpdatedAt = DateTime.UtcNow
+                };
+
+                await _paymentRepository.AddPaymentAsync(payment, ct);
+
+                paymentToken = paymentKeyResponse.token;
+            }
+
+            return paymentToken;
         }
+
 
         public async Task<Hospital.Domain.Models.Payment?> HandlePaymobCallbackAsync(PaymobCallbackDto dto,CancellationToken ct = default)
         {

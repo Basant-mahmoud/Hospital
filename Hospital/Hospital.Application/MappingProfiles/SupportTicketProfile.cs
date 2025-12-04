@@ -31,7 +31,8 @@ namespace Hospital.Application.MappingProfiles
 
             CreateMap<SupportTicket, SupportTicketDto>()
                 .ForMember(dest => dest.PatientId, opt => opt.MapFrom(s => s.UserId))
-                .ForMember(dest => dest.PatientName, opt => opt.MapFrom(s => s.User.FullName));
+                .ForMember(dest => dest.PatientName, opt => opt.MapFrom(s => s.User.FullName))
+                .ForMember(dest => dest.PatientEmail, opt => opt.MapFrom(s => s.User.Email));
         }
     }
 }
