@@ -70,6 +70,18 @@ namespace Hospital.Infrastructure.Repos
                 .ThenInclude(s => s.Branch)
                 .ToListAsync();
         }
+        public async Task<IEnumerable<Doctor>> GetallActiveDoctorInSystemAsync()
+        {
+            return await _context.Doctors
+                 .Where(d => d.Available == true)
+                .Include(d => d.User)
+                .Include(d => d.Specialization)
+                .Include(d => d.Branches)
+                .Include(d => d.Schedules)
+                .ThenInclude(s => s.Branch)
+                
+                .ToListAsync();
+        }
 
         public async Task<IEnumerable<Doctor>> GetDoctorsBySpecializationIdAsync(int specializationId)
         {
