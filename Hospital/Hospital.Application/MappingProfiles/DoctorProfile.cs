@@ -61,6 +61,7 @@ namespace Hospital.Application.MappingProfiles
             CreateMap<UpdateDoctorDto, Doctor>()
                 .ForMember(dest => dest.DoctorId, opt => opt.Ignore())
                 .ForMember(dest => dest.UserId, opt => opt.Ignore())
+                    .ForMember(x => x.Schedules, opt => opt.Ignore())
                 .ForMember(dest => dest.Branches, opt => opt.Ignore())
                 .ForMember(dest => dest.CreatedAt, opt => opt.Ignore())
                 .ForMember(dest => dest.UpdatedAt, opt => opt.Ignore());
