@@ -23,8 +23,6 @@ namespace Hospital.Controllers
         }
 
         [HttpPost("register")]
-        [Authorize(Roles = "Patient,Admin")]
-
         public async Task<IActionResult> RegisterAsync([FromBody] RegisterModel model)
         {
             _logger.LogInformation("Register called at {time}", DateTime.Now);
@@ -50,7 +48,6 @@ namespace Hospital.Controllers
         }
 
         [HttpPost("login")]
-        [Authorize(Roles = "Patient,Admin,Doctor")]
         public async Task<IActionResult> LoginAsync([FromBody] LoginModel model)
         {
             _logger.LogInformation("Login called at {time}", DateTime.Now);
