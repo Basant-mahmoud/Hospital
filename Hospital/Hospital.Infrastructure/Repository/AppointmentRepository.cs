@@ -92,6 +92,7 @@ namespace Hospital.Infrastructure.Repository
             return await _context.Appointments
                 .Where(a => a.DoctorId == doctorId && a.Status == AppointmentStatus.Cancelled)
                 .Include(a => a.Patient)
+                 .ThenInclude(p => p.User)
                 .Include(a => a.Branch)
                 .Include(a=>a.Payment)
                 .ToListAsync();
