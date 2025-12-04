@@ -8,7 +8,6 @@ namespace Hospital.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class SupportTicketController : ControllerBase
     {
         private readonly ISupportTicketService _ticketService;
@@ -70,7 +69,7 @@ namespace Hospital.Controllers
         // Get a single ticket by id
         // -----------------------------
         [HttpGet("{ticketId}")]
-        [Authorize(Roles = "Admin, Patient")]
+        //[Authorize(Roles = "Admin, Patient")]
         public async Task<IActionResult> GetById(int ticketId)
         {
             _logger.LogInformation("get  Support by id Ticket called at {time}", DateTime.Now);
