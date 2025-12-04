@@ -8,7 +8,6 @@ namespace Hospital.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class SupportTicketController : ControllerBase
     {
         private readonly ISupportTicketService _ticketService;

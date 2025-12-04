@@ -938,3 +938,1385 @@ RolesAuthorizationRequirement:User.IsInRole must be true for one of the followin
 RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Admin)
 2025-12-04 22:36:12.128 +02:00 [INF] AuthenticationScheme: Bearer was forbidden.
 2025-12-04 22:36:12.129 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7217/api/SupportTicket/patient/8 - 403 0 null 12.2079ms
+2025-12-04 22:41:10.968 +02:00 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2025-12-04 22:41:11.153 +02:00 [DBG] Hosting starting
+2025-12-04 22:41:11.172 +02:00 [INF] User profile is available. Using 'C:\Users\Mostafa\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-12-04 22:41:11.191 +02:00 [DBG] Reading data from file 'C:\Users\Mostafa\AppData\Local\ASP.NET\DataProtection-Keys\key-d44629b6-926c-4f4b-b731-9531dd7a116d.xml'.
+2025-12-04 22:41:11.200 +02:00 [DBG] Found key {d44629b6-926c-4f4b-b731-9531dd7a116d}.
+2025-12-04 22:41:11.213 +02:00 [DBG] Considering key {d44629b6-926c-4f4b-b731-9531dd7a116d} with expiration date 2026-01-11 11:06:49Z as default key.
+2025-12-04 22:41:11.219 +02:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Version=9.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2025-12-04 22:41:11.224 +02:00 [DBG] Decrypting secret element using Windows DPAPI.
+2025-12-04 22:41:11.228 +02:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=9.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2025-12-04 22:41:11.236 +02:00 [DBG] Opening CNG algorithm 'AES' from provider 'null' with chaining mode CBC.
+2025-12-04 22:41:11.242 +02:00 [DBG] Opening CNG algorithm 'SHA256' from provider 'null' with HMAC.
+2025-12-04 22:41:11.247 +02:00 [DBG] Using key {d44629b6-926c-4f4b-b731-9531dd7a116d} as the default key.
+2025-12-04 22:41:11.249 +02:00 [DBG] Key ring with default key {d44629b6-926c-4f4b-b731-9531dd7a116d} was loaded during application startup.
+2025-12-04 22:41:11.254 +02:00 [DBG] Middleware loaded
+2025-12-04 22:41:11.256 +02:00 [DBG] Middleware loaded. Script /_framework/aspnetcore-browser-refresh.js (16501 B).
+2025-12-04 22:41:11.259 +02:00 [DBG] Middleware loaded. Script /_framework/blazor-hotreload.js (799 B).
+2025-12-04 22:41:11.306 +02:00 [DBG] Middleware loaded: DOTNET_MODIFIABLE_ASSEMBLIES=debug, __ASPNETCORE_BROWSER_TOOLS=true
+2025-12-04 22:41:11.371 +02:00 [INF] Now listening on: https://localhost:7217
+2025-12-04 22:41:11.374 +02:00 [INF] Now listening on: http://localhost:5163
+2025-12-04 22:41:11.375 +02:00 [DBG] Loaded hosting startup assembly Hospital
+2025-12-04 22:41:11.376 +02:00 [DBG] Loaded hosting startup assembly Microsoft.WebTools.ApiEndpointDiscovery
+2025-12-04 22:41:11.377 +02:00 [DBG] Loaded hosting startup assembly Microsoft.AspNetCore.Watch.BrowserRefresh
+2025-12-04 22:41:11.377 +02:00 [DBG] Loaded hosting startup assembly Microsoft.WebTools.BrowserLink.Net
+2025-12-04 22:41:11.460 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-04 22:41:11.461 +02:00 [INF] Hosting environment: Development
+2025-12-04 22:41:11.462 +02:00 [INF] Content root path: E:\ITI Smart Village\Graduation-Project-ITI\HospitalWebsite_Back-End\HospitalWebsite\Hospital\Hospital
+2025-12-04 22:41:11.463 +02:00 [DBG] Hosting started
+2025-12-04 22:41:11.494 +02:00 [DBG] Connection id "0HNHJELQTUA14" accepted.
+2025-12-04 22:41:11.495 +02:00 [DBG] Connection id "0HNHJELQTUA14" started.
+2025-12-04 22:41:11.502 +02:00 [DBG] Connection id "0HNHJELQTUA15" accepted.
+2025-12-04 22:41:11.503 +02:00 [DBG] Connection id "0HNHJELQTUA15" started.
+2025-12-04 22:41:11.519 +02:00 [DBG] Connection id "0HNHJELQTUA15" received FIN.
+2025-12-04 22:41:11.519 +02:00 [DBG] Connection id "0HNHJELQTUA14" received FIN.
+2025-12-04 22:41:11.527 +02:00 [DBG] Failed to authenticate HTTPS connection.
+System.IO.IOException: Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.ReceiveHandshakeFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+2025-12-04 22:41:11.527 +02:00 [DBG] Failed to authenticate HTTPS connection.
+System.IO.IOException: Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.ReceiveHandshakeFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+2025-12-04 22:41:11.533 +02:00 [DBG] Connection id "0HNHJELQTUA16" accepted.
+2025-12-04 22:41:11.552 +02:00 [DBG] Connection id "0HNHJELQTUA16" started.
+2025-12-04 22:41:11.554 +02:00 [DBG] Connection id "0HNHJELQTUA15" stopped.
+2025-12-04 22:41:11.554 +02:00 [DBG] Connection id "0HNHJELQTUA14" stopped.
+2025-12-04 22:41:11.557 +02:00 [DBG] Connection id "0HNHJELQTUA14" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-12-04 22:41:11.557 +02:00 [DBG] Connection id "0HNHJELQTUA15" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-12-04 22:41:11.581 +02:00 [DBG] Connection 0HNHJELQTUA16 established using the following protocol: "Tls13"
+2025-12-04 22:41:11.619 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7217/swagger/index.html - null null
+2025-12-04 22:41:11.687 +02:00 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2025-12-04 22:41:11.711 +02:00 [DBG] No candidates found for the request path '/swagger/index.html'
+2025-12-04 22:41:11.713 +02:00 [DBG] Request did not match any endpoints
+2025-12-04 22:41:11.754 +02:00 [DBG] Response markup is scheduled to include Browser Link script injection.
+2025-12-04 22:41:11.757 +02:00 [DBG] Response markup is scheduled to include browser refresh script injection.
+2025-12-04 22:41:11.770 +02:00 [DBG] Response markup was updated to include Browser Link script injection.
+2025-12-04 22:41:11.773 +02:00 [DBG] Response markup was updated to include browser refresh script injection.
+2025-12-04 22:41:11.777 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7217/swagger/index.html - 200 null text/html;charset=utf-8 159.2347ms
+2025-12-04 22:41:11.819 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7217/_framework/aspnetcore-browser-refresh.js - null null
+2025-12-04 22:41:11.822 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7217/_vs/browserLink - null null
+2025-12-04 22:41:11.827 +02:00 [DBG] Script injected: /_framework/aspnetcore-browser-refresh.js
+2025-12-04 22:41:11.829 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7217/_framework/aspnetcore-browser-refresh.js - 200 16501 application/javascript; charset=utf-8 10.5408ms
+2025-12-04 22:41:11.859 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7217/_vs/browserLink - 200 null text/javascript; charset=UTF-8 37.2157ms
+2025-12-04 22:41:12.069 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7217/swagger/v1/swagger.json - null null
+2025-12-04 22:41:12.079 +02:00 [DBG] No candidates found for the request path '/swagger/v1/swagger.json'
+2025-12-04 22:41:12.082 +02:00 [DBG] Request did not match any endpoints
+2025-12-04 22:41:12.149 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7217/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 79.6254ms
+2025-12-04 22:41:26.343 +02:00 [DBG] Connection id "0HNHJELQTUA17" accepted.
+2025-12-04 22:41:26.345 +02:00 [DBG] Connection id "0HNHJELQTUA17" started.
+2025-12-04 22:41:26.353 +02:00 [DBG] Connection 0HNHJELQTUA17 established using the following protocol: "Tls13"
+2025-12-04 22:41:26.357 +02:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7217/api/SupportTicket/patient/8 - null null
+2025-12-04 22:41:26.368 +02:00 [DBG] 1 candidate(s) found for the request path '/api/SupportTicket/patient/8'
+2025-12-04 22:41:26.371 +02:00 [DBG] Request matched endpoint '405 HTTP Method Not Supported'
+2025-12-04 22:41:26.377 +02:00 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-12-04 22:41:26.380 +02:00 [DBG] The request has an origin header: 'http://localhost:4200'.
+2025-12-04 22:41:26.382 +02:00 [INF] CORS policy execution successful.
+2025-12-04 22:41:26.385 +02:00 [DBG] The request is a preflight request.
+2025-12-04 22:41:26.388 +02:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7217/api/SupportTicket/patient/8 - 204 null null 30.8219ms
+2025-12-04 22:41:26.391 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7217/api/SupportTicket/patient/8 - null null
+2025-12-04 22:41:26.395 +02:00 [DBG] 1 candidate(s) found for the request path '/api/SupportTicket/patient/8'
+2025-12-04 22:41:26.400 +02:00 [DBG] Endpoint 'Hospital.Controllers.SupportTicketController.GetAllByPatientId (Hospital)' with route pattern 'api/SupportTicket/patient/{patientId}' is valid for the request path '/api/SupportTicket/patient/8'
+2025-12-04 22:41:26.401 +02:00 [DBG] Request matched endpoint 'Hospital.Controllers.SupportTicketController.GetAllByPatientId (Hospital)'
+2025-12-04 22:41:26.402 +02:00 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-12-04 22:41:26.404 +02:00 [DBG] The request has an origin header: 'http://localhost:4200'.
+2025-12-04 22:41:26.406 +02:00 [INF] CORS policy execution successful.
+2025-12-04 22:41:26.456 +02:00 [DBG] Successfully validated the token.
+2025-12-04 22:41:26.458 +02:00 [DBG] AuthenticationScheme: Bearer was successfully authenticated.
+2025-12-04 22:41:26.462 +02:00 [DBG] Authorization was successful.
+2025-12-04 22:41:26.463 +02:00 [INF] Executing endpoint 'Hospital.Controllers.SupportTicketController.GetAllByPatientId (Hospital)'
+2025-12-04 22:41:26.487 +02:00 [INF] Route matched with {action = "GetAllByPatientId", controller = "SupportTicket"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[Hospital.Application.DTO.SupportTicket.SupportTicketDto]]] GetAllByPatientId(Int32) on controller Hospital.Controllers.SupportTicketController (Hospital).
+2025-12-04 22:41:26.490 +02:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-12-04 22:41:26.491 +02:00 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2025-12-04 22:41:26.494 +02:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-12-04 22:41:26.495 +02:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-12-04 22:41:26.497 +02:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-12-04 22:41:26.499 +02:00 [DBG] Executing controller factory for controller Hospital.Controllers.SupportTicketController (Hospital)
+2025-12-04 22:41:26.566 +02:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2025-12-04 22:41:26.812 +02:00 [DBG] Executed controller factory for controller Hospital.Controllers.SupportTicketController (Hospital)
+2025-12-04 22:41:26.818 +02:00 [DBG] Attempting to bind parameter 'patientId' of type 'System.Int32' ...
+2025-12-04 22:41:26.820 +02:00 [DBG] Attempting to bind parameter 'patientId' of type 'System.Int32' using the name 'patientId' in request data ...
+2025-12-04 22:41:26.822 +02:00 [DBG] Done attempting to bind parameter 'patientId' of type 'System.Int32'.
+2025-12-04 22:41:26.823 +02:00 [DBG] Done attempting to bind parameter 'patientId' of type 'System.Int32'.
+2025-12-04 22:41:26.823 +02:00 [DBG] Attempting to validate the bound parameter 'patientId' of type 'System.Int32' ...
+2025-12-04 22:41:26.825 +02:00 [DBG] Done attempting to validate the bound parameter 'patientId' of type 'System.Int32'.
+2025-12-04 22:41:26.828 +02:00 [INF] get all Support Ticket  by patient id called at "2025-12-04T22:41:26.8284460+02:00"
+2025-12-04 22:41:26.831 +02:00 [INF] Fetching patient with ID: 8
+2025-12-04 22:41:27.341 +02:00 [DBG] The index {'BranchesBranchId'} was not created on entity type 'BranchDoctor (Dictionary<string, object>)' as the properties are already covered by the index {'BranchesBranchId', 'DoctorsDoctorId'}.
+2025-12-04 22:41:27.343 +02:00 [DBG] The index {'BranchId'} was not created on entity type 'BranchService (Dictionary<string, object>)' as the properties are already covered by the index {'BranchId', 'ServiceId'}.
+2025-12-04 22:41:27.345 +02:00 [DBG] The index {'BranchId'} was not created on entity type 'BranchSpecialization (Dictionary<string, object>)' as the properties are already covered by the index {'BranchId', 'SpecializationId'}.
+2025-12-04 22:41:27.347 +02:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserRole<string>' as the properties are already covered by the index {'UserId', 'RoleId'}.
+2025-12-04 22:41:27.349 +02:00 [DBG] The index {'UserId'} was not created on entity type 'IdentityUserToken<string>' as the properties are already covered by the index {'UserId', 'LoginProvider', 'Name'}.
+2025-12-04 22:41:27.470 +02:00 [DBG] The property 'BranchDoctor (Dictionary<string, object>).BranchesBranchId' was created in shadow state because there are no eligible CLR members with a matching name.
+2025-12-04 22:41:27.473 +02:00 [DBG] The property 'BranchDoctor (Dictionary<string, object>).DoctorsDoctorId' was created in shadow state because there are no eligible CLR members with a matching name.
+2025-12-04 22:41:27.645 +02:00 [DBG] Entity Framework Core 8.0.21 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.21' with options: None
+2025-12-04 22:41:27.699 +02:00 [DBG] Compiling query expression: 
+'DbSet<Patient>()
+    .Include(p => p.User)
+    .Include(p => p.MedicalRecords)
+    .ThenInclude(m => m.Doctor)
+    .ThenInclude(d => d.User)
+    .FirstOrDefault(p => p.PatientId == __id_0)'
+2025-12-04 22:41:27.750 +02:00 [DBG] Including navigation: 'Patient.User'.
+2025-12-04 22:41:27.754 +02:00 [DBG] Including navigation: 'Patient.MedicalRecords'.
+2025-12-04 22:41:27.757 +02:00 [DBG] Including navigation: 'MedicalRecord.Doctor'.
+2025-12-04 22:41:27.760 +02:00 [DBG] Including navigation: 'Doctor.User'.
+2025-12-04 22:41:27.942 +02:00 [DBG] Generated query execution expression: 
+'queryContext => ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync<Patient>(
+    asyncEnumerable: new SingleQueryingEnumerable<Patient>(
+        (RelationalQueryContext)queryContext, 
+        RelationalCommandCache.QueryExpression(
+            Client Projections:
+                0 -> Dictionary<IProperty, int> { [Property: Patient.PatientId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Patient.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 1], [Property: Patient.EmergencyContact (string) MaxLength(150), 2], [Property: Patient.UpdatedAt (DateTime) Required ValueGenerated.OnAdd, 3], [Property: Patient.UserId (string) Required FK Index, 4] }
+                1 -> Dictionary<IProperty, int> { [Property: User.Id (string) Required PK AfterSave:Throw, 5], [Property: User.AccessFailedCount (int) Required, 6], [Property: User.ConcurrencyStamp (string) Concurrency, 7], [Property: User.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 8], [Property: User.DateOfBirth (DateOnly?), 9], [Property: User.Email (string) Index MaxLength(256), 10], [Property: User.EmailConfirmed (bool) Required, 11], [Property: User.FullName (string) Required MaxLength(150), 12], [Property: User.Gender (GenderType?) MaxLength(10), 13], [Property: User.LockoutEnabled (bool) Required, 14], [Property: User.LockoutEnd (DateTimeOffset?), 15], [Property: User.NormalizedEmail (string) Index MaxLength(256), 16], [Property: User.NormalizedUserName (string) Index MaxLength(256), 17], [Property: User.PasswordHash (string), 18], [Property: User.PhoneNumber (string), 19], [Property: User.PhoneNumberConfirmed (bool) Required, 20], [Property: User.RefreshToken (string), 21], [Property: User.RefreshTokenExpiryTime (DateTime) Required, 22], [Property: User.Role (string) Required MaxLength(50), 23], [Property: User.SecurityStamp (string), 24], [Property: User.TwoFactorEnabled (bool) Required, 25], [Property: User.UpdatedAt (DateTime) Required ValueGenerated.OnAdd, 26], [Property: User.UserName (string) MaxLength(256), 27] }
+                2 -> 0
+                3 -> 5
+                4 -> Dictionary<IProperty, int> { [Property: MedicalRecord.RecordId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 28], [Property: MedicalRecord.AppointmentId (int) Required FK Index, 29], [Property: MedicalRecord.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 30], [Property: MedicalRecord.Diagnosis (string), 31], [Property: MedicalRecord.DoctorId (int) Required FK Index, 32], [Property: MedicalRecord.Notes (string), 33], [Property: MedicalRecord.PatientId (int) Required FK Index, 34], [Property: MedicalRecord.TreatmentPlan (string), 35], [Property: MedicalRecord.UpdatedAt (DateTime) Required ValueGenerated.OnAdd, 36] }
+                5 -> Dictionary<IProperty, int> { [Property: Doctor.DoctorId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 37], [Property: Doctor.Available (bool?), 38], [Property: Doctor.Biography (string), 39], [Property: Doctor.ConsultationFees (decimal) Required, 40], [Property: Doctor.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 41], [Property: Doctor.ExperienceYears (int?), 42], [Property: Doctor.ImageURL (string) MaxLength(300), 43], [Property: Doctor.SpecializationId (int) Required FK Index, 44], [Property: Doctor.UpdatedAt (DateTime) Required ValueGenerated.OnAdd, 45], [Property: Doctor.UserId (string) Required FK Index, 46] }
+                6 -> Dictionary<IProperty, int> { [Property: User.Id (string) Required PK AfterSave:Throw, 47], [Property: User.AccessFailedCount (int) Required, 48], [Property: User.ConcurrencyStamp (string) Concurrency, 49], [Property: User.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 50], [Property: User.DateOfBirth (DateOnly?), 51], [Property: User.Email (string) Index MaxLength(256), 52], [Property: User.EmailConfirmed (bool) Required, 53], [Property: User.FullName (string) Required MaxLength(150), 54], [Property: User.Gender (GenderType?) MaxLength(10), 55], [Property: User.LockoutEnabled (bool) Required, 56], [Property: User.LockoutEnd (DateTimeOffset?), 57], [Property: User.NormalizedEmail (string) Index MaxLength(256), 58], [Property: User.NormalizedUserName (string) Index MaxLength(256), 59], [Property: User.PasswordHash (string), 60], [Property: User.PhoneNumber (string), 61], [Property: User.PhoneNumberConfirmed (bool) Required, 62], [Property: User.RefreshToken (string), 63], [Property: User.RefreshTokenExpiryTime (DateTime) Required, 64], [Property: User.Role (string) Required MaxLength(50), 65], [Property: User.SecurityStamp (string), 66], [Property: User.TwoFactorEnabled (bool) Required, 67], [Property: User.UpdatedAt (DateTime) Required ValueGenerated.OnAdd, 68], [Property: User.UserName (string) MaxLength(256), 69] }
+                7 -> 28
+                8 -> 37
+                9 -> 47
+            SELECT t.PatientId, t.CreatedAt, t.EmergencyContact, t.UpdatedAt, t.UserId, t.Id, t.AccessFailedCount, t.ConcurrencyStamp, t.CreatedAt0, t.DateOfBirth, t.Email, t.EmailConfirmed, t.FullName, t.Gender, t.LockoutEnabled, t.LockoutEnd, t.NormalizedEmail, t.NormalizedUserName, t.PasswordHash, t.PhoneNumber, t.PhoneNumberConfirmed, t.RefreshToken, t.RefreshTokenExpiryTime, t.Role, t.SecurityStamp, t.TwoFactorEnabled, t.UpdatedAt0, t.UserName, t0.RecordId, t0.AppointmentId, t0.CreatedAt, t0.Diagnosis, t0.DoctorId, t0.Notes, t0.PatientId, t0.TreatmentPlan, t0.UpdatedAt, t0.DoctorId0, t0.Available, t0.Biography, t0.ConsultationFees, t0.CreatedAt0, t0.ExperienceYears, t0.ImageURL, t0.SpecializationId, t0.UpdatedAt0, t0.UserId, t0.Id, t0.AccessFailedCount, t0.ConcurrencyStamp, t0.CreatedAt1, t0.DateOfBirth, t0.Email, t0.EmailConfirmed, t0.FullName, t0.Gender, t0.LockoutEnabled, t0.LockoutEnd, t0.NormalizedEmail, t0.NormalizedUserName, t0.PasswordHash, t0.PhoneNumber, t0.PhoneNumberConfirmed, t0.RefreshToken, t0.RefreshTokenExpiryTime, t0.Role, t0.SecurityStamp, t0.TwoFactorEnabled, t0.UpdatedAt1, t0.UserName
+            FROM 
+            (
+                SELECT TOP(1) p.PatientId, p.CreatedAt, p.EmergencyContact, p.UpdatedAt, p.UserId, u.Id, u.AccessFailedCount, u.ConcurrencyStamp, u.CreatedAt AS CreatedAt0, u.DateOfBirth, u.Email, u.EmailConfirmed, u.FullName, u.Gender, u.LockoutEnabled, u.LockoutEnd, u.NormalizedEmail, u.NormalizedUserName, u.PasswordHash, u.PhoneNumber, u.PhoneNumberConfirmed, u.RefreshToken, u.RefreshTokenExpiryTime, u.Role, u.SecurityStamp, u.TwoFactorEnabled, u.UpdatedAt AS UpdatedAt0, u.UserName
+                FROM Patients AS p
+                INNER JOIN Users AS u ON p.UserId == u.Id
+                WHERE p.PatientId == @__id_0
+            ) AS t
+            LEFT JOIN 
+            (
+                SELECT m.RecordId, m.AppointmentId, m.CreatedAt, m.Diagnosis, m.DoctorId, m.Notes, m.PatientId, m.TreatmentPlan, m.UpdatedAt, d.DoctorId AS DoctorId0, d.Available, d.Biography, d.ConsultationFees, d.CreatedAt AS CreatedAt0, d.ExperienceYears, d.ImageURL, d.SpecializationId, d.UpdatedAt AS UpdatedAt0, d.UserId, u0.Id, u0.AccessFailedCount, u0.ConcurrencyStamp, u0.CreatedAt AS CreatedAt1, u0.DateOfBirth, u0.Email, u0.EmailConfirmed, u0.FullName, u0.Gender, u0.LockoutEnabled, u0.LockoutEnd, u0.NormalizedEmail, u0.NormalizedUserName, u0.PasswordHash, u0.PhoneNumber, u0.PhoneNumberConfirmed, u0.RefreshToken, u0.RefreshTokenExpiryTime, u0.Role, u0.SecurityStamp, u0.TwoFactorEnabled, u0.UpdatedAt AS UpdatedAt1, u0.UserName
+                FROM MedicalRecords AS m
+                INNER JOIN Doctors AS d ON m.DoctorId == d.DoctorId
+                INNER JOIN Users AS u0 ON d.UserId == u0.Id
+            ) AS t0 ON t.PatientId == t0.PatientId
+            ORDER BY t.PatientId ASC, t.Id ASC, t0.RecordId ASC, t0.DoctorId0 ASC), 
+        null, 
+        Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Patient>, 
+        Clinic.Infrastructure.Persistence.AppDbContext, 
+        False, 
+        False, 
+        True
+    ), 
+    cancellationToken: queryContext.CancellationToken)'
+2025-12-04 22:41:27.977 +02:00 [DBG] Creating DbConnection.
+2025-12-04 22:41:27.992 +02:00 [DBG] Created DbConnection. (14ms).
+2025-12-04 22:41:27.995 +02:00 [DBG] Opening connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:28.157 +02:00 [DBG] Opened connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:28.162 +02:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-12-04 22:41:28.167 +02:00 [DBG] Created DbCommand for 'ExecuteReader' (3ms).
+2025-12-04 22:41:28.178 +02:00 [DBG] Initialized DbCommand for 'ExecuteReader' (16ms).
+2025-12-04 22:41:28.186 +02:00 [DBG] Executing DbCommand [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[PatientId], [t].[CreatedAt], [t].[EmergencyContact], [t].[UpdatedAt], [t].[UserId], [t].[Id], [t].[AccessFailedCount], [t].[ConcurrencyStamp], [t].[CreatedAt0], [t].[DateOfBirth], [t].[Email], [t].[EmailConfirmed], [t].[FullName], [t].[Gender], [t].[LockoutEnabled], [t].[LockoutEnd], [t].[NormalizedEmail], [t].[NormalizedUserName], [t].[PasswordHash], [t].[PhoneNumber], [t].[PhoneNumberConfirmed], [t].[RefreshToken], [t].[RefreshTokenExpiryTime], [t].[Role], [t].[SecurityStamp], [t].[TwoFactorEnabled], [t].[UpdatedAt0], [t].[UserName], [t0].[RecordId], [t0].[AppointmentId], [t0].[CreatedAt], [t0].[Diagnosis], [t0].[DoctorId], [t0].[Notes], [t0].[PatientId], [t0].[TreatmentPlan], [t0].[UpdatedAt], [t0].[DoctorId0], [t0].[Available], [t0].[Biography], [t0].[ConsultationFees], [t0].[CreatedAt0], [t0].[ExperienceYears], [t0].[ImageURL], [t0].[SpecializationId], [t0].[UpdatedAt0], [t0].[UserId], [t0].[Id], [t0].[AccessFailedCount], [t0].[ConcurrencyStamp], [t0].[CreatedAt1], [t0].[DateOfBirth], [t0].[Email], [t0].[EmailConfirmed], [t0].[FullName], [t0].[Gender], [t0].[LockoutEnabled], [t0].[LockoutEnd], [t0].[NormalizedEmail], [t0].[NormalizedUserName], [t0].[PasswordHash], [t0].[PhoneNumber], [t0].[PhoneNumberConfirmed], [t0].[RefreshToken], [t0].[RefreshTokenExpiryTime], [t0].[Role], [t0].[SecurityStamp], [t0].[TwoFactorEnabled], [t0].[UpdatedAt1], [t0].[UserName]
+FROM (
+    SELECT TOP(1) [p].[PatientId], [p].[CreatedAt], [p].[EmergencyContact], [p].[UpdatedAt], [p].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt] AS [CreatedAt0], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt] AS [UpdatedAt0], [u].[UserName]
+    FROM [Patients] AS [p]
+    INNER JOIN [Users] AS [u] ON [p].[UserId] = [u].[Id]
+    WHERE [p].[PatientId] = @__id_0
+) AS [t]
+LEFT JOIN (
+    SELECT [m].[RecordId], [m].[AppointmentId], [m].[CreatedAt], [m].[Diagnosis], [m].[DoctorId], [m].[Notes], [m].[PatientId], [m].[TreatmentPlan], [m].[UpdatedAt], [d].[DoctorId] AS [DoctorId0], [d].[Available], [d].[Biography], [d].[ConsultationFees], [d].[CreatedAt] AS [CreatedAt0], [d].[ExperienceYears], [d].[ImageURL], [d].[SpecializationId], [d].[UpdatedAt] AS [UpdatedAt0], [d].[UserId], [u0].[Id], [u0].[AccessFailedCount], [u0].[ConcurrencyStamp], [u0].[CreatedAt] AS [CreatedAt1], [u0].[DateOfBirth], [u0].[Email], [u0].[EmailConfirmed], [u0].[FullName], [u0].[Gender], [u0].[LockoutEnabled], [u0].[LockoutEnd], [u0].[NormalizedEmail], [u0].[NormalizedUserName], [u0].[PasswordHash], [u0].[PhoneNumber], [u0].[PhoneNumberConfirmed], [u0].[RefreshToken], [u0].[RefreshTokenExpiryTime], [u0].[Role], [u0].[SecurityStamp], [u0].[TwoFactorEnabled], [u0].[UpdatedAt] AS [UpdatedAt1], [u0].[UserName]
+    FROM [MedicalRecords] AS [m]
+    INNER JOIN [Doctors] AS [d] ON [m].[DoctorId] = [d].[DoctorId]
+    INNER JOIN [Users] AS [u0] ON [d].[UserId] = [u0].[Id]
+) AS [t0] ON [t].[PatientId] = [t0].[PatientId]
+ORDER BY [t].[PatientId], [t].[Id], [t0].[RecordId], [t0].[DoctorId0]
+2025-12-04 22:41:28.245 +02:00 [INF] Executed DbCommand (61ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[PatientId], [t].[CreatedAt], [t].[EmergencyContact], [t].[UpdatedAt], [t].[UserId], [t].[Id], [t].[AccessFailedCount], [t].[ConcurrencyStamp], [t].[CreatedAt0], [t].[DateOfBirth], [t].[Email], [t].[EmailConfirmed], [t].[FullName], [t].[Gender], [t].[LockoutEnabled], [t].[LockoutEnd], [t].[NormalizedEmail], [t].[NormalizedUserName], [t].[PasswordHash], [t].[PhoneNumber], [t].[PhoneNumberConfirmed], [t].[RefreshToken], [t].[RefreshTokenExpiryTime], [t].[Role], [t].[SecurityStamp], [t].[TwoFactorEnabled], [t].[UpdatedAt0], [t].[UserName], [t0].[RecordId], [t0].[AppointmentId], [t0].[CreatedAt], [t0].[Diagnosis], [t0].[DoctorId], [t0].[Notes], [t0].[PatientId], [t0].[TreatmentPlan], [t0].[UpdatedAt], [t0].[DoctorId0], [t0].[Available], [t0].[Biography], [t0].[ConsultationFees], [t0].[CreatedAt0], [t0].[ExperienceYears], [t0].[ImageURL], [t0].[SpecializationId], [t0].[UpdatedAt0], [t0].[UserId], [t0].[Id], [t0].[AccessFailedCount], [t0].[ConcurrencyStamp], [t0].[CreatedAt1], [t0].[DateOfBirth], [t0].[Email], [t0].[EmailConfirmed], [t0].[FullName], [t0].[Gender], [t0].[LockoutEnabled], [t0].[LockoutEnd], [t0].[NormalizedEmail], [t0].[NormalizedUserName], [t0].[PasswordHash], [t0].[PhoneNumber], [t0].[PhoneNumberConfirmed], [t0].[RefreshToken], [t0].[RefreshTokenExpiryTime], [t0].[Role], [t0].[SecurityStamp], [t0].[TwoFactorEnabled], [t0].[UpdatedAt1], [t0].[UserName]
+FROM (
+    SELECT TOP(1) [p].[PatientId], [p].[CreatedAt], [p].[EmergencyContact], [p].[UpdatedAt], [p].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt] AS [CreatedAt0], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt] AS [UpdatedAt0], [u].[UserName]
+    FROM [Patients] AS [p]
+    INNER JOIN [Users] AS [u] ON [p].[UserId] = [u].[Id]
+    WHERE [p].[PatientId] = @__id_0
+) AS [t]
+LEFT JOIN (
+    SELECT [m].[RecordId], [m].[AppointmentId], [m].[CreatedAt], [m].[Diagnosis], [m].[DoctorId], [m].[Notes], [m].[PatientId], [m].[TreatmentPlan], [m].[UpdatedAt], [d].[DoctorId] AS [DoctorId0], [d].[Available], [d].[Biography], [d].[ConsultationFees], [d].[CreatedAt] AS [CreatedAt0], [d].[ExperienceYears], [d].[ImageURL], [d].[SpecializationId], [d].[UpdatedAt] AS [UpdatedAt0], [d].[UserId], [u0].[Id], [u0].[AccessFailedCount], [u0].[ConcurrencyStamp], [u0].[CreatedAt] AS [CreatedAt1], [u0].[DateOfBirth], [u0].[Email], [u0].[EmailConfirmed], [u0].[FullName], [u0].[Gender], [u0].[LockoutEnabled], [u0].[LockoutEnd], [u0].[NormalizedEmail], [u0].[NormalizedUserName], [u0].[PasswordHash], [u0].[PhoneNumber], [u0].[PhoneNumberConfirmed], [u0].[RefreshToken], [u0].[RefreshTokenExpiryTime], [u0].[Role], [u0].[SecurityStamp], [u0].[TwoFactorEnabled], [u0].[UpdatedAt] AS [UpdatedAt1], [u0].[UserName]
+    FROM [MedicalRecords] AS [m]
+    INNER JOIN [Doctors] AS [d] ON [m].[DoctorId] = [d].[DoctorId]
+    INNER JOIN [Users] AS [u0] ON [d].[UserId] = [u0].[Id]
+) AS [t0] ON [t].[PatientId] = [t0].[PatientId]
+ORDER BY [t].[PatientId], [t].[Id], [t0].[RecordId], [t0].[DoctorId0]
+2025-12-04 22:41:28.290 +02:00 [DBG] Context 'AppDbContext' started tracking 'Patient' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:41:28.351 +02:00 [DBG] The navigation 'Patient.User' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:41:28.354 +02:00 [DBG] Context 'AppDbContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:41:28.402 +02:00 [DBG] Closing data reader to 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:28.411 +02:00 [DBG] A data reader for 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS' is being disposed after spending 158ms reading results.
+2025-12-04 22:41:28.416 +02:00 [DBG] Closing connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:28.420 +02:00 [DBG] Closed connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS' (4ms).
+2025-12-04 22:41:28.423 +02:00 [INF] Patient with ID 8 retrieved successfully
+2025-12-04 22:41:28.432 +02:00 [INF] Fetching all tickets for Patient UserId 8c11a663-8097-4e72-93f8-7bcb5fe9a47a
+2025-12-04 22:41:28.441 +02:00 [DBG] Compiling query expression: 
+'DbSet<SupportTicket>()
+    .Where(t => t.UserId == __patientId_0)
+    .Include(t => t.User)
+    .OrderByDescending(t => t.CreatedAt)'
+2025-12-04 22:41:28.445 +02:00 [DBG] Including navigation: 'SupportTicket.User'.
+2025-12-04 22:41:28.457 +02:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<SupportTicket>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.QueryExpression(
+        Client Projections:
+            0 -> Dictionary<IProperty, int> { [Property: SupportTicket.TicketId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: SupportTicket.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 1], [Property: SupportTicket.Message (string) Required, 2], [Property: SupportTicket.Response (string), 3], [Property: SupportTicket.Status (TicketStatus) Required MaxLength(20), 4], [Property: SupportTicket.Subject (string) Required MaxLength(200), 5], [Property: SupportTicket.UpdatedAt (DateTime) Required ValueGenerated.OnAdd, 6], [Property: SupportTicket.UserId (string) Required FK Index, 7] }
+            1 -> Dictionary<IProperty, int> { [Property: User.Id (string) Required PK AfterSave:Throw, 8], [Property: User.AccessFailedCount (int) Required, 9], [Property: User.ConcurrencyStamp (string) Concurrency, 10], [Property: User.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 11], [Property: User.DateOfBirth (DateOnly?), 12], [Property: User.Email (string) Index MaxLength(256), 13], [Property: User.EmailConfirmed (bool) Required, 14], [Property: User.FullName (string) Required MaxLength(150), 15], [Property: User.Gender (GenderType?) MaxLength(10), 16], [Property: User.LockoutEnabled (bool) Required, 17], [Property: User.LockoutEnd (DateTimeOffset?), 18], [Property: User.NormalizedEmail (string) Index MaxLength(256), 19], [Property: User.NormalizedUserName (string) Index MaxLength(256), 20], [Property: User.PasswordHash (string), 21], [Property: User.PhoneNumber (string), 22], [Property: User.PhoneNumberConfirmed (bool) Required, 23], [Property: User.RefreshToken (string), 24], [Property: User.RefreshTokenExpiryTime (DateTime) Required, 25], [Property: User.Role (string) Required MaxLength(50), 26], [Property: User.SecurityStamp (string), 27], [Property: User.TwoFactorEnabled (bool) Required, 28], [Property: User.UpdatedAt (DateTime) Required ValueGenerated.OnAdd, 29], [Property: User.UserName (string) MaxLength(256), 30] }
+        SELECT s.TicketId, s.CreatedAt, s.Message, s.Response, s.Status, s.Subject, s.UpdatedAt, s.UserId, u.Id, u.AccessFailedCount, u.ConcurrencyStamp, u.CreatedAt, u.DateOfBirth, u.Email, u.EmailConfirmed, u.FullName, u.Gender, u.LockoutEnabled, u.LockoutEnd, u.NormalizedEmail, u.NormalizedUserName, u.PasswordHash, u.PhoneNumber, u.PhoneNumberConfirmed, u.RefreshToken, u.RefreshTokenExpiryTime, u.Role, u.SecurityStamp, u.TwoFactorEnabled, u.UpdatedAt, u.UserName
+        FROM SupportTickets AS s
+        INNER JOIN Users AS u ON s.UserId == u.Id
+        WHERE s.UserId == @__patientId_0
+        ORDER BY s.CreatedAt DESC), 
+    null, 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, SupportTicket>, 
+    Clinic.Infrastructure.Persistence.AppDbContext, 
+    False, 
+    False, 
+    True
+)'
+2025-12-04 22:41:28.460 +02:00 [DBG] Opening connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:28.462 +02:00 [DBG] Opened connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:28.465 +02:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-12-04 22:41:28.466 +02:00 [DBG] Created DbCommand for 'ExecuteReader' (1ms).
+2025-12-04 22:41:28.467 +02:00 [DBG] Initialized DbCommand for 'ExecuteReader' (2ms).
+2025-12-04 22:41:28.468 +02:00 [DBG] Executing DbCommand [Parameters=[@__patientId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[TicketId], [s].[CreatedAt], [s].[Message], [s].[Response], [s].[Status], [s].[Subject], [s].[UpdatedAt], [s].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName]
+FROM [SupportTickets] AS [s]
+INNER JOIN [Users] AS [u] ON [s].[UserId] = [u].[Id]
+WHERE [s].[UserId] = @__patientId_0
+ORDER BY [s].[CreatedAt] DESC
+2025-12-04 22:41:28.479 +02:00 [INF] Executed DbCommand (11ms) [Parameters=[@__patientId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[TicketId], [s].[CreatedAt], [s].[Message], [s].[Response], [s].[Status], [s].[Subject], [s].[UpdatedAt], [s].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName]
+FROM [SupportTickets] AS [s]
+INNER JOIN [Users] AS [u] ON [s].[UserId] = [u].[Id]
+WHERE [s].[UserId] = @__patientId_0
+ORDER BY [s].[CreatedAt] DESC
+2025-12-04 22:41:28.490 +02:00 [DBG] Context 'AppDbContext' started tracking 'SupportTicket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:41:28.504 +02:00 [DBG] Context 'AppDbContext' started tracking 'SupportTicket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:41:28.507 +02:00 [DBG] Closing data reader to 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:28.509 +02:00 [DBG] A data reader for 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS' is being disposed after spending 27ms reading results.
+2025-12-04 22:41:28.510 +02:00 [DBG] Closing connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:28.512 +02:00 [DBG] Closed connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS' (1ms).
+2025-12-04 22:41:28.521 +02:00 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2025-12-04 22:41:28.525 +02:00 [DBG] No information found on request to perform content negotiation.
+2025-12-04 22:41:28.525 +02:00 [DBG] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2025-12-04 22:41:28.526 +02:00 [DBG] Attempting to select the first formatter in the output formatters list which can write the result.
+2025-12-04 22:41:28.527 +02:00 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2025-12-04 22:41:28.528 +02:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Hospital.Application.DTO.SupportTicket.SupportTicketDto, Hospital.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-04 22:41:28.544 +02:00 [INF] Executed action Hospital.Controllers.SupportTicketController.GetAllByPatientId (Hospital) in 2043.3644ms
+2025-12-04 22:41:28.546 +02:00 [INF] Executed endpoint 'Hospital.Controllers.SupportTicketController.GetAllByPatientId (Hospital)'
+2025-12-04 22:41:28.550 +02:00 [DBG] 'AppDbContext' disposed.
+2025-12-04 22:41:28.553 +02:00 [DBG] Disposing connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:28.556 +02:00 [DBG] Disposed connection to database '' on server '' (2ms).
+2025-12-04 22:41:28.557 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7217/api/SupportTicket/patient/8 - 200 null application/json; charset=utf-8 2166.1498ms
+2025-12-04 22:41:30.051 +02:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7217/api/SupportTicket/2 - null null
+2025-12-04 22:41:30.054 +02:00 [DBG] 1 candidate(s) found for the request path '/api/SupportTicket/2'
+2025-12-04 22:41:30.055 +02:00 [DBG] Request matched endpoint '405 HTTP Method Not Supported'
+2025-12-04 22:41:30.057 +02:00 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-12-04 22:41:30.058 +02:00 [DBG] The request has an origin header: 'http://localhost:4200'.
+2025-12-04 22:41:30.060 +02:00 [INF] CORS policy execution successful.
+2025-12-04 22:41:30.061 +02:00 [DBG] The request is a preflight request.
+2025-12-04 22:41:30.062 +02:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7217/api/SupportTicket/2 - 204 null null 10.5773ms
+2025-12-04 22:41:30.082 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7217/api/SupportTicket/2 - null null
+2025-12-04 22:41:30.087 +02:00 [DBG] 1 candidate(s) found for the request path '/api/SupportTicket/2'
+2025-12-04 22:41:30.090 +02:00 [DBG] Endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)' with route pattern 'api/SupportTicket/{ticketId}' is valid for the request path '/api/SupportTicket/2'
+2025-12-04 22:41:30.093 +02:00 [DBG] Request matched endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:41:30.094 +02:00 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-12-04 22:41:30.097 +02:00 [DBG] The request has an origin header: 'http://localhost:4200'.
+2025-12-04 22:41:30.098 +02:00 [INF] CORS policy execution successful.
+2025-12-04 22:41:30.103 +02:00 [DBG] Successfully validated the token.
+2025-12-04 22:41:30.105 +02:00 [DBG] AuthenticationScheme: Bearer was successfully authenticated.
+2025-12-04 22:41:30.109 +02:00 [DBG] Authorization was successful.
+2025-12-04 22:41:30.111 +02:00 [INF] Executing endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:41:30.123 +02:00 [INF] Route matched with {action = "GetById", controller = "SupportTicket"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(Int32) on controller Hospital.Controllers.SupportTicketController (Hospital).
+2025-12-04 22:41:30.125 +02:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-12-04 22:41:30.126 +02:00 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2025-12-04 22:41:30.127 +02:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-12-04 22:41:30.128 +02:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-12-04 22:41:30.129 +02:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-12-04 22:41:30.131 +02:00 [DBG] Executing controller factory for controller Hospital.Controllers.SupportTicketController (Hospital)
+2025-12-04 22:41:30.134 +02:00 [DBG] Executed controller factory for controller Hospital.Controllers.SupportTicketController (Hospital)
+2025-12-04 22:41:30.136 +02:00 [DBG] Attempting to bind parameter 'ticketId' of type 'System.Int32' ...
+2025-12-04 22:41:30.138 +02:00 [DBG] Attempting to bind parameter 'ticketId' of type 'System.Int32' using the name 'ticketId' in request data ...
+2025-12-04 22:41:30.140 +02:00 [DBG] Done attempting to bind parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:41:30.141 +02:00 [DBG] Done attempting to bind parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:41:30.142 +02:00 [DBG] Attempting to validate the bound parameter 'ticketId' of type 'System.Int32' ...
+2025-12-04 22:41:30.143 +02:00 [DBG] Done attempting to validate the bound parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:41:30.145 +02:00 [INF] get  Support by id Ticket called at "2025-12-04T22:41:30.1456227+02:00"
+2025-12-04 22:41:30.147 +02:00 [INF] Fetching ticket 2
+2025-12-04 22:41:30.196 +02:00 [DBG] Entity Framework Core 8.0.21 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.21' with options: None
+2025-12-04 22:41:30.200 +02:00 [DBG] Compiling query expression: 
+'DbSet<SupportTicket>()
+    .Include(t => t.User)
+    .FirstOrDefault(t => t.TicketId == __ticketId_0)'
+2025-12-04 22:41:30.201 +02:00 [DBG] Including navigation: 'SupportTicket.User'.
+2025-12-04 22:41:30.212 +02:00 [DBG] Generated query execution expression: 
+'queryContext => ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync<SupportTicket>(
+    asyncEnumerable: new SingleQueryingEnumerable<SupportTicket>(
+        (RelationalQueryContext)queryContext, 
+        RelationalCommandCache.QueryExpression(
+            Client Projections:
+                0 -> Dictionary<IProperty, int> { [Property: SupportTicket.TicketId (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: SupportTicket.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 1], [Property: SupportTicket.Message (string) Required, 2], [Property: SupportTicket.Response (string), 3], [Property: SupportTicket.Status (TicketStatus) Required MaxLength(20), 4], [Property: SupportTicket.Subject (string) Required MaxLength(200), 5], [Property: SupportTicket.UpdatedAt (DateTime) Required ValueGenerated.OnAdd, 6], [Property: SupportTicket.UserId (string) Required FK Index, 7] }
+                1 -> Dictionary<IProperty, int> { [Property: User.Id (string) Required PK AfterSave:Throw, 8], [Property: User.AccessFailedCount (int) Required, 9], [Property: User.ConcurrencyStamp (string) Concurrency, 10], [Property: User.CreatedAt (DateTime) Required ValueGenerated.OnAdd, 11], [Property: User.DateOfBirth (DateOnly?), 12], [Property: User.Email (string) Index MaxLength(256), 13], [Property: User.EmailConfirmed (bool) Required, 14], [Property: User.FullName (string) Required MaxLength(150), 15], [Property: User.Gender (GenderType?) MaxLength(10), 16], [Property: User.LockoutEnabled (bool) Required, 17], [Property: User.LockoutEnd (DateTimeOffset?), 18], [Property: User.NormalizedEmail (string) Index MaxLength(256), 19], [Property: User.NormalizedUserName (string) Index MaxLength(256), 20], [Property: User.PasswordHash (string), 21], [Property: User.PhoneNumber (string), 22], [Property: User.PhoneNumberConfirmed (bool) Required, 23], [Property: User.RefreshToken (string), 24], [Property: User.RefreshTokenExpiryTime (DateTime) Required, 25], [Property: User.Role (string) Required MaxLength(50), 26], [Property: User.SecurityStamp (string), 27], [Property: User.TwoFactorEnabled (bool) Required, 28], [Property: User.UpdatedAt (DateTime) Required ValueGenerated.OnAdd, 29], [Property: User.UserName (string) MaxLength(256), 30] }
+            SELECT TOP(1) s.TicketId, s.CreatedAt, s.Message, s.Response, s.Status, s.Subject, s.UpdatedAt, s.UserId, u.Id, u.AccessFailedCount, u.ConcurrencyStamp, u.CreatedAt, u.DateOfBirth, u.Email, u.EmailConfirmed, u.FullName, u.Gender, u.LockoutEnabled, u.LockoutEnd, u.NormalizedEmail, u.NormalizedUserName, u.PasswordHash, u.PhoneNumber, u.PhoneNumberConfirmed, u.RefreshToken, u.RefreshTokenExpiryTime, u.Role, u.SecurityStamp, u.TwoFactorEnabled, u.UpdatedAt, u.UserName
+            FROM SupportTickets AS s
+            INNER JOIN Users AS u ON s.UserId == u.Id
+            WHERE s.TicketId == @__ticketId_0), 
+        null, 
+        Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, SupportTicket>, 
+        Clinic.Infrastructure.Persistence.AppDbContext, 
+        False, 
+        False, 
+        True
+    ), 
+    cancellationToken: queryContext.CancellationToken)'
+2025-12-04 22:41:30.216 +02:00 [DBG] Creating DbConnection.
+2025-12-04 22:41:30.217 +02:00 [DBG] Created DbConnection. (0ms).
+2025-12-04 22:41:30.217 +02:00 [DBG] Opening connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:30.219 +02:00 [DBG] Opened connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:30.220 +02:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-12-04 22:41:30.221 +02:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-12-04 22:41:30.222 +02:00 [DBG] Initialized DbCommand for 'ExecuteReader' (2ms).
+2025-12-04 22:41:30.223 +02:00 [DBG] Executing DbCommand [Parameters=[@__ticketId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[TicketId], [s].[CreatedAt], [s].[Message], [s].[Response], [s].[Status], [s].[Subject], [s].[UpdatedAt], [s].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName]
+FROM [SupportTickets] AS [s]
+INNER JOIN [Users] AS [u] ON [s].[UserId] = [u].[Id]
+WHERE [s].[TicketId] = @__ticketId_0
+2025-12-04 22:41:30.228 +02:00 [INF] Executed DbCommand (5ms) [Parameters=[@__ticketId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[TicketId], [s].[CreatedAt], [s].[Message], [s].[Response], [s].[Status], [s].[Subject], [s].[UpdatedAt], [s].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName]
+FROM [SupportTickets] AS [s]
+INNER JOIN [Users] AS [u] ON [s].[UserId] = [u].[Id]
+WHERE [s].[TicketId] = @__ticketId_0
+2025-12-04 22:41:30.231 +02:00 [DBG] Context 'AppDbContext' started tracking 'SupportTicket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:41:30.233 +02:00 [DBG] The navigation 'SupportTicket.User' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:41:30.234 +02:00 [DBG] Context 'AppDbContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:41:30.235 +02:00 [DBG] Closing data reader to 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:30.237 +02:00 [DBG] A data reader for 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS' is being disposed after spending 5ms reading results.
+2025-12-04 22:41:30.239 +02:00 [DBG] Closing connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:30.241 +02:00 [DBG] Closed connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS' (2ms).
+2025-12-04 22:41:30.247 +02:00 [INF] Executing ForbidResult with authentication schemes ([]).
+2025-12-04 22:41:30.250 +02:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2025-12-04 22:41:30.251 +02:00 [INF] Executed action Hospital.Controllers.SupportTicketController.GetById (Hospital) in 120.0856ms
+2025-12-04 22:41:30.252 +02:00 [INF] Executed endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:41:30.253 +02:00 [DBG] 'AppDbContext' disposed.
+2025-12-04 22:41:30.254 +02:00 [DBG] Disposing connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:30.255 +02:00 [DBG] Disposed connection to database '' on server '' (1ms).
+2025-12-04 22:41:30.257 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7217/api/SupportTicket/2 - 403 0 null 175.0633ms
+2025-12-04 22:41:31.748 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7217/api/SupportTicket/2 - null null
+2025-12-04 22:41:31.750 +02:00 [DBG] 1 candidate(s) found for the request path '/api/SupportTicket/2'
+2025-12-04 22:41:31.751 +02:00 [DBG] Endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)' with route pattern 'api/SupportTicket/{ticketId}' is valid for the request path '/api/SupportTicket/2'
+2025-12-04 22:41:31.753 +02:00 [DBG] Request matched endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:41:31.753 +02:00 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-12-04 22:41:31.755 +02:00 [DBG] The request has an origin header: 'http://localhost:4200'.
+2025-12-04 22:41:31.755 +02:00 [INF] CORS policy execution successful.
+2025-12-04 22:41:31.757 +02:00 [DBG] Successfully validated the token.
+2025-12-04 22:41:31.758 +02:00 [DBG] AuthenticationScheme: Bearer was successfully authenticated.
+2025-12-04 22:41:31.759 +02:00 [DBG] Authorization was successful.
+2025-12-04 22:41:31.760 +02:00 [INF] Executing endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:41:31.761 +02:00 [INF] Route matched with {action = "GetById", controller = "SupportTicket"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(Int32) on controller Hospital.Controllers.SupportTicketController (Hospital).
+2025-12-04 22:41:31.762 +02:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-12-04 22:41:31.764 +02:00 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2025-12-04 22:41:31.766 +02:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-12-04 22:41:31.767 +02:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-12-04 22:41:31.768 +02:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-12-04 22:41:31.769 +02:00 [DBG] Executing controller factory for controller Hospital.Controllers.SupportTicketController (Hospital)
+2025-12-04 22:41:31.776 +02:00 [DBG] Executed controller factory for controller Hospital.Controllers.SupportTicketController (Hospital)
+2025-12-04 22:41:31.777 +02:00 [DBG] Attempting to bind parameter 'ticketId' of type 'System.Int32' ...
+2025-12-04 22:41:31.779 +02:00 [DBG] Attempting to bind parameter 'ticketId' of type 'System.Int32' using the name 'ticketId' in request data ...
+2025-12-04 22:41:31.780 +02:00 [DBG] Done attempting to bind parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:41:31.782 +02:00 [DBG] Done attempting to bind parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:41:31.783 +02:00 [DBG] Attempting to validate the bound parameter 'ticketId' of type 'System.Int32' ...
+2025-12-04 22:41:31.784 +02:00 [DBG] Done attempting to validate the bound parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:41:31.785 +02:00 [INF] get  Support by id Ticket called at "2025-12-04T22:41:31.7851206+02:00"
+2025-12-04 22:41:31.785 +02:00 [INF] Fetching ticket 2
+2025-12-04 22:41:31.795 +02:00 [DBG] Entity Framework Core 8.0.21 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.21' with options: None
+2025-12-04 22:41:31.801 +02:00 [DBG] Creating DbConnection.
+2025-12-04 22:41:31.802 +02:00 [DBG] Created DbConnection. (1ms).
+2025-12-04 22:41:31.804 +02:00 [DBG] Opening connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:31.806 +02:00 [DBG] Opened connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:31.808 +02:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-12-04 22:41:31.809 +02:00 [DBG] Created DbCommand for 'ExecuteReader' (1ms).
+2025-12-04 22:41:31.810 +02:00 [DBG] Initialized DbCommand for 'ExecuteReader' (2ms).
+2025-12-04 22:41:31.811 +02:00 [DBG] Executing DbCommand [Parameters=[@__ticketId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[TicketId], [s].[CreatedAt], [s].[Message], [s].[Response], [s].[Status], [s].[Subject], [s].[UpdatedAt], [s].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName]
+FROM [SupportTickets] AS [s]
+INNER JOIN [Users] AS [u] ON [s].[UserId] = [u].[Id]
+WHERE [s].[TicketId] = @__ticketId_0
+2025-12-04 22:41:31.814 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__ticketId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[TicketId], [s].[CreatedAt], [s].[Message], [s].[Response], [s].[Status], [s].[Subject], [s].[UpdatedAt], [s].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName]
+FROM [SupportTickets] AS [s]
+INNER JOIN [Users] AS [u] ON [s].[UserId] = [u].[Id]
+WHERE [s].[TicketId] = @__ticketId_0
+2025-12-04 22:41:31.816 +02:00 [DBG] Context 'AppDbContext' started tracking 'SupportTicket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:41:31.818 +02:00 [DBG] The navigation 'SupportTicket.User' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:41:31.819 +02:00 [DBG] Context 'AppDbContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:41:31.820 +02:00 [DBG] Closing data reader to 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:31.821 +02:00 [DBG] A data reader for 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS' is being disposed after spending 5ms reading results.
+2025-12-04 22:41:31.823 +02:00 [DBG] Closing connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:31.823 +02:00 [DBG] Closed connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS' (0ms).
+2025-12-04 22:41:31.825 +02:00 [INF] Executing ForbidResult with authentication schemes ([]).
+2025-12-04 22:41:31.826 +02:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2025-12-04 22:41:31.827 +02:00 [INF] Executed action Hospital.Controllers.SupportTicketController.GetById (Hospital) in 57.3561ms
+2025-12-04 22:41:31.828 +02:00 [INF] Executed endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:41:31.829 +02:00 [DBG] 'AppDbContext' disposed.
+2025-12-04 22:41:31.830 +02:00 [DBG] Disposing connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:31.832 +02:00 [DBG] Disposed connection to database '' on server '' (1ms).
+2025-12-04 22:41:31.833 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7217/api/SupportTicket/2 - 403 0 null 85.0672ms
+2025-12-04 22:41:32.491 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7217/api/SupportTicket/2 - null null
+2025-12-04 22:41:32.493 +02:00 [DBG] 1 candidate(s) found for the request path '/api/SupportTicket/2'
+2025-12-04 22:41:32.494 +02:00 [DBG] Endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)' with route pattern 'api/SupportTicket/{ticketId}' is valid for the request path '/api/SupportTicket/2'
+2025-12-04 22:41:32.495 +02:00 [DBG] Request matched endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:41:32.496 +02:00 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-12-04 22:41:32.497 +02:00 [DBG] The request has an origin header: 'http://localhost:4200'.
+2025-12-04 22:41:32.498 +02:00 [INF] CORS policy execution successful.
+2025-12-04 22:41:32.498 +02:00 [DBG] Successfully validated the token.
+2025-12-04 22:41:32.499 +02:00 [DBG] AuthenticationScheme: Bearer was successfully authenticated.
+2025-12-04 22:41:32.500 +02:00 [DBG] Authorization was successful.
+2025-12-04 22:41:32.501 +02:00 [INF] Executing endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:41:32.503 +02:00 [INF] Route matched with {action = "GetById", controller = "SupportTicket"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(Int32) on controller Hospital.Controllers.SupportTicketController (Hospital).
+2025-12-04 22:41:32.506 +02:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-12-04 22:41:32.507 +02:00 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2025-12-04 22:41:32.509 +02:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-12-04 22:41:32.510 +02:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-12-04 22:41:32.511 +02:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-12-04 22:41:32.512 +02:00 [DBG] Executing controller factory for controller Hospital.Controllers.SupportTicketController (Hospital)
+2025-12-04 22:41:32.513 +02:00 [DBG] Executed controller factory for controller Hospital.Controllers.SupportTicketController (Hospital)
+2025-12-04 22:41:32.515 +02:00 [DBG] Attempting to bind parameter 'ticketId' of type 'System.Int32' ...
+2025-12-04 22:41:32.516 +02:00 [DBG] Attempting to bind parameter 'ticketId' of type 'System.Int32' using the name 'ticketId' in request data ...
+2025-12-04 22:41:32.518 +02:00 [DBG] Done attempting to bind parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:41:32.519 +02:00 [DBG] Done attempting to bind parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:41:32.519 +02:00 [DBG] Attempting to validate the bound parameter 'ticketId' of type 'System.Int32' ...
+2025-12-04 22:41:32.521 +02:00 [DBG] Done attempting to validate the bound parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:41:32.522 +02:00 [INF] get  Support by id Ticket called at "2025-12-04T22:41:32.5220895+02:00"
+2025-12-04 22:41:32.523 +02:00 [INF] Fetching ticket 2
+2025-12-04 22:41:32.525 +02:00 [DBG] Entity Framework Core 8.0.21 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.21' with options: None
+2025-12-04 22:41:32.526 +02:00 [DBG] Creating DbConnection.
+2025-12-04 22:41:32.527 +02:00 [DBG] Created DbConnection. (0ms).
+2025-12-04 22:41:32.528 +02:00 [DBG] Opening connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:32.529 +02:00 [DBG] Opened connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:32.530 +02:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-12-04 22:41:32.531 +02:00 [DBG] Created DbCommand for 'ExecuteReader' (1ms).
+2025-12-04 22:41:32.532 +02:00 [DBG] Initialized DbCommand for 'ExecuteReader' (2ms).
+2025-12-04 22:41:32.533 +02:00 [DBG] Executing DbCommand [Parameters=[@__ticketId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[TicketId], [s].[CreatedAt], [s].[Message], [s].[Response], [s].[Status], [s].[Subject], [s].[UpdatedAt], [s].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName]
+FROM [SupportTickets] AS [s]
+INNER JOIN [Users] AS [u] ON [s].[UserId] = [u].[Id]
+WHERE [s].[TicketId] = @__ticketId_0
+2025-12-04 22:41:32.535 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__ticketId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[TicketId], [s].[CreatedAt], [s].[Message], [s].[Response], [s].[Status], [s].[Subject], [s].[UpdatedAt], [s].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName]
+FROM [SupportTickets] AS [s]
+INNER JOIN [Users] AS [u] ON [s].[UserId] = [u].[Id]
+WHERE [s].[TicketId] = @__ticketId_0
+2025-12-04 22:41:32.538 +02:00 [DBG] Context 'AppDbContext' started tracking 'SupportTicket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:41:32.540 +02:00 [DBG] The navigation 'SupportTicket.User' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:41:32.542 +02:00 [DBG] Context 'AppDbContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:41:32.543 +02:00 [DBG] Closing data reader to 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:32.544 +02:00 [DBG] A data reader for 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS' is being disposed after spending 7ms reading results.
+2025-12-04 22:41:32.545 +02:00 [DBG] Closing connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:32.547 +02:00 [DBG] Closed connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS' (1ms).
+2025-12-04 22:41:32.548 +02:00 [INF] Executing ForbidResult with authentication schemes ([]).
+2025-12-04 22:41:32.550 +02:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2025-12-04 22:41:32.550 +02:00 [INF] Executed action Hospital.Controllers.SupportTicketController.GetById (Hospital) in 38.2993ms
+2025-12-04 22:41:32.551 +02:00 [INF] Executed endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:41:32.552 +02:00 [DBG] 'AppDbContext' disposed.
+2025-12-04 22:41:32.553 +02:00 [DBG] Disposing connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:32.556 +02:00 [DBG] Disposed connection to database '' on server '' (2ms).
+2025-12-04 22:41:32.557 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7217/api/SupportTicket/2 - 403 0 null 65.883ms
+2025-12-04 22:41:32.731 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7217/api/SupportTicket/2 - null null
+2025-12-04 22:41:32.733 +02:00 [DBG] 1 candidate(s) found for the request path '/api/SupportTicket/2'
+2025-12-04 22:41:32.734 +02:00 [DBG] Endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)' with route pattern 'api/SupportTicket/{ticketId}' is valid for the request path '/api/SupportTicket/2'
+2025-12-04 22:41:32.735 +02:00 [DBG] Request matched endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:41:32.737 +02:00 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-12-04 22:41:32.739 +02:00 [DBG] The request has an origin header: 'http://localhost:4200'.
+2025-12-04 22:41:32.740 +02:00 [INF] CORS policy execution successful.
+2025-12-04 22:41:32.741 +02:00 [DBG] Successfully validated the token.
+2025-12-04 22:41:32.742 +02:00 [DBG] AuthenticationScheme: Bearer was successfully authenticated.
+2025-12-04 22:41:32.743 +02:00 [DBG] Authorization was successful.
+2025-12-04 22:41:32.743 +02:00 [INF] Executing endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:41:32.744 +02:00 [INF] Route matched with {action = "GetById", controller = "SupportTicket"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(Int32) on controller Hospital.Controllers.SupportTicketController (Hospital).
+2025-12-04 22:41:32.745 +02:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-12-04 22:41:32.747 +02:00 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2025-12-04 22:41:32.748 +02:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-12-04 22:41:32.749 +02:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-12-04 22:41:32.750 +02:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-12-04 22:41:32.751 +02:00 [DBG] Executing controller factory for controller Hospital.Controllers.SupportTicketController (Hospital)
+2025-12-04 22:41:32.753 +02:00 [DBG] Executed controller factory for controller Hospital.Controllers.SupportTicketController (Hospital)
+2025-12-04 22:41:32.754 +02:00 [DBG] Attempting to bind parameter 'ticketId' of type 'System.Int32' ...
+2025-12-04 22:41:32.756 +02:00 [DBG] Attempting to bind parameter 'ticketId' of type 'System.Int32' using the name 'ticketId' in request data ...
+2025-12-04 22:41:32.757 +02:00 [DBG] Done attempting to bind parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:41:32.757 +02:00 [DBG] Done attempting to bind parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:41:32.758 +02:00 [DBG] Attempting to validate the bound parameter 'ticketId' of type 'System.Int32' ...
+2025-12-04 22:41:32.759 +02:00 [DBG] Done attempting to validate the bound parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:41:32.760 +02:00 [INF] get  Support by id Ticket called at "2025-12-04T22:41:32.7601305+02:00"
+2025-12-04 22:41:32.760 +02:00 [INF] Fetching ticket 2
+2025-12-04 22:41:32.761 +02:00 [DBG] Entity Framework Core 8.0.21 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.21' with options: None
+2025-12-04 22:41:32.763 +02:00 [DBG] Creating DbConnection.
+2025-12-04 22:41:32.764 +02:00 [DBG] Created DbConnection. (0ms).
+2025-12-04 22:41:32.765 +02:00 [DBG] Opening connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:32.765 +02:00 [DBG] Opened connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:32.766 +02:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-12-04 22:41:32.767 +02:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-12-04 22:41:32.768 +02:00 [DBG] Initialized DbCommand for 'ExecuteReader' (1ms).
+2025-12-04 22:41:32.768 +02:00 [DBG] Executing DbCommand [Parameters=[@__ticketId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[TicketId], [s].[CreatedAt], [s].[Message], [s].[Response], [s].[Status], [s].[Subject], [s].[UpdatedAt], [s].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName]
+FROM [SupportTickets] AS [s]
+INNER JOIN [Users] AS [u] ON [s].[UserId] = [u].[Id]
+WHERE [s].[TicketId] = @__ticketId_0
+2025-12-04 22:41:32.773 +02:00 [INF] Executed DbCommand (4ms) [Parameters=[@__ticketId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[TicketId], [s].[CreatedAt], [s].[Message], [s].[Response], [s].[Status], [s].[Subject], [s].[UpdatedAt], [s].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName]
+FROM [SupportTickets] AS [s]
+INNER JOIN [Users] AS [u] ON [s].[UserId] = [u].[Id]
+WHERE [s].[TicketId] = @__ticketId_0
+2025-12-04 22:41:32.775 +02:00 [DBG] Context 'AppDbContext' started tracking 'SupportTicket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:41:32.776 +02:00 [DBG] The navigation 'SupportTicket.User' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:41:32.777 +02:00 [DBG] Context 'AppDbContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:41:32.778 +02:00 [DBG] Closing data reader to 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:32.779 +02:00 [DBG] A data reader for 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS' is being disposed after spending 4ms reading results.
+2025-12-04 22:41:32.781 +02:00 [DBG] Closing connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:32.783 +02:00 [DBG] Closed connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS' (1ms).
+2025-12-04 22:41:32.783 +02:00 [INF] Executing ForbidResult with authentication schemes ([]).
+2025-12-04 22:41:32.784 +02:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2025-12-04 22:41:32.785 +02:00 [INF] Executed action Hospital.Controllers.SupportTicketController.GetById (Hospital) in 33.5474ms
+2025-12-04 22:41:32.786 +02:00 [INF] Executed endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:41:32.787 +02:00 [DBG] 'AppDbContext' disposed.
+2025-12-04 22:41:32.788 +02:00 [DBG] Disposing connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:32.790 +02:00 [DBG] Disposed connection to database '' on server '' (1ms).
+2025-12-04 22:41:32.791 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7217/api/SupportTicket/2 - 403 0 null 60.3979ms
+2025-12-04 22:41:32.954 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7217/api/SupportTicket/2 - null null
+2025-12-04 22:41:32.956 +02:00 [DBG] 1 candidate(s) found for the request path '/api/SupportTicket/2'
+2025-12-04 22:41:32.957 +02:00 [DBG] Endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)' with route pattern 'api/SupportTicket/{ticketId}' is valid for the request path '/api/SupportTicket/2'
+2025-12-04 22:41:32.958 +02:00 [DBG] Request matched endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:41:32.958 +02:00 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-12-04 22:41:32.959 +02:00 [DBG] The request has an origin header: 'http://localhost:4200'.
+2025-12-04 22:41:32.960 +02:00 [INF] CORS policy execution successful.
+2025-12-04 22:41:32.961 +02:00 [DBG] Successfully validated the token.
+2025-12-04 22:41:32.961 +02:00 [DBG] AuthenticationScheme: Bearer was successfully authenticated.
+2025-12-04 22:41:32.962 +02:00 [DBG] Authorization was successful.
+2025-12-04 22:41:32.963 +02:00 [INF] Executing endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:41:32.964 +02:00 [INF] Route matched with {action = "GetById", controller = "SupportTicket"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(Int32) on controller Hospital.Controllers.SupportTicketController (Hospital).
+2025-12-04 22:41:32.966 +02:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-12-04 22:41:32.967 +02:00 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2025-12-04 22:41:32.968 +02:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-12-04 22:41:32.970 +02:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-12-04 22:41:32.974 +02:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-12-04 22:41:32.975 +02:00 [DBG] Executing controller factory for controller Hospital.Controllers.SupportTicketController (Hospital)
+2025-12-04 22:41:32.976 +02:00 [DBG] Executed controller factory for controller Hospital.Controllers.SupportTicketController (Hospital)
+2025-12-04 22:41:32.977 +02:00 [DBG] Attempting to bind parameter 'ticketId' of type 'System.Int32' ...
+2025-12-04 22:41:32.978 +02:00 [DBG] Attempting to bind parameter 'ticketId' of type 'System.Int32' using the name 'ticketId' in request data ...
+2025-12-04 22:41:32.980 +02:00 [DBG] Done attempting to bind parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:41:32.981 +02:00 [DBG] Done attempting to bind parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:41:32.983 +02:00 [DBG] Attempting to validate the bound parameter 'ticketId' of type 'System.Int32' ...
+2025-12-04 22:41:32.984 +02:00 [DBG] Done attempting to validate the bound parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:41:32.985 +02:00 [INF] get  Support by id Ticket called at "2025-12-04T22:41:32.9853314+02:00"
+2025-12-04 22:41:32.986 +02:00 [INF] Fetching ticket 2
+2025-12-04 22:41:32.988 +02:00 [DBG] Entity Framework Core 8.0.21 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.21' with options: None
+2025-12-04 22:41:32.990 +02:00 [DBG] Creating DbConnection.
+2025-12-04 22:41:32.990 +02:00 [DBG] Created DbConnection. (0ms).
+2025-12-04 22:41:32.991 +02:00 [DBG] Opening connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:32.992 +02:00 [DBG] Opened connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:32.993 +02:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-12-04 22:41:32.994 +02:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-12-04 22:41:32.995 +02:00 [DBG] Initialized DbCommand for 'ExecuteReader' (1ms).
+2025-12-04 22:41:32.996 +02:00 [DBG] Executing DbCommand [Parameters=[@__ticketId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[TicketId], [s].[CreatedAt], [s].[Message], [s].[Response], [s].[Status], [s].[Subject], [s].[UpdatedAt], [s].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName]
+FROM [SupportTickets] AS [s]
+INNER JOIN [Users] AS [u] ON [s].[UserId] = [u].[Id]
+WHERE [s].[TicketId] = @__ticketId_0
+2025-12-04 22:41:32.999 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__ticketId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[TicketId], [s].[CreatedAt], [s].[Message], [s].[Response], [s].[Status], [s].[Subject], [s].[UpdatedAt], [s].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName]
+FROM [SupportTickets] AS [s]
+INNER JOIN [Users] AS [u] ON [s].[UserId] = [u].[Id]
+WHERE [s].[TicketId] = @__ticketId_0
+2025-12-04 22:41:33.001 +02:00 [DBG] Context 'AppDbContext' started tracking 'SupportTicket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:41:33.003 +02:00 [DBG] The navigation 'SupportTicket.User' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:41:33.005 +02:00 [DBG] Context 'AppDbContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:41:33.007 +02:00 [DBG] Closing data reader to 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:33.009 +02:00 [DBG] A data reader for 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS' is being disposed after spending 7ms reading results.
+2025-12-04 22:41:33.010 +02:00 [DBG] Closing connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:33.011 +02:00 [DBG] Closed connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS' (1ms).
+2025-12-04 22:41:33.012 +02:00 [INF] Executing ForbidResult with authentication schemes ([]).
+2025-12-04 22:41:33.014 +02:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2025-12-04 22:41:33.015 +02:00 [INF] Executed action Hospital.Controllers.SupportTicketController.GetById (Hospital) in 39.5243ms
+2025-12-04 22:41:33.016 +02:00 [INF] Executed endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:41:33.017 +02:00 [DBG] 'AppDbContext' disposed.
+2025-12-04 22:41:33.018 +02:00 [DBG] Disposing connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:33.020 +02:00 [DBG] Disposed connection to database '' on server '' (1ms).
+2025-12-04 22:41:33.021 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7217/api/SupportTicket/2 - 403 0 null 67.5763ms
+2025-12-04 22:41:33.187 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7217/api/SupportTicket/2 - null null
+2025-12-04 22:41:33.189 +02:00 [DBG] 1 candidate(s) found for the request path '/api/SupportTicket/2'
+2025-12-04 22:41:33.189 +02:00 [DBG] Endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)' with route pattern 'api/SupportTicket/{ticketId}' is valid for the request path '/api/SupportTicket/2'
+2025-12-04 22:41:33.191 +02:00 [DBG] Request matched endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:41:33.192 +02:00 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-12-04 22:41:33.192 +02:00 [DBG] The request has an origin header: 'http://localhost:4200'.
+2025-12-04 22:41:33.193 +02:00 [INF] CORS policy execution successful.
+2025-12-04 22:41:33.194 +02:00 [DBG] Successfully validated the token.
+2025-12-04 22:41:33.194 +02:00 [DBG] AuthenticationScheme: Bearer was successfully authenticated.
+2025-12-04 22:41:33.195 +02:00 [DBG] Authorization was successful.
+2025-12-04 22:41:33.196 +02:00 [INF] Executing endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:41:33.197 +02:00 [INF] Route matched with {action = "GetById", controller = "SupportTicket"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(Int32) on controller Hospital.Controllers.SupportTicketController (Hospital).
+2025-12-04 22:41:33.199 +02:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-12-04 22:41:33.200 +02:00 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2025-12-04 22:41:33.201 +02:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-12-04 22:41:33.203 +02:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-12-04 22:41:33.204 +02:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-12-04 22:41:33.206 +02:00 [DBG] Executing controller factory for controller Hospital.Controllers.SupportTicketController (Hospital)
+2025-12-04 22:41:33.208 +02:00 [DBG] Executed controller factory for controller Hospital.Controllers.SupportTicketController (Hospital)
+2025-12-04 22:41:33.209 +02:00 [DBG] Attempting to bind parameter 'ticketId' of type 'System.Int32' ...
+2025-12-04 22:41:33.210 +02:00 [DBG] Attempting to bind parameter 'ticketId' of type 'System.Int32' using the name 'ticketId' in request data ...
+2025-12-04 22:41:33.211 +02:00 [DBG] Done attempting to bind parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:41:33.212 +02:00 [DBG] Done attempting to bind parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:41:33.213 +02:00 [DBG] Attempting to validate the bound parameter 'ticketId' of type 'System.Int32' ...
+2025-12-04 22:41:33.215 +02:00 [DBG] Done attempting to validate the bound parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:41:33.216 +02:00 [INF] get  Support by id Ticket called at "2025-12-04T22:41:33.2167180+02:00"
+2025-12-04 22:41:33.217 +02:00 [INF] Fetching ticket 2
+2025-12-04 22:41:33.218 +02:00 [DBG] Entity Framework Core 8.0.21 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.21' with options: None
+2025-12-04 22:41:33.220 +02:00 [DBG] Creating DbConnection.
+2025-12-04 22:41:33.220 +02:00 [DBG] Created DbConnection. (0ms).
+2025-12-04 22:41:33.222 +02:00 [DBG] Opening connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:33.223 +02:00 [DBG] Opened connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:33.224 +02:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-12-04 22:41:33.225 +02:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-12-04 22:41:33.226 +02:00 [DBG] Initialized DbCommand for 'ExecuteReader' (2ms).
+2025-12-04 22:41:33.227 +02:00 [DBG] Executing DbCommand [Parameters=[@__ticketId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[TicketId], [s].[CreatedAt], [s].[Message], [s].[Response], [s].[Status], [s].[Subject], [s].[UpdatedAt], [s].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName]
+FROM [SupportTickets] AS [s]
+INNER JOIN [Users] AS [u] ON [s].[UserId] = [u].[Id]
+WHERE [s].[TicketId] = @__ticketId_0
+2025-12-04 22:41:33.229 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__ticketId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[TicketId], [s].[CreatedAt], [s].[Message], [s].[Response], [s].[Status], [s].[Subject], [s].[UpdatedAt], [s].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName]
+FROM [SupportTickets] AS [s]
+INNER JOIN [Users] AS [u] ON [s].[UserId] = [u].[Id]
+WHERE [s].[TicketId] = @__ticketId_0
+2025-12-04 22:41:33.231 +02:00 [DBG] Context 'AppDbContext' started tracking 'SupportTicket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:41:33.232 +02:00 [DBG] The navigation 'SupportTicket.User' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:41:33.233 +02:00 [DBG] Context 'AppDbContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:41:33.234 +02:00 [DBG] Closing data reader to 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:33.235 +02:00 [DBG] A data reader for 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS' is being disposed after spending 3ms reading results.
+2025-12-04 22:41:33.237 +02:00 [DBG] Closing connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:33.239 +02:00 [DBG] Closed connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS' (2ms).
+2025-12-04 22:41:33.241 +02:00 [INF] Executing ForbidResult with authentication schemes ([]).
+2025-12-04 22:41:33.242 +02:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2025-12-04 22:41:33.243 +02:00 [INF] Executed action Hospital.Controllers.SupportTicketController.GetById (Hospital) in 36.4839ms
+2025-12-04 22:41:33.244 +02:00 [INF] Executed endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:41:33.244 +02:00 [DBG] 'AppDbContext' disposed.
+2025-12-04 22:41:33.245 +02:00 [DBG] Disposing connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:33.247 +02:00 [DBG] Disposed connection to database '' on server '' (1ms).
+2025-12-04 22:41:33.248 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7217/api/SupportTicket/2 - 403 0 null 61.4856ms
+2025-12-04 22:41:33.379 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7217/api/SupportTicket/2 - null null
+2025-12-04 22:41:33.382 +02:00 [DBG] 1 candidate(s) found for the request path '/api/SupportTicket/2'
+2025-12-04 22:41:33.383 +02:00 [DBG] Endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)' with route pattern 'api/SupportTicket/{ticketId}' is valid for the request path '/api/SupportTicket/2'
+2025-12-04 22:41:33.384 +02:00 [DBG] Request matched endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:41:33.385 +02:00 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-12-04 22:41:33.386 +02:00 [DBG] The request has an origin header: 'http://localhost:4200'.
+2025-12-04 22:41:33.387 +02:00 [INF] CORS policy execution successful.
+2025-12-04 22:41:33.388 +02:00 [DBG] Successfully validated the token.
+2025-12-04 22:41:33.389 +02:00 [DBG] AuthenticationScheme: Bearer was successfully authenticated.
+2025-12-04 22:41:33.390 +02:00 [DBG] Authorization was successful.
+2025-12-04 22:41:33.390 +02:00 [INF] Executing endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:41:33.391 +02:00 [INF] Route matched with {action = "GetById", controller = "SupportTicket"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(Int32) on controller Hospital.Controllers.SupportTicketController (Hospital).
+2025-12-04 22:41:33.392 +02:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-12-04 22:41:33.394 +02:00 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2025-12-04 22:41:33.395 +02:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-12-04 22:41:33.397 +02:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-12-04 22:41:33.399 +02:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-12-04 22:41:33.400 +02:00 [DBG] Executing controller factory for controller Hospital.Controllers.SupportTicketController (Hospital)
+2025-12-04 22:41:33.401 +02:00 [DBG] Executed controller factory for controller Hospital.Controllers.SupportTicketController (Hospital)
+2025-12-04 22:41:33.402 +02:00 [DBG] Attempting to bind parameter 'ticketId' of type 'System.Int32' ...
+2025-12-04 22:41:33.403 +02:00 [DBG] Attempting to bind parameter 'ticketId' of type 'System.Int32' using the name 'ticketId' in request data ...
+2025-12-04 22:41:33.405 +02:00 [DBG] Done attempting to bind parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:41:33.407 +02:00 [DBG] Done attempting to bind parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:41:33.408 +02:00 [DBG] Attempting to validate the bound parameter 'ticketId' of type 'System.Int32' ...
+2025-12-04 22:41:33.409 +02:00 [DBG] Done attempting to validate the bound parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:41:33.410 +02:00 [INF] get  Support by id Ticket called at "2025-12-04T22:41:33.4108193+02:00"
+2025-12-04 22:41:33.411 +02:00 [INF] Fetching ticket 2
+2025-12-04 22:41:33.412 +02:00 [DBG] Entity Framework Core 8.0.21 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.21' with options: None
+2025-12-04 22:41:33.415 +02:00 [DBG] Creating DbConnection.
+2025-12-04 22:41:33.416 +02:00 [DBG] Created DbConnection. (0ms).
+2025-12-04 22:41:33.416 +02:00 [DBG] Opening connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:33.417 +02:00 [DBG] Opened connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:33.418 +02:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-12-04 22:41:33.419 +02:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-12-04 22:41:33.420 +02:00 [DBG] Initialized DbCommand for 'ExecuteReader' (1ms).
+2025-12-04 22:41:33.421 +02:00 [DBG] Executing DbCommand [Parameters=[@__ticketId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[TicketId], [s].[CreatedAt], [s].[Message], [s].[Response], [s].[Status], [s].[Subject], [s].[UpdatedAt], [s].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName]
+FROM [SupportTickets] AS [s]
+INNER JOIN [Users] AS [u] ON [s].[UserId] = [u].[Id]
+WHERE [s].[TicketId] = @__ticketId_0
+2025-12-04 22:41:33.423 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__ticketId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[TicketId], [s].[CreatedAt], [s].[Message], [s].[Response], [s].[Status], [s].[Subject], [s].[UpdatedAt], [s].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName]
+FROM [SupportTickets] AS [s]
+INNER JOIN [Users] AS [u] ON [s].[UserId] = [u].[Id]
+WHERE [s].[TicketId] = @__ticketId_0
+2025-12-04 22:41:33.425 +02:00 [DBG] Context 'AppDbContext' started tracking 'SupportTicket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:41:33.427 +02:00 [DBG] The navigation 'SupportTicket.User' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:41:33.428 +02:00 [DBG] Context 'AppDbContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:41:33.429 +02:00 [DBG] Closing data reader to 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:33.431 +02:00 [DBG] A data reader for 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS' is being disposed after spending 5ms reading results.
+2025-12-04 22:41:33.432 +02:00 [DBG] Closing connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:33.433 +02:00 [DBG] Closed connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS' (0ms).
+2025-12-04 22:41:33.434 +02:00 [INF] Executing ForbidResult with authentication schemes ([]).
+2025-12-04 22:41:33.435 +02:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2025-12-04 22:41:33.436 +02:00 [INF] Executed action Hospital.Controllers.SupportTicketController.GetById (Hospital) in 36.7393ms
+2025-12-04 22:41:33.438 +02:00 [INF] Executed endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:41:33.439 +02:00 [DBG] 'AppDbContext' disposed.
+2025-12-04 22:41:33.440 +02:00 [DBG] Disposing connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:33.442 +02:00 [DBG] Disposed connection to database '' on server '' (1ms).
+2025-12-04 22:41:33.444 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7217/api/SupportTicket/2 - 403 0 null 64.5797ms
+2025-12-04 22:41:33.572 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7217/api/SupportTicket/2 - null null
+2025-12-04 22:41:33.574 +02:00 [DBG] 1 candidate(s) found for the request path '/api/SupportTicket/2'
+2025-12-04 22:41:33.575 +02:00 [DBG] Endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)' with route pattern 'api/SupportTicket/{ticketId}' is valid for the request path '/api/SupportTicket/2'
+2025-12-04 22:41:33.576 +02:00 [DBG] Request matched endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:41:33.577 +02:00 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-12-04 22:41:33.578 +02:00 [DBG] The request has an origin header: 'http://localhost:4200'.
+2025-12-04 22:41:33.578 +02:00 [INF] CORS policy execution successful.
+2025-12-04 22:41:33.580 +02:00 [DBG] Successfully validated the token.
+2025-12-04 22:41:33.581 +02:00 [DBG] AuthenticationScheme: Bearer was successfully authenticated.
+2025-12-04 22:41:33.582 +02:00 [DBG] Authorization was successful.
+2025-12-04 22:41:33.583 +02:00 [INF] Executing endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:41:33.585 +02:00 [INF] Route matched with {action = "GetById", controller = "SupportTicket"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(Int32) on controller Hospital.Controllers.SupportTicketController (Hospital).
+2025-12-04 22:41:33.586 +02:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-12-04 22:41:33.587 +02:00 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2025-12-04 22:41:33.588 +02:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-12-04 22:41:33.589 +02:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-12-04 22:41:33.591 +02:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-12-04 22:41:33.592 +02:00 [DBG] Executing controller factory for controller Hospital.Controllers.SupportTicketController (Hospital)
+2025-12-04 22:41:33.593 +02:00 [DBG] Executed controller factory for controller Hospital.Controllers.SupportTicketController (Hospital)
+2025-12-04 22:41:33.594 +02:00 [DBG] Attempting to bind parameter 'ticketId' of type 'System.Int32' ...
+2025-12-04 22:41:33.596 +02:00 [DBG] Attempting to bind parameter 'ticketId' of type 'System.Int32' using the name 'ticketId' in request data ...
+2025-12-04 22:41:33.598 +02:00 [DBG] Done attempting to bind parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:41:33.599 +02:00 [DBG] Done attempting to bind parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:41:33.601 +02:00 [DBG] Attempting to validate the bound parameter 'ticketId' of type 'System.Int32' ...
+2025-12-04 22:41:33.601 +02:00 [DBG] Done attempting to validate the bound parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:41:33.603 +02:00 [INF] get  Support by id Ticket called at "2025-12-04T22:41:33.6031556+02:00"
+2025-12-04 22:41:33.604 +02:00 [INF] Fetching ticket 2
+2025-12-04 22:41:33.606 +02:00 [DBG] Entity Framework Core 8.0.21 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.21' with options: None
+2025-12-04 22:41:33.608 +02:00 [DBG] Creating DbConnection.
+2025-12-04 22:41:33.609 +02:00 [DBG] Created DbConnection. (0ms).
+2025-12-04 22:41:33.610 +02:00 [DBG] Opening connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:33.611 +02:00 [DBG] Opened connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:33.613 +02:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-12-04 22:41:33.614 +02:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-12-04 22:41:33.615 +02:00 [DBG] Initialized DbCommand for 'ExecuteReader' (2ms).
+2025-12-04 22:41:33.616 +02:00 [DBG] Executing DbCommand [Parameters=[@__ticketId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[TicketId], [s].[CreatedAt], [s].[Message], [s].[Response], [s].[Status], [s].[Subject], [s].[UpdatedAt], [s].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName]
+FROM [SupportTickets] AS [s]
+INNER JOIN [Users] AS [u] ON [s].[UserId] = [u].[Id]
+WHERE [s].[TicketId] = @__ticketId_0
+2025-12-04 22:41:33.618 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__ticketId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[TicketId], [s].[CreatedAt], [s].[Message], [s].[Response], [s].[Status], [s].[Subject], [s].[UpdatedAt], [s].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName]
+FROM [SupportTickets] AS [s]
+INNER JOIN [Users] AS [u] ON [s].[UserId] = [u].[Id]
+WHERE [s].[TicketId] = @__ticketId_0
+2025-12-04 22:41:33.620 +02:00 [DBG] Context 'AppDbContext' started tracking 'SupportTicket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:41:33.622 +02:00 [DBG] The navigation 'SupportTicket.User' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:41:33.623 +02:00 [DBG] Context 'AppDbContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:41:33.624 +02:00 [DBG] Closing data reader to 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:33.624 +02:00 [DBG] A data reader for 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS' is being disposed after spending 4ms reading results.
+2025-12-04 22:41:33.626 +02:00 [DBG] Closing connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:33.627 +02:00 [DBG] Closed connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS' (1ms).
+2025-12-04 22:41:33.628 +02:00 [INF] Executing ForbidResult with authentication schemes ([]).
+2025-12-04 22:41:33.629 +02:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2025-12-04 22:41:33.630 +02:00 [INF] Executed action Hospital.Controllers.SupportTicketController.GetById (Hospital) in 38.1618ms
+2025-12-04 22:41:33.632 +02:00 [INF] Executed endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:41:33.632 +02:00 [DBG] 'AppDbContext' disposed.
+2025-12-04 22:41:33.633 +02:00 [DBG] Disposing connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:41:33.635 +02:00 [DBG] Disposed connection to database '' on server '' (1ms).
+2025-12-04 22:41:33.637 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7217/api/SupportTicket/2 - 403 0 null 65.2202ms
+2025-12-04 22:42:50.801 +02:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7217/api/SupportTicket/2 - null null
+2025-12-04 22:42:50.803 +02:00 [DBG] 1 candidate(s) found for the request path '/api/SupportTicket/2'
+2025-12-04 22:42:50.806 +02:00 [DBG] Request matched endpoint '405 HTTP Method Not Supported'
+2025-12-04 22:42:50.807 +02:00 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-12-04 22:42:50.809 +02:00 [DBG] The request has an origin header: 'http://localhost:4200'.
+2025-12-04 22:42:50.810 +02:00 [INF] CORS policy execution successful.
+2025-12-04 22:42:50.811 +02:00 [DBG] The request is a preflight request.
+2025-12-04 22:42:50.812 +02:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7217/api/SupportTicket/2 - 204 null null 11.5982ms
+2025-12-04 22:42:50.816 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7217/api/SupportTicket/2 - null null
+2025-12-04 22:42:50.818 +02:00 [DBG] 1 candidate(s) found for the request path '/api/SupportTicket/2'
+2025-12-04 22:42:50.819 +02:00 [DBG] Endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)' with route pattern 'api/SupportTicket/{ticketId}' is valid for the request path '/api/SupportTicket/2'
+2025-12-04 22:42:50.820 +02:00 [DBG] Request matched endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:42:50.821 +02:00 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-12-04 22:42:50.822 +02:00 [DBG] The request has an origin header: 'http://localhost:4200'.
+2025-12-04 22:42:50.822 +02:00 [INF] CORS policy execution successful.
+2025-12-04 22:42:50.823 +02:00 [DBG] Successfully validated the token.
+2025-12-04 22:42:50.824 +02:00 [DBG] AuthenticationScheme: Bearer was successfully authenticated.
+2025-12-04 22:42:50.826 +02:00 [DBG] Authorization was successful.
+2025-12-04 22:42:50.827 +02:00 [INF] Executing endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:42:50.827 +02:00 [INF] Route matched with {action = "GetById", controller = "SupportTicket"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(Int32) on controller Hospital.Controllers.SupportTicketController (Hospital).
+2025-12-04 22:42:50.829 +02:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-12-04 22:42:50.829 +02:00 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2025-12-04 22:42:50.830 +02:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-12-04 22:42:50.832 +02:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-12-04 22:42:50.832 +02:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-12-04 22:42:50.834 +02:00 [DBG] Executing controller factory for controller Hospital.Controllers.SupportTicketController (Hospital)
+2025-12-04 22:42:50.834 +02:00 [DBG] Executed controller factory for controller Hospital.Controllers.SupportTicketController (Hospital)
+2025-12-04 22:42:50.835 +02:00 [DBG] Attempting to bind parameter 'ticketId' of type 'System.Int32' ...
+2025-12-04 22:42:50.838 +02:00 [DBG] Attempting to bind parameter 'ticketId' of type 'System.Int32' using the name 'ticketId' in request data ...
+2025-12-04 22:42:50.841 +02:00 [DBG] Done attempting to bind parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:42:50.843 +02:00 [DBG] Done attempting to bind parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:42:50.845 +02:00 [DBG] Attempting to validate the bound parameter 'ticketId' of type 'System.Int32' ...
+2025-12-04 22:42:50.846 +02:00 [DBG] Done attempting to validate the bound parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:42:50.847 +02:00 [INF] get  Support by id Ticket called at "2025-12-04T22:42:50.8476424+02:00"
+2025-12-04 22:42:50.848 +02:00 [INF] Fetching ticket 2
+2025-12-04 22:42:50.850 +02:00 [DBG] Entity Framework Core 8.0.21 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.21' with options: None
+2025-12-04 22:42:50.852 +02:00 [DBG] Creating DbConnection.
+2025-12-04 22:42:50.853 +02:00 [DBG] Created DbConnection. (0ms).
+2025-12-04 22:42:50.854 +02:00 [DBG] Opening connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:42:50.855 +02:00 [DBG] Opened connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:42:50.856 +02:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-12-04 22:42:50.857 +02:00 [DBG] Created DbCommand for 'ExecuteReader' (1ms).
+2025-12-04 22:42:50.859 +02:00 [DBG] Initialized DbCommand for 'ExecuteReader' (2ms).
+2025-12-04 22:42:50.860 +02:00 [DBG] Executing DbCommand [Parameters=[@__ticketId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[TicketId], [s].[CreatedAt], [s].[Message], [s].[Response], [s].[Status], [s].[Subject], [s].[UpdatedAt], [s].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName]
+FROM [SupportTickets] AS [s]
+INNER JOIN [Users] AS [u] ON [s].[UserId] = [u].[Id]
+WHERE [s].[TicketId] = @__ticketId_0
+2025-12-04 22:42:50.878 +02:00 [INF] Executed DbCommand (18ms) [Parameters=[@__ticketId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[TicketId], [s].[CreatedAt], [s].[Message], [s].[Response], [s].[Status], [s].[Subject], [s].[UpdatedAt], [s].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName]
+FROM [SupportTickets] AS [s]
+INNER JOIN [Users] AS [u] ON [s].[UserId] = [u].[Id]
+WHERE [s].[TicketId] = @__ticketId_0
+2025-12-04 22:42:50.880 +02:00 [DBG] Context 'AppDbContext' started tracking 'SupportTicket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:42:50.882 +02:00 [DBG] The navigation 'SupportTicket.User' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:42:50.883 +02:00 [DBG] Context 'AppDbContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:42:50.885 +02:00 [DBG] Closing data reader to 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:42:50.886 +02:00 [DBG] A data reader for 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS' is being disposed after spending 5ms reading results.
+2025-12-04 22:42:50.887 +02:00 [DBG] Closing connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:42:50.888 +02:00 [DBG] Closed connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS' (0ms).
+2025-12-04 22:42:50.889 +02:00 [INF] Executing ForbidResult with authentication schemes ([]).
+2025-12-04 22:42:50.890 +02:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2025-12-04 22:42:50.892 +02:00 [INF] Executed action Hospital.Controllers.SupportTicketController.GetById (Hospital) in 58.0204ms
+2025-12-04 22:42:50.893 +02:00 [INF] Executed endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:42:50.893 +02:00 [DBG] 'AppDbContext' disposed.
+2025-12-04 22:42:50.894 +02:00 [DBG] Disposing connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:42:50.896 +02:00 [DBG] Disposed connection to database '' on server '' (1ms).
+2025-12-04 22:42:50.897 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7217/api/SupportTicket/2 - 403 0 null 80.5705ms
+2025-12-04 22:42:51.325 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7217/api/SupportTicket/2 - null null
+2025-12-04 22:42:51.328 +02:00 [DBG] 1 candidate(s) found for the request path '/api/SupportTicket/2'
+2025-12-04 22:42:51.329 +02:00 [DBG] Endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)' with route pattern 'api/SupportTicket/{ticketId}' is valid for the request path '/api/SupportTicket/2'
+2025-12-04 22:42:51.330 +02:00 [DBG] Request matched endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:42:51.330 +02:00 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-12-04 22:42:51.331 +02:00 [DBG] The request has an origin header: 'http://localhost:4200'.
+2025-12-04 22:42:51.331 +02:00 [INF] CORS policy execution successful.
+2025-12-04 22:42:51.332 +02:00 [DBG] Successfully validated the token.
+2025-12-04 22:42:51.333 +02:00 [DBG] AuthenticationScheme: Bearer was successfully authenticated.
+2025-12-04 22:42:51.333 +02:00 [DBG] Authorization was successful.
+2025-12-04 22:42:51.334 +02:00 [INF] Executing endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:42:51.334 +02:00 [INF] Route matched with {action = "GetById", controller = "SupportTicket"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(Int32) on controller Hospital.Controllers.SupportTicketController (Hospital).
+2025-12-04 22:42:51.336 +02:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-12-04 22:42:51.337 +02:00 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2025-12-04 22:42:51.339 +02:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-12-04 22:42:51.340 +02:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-12-04 22:42:51.342 +02:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-12-04 22:42:51.344 +02:00 [DBG] Executing controller factory for controller Hospital.Controllers.SupportTicketController (Hospital)
+2025-12-04 22:42:51.345 +02:00 [DBG] Executed controller factory for controller Hospital.Controllers.SupportTicketController (Hospital)
+2025-12-04 22:42:51.346 +02:00 [DBG] Attempting to bind parameter 'ticketId' of type 'System.Int32' ...
+2025-12-04 22:42:51.347 +02:00 [DBG] Attempting to bind parameter 'ticketId' of type 'System.Int32' using the name 'ticketId' in request data ...
+2025-12-04 22:42:51.348 +02:00 [DBG] Done attempting to bind parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:42:51.349 +02:00 [DBG] Done attempting to bind parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:42:51.349 +02:00 [DBG] Attempting to validate the bound parameter 'ticketId' of type 'System.Int32' ...
+2025-12-04 22:42:51.350 +02:00 [DBG] Done attempting to validate the bound parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:42:51.351 +02:00 [INF] get  Support by id Ticket called at "2025-12-04T22:42:51.3511793+02:00"
+2025-12-04 22:42:51.351 +02:00 [INF] Fetching ticket 2
+2025-12-04 22:42:51.352 +02:00 [DBG] Entity Framework Core 8.0.21 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.21' with options: None
+2025-12-04 22:42:51.354 +02:00 [DBG] Creating DbConnection.
+2025-12-04 22:42:51.355 +02:00 [DBG] Created DbConnection. (0ms).
+2025-12-04 22:42:51.356 +02:00 [DBG] Opening connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:42:51.357 +02:00 [DBG] Opened connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:42:51.358 +02:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-12-04 22:42:51.359 +02:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-12-04 22:42:51.360 +02:00 [DBG] Initialized DbCommand for 'ExecuteReader' (1ms).
+2025-12-04 22:42:51.360 +02:00 [DBG] Executing DbCommand [Parameters=[@__ticketId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[TicketId], [s].[CreatedAt], [s].[Message], [s].[Response], [s].[Status], [s].[Subject], [s].[UpdatedAt], [s].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName]
+FROM [SupportTickets] AS [s]
+INNER JOIN [Users] AS [u] ON [s].[UserId] = [u].[Id]
+WHERE [s].[TicketId] = @__ticketId_0
+2025-12-04 22:42:51.362 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__ticketId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[TicketId], [s].[CreatedAt], [s].[Message], [s].[Response], [s].[Status], [s].[Subject], [s].[UpdatedAt], [s].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName]
+FROM [SupportTickets] AS [s]
+INNER JOIN [Users] AS [u] ON [s].[UserId] = [u].[Id]
+WHERE [s].[TicketId] = @__ticketId_0
+2025-12-04 22:42:51.363 +02:00 [DBG] Context 'AppDbContext' started tracking 'SupportTicket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:42:51.364 +02:00 [DBG] The navigation 'SupportTicket.User' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:42:51.365 +02:00 [DBG] Context 'AppDbContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:42:51.366 +02:00 [DBG] Closing data reader to 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:42:51.367 +02:00 [DBG] A data reader for 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS' is being disposed after spending 3ms reading results.
+2025-12-04 22:42:51.367 +02:00 [DBG] Closing connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:42:51.368 +02:00 [DBG] Closed connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS' (0ms).
+2025-12-04 22:42:51.371 +02:00 [INF] Executing ForbidResult with authentication schemes ([]).
+2025-12-04 22:42:51.372 +02:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2025-12-04 22:42:51.373 +02:00 [INF] Executed action Hospital.Controllers.SupportTicketController.GetById (Hospital) in 29.378ms
+2025-12-04 22:42:51.374 +02:00 [INF] Executed endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:42:51.376 +02:00 [DBG] 'AppDbContext' disposed.
+2025-12-04 22:42:51.377 +02:00 [DBG] Disposing connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:42:51.378 +02:00 [DBG] Disposed connection to database '' on server '' (1ms).
+2025-12-04 22:42:51.379 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7217/api/SupportTicket/2 - 403 0 null 54.0295ms
+2025-12-04 22:42:51.525 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7217/api/SupportTicket/2 - null null
+2025-12-04 22:42:51.527 +02:00 [DBG] 1 candidate(s) found for the request path '/api/SupportTicket/2'
+2025-12-04 22:42:51.528 +02:00 [DBG] Endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)' with route pattern 'api/SupportTicket/{ticketId}' is valid for the request path '/api/SupportTicket/2'
+2025-12-04 22:42:51.530 +02:00 [DBG] Request matched endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:42:51.531 +02:00 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-12-04 22:42:51.532 +02:00 [DBG] The request has an origin header: 'http://localhost:4200'.
+2025-12-04 22:42:51.532 +02:00 [INF] CORS policy execution successful.
+2025-12-04 22:42:51.533 +02:00 [DBG] Successfully validated the token.
+2025-12-04 22:42:51.533 +02:00 [DBG] AuthenticationScheme: Bearer was successfully authenticated.
+2025-12-04 22:42:51.534 +02:00 [DBG] Authorization was successful.
+2025-12-04 22:42:51.534 +02:00 [INF] Executing endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:42:51.535 +02:00 [INF] Route matched with {action = "GetById", controller = "SupportTicket"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(Int32) on controller Hospital.Controllers.SupportTicketController (Hospital).
+2025-12-04 22:42:51.537 +02:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-12-04 22:42:51.538 +02:00 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2025-12-04 22:42:51.540 +02:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-12-04 22:42:51.542 +02:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-12-04 22:42:51.544 +02:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-12-04 22:42:51.546 +02:00 [DBG] Executing controller factory for controller Hospital.Controllers.SupportTicketController (Hospital)
+2025-12-04 22:42:51.547 +02:00 [DBG] Executed controller factory for controller Hospital.Controllers.SupportTicketController (Hospital)
+2025-12-04 22:42:51.548 +02:00 [DBG] Attempting to bind parameter 'ticketId' of type 'System.Int32' ...
+2025-12-04 22:42:51.549 +02:00 [DBG] Attempting to bind parameter 'ticketId' of type 'System.Int32' using the name 'ticketId' in request data ...
+2025-12-04 22:42:51.550 +02:00 [DBG] Done attempting to bind parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:42:51.551 +02:00 [DBG] Done attempting to bind parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:42:51.552 +02:00 [DBG] Attempting to validate the bound parameter 'ticketId' of type 'System.Int32' ...
+2025-12-04 22:42:51.553 +02:00 [DBG] Done attempting to validate the bound parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:42:51.555 +02:00 [INF] get  Support by id Ticket called at "2025-12-04T22:42:51.5552214+02:00"
+2025-12-04 22:42:51.555 +02:00 [INF] Fetching ticket 2
+2025-12-04 22:42:51.557 +02:00 [DBG] Entity Framework Core 8.0.21 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.21' with options: None
+2025-12-04 22:42:51.559 +02:00 [DBG] Creating DbConnection.
+2025-12-04 22:42:51.560 +02:00 [DBG] Created DbConnection. (0ms).
+2025-12-04 22:42:51.561 +02:00 [DBG] Opening connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:42:51.562 +02:00 [DBG] Opened connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:42:51.563 +02:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-12-04 22:42:51.564 +02:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-12-04 22:42:51.565 +02:00 [DBG] Initialized DbCommand for 'ExecuteReader' (1ms).
+2025-12-04 22:42:51.566 +02:00 [DBG] Executing DbCommand [Parameters=[@__ticketId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[TicketId], [s].[CreatedAt], [s].[Message], [s].[Response], [s].[Status], [s].[Subject], [s].[UpdatedAt], [s].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName]
+FROM [SupportTickets] AS [s]
+INNER JOIN [Users] AS [u] ON [s].[UserId] = [u].[Id]
+WHERE [s].[TicketId] = @__ticketId_0
+2025-12-04 22:42:51.568 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__ticketId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[TicketId], [s].[CreatedAt], [s].[Message], [s].[Response], [s].[Status], [s].[Subject], [s].[UpdatedAt], [s].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName]
+FROM [SupportTickets] AS [s]
+INNER JOIN [Users] AS [u] ON [s].[UserId] = [u].[Id]
+WHERE [s].[TicketId] = @__ticketId_0
+2025-12-04 22:42:51.570 +02:00 [DBG] Context 'AppDbContext' started tracking 'SupportTicket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:42:51.572 +02:00 [DBG] The navigation 'SupportTicket.User' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:42:51.574 +02:00 [DBG] Context 'AppDbContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:42:51.576 +02:00 [DBG] Closing data reader to 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:42:51.578 +02:00 [DBG] A data reader for 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS' is being disposed after spending 7ms reading results.
+2025-12-04 22:42:51.579 +02:00 [DBG] Closing connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:42:51.580 +02:00 [DBG] Closed connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS' (1ms).
+2025-12-04 22:42:51.581 +02:00 [INF] Executing ForbidResult with authentication schemes ([]).
+2025-12-04 22:42:51.582 +02:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2025-12-04 22:42:51.582 +02:00 [INF] Executed action Hospital.Controllers.SupportTicketController.GetById (Hospital) in 36.4854ms
+2025-12-04 22:42:51.583 +02:00 [INF] Executed endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:42:51.584 +02:00 [DBG] 'AppDbContext' disposed.
+2025-12-04 22:42:51.585 +02:00 [DBG] Disposing connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:42:51.587 +02:00 [DBG] Disposed connection to database '' on server '' (1ms).
+2025-12-04 22:42:51.588 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7217/api/SupportTicket/2 - 403 0 null 63.229ms
+2025-12-04 22:42:51.733 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7217/api/SupportTicket/2 - null null
+2025-12-04 22:42:51.734 +02:00 [DBG] 1 candidate(s) found for the request path '/api/SupportTicket/2'
+2025-12-04 22:42:51.735 +02:00 [DBG] Endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)' with route pattern 'api/SupportTicket/{ticketId}' is valid for the request path '/api/SupportTicket/2'
+2025-12-04 22:42:51.738 +02:00 [DBG] Request matched endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:42:51.739 +02:00 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-12-04 22:42:51.740 +02:00 [DBG] The request has an origin header: 'http://localhost:4200'.
+2025-12-04 22:42:51.741 +02:00 [INF] CORS policy execution successful.
+2025-12-04 22:42:51.742 +02:00 [DBG] Successfully validated the token.
+2025-12-04 22:42:51.743 +02:00 [DBG] AuthenticationScheme: Bearer was successfully authenticated.
+2025-12-04 22:42:51.744 +02:00 [DBG] Authorization was successful.
+2025-12-04 22:42:51.745 +02:00 [INF] Executing endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:42:51.746 +02:00 [INF] Route matched with {action = "GetById", controller = "SupportTicket"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(Int32) on controller Hospital.Controllers.SupportTicketController (Hospital).
+2025-12-04 22:42:51.748 +02:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-12-04 22:42:51.749 +02:00 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2025-12-04 22:42:51.750 +02:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-12-04 22:42:51.751 +02:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-12-04 22:42:51.752 +02:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-12-04 22:42:51.753 +02:00 [DBG] Executing controller factory for controller Hospital.Controllers.SupportTicketController (Hospital)
+2025-12-04 22:42:51.755 +02:00 [DBG] Executed controller factory for controller Hospital.Controllers.SupportTicketController (Hospital)
+2025-12-04 22:42:51.755 +02:00 [DBG] Attempting to bind parameter 'ticketId' of type 'System.Int32' ...
+2025-12-04 22:42:51.756 +02:00 [DBG] Attempting to bind parameter 'ticketId' of type 'System.Int32' using the name 'ticketId' in request data ...
+2025-12-04 22:42:51.758 +02:00 [DBG] Done attempting to bind parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:42:51.759 +02:00 [DBG] Done attempting to bind parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:42:51.760 +02:00 [DBG] Attempting to validate the bound parameter 'ticketId' of type 'System.Int32' ...
+2025-12-04 22:42:51.762 +02:00 [DBG] Done attempting to validate the bound parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:42:51.763 +02:00 [INF] get  Support by id Ticket called at "2025-12-04T22:42:51.7630805+02:00"
+2025-12-04 22:42:51.763 +02:00 [INF] Fetching ticket 2
+2025-12-04 22:42:51.764 +02:00 [DBG] Entity Framework Core 8.0.21 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.21' with options: None
+2025-12-04 22:42:51.766 +02:00 [DBG] Creating DbConnection.
+2025-12-04 22:42:51.766 +02:00 [DBG] Created DbConnection. (0ms).
+2025-12-04 22:42:51.767 +02:00 [DBG] Opening connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:42:51.768 +02:00 [DBG] Opened connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:42:51.769 +02:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-12-04 22:42:51.770 +02:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-12-04 22:42:51.771 +02:00 [DBG] Initialized DbCommand for 'ExecuteReader' (2ms).
+2025-12-04 22:42:51.772 +02:00 [DBG] Executing DbCommand [Parameters=[@__ticketId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[TicketId], [s].[CreatedAt], [s].[Message], [s].[Response], [s].[Status], [s].[Subject], [s].[UpdatedAt], [s].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName]
+FROM [SupportTickets] AS [s]
+INNER JOIN [Users] AS [u] ON [s].[UserId] = [u].[Id]
+WHERE [s].[TicketId] = @__ticketId_0
+2025-12-04 22:42:51.776 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__ticketId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[TicketId], [s].[CreatedAt], [s].[Message], [s].[Response], [s].[Status], [s].[Subject], [s].[UpdatedAt], [s].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName]
+FROM [SupportTickets] AS [s]
+INNER JOIN [Users] AS [u] ON [s].[UserId] = [u].[Id]
+WHERE [s].[TicketId] = @__ticketId_0
+2025-12-04 22:42:51.779 +02:00 [DBG] Context 'AppDbContext' started tracking 'SupportTicket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:42:51.780 +02:00 [DBG] The navigation 'SupportTicket.User' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:42:51.781 +02:00 [DBG] Context 'AppDbContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:42:51.783 +02:00 [DBG] Closing data reader to 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:42:51.783 +02:00 [DBG] A data reader for 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS' is being disposed after spending 4ms reading results.
+2025-12-04 22:42:51.785 +02:00 [DBG] Closing connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:42:51.786 +02:00 [DBG] Closed connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS' (1ms).
+2025-12-04 22:42:51.787 +02:00 [INF] Executing ForbidResult with authentication schemes ([]).
+2025-12-04 22:42:51.788 +02:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2025-12-04 22:42:51.788 +02:00 [INF] Executed action Hospital.Controllers.SupportTicketController.GetById (Hospital) in 35.3919ms
+2025-12-04 22:42:51.789 +02:00 [INF] Executed endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:42:51.790 +02:00 [DBG] 'AppDbContext' disposed.
+2025-12-04 22:42:51.791 +02:00 [DBG] Disposing connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:42:51.793 +02:00 [DBG] Disposed connection to database '' on server '' (2ms).
+2025-12-04 22:42:51.795 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7217/api/SupportTicket/2 - 403 0 null 61.958ms
+2025-12-04 22:43:23.583 +02:00 [DBG] Connection id "0HNHJELQTUA16" is closing.
+2025-12-04 22:43:23.584 +02:00 [DBG] Connection id "0HNHJELQTUA16" is closed. The last processed stream ID was 7.
+2025-12-04 22:43:23.586 +02:00 [DBG] Connection id "0HNHJELQTUA16" received FIN.
+2025-12-04 22:43:23.587 +02:00 [DBG] Connection id "0HNHJELQTUA16" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-12-04 22:43:23.588 +02:00 [DBG] The connection queue processing loop for 0HNHJELQTUA16 completed.
+2025-12-04 22:43:23.594 +02:00 [DBG] Connection id "0HNHJELQTUA16" stopped.
+2025-12-04 22:45:03.584 +02:00 [DBG] Connection id "0HNHJELQTUA17" is closing.
+2025-12-04 22:45:03.586 +02:00 [DBG] Connection id "0HNHJELQTUA17" is closed. The last processed stream ID was 31.
+2025-12-04 22:45:03.588 +02:00 [DBG] The connection queue processing loop for 0HNHJELQTUA17 completed.
+2025-12-04 22:45:03.588 +02:00 [DBG] Connection id "0HNHJELQTUA17" received FIN.
+2025-12-04 22:45:03.589 +02:00 [DBG] Connection id "0HNHJELQTUA17" stopped.
+2025-12-04 22:45:03.590 +02:00 [DBG] Connection id "0HNHJELQTUA17" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-12-04 22:45:58.523 +02:00 [DBG] Connection id "0HNHJELQTUA18" accepted.
+2025-12-04 22:45:58.524 +02:00 [DBG] Connection id "0HNHJELQTUA18" started.
+2025-12-04 22:45:58.525 +02:00 [DBG] Connection id "0HNHJELQTUA19" accepted.
+2025-12-04 22:45:58.526 +02:00 [DBG] Connection id "0HNHJELQTUA18" received FIN.
+2025-12-04 22:45:58.527 +02:00 [DBG] Connection id "0HNHJELQTUA19" started.
+2025-12-04 22:45:58.528 +02:00 [DBG] Failed to authenticate HTTPS connection.
+System.IO.IOException: Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.ReceiveHandshakeFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+2025-12-04 22:45:58.532 +02:00 [DBG] Connection id "0HNHJELQTUA18" stopped.
+2025-12-04 22:45:58.533 +02:00 [DBG] Connection id "0HNHJELQTUA18" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-12-04 22:45:58.534 +02:00 [DBG] Connection 0HNHJELQTUA19 established using the following protocol: "Tls13"
+2025-12-04 22:45:58.541 +02:00 [INF] Request starting HTTP/1.1 GET https://localhost:7217/api/SupportTicket/2 - null null
+2025-12-04 22:45:58.545 +02:00 [DBG] 1 candidate(s) found for the request path '/api/SupportTicket/2'
+2025-12-04 22:45:58.546 +02:00 [DBG] Endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)' with route pattern 'api/SupportTicket/{ticketId}' is valid for the request path '/api/SupportTicket/2'
+2025-12-04 22:45:58.548 +02:00 [DBG] Request matched endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:45:58.549 +02:00 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-12-04 22:45:58.550 +02:00 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-12-04 22:45:58.551 +02:00 [DBG] Policy authentication schemes  did not succeed
+2025-12-04 22:45:58.553 +02:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Admin|Patient)
+2025-12-04 22:45:58.557 +02:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-12-04 22:45:58.559 +02:00 [DBG] Connection id "0HNHJELQTUA19" completed keep alive response.
+2025-12-04 22:45:58.560 +02:00 [INF] Request finished HTTP/1.1 GET https://localhost:7217/api/SupportTicket/2 - 401 0 null 18.4241ms
+2025-12-04 22:46:06.612 +02:00 [INF] Request starting HTTP/1.1 GET https://localhost:7217/api/SupportTicket/1 - null null
+2025-12-04 22:46:06.615 +02:00 [DBG] 1 candidate(s) found for the request path '/api/SupportTicket/1'
+2025-12-04 22:46:06.616 +02:00 [DBG] Endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)' with route pattern 'api/SupportTicket/{ticketId}' is valid for the request path '/api/SupportTicket/1'
+2025-12-04 22:46:06.617 +02:00 [DBG] Request matched endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:46:06.618 +02:00 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-12-04 22:46:06.619 +02:00 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-12-04 22:46:06.620 +02:00 [DBG] Policy authentication schemes  did not succeed
+2025-12-04 22:46:06.621 +02:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Admin|Patient)
+2025-12-04 22:46:06.623 +02:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-12-04 22:46:06.624 +02:00 [DBG] Connection id "0HNHJELQTUA19" completed keep alive response.
+2025-12-04 22:46:06.625 +02:00 [INF] Request finished HTTP/1.1 GET https://localhost:7217/api/SupportTicket/1 - 401 0 null 12.4279ms
+2025-12-04 22:46:11.022 +02:00 [INF] Request starting HTTP/1.1 GET https://localhost:7217/api/SupportTicket/2 - null null
+2025-12-04 22:46:11.025 +02:00 [DBG] 1 candidate(s) found for the request path '/api/SupportTicket/2'
+2025-12-04 22:46:11.025 +02:00 [DBG] Endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)' with route pattern 'api/SupportTicket/{ticketId}' is valid for the request path '/api/SupportTicket/2'
+2025-12-04 22:46:11.027 +02:00 [DBG] Request matched endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:46:11.028 +02:00 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-12-04 22:46:11.029 +02:00 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-12-04 22:46:11.030 +02:00 [DBG] Policy authentication schemes  did not succeed
+2025-12-04 22:46:11.031 +02:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Admin|Patient)
+2025-12-04 22:46:11.032 +02:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-12-04 22:46:11.033 +02:00 [DBG] Connection id "0HNHJELQTUA19" completed keep alive response.
+2025-12-04 22:46:11.034 +02:00 [INF] Request finished HTTP/1.1 GET https://localhost:7217/api/SupportTicket/2 - 401 0 null 11.6559ms
+2025-12-04 22:46:59.783 +02:00 [DBG] Connection id "0HNHJELQTUA1A" accepted.
+2025-12-04 22:46:59.786 +02:00 [DBG] Connection id "0HNHJELQTUA1A" started.
+2025-12-04 22:46:59.797 +02:00 [DBG] Connection 0HNHJELQTUA1A established using the following protocol: "Tls13"
+2025-12-04 22:46:59.799 +02:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7217/api/SupportTicket/patient/8 - null null
+2025-12-04 22:46:59.801 +02:00 [DBG] 1 candidate(s) found for the request path '/api/SupportTicket/patient/8'
+2025-12-04 22:46:59.803 +02:00 [DBG] Request matched endpoint '405 HTTP Method Not Supported'
+2025-12-04 22:46:59.805 +02:00 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-12-04 22:46:59.807 +02:00 [DBG] The request has an origin header: 'http://localhost:4200'.
+2025-12-04 22:46:59.810 +02:00 [INF] CORS policy execution successful.
+2025-12-04 22:46:59.811 +02:00 [DBG] The request is a preflight request.
+2025-12-04 22:46:59.814 +02:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7217/api/SupportTicket/patient/8 - 204 null null 14.9646ms
+2025-12-04 22:46:59.819 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7217/api/SupportTicket/patient/8 - null null
+2025-12-04 22:46:59.821 +02:00 [DBG] 1 candidate(s) found for the request path '/api/SupportTicket/patient/8'
+2025-12-04 22:46:59.822 +02:00 [DBG] Endpoint 'Hospital.Controllers.SupportTicketController.GetAllByPatientId (Hospital)' with route pattern 'api/SupportTicket/patient/{patientId}' is valid for the request path '/api/SupportTicket/patient/8'
+2025-12-04 22:46:59.824 +02:00 [DBG] Request matched endpoint 'Hospital.Controllers.SupportTicketController.GetAllByPatientId (Hospital)'
+2025-12-04 22:46:59.826 +02:00 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-12-04 22:46:59.827 +02:00 [DBG] The request has an origin header: 'http://localhost:4200'.
+2025-12-04 22:46:59.829 +02:00 [INF] CORS policy execution successful.
+2025-12-04 22:46:59.830 +02:00 [DBG] Successfully validated the token.
+2025-12-04 22:46:59.832 +02:00 [DBG] AuthenticationScheme: Bearer was successfully authenticated.
+2025-12-04 22:46:59.833 +02:00 [DBG] Authorization was successful.
+2025-12-04 22:46:59.835 +02:00 [INF] Executing endpoint 'Hospital.Controllers.SupportTicketController.GetAllByPatientId (Hospital)'
+2025-12-04 22:46:59.837 +02:00 [INF] Route matched with {action = "GetAllByPatientId", controller = "SupportTicket"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[Hospital.Application.DTO.SupportTicket.SupportTicketDto]]] GetAllByPatientId(Int32) on controller Hospital.Controllers.SupportTicketController (Hospital).
+2025-12-04 22:46:59.842 +02:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-12-04 22:46:59.844 +02:00 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2025-12-04 22:46:59.847 +02:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-12-04 22:46:59.849 +02:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-12-04 22:46:59.851 +02:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-12-04 22:46:59.853 +02:00 [DBG] Executing controller factory for controller Hospital.Controllers.SupportTicketController (Hospital)
+2025-12-04 22:46:59.855 +02:00 [DBG] Executed controller factory for controller Hospital.Controllers.SupportTicketController (Hospital)
+2025-12-04 22:46:59.857 +02:00 [DBG] Attempting to bind parameter 'patientId' of type 'System.Int32' ...
+2025-12-04 22:46:59.859 +02:00 [DBG] Attempting to bind parameter 'patientId' of type 'System.Int32' using the name 'patientId' in request data ...
+2025-12-04 22:46:59.860 +02:00 [DBG] Done attempting to bind parameter 'patientId' of type 'System.Int32'.
+2025-12-04 22:46:59.862 +02:00 [DBG] Done attempting to bind parameter 'patientId' of type 'System.Int32'.
+2025-12-04 22:46:59.863 +02:00 [DBG] Attempting to validate the bound parameter 'patientId' of type 'System.Int32' ...
+2025-12-04 22:46:59.864 +02:00 [DBG] Done attempting to validate the bound parameter 'patientId' of type 'System.Int32'.
+2025-12-04 22:46:59.865 +02:00 [INF] get all Support Ticket  by patient id called at "2025-12-04T22:46:59.8655617+02:00"
+2025-12-04 22:46:59.866 +02:00 [INF] Fetching patient with ID: 8
+2025-12-04 22:46:59.867 +02:00 [DBG] Entity Framework Core 8.0.21 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.21' with options: None
+2025-12-04 22:46:59.874 +02:00 [DBG] Creating DbConnection.
+2025-12-04 22:46:59.877 +02:00 [DBG] Created DbConnection. (2ms).
+2025-12-04 22:46:59.877 +02:00 [DBG] Opening connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:46:59.880 +02:00 [DBG] Opened connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:46:59.882 +02:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-12-04 22:46:59.883 +02:00 [DBG] Created DbCommand for 'ExecuteReader' (1ms).
+2025-12-04 22:46:59.885 +02:00 [DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+2025-12-04 22:46:59.886 +02:00 [DBG] Executing DbCommand [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[PatientId], [t].[CreatedAt], [t].[EmergencyContact], [t].[UpdatedAt], [t].[UserId], [t].[Id], [t].[AccessFailedCount], [t].[ConcurrencyStamp], [t].[CreatedAt0], [t].[DateOfBirth], [t].[Email], [t].[EmailConfirmed], [t].[FullName], [t].[Gender], [t].[LockoutEnabled], [t].[LockoutEnd], [t].[NormalizedEmail], [t].[NormalizedUserName], [t].[PasswordHash], [t].[PhoneNumber], [t].[PhoneNumberConfirmed], [t].[RefreshToken], [t].[RefreshTokenExpiryTime], [t].[Role], [t].[SecurityStamp], [t].[TwoFactorEnabled], [t].[UpdatedAt0], [t].[UserName], [t0].[RecordId], [t0].[AppointmentId], [t0].[CreatedAt], [t0].[Diagnosis], [t0].[DoctorId], [t0].[Notes], [t0].[PatientId], [t0].[TreatmentPlan], [t0].[UpdatedAt], [t0].[DoctorId0], [t0].[Available], [t0].[Biography], [t0].[ConsultationFees], [t0].[CreatedAt0], [t0].[ExperienceYears], [t0].[ImageURL], [t0].[SpecializationId], [t0].[UpdatedAt0], [t0].[UserId], [t0].[Id], [t0].[AccessFailedCount], [t0].[ConcurrencyStamp], [t0].[CreatedAt1], [t0].[DateOfBirth], [t0].[Email], [t0].[EmailConfirmed], [t0].[FullName], [t0].[Gender], [t0].[LockoutEnabled], [t0].[LockoutEnd], [t0].[NormalizedEmail], [t0].[NormalizedUserName], [t0].[PasswordHash], [t0].[PhoneNumber], [t0].[PhoneNumberConfirmed], [t0].[RefreshToken], [t0].[RefreshTokenExpiryTime], [t0].[Role], [t0].[SecurityStamp], [t0].[TwoFactorEnabled], [t0].[UpdatedAt1], [t0].[UserName]
+FROM (
+    SELECT TOP(1) [p].[PatientId], [p].[CreatedAt], [p].[EmergencyContact], [p].[UpdatedAt], [p].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt] AS [CreatedAt0], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt] AS [UpdatedAt0], [u].[UserName]
+    FROM [Patients] AS [p]
+    INNER JOIN [Users] AS [u] ON [p].[UserId] = [u].[Id]
+    WHERE [p].[PatientId] = @__id_0
+) AS [t]
+LEFT JOIN (
+    SELECT [m].[RecordId], [m].[AppointmentId], [m].[CreatedAt], [m].[Diagnosis], [m].[DoctorId], [m].[Notes], [m].[PatientId], [m].[TreatmentPlan], [m].[UpdatedAt], [d].[DoctorId] AS [DoctorId0], [d].[Available], [d].[Biography], [d].[ConsultationFees], [d].[CreatedAt] AS [CreatedAt0], [d].[ExperienceYears], [d].[ImageURL], [d].[SpecializationId], [d].[UpdatedAt] AS [UpdatedAt0], [d].[UserId], [u0].[Id], [u0].[AccessFailedCount], [u0].[ConcurrencyStamp], [u0].[CreatedAt] AS [CreatedAt1], [u0].[DateOfBirth], [u0].[Email], [u0].[EmailConfirmed], [u0].[FullName], [u0].[Gender], [u0].[LockoutEnabled], [u0].[LockoutEnd], [u0].[NormalizedEmail], [u0].[NormalizedUserName], [u0].[PasswordHash], [u0].[PhoneNumber], [u0].[PhoneNumberConfirmed], [u0].[RefreshToken], [u0].[RefreshTokenExpiryTime], [u0].[Role], [u0].[SecurityStamp], [u0].[TwoFactorEnabled], [u0].[UpdatedAt] AS [UpdatedAt1], [u0].[UserName]
+    FROM [MedicalRecords] AS [m]
+    INNER JOIN [Doctors] AS [d] ON [m].[DoctorId] = [d].[DoctorId]
+    INNER JOIN [Users] AS [u0] ON [d].[UserId] = [u0].[Id]
+) AS [t0] ON [t].[PatientId] = [t0].[PatientId]
+ORDER BY [t].[PatientId], [t].[Id], [t0].[RecordId], [t0].[DoctorId0]
+2025-12-04 22:46:59.921 +02:00 [INF] Executed DbCommand (35ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[PatientId], [t].[CreatedAt], [t].[EmergencyContact], [t].[UpdatedAt], [t].[UserId], [t].[Id], [t].[AccessFailedCount], [t].[ConcurrencyStamp], [t].[CreatedAt0], [t].[DateOfBirth], [t].[Email], [t].[EmailConfirmed], [t].[FullName], [t].[Gender], [t].[LockoutEnabled], [t].[LockoutEnd], [t].[NormalizedEmail], [t].[NormalizedUserName], [t].[PasswordHash], [t].[PhoneNumber], [t].[PhoneNumberConfirmed], [t].[RefreshToken], [t].[RefreshTokenExpiryTime], [t].[Role], [t].[SecurityStamp], [t].[TwoFactorEnabled], [t].[UpdatedAt0], [t].[UserName], [t0].[RecordId], [t0].[AppointmentId], [t0].[CreatedAt], [t0].[Diagnosis], [t0].[DoctorId], [t0].[Notes], [t0].[PatientId], [t0].[TreatmentPlan], [t0].[UpdatedAt], [t0].[DoctorId0], [t0].[Available], [t0].[Biography], [t0].[ConsultationFees], [t0].[CreatedAt0], [t0].[ExperienceYears], [t0].[ImageURL], [t0].[SpecializationId], [t0].[UpdatedAt0], [t0].[UserId], [t0].[Id], [t0].[AccessFailedCount], [t0].[ConcurrencyStamp], [t0].[CreatedAt1], [t0].[DateOfBirth], [t0].[Email], [t0].[EmailConfirmed], [t0].[FullName], [t0].[Gender], [t0].[LockoutEnabled], [t0].[LockoutEnd], [t0].[NormalizedEmail], [t0].[NormalizedUserName], [t0].[PasswordHash], [t0].[PhoneNumber], [t0].[PhoneNumberConfirmed], [t0].[RefreshToken], [t0].[RefreshTokenExpiryTime], [t0].[Role], [t0].[SecurityStamp], [t0].[TwoFactorEnabled], [t0].[UpdatedAt1], [t0].[UserName]
+FROM (
+    SELECT TOP(1) [p].[PatientId], [p].[CreatedAt], [p].[EmergencyContact], [p].[UpdatedAt], [p].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt] AS [CreatedAt0], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt] AS [UpdatedAt0], [u].[UserName]
+    FROM [Patients] AS [p]
+    INNER JOIN [Users] AS [u] ON [p].[UserId] = [u].[Id]
+    WHERE [p].[PatientId] = @__id_0
+) AS [t]
+LEFT JOIN (
+    SELECT [m].[RecordId], [m].[AppointmentId], [m].[CreatedAt], [m].[Diagnosis], [m].[DoctorId], [m].[Notes], [m].[PatientId], [m].[TreatmentPlan], [m].[UpdatedAt], [d].[DoctorId] AS [DoctorId0], [d].[Available], [d].[Biography], [d].[ConsultationFees], [d].[CreatedAt] AS [CreatedAt0], [d].[ExperienceYears], [d].[ImageURL], [d].[SpecializationId], [d].[UpdatedAt] AS [UpdatedAt0], [d].[UserId], [u0].[Id], [u0].[AccessFailedCount], [u0].[ConcurrencyStamp], [u0].[CreatedAt] AS [CreatedAt1], [u0].[DateOfBirth], [u0].[Email], [u0].[EmailConfirmed], [u0].[FullName], [u0].[Gender], [u0].[LockoutEnabled], [u0].[LockoutEnd], [u0].[NormalizedEmail], [u0].[NormalizedUserName], [u0].[PasswordHash], [u0].[PhoneNumber], [u0].[PhoneNumberConfirmed], [u0].[RefreshToken], [u0].[RefreshTokenExpiryTime], [u0].[Role], [u0].[SecurityStamp], [u0].[TwoFactorEnabled], [u0].[UpdatedAt] AS [UpdatedAt1], [u0].[UserName]
+    FROM [MedicalRecords] AS [m]
+    INNER JOIN [Doctors] AS [d] ON [m].[DoctorId] = [d].[DoctorId]
+    INNER JOIN [Users] AS [u0] ON [d].[UserId] = [u0].[Id]
+) AS [t0] ON [t].[PatientId] = [t0].[PatientId]
+ORDER BY [t].[PatientId], [t].[Id], [t0].[RecordId], [t0].[DoctorId0]
+2025-12-04 22:46:59.926 +02:00 [DBG] Context 'AppDbContext' started tracking 'Patient' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:46:59.927 +02:00 [DBG] The navigation 'Patient.User' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:46:59.928 +02:00 [DBG] Context 'AppDbContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:46:59.929 +02:00 [DBG] Closing data reader to 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:46:59.930 +02:00 [DBG] A data reader for 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS' is being disposed after spending 5ms reading results.
+2025-12-04 22:46:59.931 +02:00 [DBG] Closing connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:46:59.932 +02:00 [DBG] Closed connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS' (1ms).
+2025-12-04 22:46:59.934 +02:00 [INF] Patient with ID 8 retrieved successfully
+2025-12-04 22:46:59.934 +02:00 [INF] Fetching all tickets for Patient UserId 8c11a663-8097-4e72-93f8-7bcb5fe9a47a
+2025-12-04 22:46:59.936 +02:00 [DBG] Opening connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:46:59.938 +02:00 [DBG] Opened connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:46:59.939 +02:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-12-04 22:46:59.940 +02:00 [DBG] Created DbCommand for 'ExecuteReader' (1ms).
+2025-12-04 22:46:59.941 +02:00 [DBG] Initialized DbCommand for 'ExecuteReader' (2ms).
+2025-12-04 22:46:59.943 +02:00 [DBG] Executing DbCommand [Parameters=[@__patientId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[TicketId], [s].[CreatedAt], [s].[Message], [s].[Response], [s].[Status], [s].[Subject], [s].[UpdatedAt], [s].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName]
+FROM [SupportTickets] AS [s]
+INNER JOIN [Users] AS [u] ON [s].[UserId] = [u].[Id]
+WHERE [s].[UserId] = @__patientId_0
+ORDER BY [s].[CreatedAt] DESC
+2025-12-04 22:46:59.949 +02:00 [INF] Executed DbCommand (6ms) [Parameters=[@__patientId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[TicketId], [s].[CreatedAt], [s].[Message], [s].[Response], [s].[Status], [s].[Subject], [s].[UpdatedAt], [s].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName]
+FROM [SupportTickets] AS [s]
+INNER JOIN [Users] AS [u] ON [s].[UserId] = [u].[Id]
+WHERE [s].[UserId] = @__patientId_0
+ORDER BY [s].[CreatedAt] DESC
+2025-12-04 22:46:59.950 +02:00 [DBG] Context 'AppDbContext' started tracking 'SupportTicket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:46:59.951 +02:00 [DBG] Context 'AppDbContext' started tracking 'SupportTicket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:46:59.952 +02:00 [DBG] Closing data reader to 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:46:59.953 +02:00 [DBG] A data reader for 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS' is being disposed after spending 2ms reading results.
+2025-12-04 22:46:59.955 +02:00 [DBG] Closing connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:46:59.956 +02:00 [DBG] Closed connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS' (0ms).
+2025-12-04 22:46:59.957 +02:00 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2025-12-04 22:46:59.959 +02:00 [DBG] No information found on request to perform content negotiation.
+2025-12-04 22:46:59.960 +02:00 [DBG] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2025-12-04 22:46:59.960 +02:00 [DBG] Attempting to select the first formatter in the output formatters list which can write the result.
+2025-12-04 22:46:59.961 +02:00 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2025-12-04 22:46:59.962 +02:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Hospital.Application.DTO.SupportTicket.SupportTicketDto, Hospital.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-04 22:46:59.963 +02:00 [INF] Executed action Hospital.Controllers.SupportTicketController.GetAllByPatientId (Hospital) in 110.1703ms
+2025-12-04 22:46:59.964 +02:00 [INF] Executed endpoint 'Hospital.Controllers.SupportTicketController.GetAllByPatientId (Hospital)'
+2025-12-04 22:46:59.965 +02:00 [DBG] 'AppDbContext' disposed.
+2025-12-04 22:46:59.966 +02:00 [DBG] Disposing connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:46:59.967 +02:00 [DBG] Disposed connection to database '' on server '' (1ms).
+2025-12-04 22:46:59.968 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7217/api/SupportTicket/patient/8 - 200 null application/json; charset=utf-8 149.0694ms
+2025-12-04 22:47:19.352 +02:00 [DBG] Connection id "0HNHJELQTUA1B" accepted.
+2025-12-04 22:47:19.353 +02:00 [DBG] Connection id "0HNHJELQTUA1B" started.
+2025-12-04 22:47:19.357 +02:00 [DBG] Connection 0HNHJELQTUA1B established using the following protocol: "Tls13"
+2025-12-04 22:47:19.365 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7217/api/SupportTicket/2 - null null
+2025-12-04 22:47:19.373 +02:00 [DBG] 1 candidate(s) found for the request path '/api/SupportTicket/2'
+2025-12-04 22:47:19.376 +02:00 [DBG] Endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)' with route pattern 'api/SupportTicket/{ticketId}' is valid for the request path '/api/SupportTicket/2'
+2025-12-04 22:47:19.379 +02:00 [DBG] Request matched endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:47:19.381 +02:00 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-12-04 22:47:19.382 +02:00 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2025-12-04 22:47:19.383 +02:00 [DBG] Policy authentication schemes  did not succeed
+2025-12-04 22:47:19.384 +02:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Admin|Patient)
+2025-12-04 22:47:19.385 +02:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-12-04 22:47:19.385 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7217/api/SupportTicket/2 - 401 0 null 20.0732ms
+2025-12-04 22:48:11.531 +02:00 [DBG] Connection id "0HNHJELQTUA1C" accepted.
+2025-12-04 22:48:11.531 +02:00 [DBG] Connection id "0HNHJELQTUA1C" received FIN.
+2025-12-04 22:48:11.532 +02:00 [DBG] Connection id "0HNHJELQTUA1C" started.
+2025-12-04 22:48:11.532 +02:00 [DBG] Connection id "0HNHJELQTUA1D" accepted.
+2025-12-04 22:48:11.535 +02:00 [DBG] Failed to authenticate HTTPS connection.
+System.IO.IOException: Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.ReceiveHandshakeFrameAsync[TIOAdapter](CancellationToken cancellationToken)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](Boolean receiveFirst, Byte[] reAuthenticationData, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+2025-12-04 22:48:11.536 +02:00 [DBG] Connection id "0HNHJELQTUA1D" started.
+2025-12-04 22:48:11.538 +02:00 [DBG] Connection id "0HNHJELQTUA1C" stopped.
+2025-12-04 22:48:11.540 +02:00 [DBG] Connection id "0HNHJELQTUA1C" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-12-04 22:48:11.543 +02:00 [DBG] Connection 0HNHJELQTUA1D established using the following protocol: "Tls13"
+2025-12-04 22:48:11.545 +02:00 [INF] Request starting HTTP/1.1 GET https://localhost:7217/api/SupportTicket/2 - null null
+2025-12-04 22:48:11.547 +02:00 [DBG] 1 candidate(s) found for the request path '/api/SupportTicket/2'
+2025-12-04 22:48:11.548 +02:00 [DBG] Endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)' with route pattern 'api/SupportTicket/{ticketId}' is valid for the request path '/api/SupportTicket/2'
+2025-12-04 22:48:11.550 +02:00 [DBG] Request matched endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:48:11.551 +02:00 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-12-04 22:48:11.552 +02:00 [DBG] Successfully validated the token.
+2025-12-04 22:48:11.552 +02:00 [DBG] AuthenticationScheme: Bearer was successfully authenticated.
+2025-12-04 22:48:11.553 +02:00 [DBG] Authorization was successful.
+2025-12-04 22:48:11.554 +02:00 [INF] Executing endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:48:11.555 +02:00 [INF] Route matched with {action = "GetById", controller = "SupportTicket"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(Int32) on controller Hospital.Controllers.SupportTicketController (Hospital).
+2025-12-04 22:48:11.556 +02:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-12-04 22:48:11.557 +02:00 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2025-12-04 22:48:11.559 +02:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-12-04 22:48:11.560 +02:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-12-04 22:48:11.561 +02:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-12-04 22:48:11.562 +02:00 [DBG] Executing controller factory for controller Hospital.Controllers.SupportTicketController (Hospital)
+2025-12-04 22:48:11.563 +02:00 [DBG] Executed controller factory for controller Hospital.Controllers.SupportTicketController (Hospital)
+2025-12-04 22:48:11.564 +02:00 [DBG] Attempting to bind parameter 'ticketId' of type 'System.Int32' ...
+2025-12-04 22:48:11.565 +02:00 [DBG] Attempting to bind parameter 'ticketId' of type 'System.Int32' using the name 'ticketId' in request data ...
+2025-12-04 22:48:11.566 +02:00 [DBG] Done attempting to bind parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:48:11.568 +02:00 [DBG] Done attempting to bind parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:48:11.569 +02:00 [DBG] Attempting to validate the bound parameter 'ticketId' of type 'System.Int32' ...
+2025-12-04 22:48:11.571 +02:00 [DBG] Done attempting to validate the bound parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:48:11.572 +02:00 [INF] get  Support by id Ticket called at "2025-12-04T22:48:11.5728759+02:00"
+2025-12-04 22:48:11.574 +02:00 [INF] Fetching ticket 2
+2025-12-04 22:48:11.575 +02:00 [DBG] Entity Framework Core 8.0.21 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.21' with options: None
+2025-12-04 22:48:11.577 +02:00 [DBG] Creating DbConnection.
+2025-12-04 22:48:11.578 +02:00 [DBG] Created DbConnection. (0ms).
+2025-12-04 22:48:11.579 +02:00 [DBG] Opening connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:48:11.580 +02:00 [DBG] Opened connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:48:11.581 +02:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-12-04 22:48:11.582 +02:00 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-12-04 22:48:11.583 +02:00 [DBG] Initialized DbCommand for 'ExecuteReader' (1ms).
+2025-12-04 22:48:11.584 +02:00 [DBG] Executing DbCommand [Parameters=[@__ticketId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[TicketId], [s].[CreatedAt], [s].[Message], [s].[Response], [s].[Status], [s].[Subject], [s].[UpdatedAt], [s].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName]
+FROM [SupportTickets] AS [s]
+INNER JOIN [Users] AS [u] ON [s].[UserId] = [u].[Id]
+WHERE [s].[TicketId] = @__ticketId_0
+2025-12-04 22:48:11.597 +02:00 [INF] Executed DbCommand (13ms) [Parameters=[@__ticketId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[TicketId], [s].[CreatedAt], [s].[Message], [s].[Response], [s].[Status], [s].[Subject], [s].[UpdatedAt], [s].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName]
+FROM [SupportTickets] AS [s]
+INNER JOIN [Users] AS [u] ON [s].[UserId] = [u].[Id]
+WHERE [s].[TicketId] = @__ticketId_0
+2025-12-04 22:48:11.599 +02:00 [DBG] Context 'AppDbContext' started tracking 'SupportTicket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:48:11.600 +02:00 [DBG] The navigation 'SupportTicket.User' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:48:11.602 +02:00 [DBG] Context 'AppDbContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:48:11.604 +02:00 [DBG] Closing data reader to 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:48:11.606 +02:00 [DBG] A data reader for 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS' is being disposed after spending 6ms reading results.
+2025-12-04 22:48:11.607 +02:00 [DBG] Closing connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:48:11.608 +02:00 [DBG] Closed connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS' (1ms).
+2025-12-04 22:48:11.610 +02:00 [INF] Executing ForbidResult with authentication schemes ([]).
+2025-12-04 22:48:11.611 +02:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2025-12-04 22:48:11.612 +02:00 [INF] Executed action Hospital.Controllers.SupportTicketController.GetById (Hospital) in 50.4887ms
+2025-12-04 22:48:11.613 +02:00 [INF] Executed endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:48:11.614 +02:00 [DBG] Connection id "0HNHJELQTUA1D" completed keep alive response.
+2025-12-04 22:48:11.615 +02:00 [DBG] 'AppDbContext' disposed.
+2025-12-04 22:48:11.616 +02:00 [DBG] Disposing connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:48:11.617 +02:00 [DBG] Disposed connection to database '' on server '' (0ms).
+2025-12-04 22:48:11.618 +02:00 [INF] Request finished HTTP/1.1 GET https://localhost:7217/api/SupportTicket/2 - 403 0 null 73.0856ms
+2025-12-04 22:48:21.528 +02:00 [DBG] Connection id "0HNHJELQTUA19" disconnecting.
+2025-12-04 22:48:21.530 +02:00 [DBG] Connection id "0HNHJELQTUA19" stopped.
+2025-12-04 22:48:21.531 +02:00 [DBG] Connection id "0HNHJELQTUA19" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-12-04 22:48:22.330 +02:00 [INF] Request starting HTTP/1.1 GET https://localhost:7217/api/SupportTicket/2 - null null
+2025-12-04 22:48:22.333 +02:00 [DBG] 1 candidate(s) found for the request path '/api/SupportTicket/2'
+2025-12-04 22:48:22.334 +02:00 [DBG] Endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)' with route pattern 'api/SupportTicket/{ticketId}' is valid for the request path '/api/SupportTicket/2'
+2025-12-04 22:48:22.335 +02:00 [DBG] Request matched endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:48:22.336 +02:00 [DBG] Static files was skipped as the request already matched an endpoint.
+2025-12-04 22:48:22.338 +02:00 [DBG] Successfully validated the token.
+2025-12-04 22:48:22.339 +02:00 [DBG] AuthenticationScheme: Bearer was successfully authenticated.
+2025-12-04 22:48:22.341 +02:00 [DBG] Authorization was successful.
+2025-12-04 22:48:22.341 +02:00 [INF] Executing endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:48:22.342 +02:00 [INF] Route matched with {action = "GetById", controller = "SupportTicket"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(Int32) on controller Hospital.Controllers.SupportTicketController (Hospital).
+2025-12-04 22:48:22.344 +02:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-12-04 22:48:22.345 +02:00 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2025-12-04 22:48:22.347 +02:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-12-04 22:48:22.348 +02:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-12-04 22:48:22.349 +02:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-12-04 22:48:22.350 +02:00 [DBG] Executing controller factory for controller Hospital.Controllers.SupportTicketController (Hospital)
+2025-12-04 22:48:22.352 +02:00 [DBG] Executed controller factory for controller Hospital.Controllers.SupportTicketController (Hospital)
+2025-12-04 22:48:22.353 +02:00 [DBG] Attempting to bind parameter 'ticketId' of type 'System.Int32' ...
+2025-12-04 22:48:22.354 +02:00 [DBG] Attempting to bind parameter 'ticketId' of type 'System.Int32' using the name 'ticketId' in request data ...
+2025-12-04 22:48:22.355 +02:00 [DBG] Done attempting to bind parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:48:22.356 +02:00 [DBG] Done attempting to bind parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:48:22.357 +02:00 [DBG] Attempting to validate the bound parameter 'ticketId' of type 'System.Int32' ...
+2025-12-04 22:48:22.358 +02:00 [DBG] Done attempting to validate the bound parameter 'ticketId' of type 'System.Int32'.
+2025-12-04 22:48:22.359 +02:00 [INF] get  Support by id Ticket called at "2025-12-04T22:48:22.3593642+02:00"
+2025-12-04 22:48:22.360 +02:00 [INF] Fetching ticket 2
+2025-12-04 22:48:22.361 +02:00 [DBG] Entity Framework Core 8.0.21 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.21' with options: None
+2025-12-04 22:48:22.362 +02:00 [DBG] Creating DbConnection.
+2025-12-04 22:48:22.363 +02:00 [DBG] Created DbConnection. (0ms).
+2025-12-04 22:48:22.364 +02:00 [DBG] Opening connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:48:22.365 +02:00 [DBG] Opened connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:48:22.366 +02:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-12-04 22:48:22.367 +02:00 [DBG] Created DbCommand for 'ExecuteReader' (1ms).
+2025-12-04 22:48:22.369 +02:00 [DBG] Initialized DbCommand for 'ExecuteReader' (2ms).
+2025-12-04 22:48:22.370 +02:00 [DBG] Executing DbCommand [Parameters=[@__ticketId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[TicketId], [s].[CreatedAt], [s].[Message], [s].[Response], [s].[Status], [s].[Subject], [s].[UpdatedAt], [s].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName]
+FROM [SupportTickets] AS [s]
+INNER JOIN [Users] AS [u] ON [s].[UserId] = [u].[Id]
+WHERE [s].[TicketId] = @__ticketId_0
+2025-12-04 22:48:22.373 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__ticketId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[TicketId], [s].[CreatedAt], [s].[Message], [s].[Response], [s].[Status], [s].[Subject], [s].[UpdatedAt], [s].[UserId], [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[CreatedAt], [u].[DateOfBirth], [u].[Email], [u].[EmailConfirmed], [u].[FullName], [u].[Gender], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[RefreshToken], [u].[RefreshTokenExpiryTime], [u].[Role], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UpdatedAt], [u].[UserName]
+FROM [SupportTickets] AS [s]
+INNER JOIN [Users] AS [u] ON [s].[UserId] = [u].[Id]
+WHERE [s].[TicketId] = @__ticketId_0
+2025-12-04 22:48:22.376 +02:00 [DBG] Context 'AppDbContext' started tracking 'SupportTicket' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:48:22.377 +02:00 [DBG] The navigation 'SupportTicket.User' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:48:22.378 +02:00 [DBG] Context 'AppDbContext' started tracking 'User' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-12-04 22:48:22.379 +02:00 [DBG] Closing data reader to 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:48:22.380 +02:00 [DBG] A data reader for 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS' is being disposed after spending 4ms reading results.
+2025-12-04 22:48:22.382 +02:00 [DBG] Closing connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:48:22.383 +02:00 [DBG] Closed connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS' (0ms).
+2025-12-04 22:48:22.384 +02:00 [INF] Executing ForbidResult with authentication schemes ([]).
+2025-12-04 22:48:22.385 +02:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2025-12-04 22:48:22.386 +02:00 [INF] Executed action Hospital.Controllers.SupportTicketController.GetById (Hospital) in 35.7532ms
+2025-12-04 22:48:22.387 +02:00 [INF] Executed endpoint 'Hospital.Controllers.SupportTicketController.GetById (Hospital)'
+2025-12-04 22:48:22.389 +02:00 [DBG] Connection id "0HNHJELQTUA1D" completed keep alive response.
+2025-12-04 22:48:22.389 +02:00 [DBG] 'AppDbContext' disposed.
+2025-12-04 22:48:22.390 +02:00 [DBG] Disposing connection to database 'HospitalDB' on server 'DESKTOP-TLNIQPD\SQLEXPRESS'.
+2025-12-04 22:48:22.391 +02:00 [DBG] Disposed connection to database '' on server '' (0ms).
+2025-12-04 22:48:22.392 +02:00 [INF] Request finished HTTP/1.1 GET https://localhost:7217/api/SupportTicket/2 - 403 0 null 62.1316ms
+2025-12-04 22:49:12.013 +02:00 [DBG] Connection id "0HNHJELQTUA1A" is closing.
+2025-12-04 22:49:12.015 +02:00 [DBG] Connection id "0HNHJELQTUA1A" is closed. The last processed stream ID was 3.
+2025-12-04 22:49:12.018 +02:00 [DBG] The connection queue processing loop for 0HNHJELQTUA1A completed.
+2025-12-04 22:49:12.018 +02:00 [DBG] Connection id "0HNHJELQTUA1A" received FIN.
+2025-12-04 22:49:12.020 +02:00 [DBG] Connection id "0HNHJELQTUA1A" stopped.
+2025-12-04 22:49:12.021 +02:00 [DBG] Connection id "0HNHJELQTUA1A" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-12-04 22:49:31.180 +02:00 [DBG] Connection id "0HNHJELQTUA1B" is closing.
+2025-12-04 22:49:31.183 +02:00 [DBG] Connection id "0HNHJELQTUA1B" is closed. The last processed stream ID was 1.
+2025-12-04 22:49:31.185 +02:00 [DBG] The connection queue processing loop for 0HNHJELQTUA1B completed.
+2025-12-04 22:49:31.185 +02:00 [DBG] Connection id "0HNHJELQTUA1B" received FIN.
+2025-12-04 22:49:31.187 +02:00 [DBG] Connection id "0HNHJELQTUA1B" stopped.
+2025-12-04 22:49:31.188 +02:00 [DBG] Connection id "0HNHJELQTUA1B" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-12-04 22:50:32.692 +02:00 [DBG] Connection id "0HNHJELQTUA1D" disconnecting.
+2025-12-04 22:50:32.694 +02:00 [DBG] Connection id "0HNHJELQTUA1D" stopped.
+2025-12-04 22:50:32.695 +02:00 [DBG] Connection id "0HNHJELQTUA1D" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-12-04 22:53:04.619 +02:00 [DBG] Config reload token fired. Checking for changes...
