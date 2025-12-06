@@ -87,6 +87,11 @@ namespace Hospital
             builder.Services.AddScoped<IMedicalRecordService, MedicalRecordService>();
             builder.Services.AddScoped<IAppointmentService, AppointmentService>();
             builder.Services.AddScoped<ITotalRevenueService, TotalRevenueService>();
+            builder.Services.AddSingleton<IMemoryService, MemoryService>();
+            builder.Services.AddHttpClient("PythonRagClient", client =>
+            {
+                client.BaseAddress = new Uri("http://localhost:8001/");
+            });
 
             builder.Services.AddScoped<IEventRepository, EventRepository>();
             builder.Services.AddScoped<IBranchRepository, BranchRepository>();
