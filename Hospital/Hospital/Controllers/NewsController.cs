@@ -22,7 +22,6 @@ namespace Hospital.Controllers
 
         [HttpPost("CreateNews")]
         [Authorize(Roles = "Admin")]
-
         public async Task<IActionResult> CreateNews([FromBody] AddNewsDto newsDto)
         {
             _logger.LogInformation("create News  called at {time}", DateTime.Now);
@@ -32,7 +31,6 @@ namespace Hospital.Controllers
         }
 
         [HttpPost("GetNews")]
-
         public async Task<IActionResult> GetNews(GetNewsDto news)
         {
             _logger.LogInformation("get News  called at {time}", DateTime.Now);
@@ -58,7 +56,6 @@ namespace Hospital.Controllers
 
         [HttpPut("UpdateNews")]
         [Authorize(Roles = "Admin")]
-
         public async Task<IActionResult> UpdateNews([FromBody] NewsDto news)
         {
             _logger.LogInformation("update News  called at {time}", DateTime.Now);
@@ -75,7 +72,6 @@ namespace Hospital.Controllers
 
         [HttpDelete("DeleteNews")]
         [Authorize(Roles = "Admin")]
-
         public async Task<IActionResult> DeleteNews(GetNewsDto dto)
         {
             _logger.LogInformation("delete News  called at {time}", DateTime.Now);
@@ -88,7 +84,6 @@ namespace Hospital.Controllers
         }
 
         [HttpGet("GetAllNewsInSystem")]
-        [Authorize(Roles = "Admin, Patient")]
         public async Task<IActionResult> GetAllNewsInSystem()
         {
             _logger.LogInformation("get all News in system  called at {time}", DateTime.Now);

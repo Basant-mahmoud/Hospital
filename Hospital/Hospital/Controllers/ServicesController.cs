@@ -12,7 +12,6 @@ namespace Hospital.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class ServicesController : ControllerBase
     {
         private readonly IServiceService _serviceService;
@@ -47,7 +46,6 @@ namespace Hospital.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-
         public async Task<IActionResult> Create([FromBody] CreateServiceDto dto)
         {
             _logger.LogInformation("create services called at {time}", DateTime.Now);
@@ -61,7 +59,6 @@ namespace Hospital.Controllers
 
         [HttpPost("add-services-from-excel")]
         [Authorize(Roles = "Admin")]
-
         public async Task<IActionResult> AddServicesFromExcel(IFormFile file)
         {
             _logger.LogInformation("all services by excel sheet services called at {time}", DateTime.Now);
@@ -137,7 +134,6 @@ namespace Hospital.Controllers
 
         [HttpPut]
         [Authorize(Roles = "Admin")]
-
         public async Task<IActionResult> Update([FromBody] UpdateServiceDto dto)
         {
             _logger.LogInformation("update services called at {time}", DateTime.Now);
@@ -151,7 +147,6 @@ namespace Hospital.Controllers
 
         [HttpDelete("{id}")]
         [Authorize(Roles = "Admin")]
-
         public async Task<IActionResult> Delete(int id)
         {
             _logger.LogInformation("delete services called at {time}", DateTime.Now);

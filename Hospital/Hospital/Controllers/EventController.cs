@@ -8,7 +8,6 @@ namespace Hospital.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class EventController : ControllerBase
     {
         private readonly IEventService _eventService;
@@ -89,7 +88,6 @@ namespace Hospital.Controllers
         }
 
         [HttpGet("GetAllEventsInSystem")]
-        [Authorize(Roles = "Admin, Patient")]
 
         public async Task<IActionResult> GetAllEventsInSystem()
         {
