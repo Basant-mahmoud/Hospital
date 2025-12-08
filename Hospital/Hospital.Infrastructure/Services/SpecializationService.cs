@@ -53,6 +53,7 @@ namespace Hospital.Infrastructure.Services
             }
 
             var specialization = _mapper.Map<Specialization>(dto);
+            specialization.ImageURL = dto.ImageURL;
             specialization.CreatedAt = DateTime.UtcNow;
             specialization.UpdatedAt = DateTime.UtcNow;
             specialization.Branches = branches;
@@ -160,6 +161,8 @@ namespace Hospital.Infrastructure.Services
             specialization.Name = dto.Name;
             specialization.Description = dto.Description;
             specialization.UpdatedAt = DateTime.UtcNow;
+            specialization.ImageURL = dto.ImageURL;
+
 
             // Remove branches that are no longer selected
             var branchesToRemove = specialization.Branches.Where(b => !dto.BranchIds.Contains(b.BranchId)).ToList();

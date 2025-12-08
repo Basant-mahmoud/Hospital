@@ -19,9 +19,9 @@ namespace Hospital.Controllers
             _logger = logger;
         }
 
+
         [HttpPost("CreateEvent")]
         [Authorize(Roles = "Admin")]
-
         public async Task<IActionResult> CreateEvent([FromBody] AddEventDto eventDto)
         {
             _logger.LogInformation("create event  called at {time}", DateTime.Now);
@@ -30,8 +30,8 @@ namespace Hospital.Controllers
             return CreatedAtAction(nameof(GetEvent), new { id = createdEvent.EventId }, createdEvent);
         }
 
-        [HttpPost("GetEvent")]
 
+        [HttpPost("GetEvent")]
         public async Task<IActionResult> GetEvent(GetEventDto @event)
         {
             _logger.LogInformation("Get event  called at {time}", DateTime.Now);
@@ -56,9 +56,9 @@ namespace Hospital.Controllers
             return Ok(events);
         }
 
+
         [HttpPut("UpdateEvent")]
         [Authorize(Roles = "Admin")]
-
         public async Task<IActionResult> UpdateEvent([FromBody] EventDto eventDto)
         {
             _logger.LogInformation("update event  called at {time}", DateTime.Now);
@@ -73,9 +73,9 @@ namespace Hospital.Controllers
             return Ok("Event updated successfully.");
         }
 
+
         [HttpDelete("DeleteEvent")]
         [Authorize(Roles = "Admin")]
-
         public async Task<IActionResult> DeleteEvent(GetEventDto dto)
         {
             _logger.LogInformation("delete event  called at {time}", DateTime.Now);
@@ -87,8 +87,8 @@ namespace Hospital.Controllers
             return Ok($"Event with ID = {dto.EventId} deleted successfully.");
         }
 
-        [HttpGet("GetAllEventsInSystem")]
 
+        [HttpGet("GetAllEventsInSystem")]
         public async Task<IActionResult> GetAllEventsInSystem()
         {
             _logger.LogInformation("get all  event in system  called at {time}", DateTime.Now);

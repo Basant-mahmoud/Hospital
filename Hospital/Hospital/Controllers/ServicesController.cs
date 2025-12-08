@@ -23,6 +23,7 @@ namespace Hospital.Controllers
             _logger = logger;
         }
 
+
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -31,6 +32,7 @@ namespace Hospital.Controllers
             var services = await _serviceService.GetAllAsync();
             return Ok(services);
         }
+
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
@@ -44,6 +46,7 @@ namespace Hospital.Controllers
             return Ok(service);
         }
 
+
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([FromBody] CreateServiceDto dto)
@@ -56,6 +59,7 @@ namespace Hospital.Controllers
             var created = await _serviceService.CreateAsync(dto);
             return CreatedAtAction(nameof(GetById), new { id = created.ServiceId }, created);
         }
+
 
         [HttpPost("add-services-from-excel")]
         [Authorize(Roles = "Admin")]
@@ -132,6 +136,7 @@ namespace Hospital.Controllers
             return Ok(results);
         }
 
+
         [HttpPut]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Update([FromBody] UpdateServiceDto dto)
@@ -144,6 +149,7 @@ namespace Hospital.Controllers
             await _serviceService.UpdateAsync(dto);
             return Ok("updated Successfully");
         }
+
 
         [HttpDelete("{id}")]
         [Authorize(Roles = "Admin")]

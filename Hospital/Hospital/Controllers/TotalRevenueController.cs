@@ -16,6 +16,7 @@ namespace Hospital.Controllers
             _revenueService = revenueService;
         }
 
+
         [HttpGet("doctor/{doctorId}/branch/{branchId}")]
         public async Task<ActionResult<object>> GetDoctorRevenueInSpecificBranch(int doctorId, int branchId)
         {
@@ -31,6 +32,7 @@ namespace Hospital.Controllers
             return Ok(new { totalRevenue = revenue });
         }
 
+
         [HttpGet("all-branches")]
         public async Task<ActionResult<decimal>> GetTotalRevenueInAllBranches()
         {
@@ -38,24 +40,30 @@ namespace Hospital.Controllers
             return Ok(new { totalRevenue = revenue });
         }
 
+
         [HttpGet("branch/{branchId}")]
         public async Task<ActionResult<decimal>> GetTotalRevenueInSpecificBranch(int branchId)
         {
             var revenue = await _revenueService.GetTotalRevenueInSpecificBranchAllBranchAsync(branchId);
             return Ok(new { totalRevenue = revenue });
         }
+
+
         [HttpGet("month")]
         public async Task<ActionResult<object>> GetRevenueInSpecificMonth(int year, int month)
         {
             var revenue = await _revenueService.GetTotalRevenueInSpecificMonthAsync(year, month);
             return Ok(new { totalRevenue = revenue });
         }
+
+
         [HttpGet("year/{year}")]
         public async Task<ActionResult<object>> GetRevenueInSpecificYear(int year)
         {
             var revenue = await _revenueService.GetTotalRevenueInSpecificYearAsync(year);
             return Ok(new { totalRevenue = revenue });
         }
+
 
         [HttpGet("monthly-trend")]
         public async Task<IActionResult> GetMonthlyTrend(int year)
@@ -64,13 +72,12 @@ namespace Hospital.Controllers
             return Ok(new { data });
         }
 
+
         [HttpGet("branch-revenue")]
         public async Task<IActionResult> GetBranchRevenue()
         {
             var data = await _revenueService.GetRevenueByBranch();
             return Ok(new { data });
         }
-
-
     }
 }

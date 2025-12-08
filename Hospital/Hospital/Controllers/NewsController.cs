@@ -20,6 +20,7 @@ namespace Hospital.Controllers
             _logger = logger;
         }
 
+
         [HttpPost("CreateNews")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateNews([FromBody] AddNewsDto newsDto)
@@ -29,6 +30,7 @@ namespace Hospital.Controllers
             var creatednews = await _newsService.AddAsync(newsDto);
             return CreatedAtAction(nameof(GetNews), new { id = creatednews.NewsId }, creatednews);
         }
+
 
         [HttpPost("GetNews")]
         public async Task<IActionResult> GetNews(GetNewsDto news)
@@ -42,6 +44,7 @@ namespace Hospital.Controllers
             return Ok(newsDto);
         }
 
+
         [HttpGet("GetAllNews")]
         public async Task<IActionResult> GetAllNews([FromQuery] int branchId)
         {
@@ -53,6 +56,7 @@ namespace Hospital.Controllers
 
             return Ok(news);
         }
+
 
         [HttpPut("UpdateNews")]
         [Authorize(Roles = "Admin")]
@@ -70,6 +74,7 @@ namespace Hospital.Controllers
             return Ok("News updated successfully.");
         }
 
+
         [HttpDelete("DeleteNews")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteNews(GetNewsDto dto)
@@ -82,6 +87,7 @@ namespace Hospital.Controllers
 
             return Ok($"News with ID = {dto.NewsId} deleted successfully.");
         }
+
 
         [HttpGet("GetAllNewsInSystem")]
         public async Task<IActionResult> GetAllNewsInSystem()

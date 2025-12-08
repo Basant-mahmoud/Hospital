@@ -20,6 +20,7 @@ namespace Hospital.Controllers
             _logger = logger;
         }
 
+
         [HttpPost("Create")]
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult<SpecializationDTO>> Create([FromBody] CreateSpecialization dto)
@@ -29,6 +30,7 @@ namespace Hospital.Controllers
             var result = await _service.AddAsync(dto);
             return CreatedAtAction(nameof(Get), new { id = result.SpecializationId }, result);
         }
+
 
         [HttpPost("add-from-excel")]
         [Authorize(Roles = "Admin")]
@@ -104,6 +106,7 @@ namespace Hospital.Controllers
             return Ok(results);
         }
 
+
         [HttpGet("Get/{id}")]
         public async Task<ActionResult<SpecializationDTO>> Get(int id)
         {
@@ -112,6 +115,7 @@ namespace Hospital.Controllers
             var result = await _service.GetAsync(id);
             return Ok(result);
         }
+
 
         [HttpGet("GetAll")]
         public async Task<ActionResult<IEnumerable<SpecializationDTO>>> GetAll()
@@ -122,6 +126,7 @@ namespace Hospital.Controllers
             return Ok(result);
         }
 
+
         [HttpPut("Update")]
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult<SpecializationDTO>> Update([FromBody] UpdateSpecialization dto)
@@ -131,6 +136,7 @@ namespace Hospital.Controllers
             var updated = await _service.UpdateAsync(dto);
             return Ok("Updated Successfully");
         }
+
 
         [HttpDelete("Delete")]
         [Authorize(Roles = "Admin")]
@@ -144,6 +150,7 @@ namespace Hospital.Controllers
 
             return Ok("Specialization deleted successfully.");
         }
+
 
         [HttpGet("Branch/{branchId}")]
         public async Task<ActionResult<IEnumerable<SpecializationDTO>>> GetAllByBranch(int branchId)

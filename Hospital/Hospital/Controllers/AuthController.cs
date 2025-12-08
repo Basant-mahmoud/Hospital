@@ -47,6 +47,7 @@ namespace Hospital.Controllers
             return Ok(result);
         }
 
+
         [HttpPost("login")]
         public async Task<IActionResult> LoginAsync([FromBody] LoginModel model)
         {
@@ -65,9 +66,7 @@ namespace Hospital.Controllers
 
 
         [HttpPost("addrole")]
-        [Authorize]
         [Authorize(Roles = "Admin")]
-
         public async Task<IActionResult> AddRoleAsync([FromBody] AddRoleModel model)
         {
             _logger.LogInformation("AddRole called at {time}", DateTime.Now);

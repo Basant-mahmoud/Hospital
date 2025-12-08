@@ -23,7 +23,6 @@ namespace Hospital.Controllers
         }
 
         [HttpGet]
-
         public async Task<IActionResult> GetAll() => Ok(await _bannerService.GetAllAsync());
 
         [HttpGet("{id}")]
@@ -35,7 +34,6 @@ namespace Hospital.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-
         public async Task<IActionResult> Create([FromBody] CreateBannerDto dto)
         {
             if (!ModelState.IsValid)
@@ -47,7 +45,6 @@ namespace Hospital.Controllers
 
         [HttpPut]
         [Authorize(Roles = "Admin")]
-
         public async Task<IActionResult> Update([FromBody] UpdateBannerDto dto)
         {
             if (!ModelState.IsValid)
@@ -59,7 +56,6 @@ namespace Hospital.Controllers
 
         [HttpDelete("{id}")]
         [Authorize(Roles = "Admin")]
-
         public async Task<IActionResult> Delete(int id)
         {
             var deleted = await _bannerService.DeleteAsync(id);

@@ -52,6 +52,7 @@ namespace Hospital.Controllers
             }
         }
 
+
         // -----------------------------
         // Admin gets all tickets
         // -----------------------------
@@ -64,6 +65,7 @@ namespace Hospital.Controllers
             var tickets = await _ticketService.GetAllAsync();
             return Ok(tickets);
         }
+
 
         // -----------------------------
         // Get a single ticket by id

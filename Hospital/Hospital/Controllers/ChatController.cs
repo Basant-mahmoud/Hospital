@@ -18,6 +18,7 @@ namespace Hospital.Controllers
             _memory = memory;
         }
 
+
         [HttpPost("ask")]
         public async Task<ActionResult<ChatResponse>> Ask(ChatRequest request)
         {

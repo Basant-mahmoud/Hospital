@@ -43,8 +43,7 @@ namespace Hospital.API.Controllers
 
         // ---------------------- Get by Doctor ----------------------
         [HttpGet("doctor/{doctorId:int}")]
-        [Authorize(Roles = "Admin,Doctor")]
-
+        [Authorize(Roles = "Admin,Doctor,Patient")]
         public async Task<IActionResult> GetByDoctorId(int doctorId)
         {
             _logger.LogInformation("Get Appointment by GetByDoctorId  called at {time}", DateTime.Now);
@@ -66,8 +65,7 @@ namespace Hospital.API.Controllers
 
         // ---------------------- Delete Appointment ---------------------
         [HttpDelete("{id:int}")]
-        [Authorize(Roles = "Patient,Admin,Doctor")]
-
+        [Authorize(Roles = "Admin,Doctor")]
         public async Task<IActionResult> Delete(int id)
         {
             _logger.LogInformation("Delete Appointment called at {time}", DateTime.Now);
@@ -77,8 +75,7 @@ namespace Hospital.API.Controllers
         }
 
         [HttpGet("GetAll")]
-        [Authorize(Roles = "Admin,Doctor")]
-
+        [Authorize(Roles = "Admin,Doctor,Patient")]
         public async Task<IActionResult> GetAll()
         {
             _logger.LogInformation("Get All Appointments called at {time}", DateTime.Now);
@@ -94,6 +91,7 @@ namespace Hospital.API.Controllers
             var result = await _appointmentService.GetAllCompletedAsync();
             return Ok(result);
         }
+
         [HttpGet("GetAllCompletedByDoctorId/{doctorid}")]
         public async Task<IActionResult> GetAllCompletedByDoctorId(int doctorid)
         {
@@ -113,7 +111,6 @@ namespace Hospital.API.Controllers
 
         [HttpPut("MarkAsCompleted/{id:int}")]
         [Authorize(Roles = "Doctor")]
-
         public async Task<IActionResult> MarkAsCompleted(int id)
         {
             _logger.LogInformation("Mark Appointment as Completed called at {time}", DateTime.Now);
@@ -121,7 +118,5 @@ namespace Hospital.API.Controllers
             
             return Ok(result);
         }
-
-
     }
 }

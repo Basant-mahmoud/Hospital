@@ -15,7 +15,7 @@ namespace Hospital.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize]
+
     public class PaymentController : ControllerBase
     {
         private readonly IPaymentService _paymentService;
@@ -30,8 +30,7 @@ namespace Hospital.Controllers
         }
 
         [HttpPost("create")]
-        //[Authorize(Roles = "Patient")]
-        [Authorize]
+        [Authorize(Roles = "Patient")]
         public async Task<IActionResult> CreatePayment([FromBody] CreatePaymentRequest request,CancellationToken ct)
         {
             _logger.LogInformation("create payment by credite card called at {time}", DateTime.Now);
@@ -69,6 +68,7 @@ namespace Hospital.Controllers
                 return StatusCode(500, new { success = false, message = "Payment creation failed", error = ex.Message });
             }
         }
+
 
         [HttpPost("callback")]
         [AllowAnonymous]

@@ -8,7 +8,6 @@ namespace Hospital.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class ScheduleController : ControllerBase
     {
         private readonly IScheduleService _service;
@@ -23,7 +22,6 @@ namespace Hospital.Controllers
         // Create a new schedule
         [HttpPost]
         [Authorize(Roles = "Admin")]
-
         public async Task<ActionResult<ScheduleDto>> Create([FromBody] CreateScheduleDto dto)
         {
             _logger.LogInformation("create schedule  called at {time}", DateTime.Now);
@@ -32,10 +30,10 @@ namespace Hospital.Controllers
             return Ok(result);
         }
 
+
         // Update existing schedule
         [HttpPut]
         [Authorize(Roles = "Admin")]
-
         public async Task<ActionResult<ScheduleDto>> Update([FromBody] UpdateScheduleDto dto)
         {
             _logger.LogInformation("update schedule  called at {time}", DateTime.Now);
@@ -44,10 +42,10 @@ namespace Hospital.Controllers
             return Ok(result);
         }
 
+
         // Delete schedule
         [HttpDelete("{id}")]
         [Authorize(Roles = "Admin")]
-
         public async Task<ActionResult> Delete(int id)
         {
             _logger.LogInformation("delete schedule  called at {time}", DateTime.Now);
@@ -56,9 +54,9 @@ namespace Hospital.Controllers
             return deleted ? Ok("Deleted SuccessFully") : NotFound();
         }
 
+
         // Get schedule by ID
         [HttpGet("{id}")]
-
         public async Task<ActionResult<ScheduleDto>> GetById(int id)
         {
             _logger.LogInformation("get schedule by id called at {time}", DateTime.Now);
@@ -67,9 +65,9 @@ namespace Hospital.Controllers
             return result == null ? NotFound() : Ok(result);
         }
 
+
         // Get all schedules
         [HttpGet]
-
         public async Task<ActionResult<IEnumerable<ScheduleDto>>> GetAll()
         {
             _logger.LogInformation("get all schedule called at {time}", DateTime.Now);
@@ -77,6 +75,7 @@ namespace Hospital.Controllers
             var result = await _service.GetAllAsync();
             return Ok(result);
         }
+
 
         // Get schedules by doctor ID
         [HttpGet("doctor/{doctorId}")]
@@ -95,6 +94,7 @@ namespace Hospital.Controllers
             return Ok(schedules);
         }
 
+
         // Get schedules by day name (e.g,"Monday")
         [HttpGet("day/{dayOfWeek}")]
         public async Task<ActionResult<IEnumerable<ScheduleDto>>> GetDoctorsByDay(string dayOfWeek)
@@ -104,6 +104,7 @@ namespace Hospital.Controllers
             var result = await _service.GetDoctorsByDateAsync(dayOfWeek);
             return Ok(result);
         }
+
 
         // Get schedules by date
         [HttpGet("date/{date}")]
@@ -118,6 +119,7 @@ namespace Hospital.Controllers
             return Ok(result);
         }
 
+
         // Get schedules by day name and shift
         [HttpGet("day/{dayOfWeek}/shift/{shift}")]
         public async Task<ActionResult<IEnumerable<ScheduleDto>>> GetDoctorsByDayAndShift(string dayOfWeek, Domain.Enum.AppointmentShift shift)
@@ -127,6 +129,7 @@ namespace Hospital.Controllers
             var result = await _service.GetDoctorsByDateAndShiftAsync(dayOfWeek, shift);
             return Ok(result);
         }
+
 
         // Get schedules by date and shift
         [HttpGet("date/{date}/shift/{shift}")]

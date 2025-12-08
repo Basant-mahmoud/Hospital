@@ -18,12 +18,15 @@ namespace Hospital.Controllers
             _branchService = branchService;
             _logger = logger;
         }
+
+
         [HttpGet("GetAll")]
         public async Task<IActionResult> GetAll()
         {
             _logger.LogInformation("Get All Branch called at {time}", DateTime.Now);
             return Ok(await _branchService.GetAllAsync());
         }
+
 
         [HttpGet("GetBy/{id}")]
         public async Task<IActionResult> GetById(int id)
@@ -33,9 +36,9 @@ namespace Hospital.Controllers
             return Ok(await _branchService.GetByIdAsync(id));
         }
 
+
         [HttpPost("Create")]
         [Authorize(Roles = "Admin")]
-
         public async Task<IActionResult> Create([FromBody] CreateBranchDto dto)
         {
             _logger.LogInformation("Create Branch called at {time}", DateTime.Now);
@@ -44,9 +47,9 @@ namespace Hospital.Controllers
             return CreatedAtAction(nameof(GetById), new { id = branch.BranchId }, branch);
         }
 
+
         [HttpPut("Update")]
         [Authorize(Roles = "Admin")]
-
         public async Task<IActionResult> Update([FromBody] UpdateBranchDto dto)
         {
             _logger.LogInformation("Update Branch called at {time}", DateTime.Now);
@@ -55,9 +58,9 @@ namespace Hospital.Controllers
             return Ok("Branch Updated Successfully");
         }
 
+
         [HttpDelete("Delete/{id}")]
         [Authorize(Roles = "Admin")]
-
         public async Task<IActionResult> Delete(int id)
         {
             _logger.LogInformation("Delete Branch called at {time}", DateTime.Now);
@@ -65,7 +68,5 @@ namespace Hospital.Controllers
             await _branchService.DeleteAsync(id);
             return Ok("Branch deleted Successfully"); 
         }
-
-
     }
 }

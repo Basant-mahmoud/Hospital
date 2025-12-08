@@ -20,9 +20,9 @@ namespace Hospital.Controllers
             _logger = logger;
         }
 
+
         [HttpGet("{id}")]
         [Authorize(Roles = "Patient, Doctor,Admin")]
-
         public async Task<IActionResult> GetPatientById(int id)
         {
             _logger.LogInformation("get patient by id called at {time}", DateTime.Now);
@@ -31,9 +31,9 @@ namespace Hospital.Controllers
             return Ok(patient);
         }
 
+
         [HttpGet]
         [Authorize(Roles = "Doctor,Admin")]
-
         public async Task<IActionResult> GetAllPatients()
         {
             _logger.LogInformation("get all patient  called at {time}", DateTime.Now);
@@ -42,9 +42,9 @@ namespace Hospital.Controllers
             return Ok(patients);
         }
 
+
         [HttpPut]
         [Authorize(Roles = "Admin")]
-
         public async Task<IActionResult> UpdatePatient(UpdatePatientDto dto)
         {
             _logger.LogInformation("update patient  called at {time}", DateTime.Now);
