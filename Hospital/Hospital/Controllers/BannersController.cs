@@ -11,7 +11,6 @@ namespace Hospital.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class BannersController : ControllerBase
     {
         private readonly IBannerService _bannerService;
