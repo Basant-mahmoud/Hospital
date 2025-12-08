@@ -9,7 +9,6 @@ namespace Hospital.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class PatientController : ControllerBase
     {
         private readonly IPatientService _patientService;
@@ -22,7 +21,7 @@ namespace Hospital.Controllers
         }
 
         [HttpGet("{id}")]
-        [Authorize(Roles = "Patient, Doctor")]
+        [Authorize(Roles = "Patient, Doctor,Admin")]
 
         public async Task<IActionResult> GetPatientById(int id)
         {
@@ -33,7 +32,7 @@ namespace Hospital.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Patient,Doctor")]
+        [Authorize(Roles = "Doctor,Admin")]
 
         public async Task<IActionResult> GetAllPatients()
         {
